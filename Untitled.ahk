@@ -3,3 +3,5 @@
 f8:: {
   send "{Enter}"
 }
+
+#include %A_ScriptDir%\a.ahk
