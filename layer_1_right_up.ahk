@@ -28,14 +28,6 @@ Layer1RightUp_WheelDown() {
 }
 
 Layer1RightUp() {
-  Global wheelup_flag
-  Global wheeldown_flag
-  if (not IsSet(wheeldown_flag)) {
-    wheeldown_flag := 0
-  }
-  if (not IsSet(wheelup_flag)) {
-    wheelup_flag := 0
-  }
   If (RButtonIsPressed()) {
     ; If (MButtonIsPressed()) {
     ;   Layer1RightUp_MButton()
@@ -43,11 +35,9 @@ Layer1RightUp() {
     ; If (LButtonIsPressed()) {
     ;   Layer1RightUp_LButton()
     ; } Else
-    If (wheelup_flag) {
-      wheelup_flag := 0
+    If (GetWheelDownFlag()) {
       Layer1RightUp_WheelUp()
-    } Else If (wheeldown_flag) {
-      wheeldown_flag := 0
+    } Else If (GetWheelUpFlag()) {
       Layer1RightUp_WheelDown()
     } Else {
       CheckPrint(Layer1RightUp_Msg)

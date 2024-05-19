@@ -200,6 +200,26 @@ CheckPrint(text:="") {
   }
 }
 
+GetWheelDownFlag() {
+  Global wheeldown_flag
+  if (not IsSet(wheeldown_flag)) {
+    wheeldown_flag := 0
+  }
+  temp := wheeldown_flag
+  wheeldown_flag := 0
+  return temp
+}
+
+GetWheelUpFlag() {
+  Global wheelup_flag
+  if (not IsSet(wheelup_flag)) {
+    wheelup_flag := 0
+  }
+  temp := wheelup_flag
+  wheelup_flag := 0
+  return temp
+}
+
 RButtonWheelUp() {
   Global wheelup_flag
   wheelup_flag := 1
