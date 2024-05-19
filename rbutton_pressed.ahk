@@ -33,6 +33,12 @@ dir_index_maps.Set(
   'side_up', 16,
 )
 
+functions := []
+
+Loop (circle_nums + 1) * 8 {
+  functions.Push(0)
+}
+
 UpdateRbuttonPressPos1() {
   Global rbutton_press_x1
   Global rbutton_press_y1
@@ -145,5 +151,28 @@ GetPos1StateFromPos2() {
       }
     }
   }
-  PrintAppendEnd(Format("layer: {1:d}, direction: {2:s}, {3:d}", layer, direction, (layer > 0 and layer - 1 or 0) * 8 + dir_index_maps[direction]))
+  index := (layer > 0 and layer - 1 or 0) * 8 + dir_index_maps[direction]
+  if (index > 0) {
+    function := functions[index]
+    if ("Func" == Type(function)) {
+      function()
+    }
+  }
 }
+
+AddFunction(layer, direction, function) {
+  if (layer < 1) {
+    layer := 1
+  }
+  if (layer > circle_nums) {
+    layer := circle_nums
+  }
+  index := (layer - 1) * 8 + dir_index_maps[direction]
+  functions[index] := function
+}
+
+Test() {
+  Print("0000000000000000000")
+}
+
+AddFunction(1, "right_up", Test)
