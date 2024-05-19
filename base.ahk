@@ -52,7 +52,7 @@ PrintAppendEnd(text:="", timeout:=4000) {
 ; 见https://wyagd001.github.io/v2/docs/lib/_HotIf.htm#ExVolume
 MouseIsOver(wintitle) {
   MouseGetPos ,, &win
-  Return WinExist(wintitle " ahk_id " win)
+  Return WinExist(wintitle " Ahk_id " win)
 }
 
 RButtonIsPressed() {

@@ -30,17 +30,17 @@ UpdateRbuttonPressPos2() {
 
 DrawCircleAtRbuttonPressPos1() {
   For _index, value In gui_list {
-    WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "ahk_id " . value.Hwnd)
+    WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . value.Hwnd)
     x := (rbutton_press_x1-circle_sizes[_index]/2)/2
     y := (rbutton_press_y1-circle_sizes[_index]/2)/2
     value.Move(x, y, circle_sizes[_index]/2, circle_sizes[_index]/2)
-    WinSetTransparent(circle_transparent, "ahk_id " . value.Hwnd)
+    WinSetTransparent(circle_transparent, "Ahk_id " . value.Hwnd)
   }
 }
 
 HideCircle() {
   For _index, value In gui_list {
-    WinSetTransparent(0, "ahk_id " . value.Hwnd)
+    WinSetTransparent(0, "Ahk_id " . value.Hwnd)
   }
 }
 
@@ -49,8 +49,8 @@ InitCircle() {
     MyGui := Gui("+LastFound +ToolWindow +AlwaysOnTop -Caption")
     MyGui.BackColor := circle_colors[A_index]
     MyGui.Show("NA")
-    WinSetRegion("0-0 W0 H0 E", "ahk_id " . MyGui.Hwnd)
-    WinSetTransparent(circle_transparent, "ahk_id " . MyGui.Hwnd)
+    WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
+    WinSetTransparent(circle_transparent, "Ahk_id " . MyGui.Hwnd)
     gui_list.Push(MyGui)
   }
 }
@@ -103,7 +103,7 @@ GetPos1StateFromPos2() {
     } Else {
       _dx := _dx * _gap / _c
       _dy := _dy * _gap / _c
-      If (abs(_dx) >= _min and abs(_dx) <= _max and abs(_dy) >= _min and abs(_dy) <= _max) {
+      If (Abs(_dx) >= _min and Abs(_dx) <= _max and Abs(_dy) >= _min and Abs(_dy) <= _max) {
         If (_dx >= 0 and _dy <= 0) {
           direction := "right_up"
         } Else If (_dx >= 0 and _dy >= 0) {
@@ -114,11 +114,11 @@ GetPos1StateFromPos2() {
           direction := "left_up"
         }
       } Else {
-        If (abs(_dx) <= _min and _dy <= 0) {
+        If (Abs(_dx) <= _min and _dy <= 0) {
           direction := "up"
-        } Else If (abs(_dy) <= _min and _dx >= 0) {
+        } Else If (Abs(_dy) <= _min and _dx >= 0) {
           direction := "right"
-        } Else If (abs(_dx) <= _min and _dy >= 0) {
+        } Else If (Abs(_dx) <= _min and _dy >= 0) {
           direction := "down"
         } Else {
           direction := "left"
