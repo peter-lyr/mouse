@@ -23,13 +23,11 @@ RButtonPressedWatcher() {
     Return
   }
   UpdateRbuttonPressPos2()
-  ; PrintRButtonPos2()
   GetPos1StateFromPos2()
 }
 
 ~RButton:: {
   UpdateRbuttonPressPos1()
-  ; PrintRButtonPos1()
   DrawCircleAtRbuttonPressPos1()
 }
 

@@ -28,18 +28,6 @@ UpdateRbuttonPressPos2() {
   MouseGetPos &rbutton_press_x2, &rbutton_press_y2
 }
 
-; PrintRButtonPos1() {
-;   Global rbutton_press_x1
-;   Global rbutton_press_y1
-;   Print(rbutton_press_x1 . ', ' . rbutton_press_y1)
-; }
-;
-; PrintRButtonPos2() {
-;   Global rbutton_press_x2
-;   Global rbutton_press_y2
-;   PrintAppendEnd(rbutton_press_x2-rbutton_press_x1 . ', ' . rbutton_press_y2-rbutton_press_y1)
-; }
-
 DrawCircleAtRbuttonPressPos1() {
   For _index, value In gui_list {
     WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "ahk_id " . value.Hwnd)
