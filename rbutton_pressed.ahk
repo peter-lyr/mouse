@@ -1,12 +1,9 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/19 17:22:08 星期日
 
-rbutton_press_x1 := 0
-rbutton_press_y1 := 0
-
 circle_transparent := 50
 
-gui_list := []
+circle_list := []
 
 circle_nums := 3
 
@@ -29,7 +26,7 @@ UpdateRbuttonPressPos2() {
 }
 
 DrawCircleAtRbuttonPressPos1() {
-  For _index, value In gui_list {
+  For _index, value In circle_list {
     WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . value.Hwnd)
     x := (rbutton_press_x1-circle_sizes[_index]/2)/2
     y := (rbutton_press_y1-circle_sizes[_index]/2)/2
@@ -39,7 +36,7 @@ DrawCircleAtRbuttonPressPos1() {
 }
 
 HideCircle() {
-  For _index, value In gui_list {
+  For _index, value In circle_list {
     WinSetTransparent(0, "Ahk_id " . value.Hwnd)
   }
 }
@@ -51,7 +48,7 @@ InitCircle() {
     MyGui.Show("NA")
     WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
     WinSetTransparent(circle_transparent, "Ahk_id " . MyGui.Hwnd)
-    gui_list.Push(MyGui)
+    circle_list.Push(MyGui)
   }
 }
 
