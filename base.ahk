@@ -5,3 +5,10 @@ Print(text:="222222222222", timeout:=4000) {
   Tooltip(text)
     SetTimer(tooltip, timeout)
 }
+
+
+; 见https://wyagd001.github.io/v2/docs/lib/_HotIf.htm#ExVolume
+MouseIsOver(WinTitle) {
+  MouseGetPos ,, &Win
+    return WinExist(WinTitle " ahk_id " Win)
+}
