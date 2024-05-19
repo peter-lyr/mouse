@@ -16,7 +16,7 @@ WheelDown::Send "{Volume_Down}"
 ;
 ; Print()
 
-SetTimer(RButtonPressedWatcher, 100)
+SetTimer(RButtonPressedWatcher, 10)
 
 RButtonPressedWatcher() {
   if (not RButtonIsPressed()) {
@@ -29,4 +29,11 @@ RButtonPressedWatcher() {
 ~RButton:: {
   UpdateRbuttonPressPos1()
   PrintRButtonPos1()
+  DrawCircleAtRbuttonPressPos1()
 }
+WinSetRegion
+~RButton Up:: {
+  HideCircle()
+}
+
+InitCircle()
