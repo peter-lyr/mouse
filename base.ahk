@@ -56,13 +56,13 @@ MouseIsOver(wintitle) {
 }
 
 RButtonIsPressed() {
-  Return GetKeyState("RButton")
+  Return GetKeyState("RButton", "P")
 }
 
 LButtonIsPressed() {
-  Return GetKeyState("LButton")
+  Return GetKeyState("LButton", "P")
 }
 
 MButtonIsPressed() {
-  Return GetKeyState("MButton")
+  Return GetKeyState("MButton", "P")
 }

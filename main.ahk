@@ -26,12 +26,12 @@ RButtonPressedWatcher() {
   GetPos1StateFromPos2()
 }
 
-~RButton:: {
+RButton:: {
   UpdateRbuttonPressPos1()
   DrawCircleAtRbuttonPressPos1()
 }
 
-~RButton Up:: {
+RButton Up:: {
   HideCircle()
   CallFunction()
 }

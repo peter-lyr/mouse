@@ -198,5 +198,7 @@ AddFunction(1, "right_up", Test)
 CallFunction() {
   if (function_index > 0) {
     functions[function_index]()
+  } else {
+    Click "Right"
   }
 }
