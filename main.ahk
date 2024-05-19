@@ -7,9 +7,11 @@
 WheelUp::Send "{Volume_Up}"
 WheelDown::Send "{Volume_Down}"
 
-f8:: {
-  ; send "{Enter}"
-    Print()
-}
+; f8:: {
+;   ; send "{Enter}"
+;     Print()
+; }
+;
+; Print()
 
-Print()
+
