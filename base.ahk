@@ -45,7 +45,7 @@ PrintAppendUniq(text:="", timeout:=4000) {
 
 PrintAppendEnd(text:="", timeout:=4000) {
   Global PrintList
-  Tooltip(Join(PrintList) . '`n' . text)
+  Tooltip(Trim(Join(PrintList) . '`n' . text, ' `r`t`n'))
   SetTimer(Tooltip, timeout)
 }
 
