@@ -1,5 +1,8 @@
 ﻿#Requires AutoHotkey v2.0
 
+A_HotkeyInterval := 2000 ; 默认
+A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
+
 #Include %A_ScriptDir%\base.ahk
 #Include %A_ScriptDir%\rbutton_pressed.ahk
 #Include %A_ScriptDir%\layer_1_right_up.ahk
