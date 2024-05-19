@@ -9,11 +9,11 @@ Layer1RightUp_Msg := Join([
   "Wheel Scroll Down: xxx",
 ])
 
-Layer1RightUp_LButton() {
-}
-
-Layer1RightUp_MButton() {
-}
+; Layer1RightUp_LButton() {
+; }
+;
+; Layer1RightUp_MButton() {
+; }
 
 Layer1RightUp_RButtonUp() {
   Tooltip
@@ -37,11 +37,13 @@ Layer1RightUp() {
     wheelup_flag := 0
   }
   If (RButtonIsPressed()) {
-    If (MButtonIsPressed()) {
-      Layer1RightUp_MButton()
-    } Else If (LButtonIsPressed()) {
-      Layer1RightUp_LButton()
-    } Else If (wheelup_flag) {
+    ; If (MButtonIsPressed()) {
+    ;   Layer1RightUp_MButton()
+    ; } Else
+    ; If (LButtonIsPressed()) {
+    ;   Layer1RightUp_LButton()
+    ; } Else
+    If (wheelup_flag) {
       wheelup_flag := 0
       Layer1RightUp_WheelUp()
     } Else If (wheeldown_flag) {
