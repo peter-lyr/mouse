@@ -179,22 +179,6 @@ AddFunction(layer, direction, function) {
   functions[index] := function
 }
 
-Test() {
-  if (RButtonIsPressed()) {
-    if (MButtonIsPressed()) {
-      Print("MButtonIsPressed")
-    } else if (LButtonIsPressed()) {
-      Print("LButtonIsPressed")
-    } else {
-      Print("1111111111111111111")
-    }
-  } else {
-    Print("RButton Released")
-  }
-}
-
-AddFunction(1, "right_up", Test)
-
 CallFunction() {
   if (function_index > 0) {
     functions[function_index]()

@@ -2,6 +2,7 @@
 
 #Include %A_ScriptDir%\base.ahk
 #Include %A_ScriptDir%\rbutton_pressed.ahk
+#Include %A_ScriptDir%\layer_1_right_up.ahk
 
 ; 在任务栏上滚动鼠标滚轮来调节音量
 #HotIf MouseIsOver("ahk_class Shell_TrayWnd")
