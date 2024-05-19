@@ -40,4 +40,12 @@ RButton Up:: {
   CallFunction()
 }
 
+~RButton & WheelDown:: {
+  RButtonWheelDown()
+}
+
+~RButton & WheelUp:: {
+  RButtonWheelUp()
+}
+
 InitCircle()

@@ -199,3 +199,13 @@ CheckPrint(text:="") {
     Print(text)
   }
 }
+
+RButtonWheelUp() {
+  Global wheelup_flag
+  wheelup_flag := 1
+}
+
+RButtonWheelDown() {
+  Global wheeldown_flag
+  wheeldown_flag := 1
+}
