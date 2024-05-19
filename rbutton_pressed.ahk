@@ -189,7 +189,7 @@ Test() {
       Print("1111111111111111111")
     }
   } else {
-    Print("not RButtonIsPressed")
+    Print("RButton Released")
   }
 }
 
