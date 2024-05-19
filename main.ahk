@@ -33,6 +33,7 @@ RButtonPressedWatcher() {
 
 ~RButton Up:: {
   HideCircle()
+  CallFunction()
 }
 
 InitCircle()

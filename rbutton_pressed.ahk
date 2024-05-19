@@ -33,6 +33,8 @@ dir_index_maps.Set(
   'side_up', 16,
 )
 
+function_index := 0
+
 functions := []
 
 Loop (circle_nums + 1) * 8 {
@@ -81,6 +83,7 @@ InitCircle() {
 }
 
 GetPos1StateFromPos2() {
+  Global function_index
   layer := 0
   direction := "center"
   _x2 := rbutton_press_x2
@@ -155,8 +158,13 @@ GetPos1StateFromPos2() {
   if (index > 0) {
     function := functions[index]
     if ("Func" == Type(function)) {
+      function_index := index
       function()
+    } else {
+      function_index := 0
     }
+  } else {
+    function_index := 0
   }
 }
 
@@ -172,7 +180,23 @@ AddFunction(layer, direction, function) {
 }
 
 Test() {
-  Print("0000000000000000000")
+  if (RButtonIsPressed()) {
+    if (MButtonIsPressed()) {
+      Print("MButtonIsPressed")
+    } else if (LButtonIsPressed()) {
+      Print("LButtonIsPressed")
+    } else {
+      Print("1111111111111111111")
+    }
+  } else {
+    Print("not RButtonIsPressed")
+  }
 }
 
 AddFunction(1, "right_up", Test)
+
+CallFunction() {
+  if (function_index > 0) {
+    functions[function_index]()
+  }
+}
