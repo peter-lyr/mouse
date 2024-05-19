@@ -6,6 +6,7 @@
 #HotIf MouseIsOver("ahk_class Shell_TrayWnd")
 WheelUp::Send "{Volume_Up}"
 WheelDown::Send "{Volume_Down}"
+#HotIf
 
 ; f8:: {
 ;   ; send "{Enter}"
@@ -14,4 +15,10 @@ WheelDown::Send "{Volume_Down}"
 ;
 ; Print()
 
+~RButton:: {
+  Print()
+}
 
+~RButton Up:: {
+  Tooltip
+}

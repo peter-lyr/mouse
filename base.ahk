@@ -3,7 +3,7 @@
 
 Print(text:="222222222222", timeout:=4000) {
   Tooltip(text)
-    SetTimer(tooltip, timeout)
+    SetTimer(Tooltip, timeout)
 }
 
 
