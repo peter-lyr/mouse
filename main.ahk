@@ -1,6 +1,7 @@
 ﻿#Requires AutoHotkey v2.0
 
 #Include %A_ScriptDir%\base.ahk
+#Include %A_ScriptDir%\rbutton_pressed.ahk
 
 ; 在任务栏上滚动鼠标滚轮来调节音量
 #HotIf MouseIsOver("ahk_class Shell_TrayWnd")
@@ -15,10 +16,17 @@ WheelDown::Send "{Volume_Down}"
 ;
 ; Print()
 
-~RButton:: {
-  Print()
+SetTimer(RButtonPressedWatcher, 100)
+
+RButtonPressedWatcher() {
+  if (not RButtonIsPressed()) {
+    Return
+  }
+  UpdateRbuttonPressPos2()
+  PrintRButtonPos2()
 }
 
-~RButton Up:: {
-  Tooltip
+~RButton:: {
+  UpdateRbuttonPressPos1()
+  PrintRButtonPos1()
 }
