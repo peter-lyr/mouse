@@ -72,7 +72,7 @@ GetPos1StateFromPos2() {
   _max := _gap * 0.9238795325 ;sin(67.5°) == 0.9238795325
   If (_c > _gap) {
     loop MonitorGetCount() {
-      MonitorGetWorkArea(A_index, &_l, &_t, &_r, &_b)
+      MonitorGet(A_index, &_l, &_t, &_r, &_b)
       If (_x2 >= _l and _x2 <= _r and _y2 >= _t and _y2 <= _b) {
         _r := _r - 1
         _b := _b - 1
