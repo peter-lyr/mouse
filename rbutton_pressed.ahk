@@ -51,8 +51,14 @@ UpdateRbuttonPressPos1() {
 UpdateRbuttonPressPos2() {
   Global rbutton_press_x2
   Global rbutton_press_y2
+  Global mouse_moved := 0
+  rbutton_press_x2_back := IsSet(rbutton_press_x2) and rbutton_press_x2 or 0
+  rbutton_press_y2_back := IsSet(rbutton_press_y2) and rbutton_press_y2 or 0
   CoordMode "Mouse", "Screen"
   MouseGetPos &rbutton_press_x2, &rbutton_press_y2
+  If (rbutton_press_x2_back != rbutton_press_x2 or rbutton_press_y2_back != rbutton_press_y2) {
+    mouse_moved := 1
+  }
 }
 
 DrawCircleAtRbuttonPressPos1() {
@@ -155,24 +161,24 @@ GetPos1StateFromPos2() {
     }
   }
   index := (layer > 0 and layer - 1 or 0) * 8 + dir_index_maps[direction]
-  if (index > 0) {
+  If (index > 0) {
     function := functions[index]
-    if ("Func" == Type(function)) {
+    If ("Func" == Type(function)) {
       function_index := index
       function()
-    } else {
+    } Else {
       function_index := 0
     }
-  } else {
+  } Else {
     function_index := 0
   }
 }
 
 AddFunction(layer, direction, function) {
-  if (layer < 1) {
+  If (layer < 1) {
     layer := 1
   }
-  if (layer > circle_nums) {
+  If (layer > circle_nums) {
     layer := circle_nums
   }
   index := (layer - 1) * 8 + dir_index_maps[direction]
@@ -180,9 +186,16 @@ AddFunction(layer, direction, function) {
 }
 
 CallFunction() {
-  if (function_index > 0) {
+  If (function_index > 0) {
     functions[function_index]()
-  } else {
+  } Else {
     Click "Right"
+  }
+}
+
+CheckPrint(text:="") {
+  Global mouse_moved
+  If (mouse_moved) {
+    Print(text)
   }
 }

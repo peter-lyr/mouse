@@ -23,7 +23,7 @@ Layer1RightUp() {
     } Else If (LButtonIsPressed()) {
       Layer1RightUp_LButton()
     } Else {
-      Print(Layer1RightUp_Msg)
+      CheckPrint(Layer1RightUp_Msg)
     }
   } Else {
     Layer1RightUp_RButtonUp()
