@@ -2,8 +2,8 @@
 ; create at 2024/05/19 23:55:59 星期日
 
 Layer1RightUp_Msg := Join([
-  "Press     LButton: xxx",
-  "Press     MButton: xxx",
+  ; "Press     LButton: xxx",
+  ; "Press     MButton: xxx",
   "Release   RButton: xxx",
   "Wheel Scroll   Up: xxx",
   "Wheel Scroll Down: xxx",
