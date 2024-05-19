@@ -11,6 +11,28 @@ circle_sizes := [200, 500, 800]
 
 circle_colors := ["Red", "Blue", "Green"]
 
+dir_index_maps := Map()
+
+dir_index_maps.Set(
+  'center', 0,
+  'right_up', 1,
+  'right', 2,
+  'right_down', 3,
+  'down', 4,
+  'left_down', 5,
+  'left', 6,
+  'left_up', 7,
+  'up', 8,
+  'side_right_up', 9,
+  'side_right', 10,
+  'side_right_down', 11,
+  'side_down', 12,
+  'side_left_down', 13,
+  'side_left', 14,
+  'side_left_up', 15,
+  'side_up', 16,
+)
+
 UpdateRbuttonPressPos1() {
   Global rbutton_press_x1
   Global rbutton_press_y1
@@ -123,5 +145,5 @@ GetPos1StateFromPos2() {
       }
     }
   }
-  PrintAppendEnd("" . layer . " ," . direction)
+  PrintAppendEnd(Format("layer: {1:d}, direction: {2:s}, {3:d}", layer, direction, (layer > 0 and layer - 1 or 0) * 8 + dir_index_maps[direction]))
 }
