@@ -1,15 +1,15 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/19 17:22:08 星期日
 
-circle_transparent := 50
+circle_transparent := 20
 
 circle_list := []
 
-circle_nums := 3
+circle_nums := 6
 
-circle_sizes := [200, 500, 800]
+circle_sizes := [200, 500, 800, 1100, 1400, 1700]
 
-circle_colors := ["Red", "Blue", "Green"]
+circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
 
 dir_index_maps := Map()
 
