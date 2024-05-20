@@ -210,7 +210,11 @@ GetPos1StateFromPos2() {
   }
 }
 
-AddFunction(layer, direction, function) {
+Array2Function(arr) {
+  Return FunctionWrap(Array2Map(arr))
+}
+
+AddFunction(layer, direction, arr) {
   If (layer < 1) {
     layer := 1
   }
@@ -218,7 +222,7 @@ AddFunction(layer, direction, function) {
     layer := circle_nums
   }
   index := (layer - 1) * 8 + dir_index_maps[direction]
-  functions[index] := function
+  functions[index] := Array2Function(arr)
 }
 
 CallFunction() {

@@ -87,7 +87,7 @@ Array2Map(arr) {
 }
 
 TryCallFunction(function) {
-  if (Type(function) == "Func") {
+  If ("Func" == Type(function) Or "Closure" == Type(function)) {
     Try {
       function()
     }
