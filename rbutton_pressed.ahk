@@ -15,7 +15,7 @@ dir_index_maps := Map()
 
 ver := 11
 
-if (InStr(CmdRunOutput("ver"), "Version 10")) {
+If (InStr(CmdRunOutput("ver"), "Version 10")) {
   ver := 10
 }
 
@@ -70,11 +70,11 @@ UpdateRbuttonPressPos2() {
 DrawCircleAtRbuttonPressPos1() {
   For _index, value In circle_list {
     WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . value.Hwnd)
-    if (ver == 10) {
+    If (ver == 10) {
       x := (rbutton_press_x1-circle_sizes[_index]/2)
       y := (rbutton_press_y1-circle_sizes[_index]/2)
       value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
-    } else {
+    } Else {
       x := (rbutton_press_x1-circle_sizes[_index]/2)
       y := (rbutton_press_y1-circle_sizes[_index]/2)
       value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
@@ -208,28 +208,32 @@ CallFunction() {
 CheckPrint(text:="") {
   Global mouse_moved
   If (mouse_moved) {
-    Print(text)
+    If (Type(text) == "Array") {
+      Print(Join(text, '`n'))
+    } Else {
+      Print(text)
+    }
   }
 }
 
 GetWheelDownFlag() {
   Global wheeldown_flag
-  if (not IsSet(wheeldown_flag)) {
+  If (Not IsSet(wheeldown_flag)) {
     wheeldown_flag := 0
   }
   temp := wheeldown_flag
   wheeldown_flag := 0
-  return temp
+  Return temp
 }
 
 GetWheelUpFlag() {
   Global wheelup_flag
-  if (not IsSet(wheelup_flag)) {
+  If (Not IsSet(wheelup_flag)) {
     wheelup_flag := 0
   }
   temp := wheelup_flag
   wheelup_flag := 0
-  return temp
+  Return temp
 }
 
 RButtonWheelUp() {
