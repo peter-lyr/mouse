@@ -27,6 +27,7 @@ RButton:: {
 RButton Up:: {
   HideCircle()
   CallFunction()
+  ResetWheelFlag()
 }
 
 ~RButton & WheelDown:: {

@@ -3,7 +3,13 @@
 
 Layer1RightDown_RButtonUp(just_info:=0) {
   If (just_info) {
+    If (GetWheelFlag()) {
+      Return "R: "
+    }
     Return "R: WinMinimize"
+  }
+  If (GetWheelFlag()) {
+    Return
   }
   WinMinimizeRbuttonPressWin()
 }

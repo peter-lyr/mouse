@@ -221,7 +221,10 @@ CallFunction() {
 
 CheckPrint(text:="") {
   Global mouse_moved
-  If (mouse_moved) {
+  If (mouse_moved Or GetWheelFlag() == 1) {
+    If (GetWheelFlag()) {
+      SetWheelFlag()
+    }
     If (Type(text) == "Array") {
       Print(Join(text, '`n'))
     } Else {
@@ -250,12 +253,34 @@ GetWheelUpFlag() {
   Return temp
 }
 
+ResetWheelFlag() {
+  Global wheel_flag
+  wheel_flag := 0
+}
+
+SetWheelFlag(val:=2) {
+  Global wheel_flag
+  wheel_flag := val
+}
+
+GetWheelFlag() {
+  Global wheel_flag
+  If (Not IsSet(wheel_flag)) {
+    wheel_flag := 0
+  }
+  Return wheel_flag
+}
+
 RButtonWheelUp() {
   Global wheelup_flag
+  Global wheel_flag
+  wheel_flag := 1
   wheelup_flag := 1
 }
 
 RButtonWheelDown() {
   Global wheeldown_flag
+  Global wheel_flag
+  wheel_flag := 1
   wheeldown_flag := 1
 }
