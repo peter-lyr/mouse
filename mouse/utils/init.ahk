@@ -98,9 +98,10 @@ FunctionWrap(param_maps) {
   LayerxxxRButtonUp(just_info:=0) {
     If (just_info) {
       If (GetWheelFlag()) {
-        Return "R: "
+        Return
       }
-      Return "R: " . param_maps.Get("ri", "") ; release info
+      info := param_maps.Get("ri", "") ; release info
+      Return info And "R: " . info Or ""
     }
     If (GetWheelFlag()) {
       Return
@@ -109,13 +110,15 @@ FunctionWrap(param_maps) {
   }
   LayerxxxWheelUp(just_info:=0) {
     If (just_info) {
-      Return "U: " . param_maps.Get("ui", "") ; wheelup info
+      info := param_maps.Get("ui", "") ; wheelup info
+      Return info And "U: " . info Or ""
     }
     TryCallFunction(param_maps.Get("uf", ""))
   }
   LayerxxxWheelDown(just_info:=0) {
     If (just_info) {
-      Return "D: " . param_maps.Get("di", "") ; wheeldown info
+      info := param_maps.Get("di", "") ; wheeldown info
+      Return info And "D: " . info Or ""
     }
     TryCallFunction(param_maps.Get("df", ""))
   }
