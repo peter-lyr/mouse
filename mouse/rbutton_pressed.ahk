@@ -159,6 +159,7 @@ GetPos1StateFromPos2() {
       } Else If (_x2 == _l) {
         direction := "side_left"
       }
+      layer := circle_nums
     } Else {
       _dx := _dx * _gap / _c
       _dy := _dy * _gap / _c
