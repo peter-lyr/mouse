@@ -194,9 +194,11 @@ GetPos1StateFromPos2() {
   index := (layer > 0 and layer - 1 or 0) * 8 + dir_index_maps[direction]
   If (index > 0) {
     function := functions[index]
-    If ("Func" == Type(function)) {
+    If ("Func" == Type(function) Or "Closure" == Type(function)) {
       function_index := index
-      function()
+      Try {
+        function()
+      }
     } Else {
       function_index := 0
     }

@@ -4,7 +4,7 @@
 PrintList := []
 
 Strip(text) {
-  return Trim(text, " `r`t`n")
+  Return Trim(text, " `r`t`n")
 }
 
 Join(string_array, sep:="`n") {
@@ -74,5 +74,63 @@ MButtonIsPressed() {
 CmdRunOutput(cmd) {
   shell := ComObject("WScript.Shell")
   exec := shell.Exec(A_ComSpec . " /C " . cmd)
-  return Strip(exec.StdOut.ReadAll())
+  Return Strip(exec.StdOut.ReadAll())
+}
+
+Array2Map(arr) {
+  _map := Map()
+  Return _map.Set(arr*)
+}
+
+TryCallFunction(function) {
+  if (Type(function) == "Func") {
+    Try {
+      function()
+    }
+  }
+}
+
+FunctionWrap(param_maps) {
+  LayerxxxRButtonUp(just_info:=0) {
+    If (just_info) {
+      If (GetWheelFlag()) {
+        Return "R: "
+      }
+      Return "R: " . param_maps.Get("ri", "") ; release info
+    }
+    If (GetWheelFlag()) {
+      Return
+    }
+    TryCallFunction(param_maps.Get("rf", ""))
+  }
+  LayerxxxWheelUp(just_info:=0) {
+    If (just_info) {
+      Return "U: " . param_maps.Get("ui", "") ; wheelup info
+    }
+    TryCallFunction(param_maps.Get("uf", ""))
+  }
+  LayerxxxWheelDown(just_info:=0) {
+    If (just_info) {
+      Return "D: " . param_maps.Get("di", "") ; wheeldown info
+    }
+    TryCallFunction(param_maps.Get("df", ""))
+  }
+  Layerxxx() {
+    If (RButtonIsPressed()) {
+      If (GetWheelDownFlag()) {
+        LayerxxxWheelDown()
+      } Else If (GetWheelUpFlag()) {
+        LayerxxxWheelUp()
+      } Else {
+        CheckPrint([
+          LayerxxxRButtonUp(1),
+          LayerxxxWheelUp(1),
+          LayerxxxWheelDown(1),
+        ])
+      }
+    } Else {
+      LayerxxxRButtonUp()
+    }
+  }
+  Return Layerxxx
 }
