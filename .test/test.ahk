@@ -17,4 +17,5 @@
 ; Print()
 
 MouseGetPos &x1, &y1
-MsgBox(PixelGetColor(x1, y1))
+color := Integer(PixelGetColor(x1, y1))
+MsgBox(color & 0xff + (color >> 8) & 0xff + (color >> 16) & 0xff)
