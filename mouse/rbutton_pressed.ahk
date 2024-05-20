@@ -200,7 +200,7 @@ GetPos1StateFromPos2() {
     function_index := 0
   }
   If (Not function_index) {
-    Print(layer . "E " . direction . ":" . index)
+    Print(layer . "L " . StrUpper(direction) . ":" . index)
   }
 }
 
