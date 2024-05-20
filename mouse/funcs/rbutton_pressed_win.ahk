@@ -13,3 +13,11 @@ WinMaximizeRestoreRbuttonPressWin() {
     WinActivate(_win)
   }
 }
+
+WinMinimizeRbuttonPressWin() {
+  _win := GetRbuttonPressWin()
+  If (Not WinExist(_win)) {
+    Return
+  }
+  WinMinimize(_win)
+}
