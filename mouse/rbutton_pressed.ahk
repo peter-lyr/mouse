@@ -22,6 +22,8 @@ If (winver == 10) {
 
 circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
 
+GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
+
 dir_index_maps := Map()
 
 dir_index_maps.Set(
@@ -82,30 +84,32 @@ UpdateRbuttonPressPos2() {
 }
 
 DrawCircleAtRbuttonPressPos1() {
-  For _index, value In circle_list {
-    WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . value.Hwnd)
+  For _index, _gui In circle_list {
+    _gui.Opt(GuiOpt)
+    WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . _gui.Hwnd)
     If (winver == 10) {
       x := (rbutton_press_x1-circle_sizes[_index]/2)
       y := (rbutton_press_y1-circle_sizes[_index]/2)
-      value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
+      _gui.Move(x, y, circle_sizes[_index], circle_sizes[_index])
     } Else {
       x := (rbutton_press_x1-circle_sizes[_index]/2)
       y := (rbutton_press_y1-circle_sizes[_index]/2)
-      value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
+      _gui.Move(x, y, circle_sizes[_index], circle_sizes[_index])
     }
-    WinSetTransparent(circle_transparent, "Ahk_id " . value.Hwnd)
+    WinSetTransparent(circle_transparent, "Ahk_id " . _gui.Hwnd)
   }
 }
 
 HideCircle() {
-  For _index, value In circle_list {
-    WinSetTransparent(0, "Ahk_id " . value.Hwnd)
+  For _index, _gui In circle_list {
+    WinSetTransparent(0, "Ahk_id " . _gui.Hwnd)
   }
 }
 
 InitCircle() {
   Loop circle_nums {
-    MyGui := Gui("+LastFound +ToolWindow +AlwaysOnTop -Caption")
+    MyGui := Gui()
+    MyGui.Opt(GuiOpt)
     MyGui.BackColor := circle_colors[A_index]
     MyGui.Show("NA")
     WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
