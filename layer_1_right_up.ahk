@@ -5,7 +5,7 @@ Layer1RightUp_RButtonUp(just_info:=0) {
   If (just_info) {
     Return "R: xxx"
   }
-  Tooltip
+  WinMaximizeRestoreRbuttonPressWin()
 }
 
 Layer1RightUp_WheelUp(just_info:=0) {

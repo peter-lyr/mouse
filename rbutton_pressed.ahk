@@ -54,8 +54,9 @@ Loop (circle_nums + 1) * 8 {
 UpdateRbuttonPressPos1() {
   Global rbutton_press_x1
   Global rbutton_press_y1
+  Global rbutton_press_win
   CoordMode "Mouse", "Screen"
-  MouseGetPos &rbutton_press_x1, &rbutton_press_y1
+  MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
 }
 
 UpdateRbuttonPressPos2() {
@@ -207,6 +208,7 @@ CallFunction() {
   } Else {
     Click "Right"
   }
+  Tooltip
 }
 
 CheckPrint(text:="") {
@@ -248,4 +250,14 @@ RButtonWheelUp() {
 RButtonWheelDown() {
   Global wheeldown_flag
   wheeldown_flag := 1
+}
+
+WinMaximizeRestoreRbuttonPressWin() {
+  Global rbutton_press_win
+  If (WinGetMinMax(rbutton_press_win)) {
+    WinRestore(rbutton_press_win)
+  } Else {
+    WinMaximize(rbutton_press_win)
+    WinActivate(rbutton_press_win)
+  }
 }
