@@ -3,7 +3,7 @@
 
 Layer1RightUp_RButtonUp(just_info:=0) {
   If (just_info) {
-    Return "R: xxx"
+    Return "R: WinMaximizeRestore"
   }
   WinMaximizeRestoreRbuttonPressWin()
 }
