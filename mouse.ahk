@@ -7,6 +7,7 @@ A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 #Include %A_ScriptDir%\mouse\init.ahk
 #Include %A_ScriptDir%\mouse\layers\layer1.ahk
 #Include %A_ScriptDir%\mouse\funcs\rbutton_pressed_win.ahk
+#Include %A_ScriptDir%\mouse\last.ahk
 
 SetTimer(RButtonPressedWatcher, 10)
 
