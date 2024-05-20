@@ -3,7 +3,7 @@
 
 winver := 11
 
-If (InStr(CmdRunOutput("ver"), "Version 10")) {
+If (CmdRunOutput("cd " . A_ScriptDir . "\mouse\utils" . " && getwinver.bat") == "Windows 10") {
   winver := 10
 }
 
@@ -92,9 +92,9 @@ DrawCircleAtRbuttonPressPos1() {
       y := (rbutton_press_y1-circle_sizes[_index]/2)
       _gui.Move(x, y, circle_sizes[_index], circle_sizes[_index])
     } Else {
-      x := (rbutton_press_x1-circle_sizes[_index]/2)
-      y := (rbutton_press_y1-circle_sizes[_index]/2)
-      _gui.Move(x, y, circle_sizes[_index], circle_sizes[_index])
+      x := (rbutton_press_x1-circle_sizes[_index]/2)/2
+      y := (rbutton_press_y1-circle_sizes[_index]/2)/2
+      _gui.Move(x, y, circle_sizes[_index]/2, circle_sizes[_index]/2)
     }
     WinSetTransparent(circle_transparent, "Ahk_id " . _gui.Hwnd)
   }
