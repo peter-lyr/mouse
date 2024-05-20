@@ -1,23 +1,27 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/19 17:22:08 星期日
 
+ver := 11
+
+If (InStr(CmdRunOutput("ver"), "Version 10")) {
+  ver := 10
+}
+
 circle_transparent := 20
 
 circle_list := []
 
 circle_nums := 6
 
-circle_sizes := [200, 500, 800, 1100, 1400, 1700]
+If (ver == 10) {
+  circle_sizes := [100, 300, 500, 700, 900, 1100]
+} Else {
+  circle_sizes := [200, 500, 800, 1100, 1400, 1700]
+}
 
 circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
 
 dir_index_maps := Map()
-
-ver := 11
-
-If (InStr(CmdRunOutput("ver"), "Version 10")) {
-  ver := 10
-}
 
 dir_index_maps.Set(
   'center', 0,
