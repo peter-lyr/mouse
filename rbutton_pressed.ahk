@@ -7,7 +7,7 @@ If (InStr(CmdRunOutput("ver"), "Version 10")) {
   ver := 10
 }
 
-circle_transparent := 20
+circle_transparent := 8
 
 circle_list := []
 
