@@ -14,10 +14,23 @@ WinMaximizeRestoreRbuttonPressWin() {
   }
 }
 
+WinMaximizeRestoreA() {
+  If (WinGetMinMax("A")) {
+    WinRestore("A")
+  } Else {
+    WinMaximize("A")
+    WinActivate("A")
+  }
+}
+
 WinMinimizeRbuttonPressWin() {
   _win := GetRbuttonPressWin()
   If (Not WinExist(_win)) {
     Return
   }
   WinMinimize(_win)
+}
+
+^#k:: {
+  WinMaximizeRestoreA()
 }
