@@ -5,7 +5,7 @@ AddFunction(1, "right_up", FunctionWrap(Array2Map([
   "ri", "WinMaximizeRestore",
   "rf", WinMaximizeRestoreRbuttonPressWin,
   "ui", "Volume_Up",
-  "uf", () => Send("{Volume_Up}"),
+  "uf", () => [ Send("{Volume_Up}"), ],
   "di", "Volume_Down",
-  "df", () => Send("{Volume_Down}"),
+  "df", () => [ Send("{Volume_Down}"), ],
 ])))
