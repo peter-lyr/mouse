@@ -259,16 +259,3 @@ RButtonWheelDown() {
   Global wheeldown_flag
   wheeldown_flag := 1
 }
-
-WinMaximizeRestoreRbuttonPressWin() {
-  _win := GetRbuttonPressWin()
-  If (Not WinExist(_win)) {
-    Return
-  }
-  If (WinGetMinMax(_win)) {
-    WinRestore(_win)
-  } Else {
-    WinMaximize(_win)
-    WinActivate(_win)
-  }
-}
