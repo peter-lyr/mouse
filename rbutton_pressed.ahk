@@ -13,6 +13,12 @@ circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
 
 dir_index_maps := Map()
 
+ver := 11
+
+if (InStr(CmdRunOutput("ver"), "Version 10")) {
+  ver := 10
+}
+
 dir_index_maps.Set(
   'center', 0,
   'right_up', 1,
@@ -64,9 +70,15 @@ UpdateRbuttonPressPos2() {
 DrawCircleAtRbuttonPressPos1() {
   For _index, value In circle_list {
     WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . value.Hwnd)
-    x := (rbutton_press_x1-circle_sizes[_index]/2)/2
-    y := (rbutton_press_y1-circle_sizes[_index]/2)/2
-    value.Move(x, y, circle_sizes[_index]/2, circle_sizes[_index]/2)
+    if (ver == 10) {
+      x := (rbutton_press_x1-circle_sizes[_index]/2)
+      y := (rbutton_press_y1-circle_sizes[_index]/2)
+      value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
+    } else {
+      x := (rbutton_press_x1-circle_sizes[_index]/2)
+      y := (rbutton_press_y1-circle_sizes[_index]/2)
+      value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
+    }
     WinSetTransparent(circle_transparent, "Ahk_id " . value.Hwnd)
   }
 }
