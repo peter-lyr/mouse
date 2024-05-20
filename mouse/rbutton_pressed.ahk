@@ -1,10 +1,10 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/19 17:22:08 星期日
 
-ver := 11
+winver := 11
 
 If (InStr(CmdRunOutput("ver"), "Version 10")) {
-  ver := 10
+  winver := 10
 }
 
 circle_transparent := 8
@@ -13,7 +13,7 @@ circle_list := []
 
 circle_nums := 6
 
-If (ver == 10) {
+If (winver == 10) {
   circle_sizes := [100, 300, 500, 700, 900, 1100]
 } Else {
   circle_sizes := [200, 500, 800, 1100, 1400, 1700]
@@ -83,7 +83,7 @@ UpdateRbuttonPressPos2() {
 DrawCircleAtRbuttonPressPos1() {
   For _index, value In circle_list {
     WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . value.Hwnd)
-    If (ver == 10) {
+    If (winver == 10) {
       x := (rbutton_press_x1-circle_sizes[_index]/2)
       y := (rbutton_press_y1-circle_sizes[_index]/2)
       value.Move(x, y, circle_sizes[_index], circle_sizes[_index])
