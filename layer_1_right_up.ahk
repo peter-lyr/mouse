@@ -3,31 +3,31 @@
 
 Layer1RightUp_RButtonUp(just_info:=0) {
   If (just_info) {
-    Return "Release   RButton: xxx"
+    Return "R: xxx"
   }
   Tooltip
 }
 
 Layer1RightUp_WheelUp(just_info:=0) {
   If (just_info) {
-    Return "Wheel Scroll   Up: xxx"
+    Return "U: Volume_Up"
   }
-  Print("Layer1RightUp_WheelUp")
+  Send "{Volume_Up}"
 }
 
 Layer1RightUp_WheelDown(just_info:=0) {
   If (just_info) {
-    Return "Wheel Scroll Down: xxx"
+    Return "D: Volume_Down"
   }
-  Print("Layer1RightUp_WheelDown")
+  Send "{Volume_Down}"
 }
 
 Layer1RightUp() {
   If (RButtonIsPressed()) {
     If (GetWheelDownFlag()) {
-      Layer1RightUp_WheelUp()
-    } Else If (GetWheelUpFlag()) {
       Layer1RightUp_WheelDown()
+    } Else If (GetWheelUpFlag()) {
+      Layer1RightUp_WheelUp()
     } Else {
       CheckPrint([
         Layer1RightUp_RButtonUp(1),
