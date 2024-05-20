@@ -20,15 +20,22 @@
 ; color := Integer(PixelGetColor(x1, y1))
 ; MsgBox(color & 0xff + (color >> 8) & 0xff + (color >> 16) & 0xff)
 
-; function wrap
+; ; function wrap
+;
+; Test(tt) {
+;   temp() {
+;     Tooltip ">>>>" . tt . ">>>"
+;   }
+;   return temp
+; }
+;
+; f8:: {
+;   Test("ver")()
+; }
 
-Test(tt) {
-  temp() {
-    Tooltip ">>>>" . tt . ">>>"
-  }
-  return temp
-}
-
-f8:: {
-  Test("ver")()
-}
+; ; Func
+; Temp__() {
+;   Tooltip ">>>>"
+; }
+;
+; MsgBox(Type(Temp__)) ; Func
