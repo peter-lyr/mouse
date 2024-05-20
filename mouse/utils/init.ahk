@@ -4,7 +4,7 @@
 PrintList := []
 
 Strip(text) {
-  return Trim(text, ' `r`t`n')
+  return Trim(text, " `r`t`n")
 }
 
 Join(string_array, sep:="`n") {
@@ -49,7 +49,7 @@ PrintAppendUniq(text:="", timeout:=4000) {
 
 PrintAppendEnd(text:="", timeout:=4000) {
   Global PrintList
-  Tooltip(Strip(Join(PrintList) . '`n' . text))
+  Tooltip(Strip(Join(PrintList) . "`n" . text))
   SetTimer(Tooltip, timeout)
 }
 
