@@ -61,6 +61,9 @@ UpdateRbuttonPressPos1() {
 
 GetRbuttonPressWin() {
   Global rbutton_press_win
+  If (Not IsSet(rbutton_press_win)) {
+    rbutton_press_win := 0
+  }
   Return rbutton_press_win
 }
 
@@ -259,6 +262,9 @@ RButtonWheelDown() {
 
 WinMaximizeRestoreRbuttonPressWin() {
   _win := GetRbuttonPressWin()
+  If (Not WinExist(_win)) {
+    Return
+  }
   If (WinGetMinMax(_win)) {
     WinRestore(_win)
   } Else {
