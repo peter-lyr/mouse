@@ -11,3 +11,5 @@ Loop functions.Length {
 
 Tooltip(functions.Length . " Areas Can Be Define`n" . cnt . " Areas Defined`n" . cnt . " to " . cnt * 3 . " Functions Defined")
 SetTimer Tooltip, -3200
+
+cnt := 0
