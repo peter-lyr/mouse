@@ -7,6 +7,7 @@ If (InStr(CmdRunOutput("ver"), "Version 10")) {
   winver := 10
 }
 
+; TODO: 当颜色太暗时设高一点
 circle_transparent := 8
 
 circle_list := []
