@@ -298,3 +298,39 @@ RButtonWheelDown() {
   wheeldown_flag := 1
   SetTimer RButtonWheelUpDownFlagClear, -10
 }
+
+ResetLButtonFlag() {
+  Global lbutton_flag
+  lbutton_flag := 0
+}
+
+GetLButtonFlag() {
+  Global lbutton_flag
+  If (Not IsSet(lbutton_flag)) {
+    lbutton_flag := 0
+  }
+  Return lbutton_flag
+}
+
+RButtonLButton() {
+  Global lbutton_flag
+  lbutton_flag := 1
+}
+
+ResetMButtonFlag() {
+  Global mbutton_flag
+  mbutton_flag := 0
+}
+
+GetMButtonFlag() {
+  Global mbutton_flag
+  If (Not IsSet(mbutton_flag)) {
+    mbutton_flag := 0
+  }
+  Return mbutton_flag
+}
+
+RButtonMButton() {
+  Global mbutton_flag
+  mbutton_flag := 1
+}

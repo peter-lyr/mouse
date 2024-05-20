@@ -12,7 +12,7 @@ A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 SetTimer(RButtonPressedWatcher, 10)
 
 RButtonPressedWatcher() {
-  If (Not RButtonIsPressed()) {
+  If (Not RButtonIsPressed() Or GetLButtonFlag() Or GetMButtonFlag()) {
     Return
   }
   UpdateRbuttonPressPos2()
@@ -28,6 +28,8 @@ RButton Up:: {
   HideCircle()
   CallFunction()
   ResetWheelFlag()
+  ResetMButtonFlag()
+  ResetLButtonFlag()
 }
 
 ~RButton & WheelDown:: {
@@ -36,6 +38,14 @@ RButton Up:: {
 
 ~RButton & WheelUp:: {
   RButtonWheelUp()
+}
+
+RButton & MButton:: {
+  RButtonMButton()
+}
+
+RButton & LButton:: {
+  RButtonLButton()
 }
 
 InitCircle()
