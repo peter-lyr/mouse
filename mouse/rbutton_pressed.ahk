@@ -271,11 +271,19 @@ GetWheelFlag() {
   Return wheel_flag
 }
 
+RButtonWheelUpDownFlagClear() {
+  Global wheelup_flag
+  Global wheeldown_flag
+  wheelup_flag := 0
+  wheeldown_flag := 0
+}
+
 RButtonWheelUp() {
   Global wheelup_flag
   Global wheel_flag
   wheel_flag := 1
   wheelup_flag := 1
+  SetTimer RButtonWheelUpDownFlagClear, -10
 }
 
 RButtonWheelDown() {
@@ -283,4 +291,5 @@ RButtonWheelDown() {
   Global wheel_flag
   wheel_flag := 1
   wheeldown_flag := 1
+  SetTimer RButtonWheelUpDownFlagClear, -10
 }
