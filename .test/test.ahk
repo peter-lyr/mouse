@@ -39,3 +39,40 @@
 ; }
 ;
 ; MsgBox(Type(Temp__)) ; Func
+
+; ; 匿名函数
+; Strip(text) {
+;   Return Trim(text, " `r`t`n")
+; }
+;
+; Join(string_array, sep:="`n") {
+;   res := ""
+;   for index, value in string_array {
+;     if (Type(value) == "Func") {
+;       res .= Type(value) . sep
+;     } else {
+;       res .= String(value) . sep
+;     }
+;   }
+;   Return Strip(res)
+; }
+;
+; a(arr) {
+; }
+;
+; b := [
+;   "ww", () => {
+;     Send("{Enter}")
+;   },
+;   "ii", () => Send("{Enter}"),
+; ]
+;
+; MsgBox(Join(b))
+
+; ; 匿名函数
+; a := () => [
+;   Tooltip(">>>>"),
+;   MsgBox("iiii"),
+; ]
+; ; MsgBox(Type(a))
+; a()
