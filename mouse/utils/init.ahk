@@ -17,7 +17,7 @@ Join(string_array, sep:="`n") {
 
 StrInArray(string, string_array) {
   for index, value in string_array {
-    if (string == value) {
+    If (string == value) {
       Return 1
     }
   }
@@ -40,7 +40,7 @@ PrintAppend(text:="", timeout:=4000) {
 
 PrintAppendUniq(text:="", timeout:=4000) {
   Global PrintList
-  if (Not StrInArray(text, PrintList)) {
+  If (Not StrInArray(text, PrintList)) {
     PrintList.Push(text)
   }
   Tooltip(Join(PrintList))

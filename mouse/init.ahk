@@ -74,11 +74,11 @@ UpdateRbuttonPressPos2() {
   Global rbutton_press_x2
   Global rbutton_press_y2
   Global mouse_moved := 0
-  rbutton_press_x2_back := IsSet(rbutton_press_x2) and rbutton_press_x2 or 0
-  rbutton_press_y2_back := IsSet(rbutton_press_y2) and rbutton_press_y2 or 0
+  rbutton_press_x2_back := IsSet(rbutton_press_x2) And rbutton_press_x2 Or 0
+  rbutton_press_y2_back := IsSet(rbutton_press_y2) And rbutton_press_y2 Or 0
   CoordMode "Mouse", "Screen"
   MouseGetPos &rbutton_press_x2, &rbutton_press_y2
-  If (rbutton_press_x2_back != rbutton_press_x2 or rbutton_press_y2_back != rbutton_press_y2) {
+  If (rbutton_press_x2_back != rbutton_press_x2 Or rbutton_press_y2_back != rbutton_press_y2) {
     mouse_moved := 1
   }
 }
@@ -140,7 +140,7 @@ GetPos1StateFromPos2() {
   If (_c > _gap) {
     loop MonitorGetCount() {
       MonitorGet(A_index, &_l, &_t, &_r, &_b)
-      If (_x2 >= _l and _x2 <= _r and _y2 >= _t and _y2 <= _b) {
+      If (_x2 >= _l And _x2 <= _r And _y2 >= _t And _y2 <= _b) {
         _r := _r - 1
         _b := _b - 1
         Break
@@ -168,22 +168,22 @@ GetPos1StateFromPos2() {
     } Else {
       _dx := _dx * _gap / _c
       _dy := _dy * _gap / _c
-      If (Abs(_dx) >= _min and Abs(_dx) <= _max and Abs(_dy) >= _min and Abs(_dy) <= _max) {
-        If (_dx >= 0 and _dy <= 0) {
+      If (Abs(_dx) >= _min And Abs(_dx) <= _max And Abs(_dy) >= _min And Abs(_dy) <= _max) {
+        If (_dx >= 0 And _dy <= 0) {
           direction := "right_up"
-        } Else If (_dx >= 0 and _dy >= 0) {
+        } Else If (_dx >= 0 And _dy >= 0) {
           direction := "right_down"
-        } Else If (_dx <= 0 and _dy >= 0) {
+        } Else If (_dx <= 0 And _dy >= 0) {
           direction := "left_down"
         } Else {
           direction := "left_up"
         }
       } Else {
-        If (Abs(_dx) <= _min and _dy <= 0) {
+        If (Abs(_dx) <= _min And _dy <= 0) {
           direction := "up"
-        } Else If (Abs(_dy) <= _min and _dx >= 0) {
+        } Else If (Abs(_dy) <= _min And _dx >= 0) {
           direction := "right"
-        } Else If (Abs(_dx) <= _min and _dy >= 0) {
+        } Else If (Abs(_dx) <= _min And _dy >= 0) {
           direction := "down"
         } Else {
           direction := "left"
@@ -191,7 +191,7 @@ GetPos1StateFromPos2() {
       }
     }
   }
-  index := (layer > 0 and layer - 1 or 0) * 8 + dir_index_maps[direction]
+  index := (layer > 0 And layer - 1 Or 0) * 8 + dir_index_maps[direction]
   If (index > 0) {
     function := functions[index]
     If ("Func" == Type(function) Or "Closure" == Type(function)) {
