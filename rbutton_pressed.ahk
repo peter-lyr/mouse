@@ -59,6 +59,11 @@ UpdateRbuttonPressPos1() {
   MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
 }
 
+GetRbuttonPressWin() {
+  Global rbutton_press_win
+  Return rbutton_press_win
+}
+
 UpdateRbuttonPressPos2() {
   Global rbutton_press_x2
   Global rbutton_press_y2
@@ -253,11 +258,11 @@ RButtonWheelDown() {
 }
 
 WinMaximizeRestoreRbuttonPressWin() {
-  Global rbutton_press_win
-  If (WinGetMinMax(rbutton_press_win)) {
-    WinRestore(rbutton_press_win)
+  _win := GetRbuttonPressWin()
+  If (WinGetMinMax(_win)) {
+    WinRestore(_win)
   } Else {
-    WinMaximize(rbutton_press_win)
-    WinActivate(rbutton_press_win)
+    WinMaximize(_win)
+    WinActivate(_win)
   }
 }
