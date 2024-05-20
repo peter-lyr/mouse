@@ -3,12 +3,16 @@
 
 PrintList := []
 
+Strip(text) {
+  return Trim(text, ' `r`t`n')
+}
+
 Join(string_array, sep:="`n") {
   res := ""
   for index, value in string_array {
     res .= value . sep
   }
-  Return Trim(res, ' `r`t`n')
+  Return Strip(res)
 }
 
 StrInArray(string, string_array) {
@@ -45,7 +49,7 @@ PrintAppendUniq(text:="", timeout:=4000) {
 
 PrintAppendEnd(text:="", timeout:=4000) {
   Global PrintList
-  Tooltip(Trim(Join(PrintList) . '`n' . text, ' `r`t`n'))
+  Tooltip(Strip(Join(PrintList) . '`n' . text))
   SetTimer(Tooltip, timeout)
 }
 
@@ -65,4 +69,10 @@ LButtonIsPressed() {
 
 MButtonIsPressed() {
   Return GetKeyState("MButton", "P")
+}
+
+CmdRunOutput(cmd) {
+  shell := ComObject("WScript.Shell")
+  exec := shell.Exec(A_ComSpec . " /C " . cmd)
+  return Strip(exec.StdOut.ReadAll())
 }
