@@ -77,6 +77,10 @@ CmdRunOutput(cmd) {
   Return Strip(exec.StdOut.ReadAll())
 }
 
+GetWinVer() {
+  Return CmdRunOutput("cd " . A_ScriptDir . "\mouse\utils" . " && getwinver.bat")
+}
+
 Array2Map(arr) {
   _map := Map()
   Return _map.Set(arr*)

@@ -3,7 +3,7 @@
 
 winver := 11
 
-If (CmdRunOutput("cd " . A_ScriptDir . "\mouse\utils" . " && getwinver.bat") == "Windows 10") {
+If (GetWinVer() == "Windows 10") {
   winver := 10
 }
 
