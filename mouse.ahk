@@ -12,7 +12,11 @@ A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 SetTimer(RButtonPressedWatcher, 10)
 
 RButtonPressedWatcher() {
-  If (Not RButtonIsPressed() Or GetLButtonFlag() Or GetMButtonFlag()) {
+  _temp := GetLButtonFlag() Or GetMButtonFlag()
+  If (Not RButtonIsPressed() Or _temp) {
+    If (_temp) {
+      Tooltip
+    }
     Return
   }
   UpdateRbuttonPressPos2()
