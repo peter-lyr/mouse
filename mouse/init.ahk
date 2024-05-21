@@ -213,10 +213,10 @@ GetPos1StateFromPos2() {
   } Else {
     function_index := 0
   }
-  If (Not function_index) {
-    Print(Format("{:}C {:T}L {:T}:{:d}", GetWheelCount(), layer, _dir, index))
-  }
   direction := _dir
+  If (Not function_index) {
+    Print(Format("{:}C {:T}L {:T}:{:d}", GetWheelCount(), layer, direction, index))
+  }
 }
 
 Array2Function(arr) {
