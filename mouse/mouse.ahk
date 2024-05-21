@@ -7,8 +7,9 @@ If (GetWinVer() == "Windows 10") {
   winver := 10
 }
 
-; TODO: 当颜色太暗时设高一点
-circle_transparent := 8
+; [x] TODODONE: 当颜色太暗时设高一点
+circle_min_transparent := 16
+circle_max_transparent := 40
 
 circle_list := []
 
@@ -62,12 +63,30 @@ Loop max_wheel_counts {
   }
 }
 
+GetRbuttonPressColor1() {
+  Global rbutton_press_color1
+  Return rbutton_press_color1
+}
+
+GetRbuttonPressLight1() {
+  _color := Integer(GetRbuttonPressColor1())
+  _light := ((_color & 0xff) + ((_color >> 8) & 0xff) + ((_color >> 16) & 0xff)) / 3
+  Return Integer(_light) Or 1
+}
+
+GetTransparency() {
+  Return Min(Integer(255 * circle_min_transparent / GetRbuttonPressLight1()), circle_max_transparent)
+}
+
 UpdateRbuttonPressPos1() {
   Global rbutton_press_x1
   Global rbutton_press_y1
   Global rbutton_press_win
   CoordMode "Mouse", "Screen"
   MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
+  Global rbutton_press_color1
+  CoordMode "Pixel", "Screen"
+  rbutton_press_color1 := PixelGetColor(rbutton_press_x1, rbutton_press_y1)
 }
 
 GetRbuttonPressWin() {
@@ -104,7 +123,7 @@ DrawCircleAtRbuttonPressPos1() {
       y := (rbutton_press_y1-circle_sizes[_index]/2)/2
       _gui.Move(x, y, circle_sizes[_index]/2, circle_sizes[_index]/2)
     }
-    WinSetTransparent(circle_transparent, "Ahk_id " . _gui.Hwnd)
+    WinSetTransparent(GetTransparency(), "Ahk_id " . _gui.Hwnd)
   }
 }
 
@@ -126,7 +145,7 @@ InitCircle() {
     MyGui.BackColor := circle_colors[A_index]
     MyGui.Show("NA")
     WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
-    WinSetTransparent(circle_transparent, "Ahk_id " . MyGui.Hwnd)
+    WinSetTransparent(circle_min_transparent, "Ahk_id " . MyGui.Hwnd)
     circle_list.Push(MyGui)
   }
 }
@@ -227,7 +246,7 @@ GetPos1StateFromPos2() {
   }
   direction := _dir
   If (Not function_index) {
-    Print(Format("{:}C {:T}L {:T}:{:d}", GetWheelCount(), layer, _dir, index))
+    Print(Format("{:}C {:T}L {:T}:{:d} L{:s} T{:} {:}", GetWheelCount(), layer, _dir, index, GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1()))
   }
 }
 
