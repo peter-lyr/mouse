@@ -4,8 +4,8 @@
 ; mw: move window
 ; wa: work area
 ; _m: monitor
-; _t: _temp
-; _n: _new
+; _t: temp
+; _n: new
 
 MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   Global mw
