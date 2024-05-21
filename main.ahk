@@ -3,8 +3,8 @@
 A_HotkeyInterval := 2000 ; 默认
 A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 
-#Include %A_ScriptDir%\mouse\utils\init.ahk
-#Include %A_ScriptDir%\mouse\init.ahk
+#Include %A_ScriptDir%\mouse\utils\utils.ahk
+#Include %A_ScriptDir%\mouse\mouse.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\rbutton_pressed_win.ahk
 #Include %A_ScriptDir%\mouse\directions\right_up.ahk
