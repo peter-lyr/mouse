@@ -108,6 +108,15 @@ RButtonDown() {
   DrawCircleAtRbuttonPressPos1()
 }
 
+RButtonUp() {
+  HideCircle()
+  CallFunction()
+  ResetWheelFlag()
+  ResetMButtonFlag()
+  ResetLButtonFlag()
+  ResetWheelCount()
+}
+
 LButtonDown() {
   If (RButtonIsPressed()) {
     RButtonLButton()
@@ -430,6 +439,7 @@ RButtonLButton() {
 LButtonRButton() {
   Global wheel_count
   wheel_count := 2
+  RButtonDown()
 }
 
 ResetMButtonFlag() {

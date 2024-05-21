@@ -41,7 +41,6 @@ RButton:: {
 
 ~LButton & RButton:: {
   LButtonRButton()
-  RButtonDown()
 }
 
 ~LButton:: {
@@ -49,12 +48,7 @@ RButton:: {
 }
 
 RButton Up:: {
-  HideCircle()
-  CallFunction()
-  ResetWheelFlag()
-  ResetMButtonFlag()
-  ResetLButtonFlag()
-  ResetWheelCount()
+  RButtonUp()
 }
 
 ~RButton & WheelDown:: {
