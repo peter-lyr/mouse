@@ -32,7 +32,7 @@ Print(arr) {
   Tooltip(Join(arr))
 }
 
-MoveWindowWatcher() {
+MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   Global mw
   Global mw_x1
   Global mw_y1
@@ -67,10 +67,6 @@ MoveWindowWatcher() {
 }
 
 GetWorkAreaXYWH(x, y) {
-  Global wa_x
-  Global wa_y
-  Global wa_w
-  Global wa_h
   loop MonitorGetCount() {
     MonitorGet(A_index, &m_left, &m_top, &m_right, &m_bottom)
     If (x >= m_left and x <= m_right and y >= m_top and y <= m_bottom) {
@@ -85,6 +81,7 @@ GetWorkAreaXYWH(x, y) {
       }
     }
   }
+  Return [wa_x, wa_y, wa_w, wa_h]
 }
 
 MoveWindow() {
@@ -94,7 +91,7 @@ MoveWindow() {
   MouseGetPos &mw_x1, &mw_y1, &mw
   mv_max := WinGetMinMax(mw)
   if (mv_max) {
-    SetTimer(MoveWindowWatcher, 0)
+    SetTimer(() => MoveWindowWatcher(0, 0, 0, 0), 0)
     Return
   }
   ; Print([
@@ -103,8 +100,8 @@ MoveWindow() {
   ;   ; "mw: " . mw,
   ;   "mv_max: " . mv_max,
   ; ])
-  GetWorkAreaXYWH(mw_x1, mw_y1)
-  SetTimer(MoveWindowWatcher, 10)
+  wa := GetWorkAreaXYWH(mw_x1, mw_y1)
+  SetTimer(() => MoveWindowWatcher(wa*), 10)
   SetTimer(Tooltip, -3000)
 }
 
