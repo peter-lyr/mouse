@@ -6,12 +6,27 @@ AddFunction(1, 1, "right", [
   "rf", () => [ Send("!{Tab}"), ],
 ])
 
+AddFunction(2, 1, "right", [
+  "ri", "<Alt-Shift-Tab>",
+  "rf", () => [ Send("!+{Tab}"), ],
+])
+
 AddFunction(1, 2, "right", [
   "ri", "<Ctrl-Tab>",
   "rf", () => [ Send("^{Tab}"), ],
 ])
 
+AddFunction(2, 2, "right", [
+  "ri", "<Ctrl-Shift-Tab>",
+  "rf", () => [ Send("^+{Tab}"), ],
+])
+
+
 AddFunction(1, 3, "right", [
+  "ri", "<Ctrl-Alt-Tab>",
+  "rf", () => [ Send("^!{Tab}"), ],
+])
+AddFunction(2, 3, "right", [
   "ri", "<Win-Tab>",
   "rf", () => [ Send("#{Tab}"), ],
 ])
