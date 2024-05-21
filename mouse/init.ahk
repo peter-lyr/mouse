@@ -318,11 +318,11 @@ GetLMButtonFlag() {
   Return GetLButtonFlag() Or GetMButtonFlag()
 }
 
-SetLMButtonFlag(val) {
+IncLMButtonFlag() {
   Global lbutton_flag
   Global mbutton_flag
-  lbutton_flag := val
-  mbutton_flag := val
+  lbutton_flag += 1
+  mbutton_flag += 1
 }
 
 GetLButtonFlag() {

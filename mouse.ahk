@@ -17,7 +17,7 @@ RButtonPressedWatcher() {
   _temp := GetLMButtonFlag()
   If (Not RButtonIsPressed() Or _temp) {
     If (_temp == 1) {
-      SetLMButtonFlag(2)
+      IncLMButtonFlag()
       Tooltip
       HideCircle()
     }
