@@ -3,7 +3,7 @@
 
 ; mw: move window
 ; wa: work area
-; m: monitor
+; _m: monitor
 ; _t: _temp
 ; _n: _new
 
@@ -57,8 +57,8 @@ MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
 
 GetWorkAreaXYWH(x, y) {
   loop MonitorGetCount() {
-    MonitorGet(A_index, &m_left, &m_top, &m_right, &m_bottom)
-    If (x >= m_left and x <= m_right and y >= m_top and y <= m_bottom) {
+    MonitorGet(A_index, &_m_left, &_m_top, &_m_right, &_m_bottom)
+    If (x >= _m_left and x <= _m_right and y >= _m_top and y <= _m_bottom) {
       MonitorGetWorkArea(A_index, &wa_left, &wa_top, &wa_right, &wa_bottom)
       wa_x := wa_left
       wa_y := wa_top
