@@ -41,12 +41,11 @@ LButtonIsPressed() {
 }
 
 MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
+  Global mw
   Global mw_x0
   Global mw_y0
   Global mw_w0
   Global mw_h0
-
-  Global mw
   Global mw_x1
   Global mw_y1
 
@@ -67,6 +66,8 @@ MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   _n_y := _t_y + mw_y2 - mw_y1
   _n_w := _t_w
   _n_h := _t_h
+  mw_x1 := mw_x2
+  mw_y1 := mw_y2
 
   If (_n_x < wa_x) {
     _n_x := wa_x
@@ -85,8 +86,6 @@ MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
     _n_w := wa_w
   }
   WinMove(_n_x, _n_y, _n_w, _n_h, mw)
-  mw_x1 := mw_x2
-  mw_y1 := mw_y2
 }
 
 GetWorkAreaXYWH(x, y) {
@@ -115,21 +114,17 @@ MoveWindow() {
   Global mw_h0
   Global mw_x1
   Global mw_y1
+
   MouseGetPos &mw_x1, &mw_y1, &mw
   WinGetPos(&mw_x0, &mw_y0, &mw_w0, &mw_h0, mw)
+
   mv_max := WinGetMinMax(mw)
   if (mv_max) {
     Return
   }
-  ; Print([
-  ;   "mw_x1: " . mw_x1,
-  ;   "mw_y1: " . mw_y1,
-  ;   ; "mw: " . mw,
-  ;   "mv_max: " . mv_max,
-  ; ])
+
   wa := GetWorkAreaXYWH(mw_x1, mw_y1)
   SetTimer(() => MoveWindowWatcher(wa*), 10)
-  SetTimer(Tooltip, -3000)
 }
 
 RButton & LButton:: {
