@@ -11,15 +11,11 @@ If (GetWinVer() == "Windows 10") {
 circle_min_transparent := 16
 circle_max_transparent := 40
 
-circle_list := []
-
 max_directions := 8
 
 max_circles := 4
 
 max_wheel_counts := 2
-
-max_circles_directions := ((max_circles + 1) * max_directions)
 
 If (winver == 10) {
   circle_sizes := [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700]
@@ -28,6 +24,10 @@ If (winver == 10) {
 }
 
 circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green", "Red", "Blue", "Green"]
+
+circle_list := []
+
+max_circles_directions := ((max_circles + 1) * max_directions)
 
 GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
 
