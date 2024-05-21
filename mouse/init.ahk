@@ -14,6 +14,8 @@ circle_list := []
 
 circle_nums := 6
 
+wheel_count_max := 6
+
 If (winver == 10) {
   circle_sizes := [100, 300, 500, 700, 900, 1100]
 } Else {
@@ -118,10 +120,16 @@ InitCircle() {
   }
 }
 
+GetDirection() {
+  Global direction
+  Return direction
+}
+
 GetPos1StateFromPos2() {
   Global function_index
+  Global direction
   layer := 0
-  direction := "center"
+  _dir := "center"
   _x2 := rbutton_press_x2
   _y2 := rbutton_press_y2
   _dx := _x2 - rbutton_press_x1
@@ -148,21 +156,21 @@ GetPos1StateFromPos2() {
     }
     If (_x2 == _l || _x2 == _r || _y2 == _t || _y2 == _b) {
       If (_x2 == _l && _y2 == _t) {
-        direction := "side_left_up"
+        _dir := "side_left_up"
       } Else If (_x2 == _r && _y2 == _t) {
-        direction := "side_right_up"
+        _dir := "side_right_up"
       } Else If (_x2 == _r && _y2 == _b) {
-        direction := "side_right_down"
+        _dir := "side_right_down"
       } Else If (_x2 == _l && _y2 == _b) {
-        direction := "side_left_down"
+        _dir := "side_left_down"
       } Else If (_y2 == _t) {
-        direction := "side_up"
+        _dir := "side_up"
       } Else If (_x2 == _r) {
-        direction := "side_right"
+        _dir := "side_right"
       } Else If (_y2 == _b) {
-        direction := "side_down"
+        _dir := "side_down"
       } Else If (_x2 == _l) {
-        direction := "side_left"
+        _dir := "side_left"
       }
       layer := circle_nums
     } Else {
@@ -170,28 +178,28 @@ GetPos1StateFromPos2() {
       _dy := _dy * _gap / _c
       If (Abs(_dx) >= _min And Abs(_dx) <= _max And Abs(_dy) >= _min And Abs(_dy) <= _max) {
         If (_dx >= 0 And _dy <= 0) {
-          direction := "right_up"
+          _dir := "right_up"
         } Else If (_dx >= 0 And _dy >= 0) {
-          direction := "right_down"
+          _dir := "right_down"
         } Else If (_dx <= 0 And _dy >= 0) {
-          direction := "left_down"
+          _dir := "left_down"
         } Else {
-          direction := "left_up"
+          _dir := "left_up"
         }
       } Else {
         If (Abs(_dx) <= _min And _dy <= 0) {
-          direction := "up"
+          _dir := "up"
         } Else If (Abs(_dy) <= _min And _dx >= 0) {
-          direction := "right"
+          _dir := "right"
         } Else If (Abs(_dx) <= _min And _dy >= 0) {
-          direction := "down"
+          _dir := "down"
         } Else {
-          direction := "left"
+          _dir := "left"
         }
       }
     }
   }
-  index := (layer > 0 And layer - 1 Or 0) * 8 + dir_index_maps[direction]
+  index := (layer > 0 And layer - 1 Or 0) * 8 + dir_index_maps[_dir]
   If (index > 0) {
     function := functions[index]
     If ("Func" == Type(function) Or "Closure" == Type(function)) {
@@ -206,22 +214,23 @@ GetPos1StateFromPos2() {
     function_index := 0
   }
   If (Not function_index) {
-    Print(Format("{:T}L {:T}:{:d}", layer, direction, index))
+    Print(Format("{:}C {:T}L {:T}:{:d}", GetWheelCount(), layer, _dir, index))
   }
+  direction := _dir
 }
 
 Array2Function(arr) {
   Return FunctionWrap(Array2Map(arr))
 }
 
-AddFunction(layer, direction, arr) {
+AddFunction(layer, dir, arr) {
   If (layer < 1) {
     layer := 1
   }
   If (layer > circle_nums) {
     layer := circle_nums
   }
-  index := (layer - 1) * 8 + dir_index_maps[direction]
+  index := (layer - 1) * 8 + dir_index_maps[dir]
   functions[index] := Array2Function(arr)
 }
 
@@ -278,6 +287,19 @@ SetWheelFlag(val:=2) {
   wheel_flag := val
 }
 
+ResetWheelCount() {
+  Global wheel_count
+  wheel_count := 1
+}
+
+GetWheelCount() {
+  Global wheel_count
+  If (Not IsSet(wheel_count)) {
+    wheel_count := 1
+  }
+  Return wheel_count
+}
+
 GetWheelFlag() {
   Global wheel_flag
   If (Not IsSet(wheel_flag)) {
@@ -296,6 +318,17 @@ RButtonWheelUpDownFlagClear() {
 RButtonWheelUp() {
   Global wheelup_flag
   Global wheel_flag
+  Global wheel_count
+  If (Not IsSet(wheel_count)) {
+    wheel_count := 1
+  }
+  If (GetDirection() == "center") {
+    If (wheel_count >= wheel_count_max) {
+      wheel_count := 1
+    } Else {
+      wheel_count += 1
+    }
+  }
   wheel_flag := 1
   wheelup_flag := 1
   SetTimer RButtonWheelUpDownFlagClear, -10
@@ -304,6 +337,17 @@ RButtonWheelUp() {
 RButtonWheelDown() {
   Global wheeldown_flag
   Global wheel_flag
+  Global wheel_count
+  If (Not IsSet(wheel_count)) {
+    wheel_count := 1
+  }
+  If (GetDirection() == "center") {
+    If (wheel_count <= 1) {
+      wheel_count := wheel_count_max
+    } Else {
+      wheel_count -= 1
+    }
+  }
   wheel_flag := 1
   wheeldown_flag := 1
   SetTimer RButtonWheelUpDownFlagClear, -10

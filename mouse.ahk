@@ -40,6 +40,7 @@ RButton Up:: {
   ResetWheelFlag()
   ResetMButtonFlag()
   ResetLButtonFlag()
+  ResetWheelCount()
 }
 
 ~RButton & WheelDown:: {
