@@ -30,8 +30,12 @@ RButtonPressedWatcher() {
 }
 
 RButton:: {
-  UpdateRbuttonPressPos1()
-  DrawCircleAtRbuttonPressPos1()
+  RButtonDown()
+}
+
+~LButton & RButton:: {
+  LButtonRButton()
+  RButtonDown()
 }
 
 RButton Up:: {

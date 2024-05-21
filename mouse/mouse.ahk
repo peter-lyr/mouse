@@ -108,6 +108,11 @@ DrawCircleAtRbuttonPressPos1() {
   }
 }
 
+RButtonDown() {
+  UpdateRbuttonPressPos1()
+  DrawCircleAtRbuttonPressPos1()
+}
+
 HideCircle() {
   For _index, _gui In circle_list {
     WinSetTransparent(0, "Ahk_id " . _gui.Hwnd)
@@ -395,6 +400,11 @@ GetLButtonFlag() {
 RButtonLButton() {
   Global lbutton_flag
   lbutton_flag := 1
+}
+
+LButtonRButton() {
+  Global wheel_count
+  wheel_count := 2
 }
 
 ResetMButtonFlag() {
