@@ -265,7 +265,9 @@ CallFunction() {
   If (function_index > 0) {
     functions[function_index]()
   } Else {
-    Click "Right"
+    If (Not LButtonIsPressed() And Not MButtonIsPressed()) {
+      Click "Right"
+    }
   }
   Tooltip
 }

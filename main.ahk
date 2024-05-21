@@ -8,7 +8,7 @@ SetWinDelay(0)
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 
-ahk_class AutoHotkeyGUI#Include %A_ScriptDir%\mouse\funcs\utils.ahk
+#Include %A_ScriptDir%\mouse\funcs\utils.ahk
 #Include %A_ScriptDir%\mouse\config.ahk
 #Include %A_ScriptDir%\mouse\init.ahk
 
