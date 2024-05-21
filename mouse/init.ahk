@@ -1,30 +1,6 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/19 17:22:08 星期日
 
-winver := 11
-
-If (GetWinVer() == "Windows 10") {
-  winver := 10
-}
-
-; [x] TODODONE: 当颜色太暗时设高一点
-circle_min_transparent := 16
-circle_max_transparent := 40
-
-max_directions := 8
-
-max_circles := 4
-
-max_wheel_counts := 3
-
-If (winver == 10) {
-  circle_sizes := [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700]
-} Else {
-  circle_sizes := [200, 500, 800, 1100, 1400, 1700, 2100, 2400, 2700]
-}
-
-circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green", "Red", "Blue", "Green"]
-
 circle_list := []
 
 max_circles_directions := ((max_circles + 1) * max_directions)
