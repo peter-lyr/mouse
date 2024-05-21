@@ -15,7 +15,7 @@ max_directions := 8
 
 max_circles := 4
 
-max_wheel_counts := 2
+max_wheel_counts := 3
 
 If (winver == 10) {
   circle_sizes := [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700]
