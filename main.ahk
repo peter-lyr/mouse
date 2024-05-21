@@ -43,6 +43,10 @@ RButton:: {
   RButtonDown()
 }
 
+~LButton:: {
+  LButtonDown()
+}
+
 RButton Up:: {
   HideCircle()
   CallFunction()

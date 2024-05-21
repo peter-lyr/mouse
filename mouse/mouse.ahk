@@ -132,6 +132,12 @@ RButtonDown() {
   DrawCircleAtRbuttonPressPos1()
 }
 
+LButtonDown() {
+  If (RButtonIsPressed()) {
+    RButtonLButton()
+  }
+}
+
 HideCircle() {
   For _index, _gui In circle_list {
     WinSetTransparent(0, "Ahk_id " . _gui.Hwnd)
@@ -352,17 +358,21 @@ RButtonWheelUpDownFlagClear() {
   wheeldown_flag := 0
 }
 
+IncWheelCount() {
+  Global wheel_count
+  If (Not IsSet(wheel_count)) {
+    wheel_count := 1
+  }
+  If (wheel_count >= max_wheel_counts) {
+    wheel_count := 1
+  } Else {
+    wheel_count += 1
+  }
+}
+
 RButtonWheelUp() {
   If (GetDirection() == "center") {
-    Global wheel_count
-    If (Not IsSet(wheel_count)) {
-      wheel_count := 1
-    }
-    If (wheel_count >= max_wheel_counts) {
-      wheel_count := 1
-    } Else {
-      wheel_count += 1
-    }
+    IncWheelCount()
   } Else {
     Global wheelup_flag
     Global wheel_flag
@@ -372,17 +382,21 @@ RButtonWheelUp() {
   }
 }
 
+DecWheelCount() {
+  Global wheel_count
+  If (Not IsSet(wheel_count)) {
+    wheel_count := 1
+  }
+  If (wheel_count <= 1) {
+    wheel_count := max_wheel_counts
+  } Else {
+    wheel_count -= 1
+  }
+}
+
 RButtonWheelDown() {
   If (GetDirection() == "center") {
-    Global wheel_count
-    If (Not IsSet(wheel_count)) {
-      wheel_count := 1
-    }
-    If (wheel_count <= 1) {
-      wheel_count := max_wheel_counts
-    } Else {
-      wheel_count -= 1
-    }
+    DecWheelCount()
   } Else {
     Global wheeldown_flag
     Global wheel_flag
@@ -429,8 +443,12 @@ GetLButtonFlag() {
 }
 
 RButtonLButton() {
-  Global lbutton_flag
-  lbutton_flag := 1
+  If (GetDirection() == "center") {
+    IncWheelCount()
+  } Else {
+    Global lbutton_flag
+    lbutton_flag := 1
+  }
 }
 
 LButtonRButton() {
