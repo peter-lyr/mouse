@@ -85,7 +85,7 @@ MoveWindow() {
   MouseGetPos &mw_x1, &mw_y1, &mw
   WinGetPos(&mw_x0, &mw_y0, &mw_w0, &mw_h0, mw)
 
-  ; TODO: exclude ahk_class AutoHotkeyGUI
+  ; [x] TODODONE: exclude ahk_class AutoHotkeyGUI
 
   mv_max := WinGetMinMax(mw)
   if (mv_max) {
