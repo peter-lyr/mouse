@@ -71,15 +71,14 @@ MoveWindowWatcher() {
   mw_y1 := mw_y2
 }
 
-MonitorWorkArea() {
+MonitorWorkArea(x, y) {
   Global wa_origin_x
   Global wa_origin_y
   Global wa_width
   Global wa_height
   loop MonitorGetCount() {
-    MouseGetPos(&_t_x, &_t_y)
     MonitorGet(A_index, &m_left, &m_top, &m_right, &m_bottom)
-    If (_t_x >= m_left and _t_x <= m_right and _t_y >= m_top and _t_y <= m_bottom) {
+    If (x >= m_left and x <= m_right and y >= m_top and y <= m_bottom) {
       MonitorGetWorkArea(A_index, &wa_left, &wa_top, &wa_right, &wa_bottom)
       wa_origin_x := wa_left
       wa_origin_y := wa_top
@@ -105,7 +104,7 @@ RButton & LButton:: {
     ; "mw: " . mw,
     "mv_max: " . mv_max,
   ])
-  MonitorWorkArea()
+  MonitorWorkArea(mw_x1, mw_y1)
   SetTimer(MoveWindowWatcher, 10)
   SetTimer(Tooltip, -3000)
 }
