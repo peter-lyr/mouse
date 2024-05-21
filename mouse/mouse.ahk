@@ -12,9 +12,13 @@ circle_transparent := 8
 
 circle_list := []
 
-circle_nums := 6
+max_directions := 8
 
-wheel_count_max := 6
+max_circles := 6
+
+max_wheel_counts := 6
+
+max_circles_directions := ((max_circles + 1) * max_directions)
 
 If (winver == 10) {
   circle_sizes := [100, 300, 500, 700, 900, 1100]
@@ -52,8 +56,10 @@ function_index := 0
 
 functions := []
 
-Loop (circle_nums + 1) * 8 {
-  functions.Push(0)
+Loop max_wheel_counts {
+  Loop (max_circles + 1) * 8 {
+    functions.Push(0)
+  }
 }
 
 UpdateRbuttonPressPos1() {
@@ -109,7 +115,7 @@ HideCircle() {
 }
 
 InitCircle() {
-  Loop circle_nums {
+  Loop max_circles {
     MyGui := Gui()
     MyGui.Opt(GuiOpt)
     MyGui.BackColor := circle_colors[A_index]
@@ -135,8 +141,8 @@ GetPos1StateFromPos2() {
   _dx := _x2 - rbutton_press_x1
   _dy := _y2 - rbutton_press_y1
   _c  := Sqrt(_dx ** 2 + _dy ** 2)
-  Loop circle_nums {
-    _index := circle_nums - A_index + 1
+  Loop max_circles {
+    _index := max_circles - A_index + 1
     _gap := circle_sizes[_index] / 2
     If (_c > _gap) {
       layer := _index
@@ -172,7 +178,7 @@ GetPos1StateFromPos2() {
       } Else If (_x2 == _l) {
         _dir := "side_left"
       }
-      layer := circle_nums
+      layer := max_circles
     } Else {
       _dx := _dx * _gap / _c
       _dy := _dy * _gap / _c
@@ -199,8 +205,9 @@ GetPos1StateFromPos2() {
       }
     }
   }
-  index := (layer > 0 And layer - 1 Or 0) * 8 + dir_index_maps[_dir]
-  If (index > 0) {
+  index := 0
+  If (layer > 0) {
+    index := max_circles_directions * (GetWheelCount() - 1) + max_directions * (layer - 1) + dir_index_maps[_dir]
     function := functions[index]
     If ("Func" == Type(function) Or "Closure" == Type(function)) {
       function_index := index
@@ -215,7 +222,7 @@ GetPos1StateFromPos2() {
   }
   direction := _dir
   If (Not function_index) {
-    Print(Format("{:}C {:T}L {:T}:{:d}", GetWheelCount(), layer, direction, index))
+    Print(Format("{:}C {:T}L {:T}:{:d}", GetWheelCount(), layer, _dir, index))
   }
 }
 
@@ -223,14 +230,20 @@ Array2Function(arr) {
   Return FunctionWrap(Array2Map(arr))
 }
 
-AddFunction(layer, dir, arr) {
+AddFunction(count, layer, dir, arr) {
+  If (count < 1) {
+    count := 1
+  }
+  If (count > max_wheel_counts) {
+    count := max_wheel_counts
+  }
   If (layer < 1) {
     layer := 1
   }
-  If (layer > circle_nums) {
-    layer := circle_nums
+  If (layer > max_circles) {
+    layer := max_circles
   }
-  index := (layer - 1) * 8 + dir_index_maps[dir]
+  index := max_circles_directions * (count - 1) + max_directions * (layer - 1) + dir_index_maps[dir]
   functions[index] := Array2Function(arr)
 }
 
@@ -316,41 +329,43 @@ RButtonWheelUpDownFlagClear() {
 }
 
 RButtonWheelUp() {
-  Global wheelup_flag
-  Global wheel_flag
-  Global wheel_count
-  If (Not IsSet(wheel_count)) {
-    wheel_count := 1
-  }
   If (GetDirection() == "center") {
-    If (wheel_count >= wheel_count_max) {
+    Global wheel_count
+    If (Not IsSet(wheel_count)) {
+      wheel_count := 1
+    }
+    If (wheel_count >= max_wheel_counts) {
       wheel_count := 1
     } Else {
       wheel_count += 1
     }
+  } Else {
+    Global wheelup_flag
+    Global wheel_flag
+    wheel_flag := 1
+    wheelup_flag := 1
+    SetTimer RButtonWheelUpDownFlagClear, -10
   }
-  wheel_flag := 1
-  wheelup_flag := 1
-  SetTimer RButtonWheelUpDownFlagClear, -10
 }
 
 RButtonWheelDown() {
-  Global wheeldown_flag
-  Global wheel_flag
-  Global wheel_count
-  If (Not IsSet(wheel_count)) {
-    wheel_count := 1
-  }
   If (GetDirection() == "center") {
+    Global wheel_count
+    If (Not IsSet(wheel_count)) {
+      wheel_count := 1
+    }
     If (wheel_count <= 1) {
-      wheel_count := wheel_count_max
+      wheel_count := max_wheel_counts
     } Else {
       wheel_count -= 1
     }
+  } Else {
+    Global wheeldown_flag
+    Global wheel_flag
+    wheel_flag := 1
+    wheeldown_flag := 1
+    SetTimer RButtonWheelUpDownFlagClear, -10
   }
-  wheel_flag := 1
-  wheeldown_flag := 1
-  SetTimer RButtonWheelUpDownFlagClear, -10
 }
 
 ResetLButtonFlag() {
