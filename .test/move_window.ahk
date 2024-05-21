@@ -13,7 +13,8 @@ A_MaxHotkeysPerInterval := 1000
 
 left_margin := 180
 
-CoordMode "Mouse", "Screen"
+CoordMode("Mouse", "Screen")
+SetWinDelay(0)
 
 Strip(text) {
   Return Trim(text, " `r`t`n")
@@ -41,13 +42,14 @@ MoveWindowWatcher() {
   Global wa_width
   Global wa_height
 
-  SetWinDelay(0)
   MouseGetPos(&mw_x2, &mw_y2)
   WinGetPos(&_t_x, &_t_y, &_t_w, &_t_h, mw)
+
   _n_x := _t_x + mw_x2 - mw_x1
   _n_y := _t_y + mw_y2 - mw_y1
   _n_w := _t_w
   _n_h := _t_h
+
   If (_n_x < wa_origin_x) {
     _n_x := wa_origin_x
   } Else If (_n_x + _t_w > wa_width + wa_origin_x) {
