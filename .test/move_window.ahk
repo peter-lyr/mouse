@@ -32,10 +32,33 @@ Print(arr) {
   Tooltip(Join(arr))
 }
 
+RButtonIsPressed() {
+  Return GetKeyState("RButton", "P")
+}
+
+LButtonIsPressed() {
+  Return GetKeyState("LButton", "P")
+}
+
 MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
+  Global mw_x0
+  Global mw_y0
+  Global mw_w0
+  Global mw_h0
+
   Global mw
   Global mw_x1
   Global mw_y1
+
+  If (Not RButtonIsPressed()) {
+    SetTimer , 0
+    WinMove(mw_x0, mw_y0, mw_w0, mw_h0, mw)
+    Return
+  }
+  If (Not LButtonIsPressed()) {
+    SetTimer , 0
+    Return
+  }
 
   MouseGetPos(&mw_x2, &mw_y2)
   WinGetPos(&_t_x, &_t_y, &_t_w, &_t_h, mw)
@@ -85,13 +108,17 @@ GetWorkAreaXYWH(x, y) {
 }
 
 MoveWindow() {
+  Global mw
+  Global mw_x0
+  Global mw_y0
+  Global mw_w0
+  Global mw_h0
   Global mw_x1
   Global mw_y1
-  Global mw
   MouseGetPos &mw_x1, &mw_y1, &mw
+  WinGetPos(&mw_x0, &mw_y0, &mw_w0, &mw_h0, mw)
   mv_max := WinGetMinMax(mw)
   if (mv_max) {
-    SetTimer(() => MoveWindowWatcher(0, 0, 0, 0), 0)
     Return
   }
   ; Print([
