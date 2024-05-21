@@ -45,43 +45,43 @@ MoveWindowWatcher() {
   _n_w := _t_w
   _n_h := _t_h
 
-  If (_n_x < wa_origin_x) {
-    _n_x := wa_origin_x
-  } Else If (_n_x + _t_w > wa_width + wa_origin_x) {
-    _n_x := wa_width + wa_origin_x - _t_w
+  If (_n_x < wa_x) {
+    _n_x := wa_x
+  } Else If (_n_x + _t_w > wa_w + wa_x) {
+    _n_x := wa_w + wa_x - _t_w
   }
-  If (_n_y < wa_origin_y) {
-    _n_y := wa_origin_y
-  } Else If (_n_y + _t_h > wa_height + wa_origin_y) {
-    _n_y := wa_height + wa_origin_y - _t_h
+  If (_n_y < wa_y) {
+    _n_y := wa_y
+  } Else If (_n_y + _t_h > wa_h + wa_y) {
+    _n_y := wa_h + wa_y - _t_h
   }
-  If (_n_h > wa_height) {
-    _n_h := wa_height
+  If (_n_h > wa_h) {
+    _n_h := wa_h
   }
-  If (_n_w > wa_width) {
-    _n_w := wa_width
+  If (_n_w > wa_w) {
+    _n_w := wa_w
   }
   WinMove(_n_x, _n_y, _n_w, _n_h, mw)
   mw_x1 := mw_x2
   mw_y1 := mw_y2
 }
 
-MonitorWorkArea(x, y) {
-  Global wa_origin_x
-  Global wa_origin_y
-  Global wa_width
-  Global wa_height
+GetWorkAreaXYWH(x, y) {
+  Global wa_x
+  Global wa_y
+  Global wa_w
+  Global wa_h
   loop MonitorGetCount() {
     MonitorGet(A_index, &m_left, &m_top, &m_right, &m_bottom)
     If (x >= m_left and x <= m_right and y >= m_top and y <= m_bottom) {
       MonitorGetWorkArea(A_index, &wa_left, &wa_top, &wa_right, &wa_bottom)
-      wa_origin_x := wa_left
-      wa_origin_y := wa_top
-      wa_width := wa_right - wa_left
-      wa_height := wa_bottom - wa_top
+      wa_x := wa_left
+      wa_y := wa_top
+      wa_w := wa_right - wa_left
+      wa_h := wa_bottom - wa_top
       If (wa_left == 0) {
-        wa_origin_x := left_margin
-        wa_width := wa_right - wa_left - left_margin
+        wa_x := left_margin
+        wa_w := wa_right - wa_left - left_margin
       }
     }
   }
@@ -103,7 +103,7 @@ MoveWindow() {
   ;   ; "mw: " . mw,
   ;   "mv_max: " . mv_max,
   ; ])
-  MonitorWorkArea(mw_x1, mw_y1)
+  GetWorkAreaXYWH(mw_x1, mw_y1)
   SetTimer(MoveWindowWatcher, 10)
   SetTimer(Tooltip, -3000)
 }
