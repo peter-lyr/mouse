@@ -21,7 +21,6 @@ AddFunction(2, 2, "right", [
   "rf", () => [ Send("^+{Tab}"), ],
 ])
 
-
 AddFunction(1, 3, "right", [
   "ri", "<Ctrl-Alt-Tab>",
   "rf", () => [ Send("^!{Tab}"), ],

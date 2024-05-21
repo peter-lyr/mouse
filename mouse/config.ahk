@@ -5,8 +5,8 @@ max_directions := 8
 max_circles := 4
 max_wheel_counts := 3
 
-circle_min_transparent := 16
-circle_max_transparent := 40
+circle_min_transparent := 36
+circle_max_transparent := 90
 
 winver := 11
 
