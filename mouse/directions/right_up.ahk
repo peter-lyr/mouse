@@ -9,12 +9,3 @@ AddFunction(1, "right_up", [
   "di", "Volume_Down",
   "df", () => [ Send("{Volume_Down}"), ],
 ])
-
-AddFunction(1, "right_down", [
-  "ri", "WinMinimize",
-  "rf", WinMinimizeRbuttonPressWin,
-  ; "ui", "",
-  ; "uf", 0,
-  ; "di", "",
-  ; "df", 0,
-])
