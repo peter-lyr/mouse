@@ -314,6 +314,17 @@ ResetLButtonFlag() {
   lbutton_flag := 0
 }
 
+GetLMButtonFlag() {
+  Return GetLButtonFlag() Or GetMButtonFlag()
+}
+
+SetLMButtonFlag(val) {
+  Global lbutton_flag
+  Global mbutton_flag
+  lbutton_flag := val
+  mbutton_flag := val
+}
+
 GetLButtonFlag() {
   Global lbutton_flag
   If (Not IsSet(lbutton_flag)) {
