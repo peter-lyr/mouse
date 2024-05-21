@@ -373,6 +373,18 @@ RButtonWheelDown() {
   }
 }
 
+WheelUpDo() {
+  If (RButtonIsPressed()) {
+    RButtonWheelUp()
+  }
+}
+
+WheelDownDo() {
+  If (RButtonIsPressed()) {
+    RButtonWheelDown()
+  }
+}
+
 ResetLButtonFlag() {
   Global lbutton_flag
   lbutton_flag := 0
