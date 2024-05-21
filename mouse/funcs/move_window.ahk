@@ -32,7 +32,7 @@ MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   _n_x := _t_x + mw_x2 - mw_x1
   _n_y := _t_y + mw_y2 - mw_y1
   _n_w := _t_w
-  _nwingetpos_h := _t_h
+  _n_h := _t_h
   mw_x1 := mw_x2
   mw_y1 := mw_y2
 
