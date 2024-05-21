@@ -1,11 +1,11 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/22 00:22:59 星期三
 
-; mw: move window
-; wa: work area
-; _m: monitor
-; _t: temp
-; _n: new
+; mw_: move window
+; wa_: work area
+; _m_: monitor
+; _t_: temp
+; _n_: new
 
 MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   Global mw
