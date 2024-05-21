@@ -15,19 +15,19 @@ circle_list := []
 
 max_directions := 8
 
-max_circles := 6
+max_circles := 4
 
-max_wheel_counts := 6
+max_wheel_counts := 2
 
 max_circles_directions := ((max_circles + 1) * max_directions)
 
 If (winver == 10) {
-  circle_sizes := [100, 300, 500, 700, 900, 1100]
+  circle_sizes := [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700]
 } Else {
-  circle_sizes := [200, 500, 800, 1100, 1400, 1700]
+  circle_sizes := [200, 500, 800, 1100, 1400, 1700, 2100, 2400, 2700]
 }
 
-circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
+circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green", "Red", "Blue", "Green"]
 
 GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
 
