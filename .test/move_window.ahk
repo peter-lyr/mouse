@@ -3,9 +3,15 @@
 
 #Requires AutoHotkey v2.0
 
+; mw: move window
+; wa: work area
+; m: monitor
+; _t: _temp
+; _n: _new
+
 A_MaxHotkeysPerInterval := 1000
 
-leftmargin := 180
+left_margin := 180
 
 CoordMode "Mouse", "Screen"
 
@@ -26,93 +32,76 @@ Print(arr) {
 }
 
 MoveWindowWatcher() {
-  Global x1
-  Global y1
-  Global win
-  Global x0
-  Global y0
-  Global w0
-  Global h0
-  Global title0
+  Global mw
+  Global mw_x1
+  Global mw_y1
 
-  Global origin_x
-  Global origin_y
-  Global real_width
-  Global real_height
+  Global wa_origin_x
+  Global wa_origin_y
+  Global wa_width
+  Global wa_height
+
   SetWinDelay(0)
-  MouseGetPos(&x2, &y2)
-  WinGetPos(&x, &y, &w, &h, win)
-  x_new := x + x2 - x1
-  y_new := y + y2 - y1
-  w_new := w
-  h_new := h
-  If (x_new < origin_x) {
-    x_new := origin_x
-  } Else If (x_new + w > real_width + origin_x) {
-    x_new := real_width + origin_x - w
+  MouseGetPos(&mw_x2, &mw_y2)
+  WinGetPos(&_t_x, &_t_y, &_t_w, &_t_h, mw)
+  _n_x := _t_x + mw_x2 - mw_x1
+  _n_y := _t_y + mw_y2 - mw_y1
+  _n_w := _t_w
+  _n_h := _t_h
+  If (_n_x < wa_origin_x) {
+    _n_x := wa_origin_x
+  } Else If (_n_x + _t_w > wa_width + wa_origin_x) {
+    _n_x := wa_width + wa_origin_x - _t_w
   }
-  If (y_new < origin_y) {
-    y_new := origin_y
-  } Else If (y_new + h > real_height + origin_y) {
-    y_new := real_height + origin_y - h
+  If (_n_y < wa_origin_y) {
+    _n_y := wa_origin_y
+  } Else If (_n_y + _t_h > wa_height + wa_origin_y) {
+    _n_y := wa_height + wa_origin_y - _t_h
   }
-  If (h_new > real_height) {
-    h_new := real_height
+  If (_n_h > wa_height) {
+    _n_h := wa_height
   }
-  If (w_new > real_width) {
-    w_new := real_width
+  If (_n_w > wa_width) {
+    _n_w := wa_width
   }
-  ; WinMove, ahk_id %move_window_id%, , x_new, y_new, w_new, h_new
-  WinMove(x_new, y_new, w_new, h_new, win)
-  x1 := x2
-  y1 := y2
+  WinMove(_n_x, _n_y, _n_w, _n_h, mw)
+  mw_x1 := mw_x2
+  mw_y1 := mw_y2
 }
 
 MonitorWorkArea() {
-  Global origin_x
-  Global origin_y
-  Global real_width
-  Global real_height
+  Global wa_origin_x
+  Global wa_origin_y
+  Global wa_width
+  Global wa_height
   loop MonitorGetCount() {
-    MouseGetPos(&_temp_x, &_temp_y)
-    MonitorGet(A_index, &monitor_left, &monitor_top, &monitor_right, &monitor_bottom)
-    If (_temp_x >= monitor_left and _temp_x <= monitor_right and _temp_y >= monitor_top and _temp_y <= monitor_bottom) {
-      MonitorGetWorkArea(A_index, &workarea_left, &workarea_top, &workarea_right, &workarea_bottom)
-      origin_x := workarea_left
-      origin_y := workarea_top
-      real_width := workarea_right - workarea_left
-      real_height := workarea_bottom - workarea_top
-      If (workarea_left == 0) {
-        origin_x := leftmargin
-        real_width := workarea_right - workarea_left - leftmargin
+    MouseGetPos(&_t_x, &_t_y)
+    MonitorGet(A_index, &m_left, &m_top, &m_right, &m_bottom)
+    If (_t_x >= m_left and _t_x <= m_right and _t_y >= m_top and _t_y <= m_bottom) {
+      MonitorGetWorkArea(A_index, &wa_left, &wa_top, &wa_right, &wa_bottom)
+      wa_origin_x := wa_left
+      wa_origin_y := wa_top
+      wa_width := wa_right - wa_left
+      wa_height := wa_bottom - wa_top
+      If (wa_left == 0) {
+        wa_origin_x := left_margin
+        wa_width := wa_right - wa_left - left_margin
       }
     }
   }
 }
 
 RButton & LButton:: {
-  Global x1
-  Global y1
-  Global win
-  Global x0
-  Global y0
-  Global w0
-  Global h0
-  Global title0
-  MouseGetPos &x1, &y1, &win
-  ; _max := WinGetMinMax(win)
-  WinGetPos(&x0, &y0, &w0, &h0, win)
-  title0 := WinGetTitle(win)
+  Global mw_x1
+  Global mw_y1
+  Global mw
+  MouseGetPos &mw_x1, &mw_y1, &mw
+  mv_max := WinGetMinMax(mw)
   Print([
-    "x1: " . x1,
-    "y1: " . y1,
-    ; "win: " . win,
-    ; "_max: " . _max,
-    "x0: " . x0,
-    "y0: " . y0,
-    "w0: " . w0,
-    "h0: " . h0,
-    "title0: " . title0,
+    "mw_x1: " . mw_x1,
+    "mw_y1: " . mw_y1,
+    ; "mw: " . mw,
+    "mv_max: " . mv_max,
   ])
   MonitorWorkArea()
   SetTimer(MoveWindowWatcher, 10)
