@@ -39,8 +39,9 @@ Loop max_wheel_counts {
   }
 }
 
+MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
+
 GetRbuttonPressColor1() {
-  Global rbutton_press_color1
   Return rbutton_press_color1
 }
 
@@ -58,10 +59,8 @@ UpdateRbuttonPressPos1() {
   Global rbutton_press_x1
   Global rbutton_press_y1
   Global rbutton_press_win
-  CoordMode "Mouse", "Screen"
-  MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
   Global rbutton_press_color1
-  CoordMode "Pixel", "Screen"
+  MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
   rbutton_press_color1 := PixelGetColor(rbutton_press_x1, rbutton_press_y1)
 }
 
@@ -79,7 +78,6 @@ UpdateRbuttonPressPos2() {
   Global mouse_moved := 0
   rbutton_press_x2_back := IsSet(rbutton_press_x2) And rbutton_press_x2 Or 0
   rbutton_press_y2_back := IsSet(rbutton_press_y2) And rbutton_press_y2 Or 0
-  CoordMode "Mouse", "Screen"
   MouseGetPos &rbutton_press_x2, &rbutton_press_y2
   If (rbutton_press_x2_back != rbutton_press_x2 Or rbutton_press_y2_back != rbutton_press_y2) {
     mouse_moved := 1

@@ -3,6 +3,9 @@
 A_HotkeyInterval := 2000 ; 默认
 A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 
+CoordMode "Mouse", "Screen"
+CoordMode "Pixel", "Screen"
+
 #Include %A_ScriptDir%\mouse\funcs\utils.ahk
 #Include %A_ScriptDir%\mouse\config.ahk
 #Include %A_ScriptDir%\mouse\init.ahk
