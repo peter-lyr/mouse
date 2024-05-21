@@ -16,6 +16,9 @@ A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 SetTimer(RButtonPressedWatcher, 10)
 
 RButtonPressedWatcher() {
+  If (RemoteDesktopActive()) {
+    Return
+  }
   _temp := GetLMButtonFlag()
   If (Not RButtonIsPressed() Or _temp) {
     If (_temp == 1) {
@@ -28,6 +31,8 @@ RButtonPressedWatcher() {
   UpdateRbuttonPressPos2()
   GetPos1StateFromPos2()
 }
+
+#HotIf Not RemoteDesktopActive()
 
 RButton:: {
   RButtonDown()
@@ -72,3 +77,5 @@ RButton & LButton:: {
 }
 
 InitCircle()
+
+#HotIf

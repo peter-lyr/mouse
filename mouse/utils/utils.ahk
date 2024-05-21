@@ -141,3 +141,11 @@ FunctionWrap(param_maps) {
   }
   Return Layerxxx
 }
+
+IsWinActiveAndMax(title) {
+  Return WinActive("ahk_exe mstsc.exe") And WinGetMinMax("ahk_exe mstsc.exe") == 1
+}
+
+RemoteDesktopActive() {
+  Return IsWinActiveAndMax("ahk_exe mstsc.exe") Or IsWinActiveAndMax("ahk_exe SunloginClient.exe")
+}
