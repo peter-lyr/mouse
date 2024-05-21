@@ -143,9 +143,9 @@ FunctionWrap(param_maps) {
 }
 
 IsWinActiveAndMax(title) {
-  Return WinActive("ahk_exe mstsc.exe") And WinGetMinMax("ahk_exe mstsc.exe") == 1
+  Return WinActive(title) And WinGetMinMax(title) == 1
 }
 
 RemoteDesktopActive() {
-  Return IsWinActiveAndMax("ahk_exe mstsc.exe") Or IsWinActiveAndMax("ahk_exe SunloginClient.exe")
+  Return IsWinActiveAndMax("ahk_exe mstsc.exe") Or IsWinActiveAndMax("ahk_exe SunloginClient.exe") Or IsWinActiveAndMax("ahk_exe WindowsSandboxClient.exe")
 }
