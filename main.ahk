@@ -3,6 +3,8 @@
 A_HotkeyInterval := 2000 ; 默认
 A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 
+SetWinDelay(0)
+
 CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 
@@ -10,6 +12,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\config.ahk
 #Include %A_ScriptDir%\mouse\init.ahk
 
+#Include %A_ScriptDir%\mouse\funcs\move_window.ahk
 #Include %A_ScriptDir%\mouse\funcs\rbutton_pressed_win.ahk
 #Include %A_ScriptDir%\mouse\directions\right_up.ahk
 #Include %A_ScriptDir%\mouse\directions\right.ahk

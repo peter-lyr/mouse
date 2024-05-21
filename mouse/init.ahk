@@ -432,6 +432,7 @@ RButtonLButton() {
   } Else {
     Global lbutton_flag
     lbutton_flag := 1
+    MoveWindow()
   }
 }
 

@@ -18,3 +18,5 @@ If (GetWinVer() == "Windows 10") {
 }
 
 circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green", "Red", "Blue", "Green"]
+
+left_margin := 180
