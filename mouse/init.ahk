@@ -42,6 +42,7 @@ Loop max_wheel_counts {
 MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
 
 GetRbuttonPressColor1() {
+  Global rbutton_press_color1
   Return rbutton_press_color1
 }
 
