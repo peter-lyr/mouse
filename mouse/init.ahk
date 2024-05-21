@@ -33,6 +33,8 @@ function_index := 0
 
 functions := []
 
+rbutton_up_no_click := 0
+
 Loop max_wheel_counts {
   Loop (max_circles + 1) * 8 {
     functions.Push(0)
@@ -40,6 +42,16 @@ Loop max_wheel_counts {
 }
 
 MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
+
+SetRButtonUpNoClickFlag(val) {
+  Global rbutton_up_no_click
+  rbutton_up_no_click := val
+}
+
+GetRButtonUpNoClickFlag() {
+  Global rbutton_up_no_click
+  Return rbutton_up_no_click
+}
 
 GetRbuttonPressColor1() {
   Global rbutton_press_color1
@@ -266,7 +278,10 @@ CallFunction() {
     functions[function_index]()
   } Else {
     If (Not LButtonIsPressed() And Not MButtonIsPressed()) {
-      Click "Right"
+      If (Not GetRButtonUpNoClickFlag()) {
+        Click "Right"
+      }
+      SetRButtonUpNoClickFlag(0)
     }
   }
   Tooltip
@@ -435,6 +450,7 @@ RButtonLButton() {
     Global lbutton_flag
     lbutton_flag := 1
     SetTimer(MoveWindow, -20)
+    SetRButtonUpNoClickFlag(1)
   }
 }
 
