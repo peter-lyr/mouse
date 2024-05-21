@@ -37,11 +37,6 @@ MoveWindowWatcher() {
   Global mw_x1
   Global mw_y1
 
-  Global wa_origin_x
-  Global wa_origin_y
-  Global wa_width
-  Global wa_height
-
   MouseGetPos(&mw_x2, &mw_y2)
   WinGetPos(&_t_x, &_t_y, &_t_w, &_t_h, mw)
 
@@ -92,19 +87,27 @@ MonitorWorkArea(x, y) {
   }
 }
 
-RButton & LButton:: {
+MoveWindow() {
   Global mw_x1
   Global mw_y1
   Global mw
   MouseGetPos &mw_x1, &mw_y1, &mw
   mv_max := WinGetMinMax(mw)
-  Print([
-    "mw_x1: " . mw_x1,
-    "mw_y1: " . mw_y1,
-    ; "mw: " . mw,
-    "mv_max: " . mv_max,
-  ])
+  if (mv_max) {
+    SetTimer(MoveWindowWatcher, 0)
+    Return
+  }
+  ; Print([
+  ;   "mw_x1: " . mw_x1,
+  ;   "mw_y1: " . mw_y1,
+  ;   ; "mw: " . mw,
+  ;   "mv_max: " . mv_max,
+  ; ])
   MonitorWorkArea(mw_x1, mw_y1)
   SetTimer(MoveWindowWatcher, 10)
   SetTimer(Tooltip, -3000)
+}
+
+RButton & LButton:: {
+  MoveWindow()
 }
