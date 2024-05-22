@@ -69,4 +69,6 @@ RButton & LButton:: {
 
 InitCircle()
 
+^!r::Reload
+
 #HotIf
