@@ -14,6 +14,10 @@ AddFunction(2, 1, "right", [
 AddFunction(1, 2, "right", [
   "ri", "<Ctrl-Tab>",
   "rf", () => [ Send("^{Tab}"), ],
+  "ui", "<Ctrl-Shift-Tab>",
+  "uf", () => [ Send("^+{Tab}"), ],
+  "di", "<Ctrl-Tab>",
+  "df", () => [ Send("^{Tab}"),   ],
 ])
 
 AddFunction(2, 2, "right", [
