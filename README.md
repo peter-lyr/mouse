@@ -38,3 +38,13 @@ ahk2exe
 ### [ ] TODO: 增加功能
 
 记录每次移动或大小的改变,以便撤销或者回复操作(可选)
+
+# 240522-12h02m
+
+目前的情况:
+
+center LButton/WheelUp/Down -> wheel_count
+
+TODO: 增加一个维度
+
+center MButton -> dim_count
