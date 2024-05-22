@@ -9,3 +9,29 @@ AddFunction(1, 1, "right_up", [
   "di", "Volume_Down",
   "df", () => [ Send("{Volume_Down}"), ],
 ])
+
+AddFunction(2, 1, "right_up", [
+  "ui", "Volume_Up 10",
+  "uf", () => [
+    SoundSetVolume("+8"),
+    Send("{Volume_Up}"),
+  ],
+  "di", "Volume_Down 10",
+  "df", () => [
+    SoundSetVolume("-8"),
+    Send("{Volume_Down}"),
+  ],
+])
+
+AddFunction(3, 1, "right_up", [
+  "ui", "Volume_Up 30",
+  "uf", () => [
+    SoundSetVolume("+28"),
+    Send("{Volume_Up}"),
+  ],
+  "di", "Volume_Down 30",
+  "df", () => [
+    SoundSetVolume("-28"),
+    Send("{Volume_Down}"),
+  ],
+])
