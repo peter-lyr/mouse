@@ -462,6 +462,12 @@ WheelUpDo() {
   }
 }
 
+MButtonDo() {
+  If (RButtonIsPressed()) {
+    RButtonMButton()
+  }
+}
+
 WheelDownDo() {
   If (RButtonIsPressed()) {
     RButtonWheelDown()
@@ -529,6 +535,8 @@ RButtonMButton() {
   } Else {
     Global mbutton_flag
     mbutton_flag := 1
+    SetRButtonUpNoClickFlag(1)
+    SetRButtonUpCancelFlag(1)
   }
 }
 

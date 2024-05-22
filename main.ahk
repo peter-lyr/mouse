@@ -54,6 +54,10 @@ RButton Up:: {
   WheelUpDo()
 }
 
+~MButton:: {
+  MButtonDo()
+}
+
 RButton & MButton:: {
   RButtonMButton()
 }
