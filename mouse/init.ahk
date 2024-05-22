@@ -40,10 +40,8 @@ rbutton_up_no_click := 0
 
 rbuttonup_cancel_flag := 0
 
-Loop max_wheel_counts {
-  Loop (max_circles + 1) * 8 {
-    functions.Push(0)
-  }
+Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
+  functions.Push(0)
 }
 
 MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
@@ -148,6 +146,7 @@ RButtonUp() {
   CallFunction()
   ResetWheelFlag()
   ResetWheelCount()
+  ResetLeftCount()
 }
 
 LButtonDown() {
@@ -255,7 +254,11 @@ GetPos1StateFromPos2() {
   }
   index := 0
   If (layer > 0) {
-    index := max_circles_directions * (GetWheelCount() - 1) + max_directions * (layer - 1) + dir_index_maps[_dir]
+    index := max_lefts_wheels_circles_directions * (GetMiddleCount() - 1) +
+             max_wheels_circles_directions * (GetLeftCount() - 1) +
+             max_circles_directions * (GetWheelCount() - 1) +
+             max_directions * (layer - 1) +
+             dir_index_maps[_dir]
     function := functions[index]
     If ("Func" == Type(function) Or "Closure" == Type(function)) {
       function_index := index
@@ -270,7 +273,9 @@ GetPos1StateFromPos2() {
   }
   direction := _dir
   If (Not function_index) {
-    Print(Format("{:}C {:T}L {:T}:{:d} L{:s} T{:} {:}", GetWheelCount(), layer, _dir, index, GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1()))
+    Print(Format("{:}M {:}L {:}W {:}L {:U} {:d} ({:} {:} {:})",
+          GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, _dir, index,
+          GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1()))
   }
 }
 
@@ -466,7 +471,7 @@ GetLButtonFlag() {
 
 RButtonLButton() {
   If (GetDirection() == "center") {
-    IncWheelCount()
+    IncLeftCount()
   } Else {
     Global lbutton_flag
     lbutton_flag := 1
@@ -496,6 +501,60 @@ GetMButtonFlag() {
 }
 
 RButtonMButton() {
-  Global mbutton_flag
-  mbutton_flag := 1
+  If (GetDirection() == "center") {
+    IncMiddleCount()
+  } Else {
+    Global mbutton_flag
+    mbutton_flag := 1
+  }
+}
+
+ResetLeftCount() {
+  Global left_count
+  left_count := 1
+}
+
+GetLeftCount() {
+  Global left_count
+  If (Not IsSet(left_count)) {
+    left_count := 1
+  }
+  Return left_count
+}
+
+IncLeftCount() {
+  Global left_count
+  If (Not IsSet(left_count)) {
+    left_count := 1
+  }
+  If (left_count >= max_left_counts) {
+    left_count := 1
+  } Else {
+    left_count += 1
+  }
+}
+
+ResetMiddleCount() {
+  Global middle_count
+  middle_count := 1
+}
+
+GetMiddleCount() {
+  Global middle_count
+  If (Not IsSet(middle_count)) {
+    middle_count := 1
+  }
+  Return middle_count
+}
+
+IncMiddleCount() {
+  Global middle_count
+  If (Not IsSet(middle_count)) {
+    middle_count := 1
+  }
+  If (middle_count >= max_middle_counts) {
+    middle_count := 1
+  } Else {
+    middle_count += 1
+  }
 }
