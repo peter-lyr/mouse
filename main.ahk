@@ -20,25 +20,6 @@ CoordMode("Pixel", "Screen")
 
 #Include %A_ScriptDir%\mouse\last.ahk
 
-SetTimer(RButtonPressedWatcher, 10)
-
-RButtonPressedWatcher() {
-  If (RemoteDesktopActiveOrRButtonPressed()) {
-    Return
-  }
-  _temp := GetLMButtonFlag()
-  If (Not RButtonIsPressed() Or _temp) {
-    If (_temp == 1) {
-      IncLMButtonFlag()
-      Tooltip
-      HideCircle()
-    }
-    Return
-  }
-  UpdateRbuttonPressPos2()
-  GetPos1StateFromPos2()
-}
-
 #HotIf Not RemoteDesktopActiveOrRButtonPressed()
 
 RButton:: {

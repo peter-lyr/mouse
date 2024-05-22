@@ -130,7 +130,27 @@ DrawCircleAtRbuttonPressPos1() {
   }
 }
 
+RButtonPressedWatcher() {
+  If (RemoteDesktopActiveOrRButtonPressed()) {
+    SetTimer , 0
+    Return
+  }
+  _temp := GetLMButtonFlag()
+  If (Not RButtonIsPressed() Or _temp) {
+    If (_temp == 1) {
+      IncLMButtonFlag()
+      Tooltip
+      HideCircle()
+    }
+    SetTimer , 0
+    Return
+  }
+  UpdateRbuttonPressPos2()
+  GetPos1StateFromPos2()
+}
+
 RButtonDown() {
+  SetTimer(RButtonPressedWatcher, 10)
   UpdateRbuttonPressPos1()
   DrawCircleAtRbuttonPressPos1()
 }
