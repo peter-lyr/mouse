@@ -10,7 +10,7 @@ AddFunction(1, 1, "right_up", [
   "df", () => [ Send("{Volume_Down}"), ],
 ])
 
-AddFunction(2, 1, "right_up", [
+AddFunction(1, 2, "right_up", [
   "ui", "Volume_Up 10",
   "uf", () => [
     SoundSetVolume("+8"),
@@ -23,7 +23,7 @@ AddFunction(2, 1, "right_up", [
   ],
 ])
 
-AddFunction(3, 1, "right_up", [
+AddFunction(1, 3, "right_up", [
   "ui", "Volume_Up 30",
   "uf", () => [
     SoundSetVolume("+28"),
@@ -36,7 +36,7 @@ AddFunction(3, 1, "right_up", [
   ],
 ])
 
-AddFunction(4, 1, "right_up", [
+AddFunction(1, 4, "right_up", [
   "ui", "SoundBeep(523Hz, 800ms)",
   "uf", () => [
     SoundBeep(523, 800),
