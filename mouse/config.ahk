@@ -3,7 +3,7 @@
 
 max_directions := 8
 max_circles := 4
-max_wheel_counts := 3
+max_wheel_counts := 6
 
 circle_min_transparent := 36
 circle_max_transparent := 90

@@ -35,3 +35,14 @@ AddFunction(3, 1, "right_up", [
     Send("{Volume_Down}"),
   ],
 ])
+
+AddFunction(4, 1, "right_up", [
+  "ui", "SoundBeep(523Hz, 800ms)",
+  "uf", () => [
+    SoundBeep(523, 800),
+  ],
+  ; "di", "SoundPlay",
+  ; "df", () => [
+  ;   SoundPlay("C:\Users\depei_liu\DEPEI\Repos\2024s\w\d\bin\拽犯法么（硬曲热播）.mp3"),
+  ; ],
+])
