@@ -76,3 +76,18 @@
 ; ]
 ; ; MsgBox(Type(a))
 ; a()
+
+; ^+c:: {
+;   A_Clipboard := "" ; 清空剪贴板
+;   Send("^c")
+;   ClipWait
+;   Tooltip(A_Clipboard . ">>>")
+;   ; SetTimer () => [Tooltip(A_Clipboard . ">>>")], -100
+; }
+
+; Loop Parse A_Clipboard, "`n", "`r"
+; {
+;     Result := MsgBox("File number " A_Index " is " A_LoopField ".`n`nContinue?",, 4)
+;     if Result = "No"
+;         break
+; }
