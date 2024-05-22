@@ -19,10 +19,12 @@ MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   If (Not RButtonIsPressed()) {
     SetTimer , 0
     WinMove(mw_x0, mw_y0, mw_w0, mw_h0, mw)
+    ResetWheelCount()
     Return
   }
   If (Not LButtonIsPressed()) {
     SetTimer , 0
+    ResetWheelCount()
     Return
   }
 
@@ -36,21 +38,23 @@ MoveWindowWatcher(wa_x, wa_y, wa_w, wa_h) {
   mw_x1 := mw_x2
   mw_y1 := mw_y2
 
-  If (_n_x < wa_x) {
-    _n_x := wa_x
-  } Else If (_n_x + _t_w > wa_w + wa_x) {
-    _n_x := wa_w + wa_x - _t_w
-  }
-  If (_n_y < wa_y) {
-    _n_y := wa_y
-  } Else If (_n_y + _t_h > wa_h + wa_y) {
-    _n_y := wa_h + wa_y - _t_h
-  }
-  If (_n_h > wa_h) {
-    _n_h := wa_h
-  }
-  If (_n_w > wa_w) {
-    _n_w := wa_w
+  If (GetWheelCount() == 1) {
+    If (_n_x < wa_x) {
+      _n_x := wa_x
+    } Else If (_n_x + _t_w > wa_w + wa_x) {
+      _n_x := wa_w + wa_x - _t_w
+    }
+    If (_n_y < wa_y) {
+      _n_y := wa_y
+    } Else If (_n_y + _t_h > wa_h + wa_y) {
+      _n_y := wa_h + wa_y - _t_h
+    }
+    If (_n_h > wa_h) {
+      _n_h := wa_h
+    }
+    If (_n_w > wa_w) {
+      _n_w := wa_w
+    }
   }
   WinMove(_n_x, _n_y, _n_w, _n_h, mw)
 }
