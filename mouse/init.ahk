@@ -535,6 +535,7 @@ RButtonMButton() {
   } Else {
     Global mbutton_flag
     mbutton_flag := 1
+    SetTimer(ResizeWindow, -20)
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)
   }
