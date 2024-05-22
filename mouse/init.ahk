@@ -3,7 +3,10 @@
 
 circle_list := []
 
-max_circles_directions := ((max_circles + 1) * max_directions)
+max_circles_directions := ((max_circles + 1) * max_directions) ; max_circles + 1 是因为增加了side_up...
+max_wheels_circles_directions := (max_wheel_counts * max_circles_directions)
+max_lefts_wheels_circles_directions := (max_left_counts * max_wheels_circles_directions)
+max_middles_lefts_wheels_circles_directions := (max_middle_counts * max_lefts_wheels_circles_directions)
 
 GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
 
