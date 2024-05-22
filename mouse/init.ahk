@@ -273,9 +273,12 @@ GetPos1StateFromPos2() {
   }
   direction := _dir
   If (Not function_index) {
-    Print(Format("[{:}][{:}][{:}][{:}][{:d}]: {:d} (B{:2} T{:2} {:8}) {:U}",
-          GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,
-          GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1(), _dir))
+    Print(Format(
+      "[{:}][{:}][{:}][{:}][{:d}]: {:d} (B{:2} T{:2} {:8}) {:U}",
+      GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,
+      GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1(), _dir
+      )
+    )
   }
 }
 
