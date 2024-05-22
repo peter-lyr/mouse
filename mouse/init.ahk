@@ -135,6 +135,8 @@ RButtonDown() {
 }
 
 RButtonUp() {
+  ResetMButtonFlag()
+  ResetLButtonFlag()
   If (GetRButtonUpCancelFlag()) {
     SetRButtonUpCancelFlag(0)
     Return
@@ -142,8 +144,6 @@ RButtonUp() {
   HideCircle()
   CallFunction()
   ResetWheelFlag()
-  ResetMButtonFlag()
-  ResetLButtonFlag()
   ResetWheelCount()
 }
 
