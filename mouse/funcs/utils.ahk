@@ -1,6 +1,12 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/17 23:55:49 星期五
 
+remote_desktops := [
+  "ahk_exe mstsc.exe",
+  "ahk_exe SunloginClient.exe",
+  "ahk_exe WindowsSandboxClient.exe",
+]
+
 PrintList := []
 
 Strip(text) {
@@ -142,10 +148,17 @@ FunctionWrap(param_maps) {
   Return Layerxxx
 }
 
-IsWinActiveAndMax(title) {
-  Return WinActive(title) And WinGetMinMax(title) == 1
+IsWinActiveAndMax(titles, _cid) {
+  for index, title in titles {
+    If ((WinActive(title) Or (WinExist(title) And WinGetId(title) == _cid)) And WinGetMinMax(title) == 1) {
+      Return 1
+    }
+  }
+  Return 0
 }
 
-RemoteDesktopActive() {
-  Return IsWinActiveAndMax("ahk_exe mstsc.exe") Or IsWinActiveAndMax("ahk_exe SunloginClient.exe") Or IsWinActiveAndMax("ahk_exe WindowsSandboxClient.exe")
+RemoteDesktopActiveOrRButtonPressed() {
+  MouseGetPos , , &_win
+  _cid := WinGetId(_win)
+  Return IsWinActiveAndMax(remote_desktops, _cid)
 }

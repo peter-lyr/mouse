@@ -23,7 +23,7 @@ CoordMode("Pixel", "Screen")
 SetTimer(RButtonPressedWatcher, 10)
 
 RButtonPressedWatcher() {
-  If (RemoteDesktopActive()) {
+  If (RemoteDesktopActiveOrRButtonPressed()) {
     Return
   }
   _temp := GetLMButtonFlag()
@@ -39,7 +39,7 @@ RButtonPressedWatcher() {
   GetPos1StateFromPos2()
 }
 
-#HotIf Not RemoteDesktopActive()
+#HotIf Not RemoteDesktopActiveOrRButtonPressed()
 
 RButton:: {
   RButtonDown()
