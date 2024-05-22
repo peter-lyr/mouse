@@ -71,4 +71,6 @@ InitCircle()
 
 ^!r::Reload
 
+^!q::ExitApp
+
 #HotIf
