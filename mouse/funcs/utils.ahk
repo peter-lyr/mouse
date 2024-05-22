@@ -148,9 +148,9 @@ FunctionWrap(param_maps) {
   Return Layerxxx
 }
 
-IsWinActiveAndMax(titles, _cid) {
+IsCurWinAndMax(titles, _cid) {
   for index, title in titles {
-    If ((WinActive(title) Or (WinExist(title) And WinGetId(title) == _cid)) And WinGetMinMax(title) == 1) {
+    If (WinExist(title) And WinGetId(title) == _cid And WinGetMinMax(title) == 1) {
       Return 1
     }
   }
@@ -160,5 +160,5 @@ IsWinActiveAndMax(titles, _cid) {
 RemoteDesktopActiveOrRButtonPressed() {
   MouseGetPos , , &_win
   _cid := WinGetId(_win)
-  Return IsWinActiveAndMax(remote_desktops, _cid)
+  Return IsCurWinAndMax(remote_desktops, _cid)
 }
