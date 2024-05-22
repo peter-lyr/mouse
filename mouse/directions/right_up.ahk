@@ -2,47 +2,47 @@
 ; create at 2024/05/20 14:18:09 Monday
 
 AddFunction(1, 1, "right_up", [
-  "ri", "WinMaximizeRestore",
-  "rf", WinMaximizeRestoreRbuttonPressWin,
-  "ui", "Volume_Up",
-  "uf", () => [ Send("{Volume_Up}"), ],
-  "di", "Volume_Down",
-  "df", () => [ Send("{Volume_Down}"), ],
+  "Ri", "WinMaximizeRestore",
+  "Rf", WinMaximizeRestoreRbuttonPressWin,
+  "Ui", "Volume_Up",
+  "Uf", () => [ Send("{Volume_Up}"), ],
+  "Di", "Volume_Down",
+  "Df", () => [ Send("{Volume_Down}"), ],
 ])
 
 AddFunction(1, 2, "right_up", [
-  "ui", "Volume_Up 10",
-  "uf", () => [
+  "Ui", "Volume_Up 10",
+  "Uf", () => [
     SoundSetVolume("+8"),
     Send("{Volume_Up}"),
   ],
-  "di", "Volume_Down 10",
-  "df", () => [
+  "Di", "Volume_Down 10",
+  "Df", () => [
     SoundSetVolume("-8"),
     Send("{Volume_Down}"),
   ],
 ])
 
 AddFunction(1, 3, "right_up", [
-  "ui", "Volume_Up 30",
-  "uf", () => [
+  "Ui", "Volume_Up 30",
+  "Uf", () => [
     SoundSetVolume("+28"),
     Send("{Volume_Up}"),
   ],
-  "di", "Volume_Down 30",
-  "df", () => [
+  "Di", "Volume_Down 30",
+  "Df", () => [
     SoundSetVolume("-28"),
     Send("{Volume_Down}"),
   ],
 ])
 
 AddFunction(1, 4, "right_up", [
-  "ui", "SoundBeep(523Hz, 800ms)",
-  "uf", () => [
+  "Ui", "SoundBeep(523Hz, 800ms)",
+  "Uf", () => [
     SoundBeep(523, 800),
   ],
-  ; "di", "SoundPlay",
-  ; "df", () => [
+  ; "Di", "SoundPlay",
+  ; "Df", () => [
   ;   SoundPlay("C:\Users\depei_liu\DEPEI\Repos\2024s\w\d\bin\拽犯法么（硬曲热播）.mp3"),
   ; ],
 ])

@@ -2,6 +2,6 @@
 ; create at 2024/05/21 12:47:07 Tuesday
 
 AddFunction(1, 1, "right_down", [
-  "ri", "WinMinimize",
-  "rf", WinMinimizeRbuttonPressWin,
+  "Ri", "WinMinimize",
+  "Rf", WinMinimizeRbuttonPressWin,
 ])
