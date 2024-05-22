@@ -275,19 +275,18 @@ Array2Function(arr) {
   Return FunctionWrap(Array2Map(arr))
 }
 
+GetBetween(&val, min, max) {
+  If (val < min) {
+    val := min
+  }
+  If (val > max) {
+    val := max
+  }
+}
+
 AddFunction(count, layer, dir, arr) {
-  If (count < 1) {
-    count := 1
-  }
-  If (count > max_wheel_counts) {
-    count := max_wheel_counts
-  }
-  If (layer < 1) {
-    layer := 1
-  }
-  If (layer > max_circles) {
-    layer := max_circles
-  }
+  GetBetween(&count, 1, max_wheel_counts)
+  GetBetween(&layer, 1, max_circles)
   index := max_circles_directions * (count - 1) + max_directions * (layer - 1) + dir_index_maps[dir]
   functions[index] := Array2Function(arr)
 }
