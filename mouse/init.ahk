@@ -35,6 +35,8 @@ functions := []
 
 rbutton_up_no_click := 0
 
+rbuttonup_cancel_flag := 0
+
 Loop max_wheel_counts {
   Loop (max_circles + 1) * 8 {
     functions.Push(0)
@@ -42,6 +44,16 @@ Loop max_wheel_counts {
 }
 
 MouseGetPos &rbutton_press_x1, &rbutton_press_y1, &rbutton_press_win
+
+SetRButtonUpCancelFlag(val) {
+  Global rbuttonup_cancel_flag
+  rbuttonup_cancel_flag := val
+}
+
+GetRButtonUpCancelFlag() {
+  Global rbuttonup_cancel_flag
+  Return rbuttonup_cancel_flag
+}
 
 SetRButtonUpNoClickFlag(val) {
   Global rbutton_up_no_click
@@ -55,6 +67,9 @@ GetRButtonUpNoClickFlag() {
 
 GetRbuttonPressColor1() {
   Global rbutton_press_color1
+  If (Not IsSet(rbutton_press_color1)) {
+    rbutton_press_color1 := "0x808080"
+  }
   Return rbutton_press_color1
 }
 
@@ -120,6 +135,10 @@ RButtonDown() {
 }
 
 RButtonUp() {
+  If (GetRButtonUpCancelFlag()) {
+    SetRButtonUpCancelFlag(0)
+    Return
+  }
   HideCircle()
   CallFunction()
   ResetWheelFlag()
@@ -451,6 +470,7 @@ RButtonLButton() {
     lbutton_flag := 1
     SetTimer(MoveWindow, -20)
     SetRButtonUpNoClickFlag(1)
+    SetRButtonUpCancelFlag(1)
   }
 }
 
