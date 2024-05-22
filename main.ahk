@@ -71,6 +71,12 @@ InitCircle()
 
 ^!r::Reload
 
-^!q::ExitApp
+^!q:: {
+  Result := MsgBox("Are you sure you want to exit?",, 4)
+  if (Result = "No") {
+    Return
+  }
+  ExitApp
+}
 
 #HotIf
