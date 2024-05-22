@@ -11,6 +11,8 @@ AddFunction(1, 1, "right_up", [
 ])
 
 AddFunction(1, 2, "right_up", [
+  "Ri", "Copy File Path",
+  "Rf", CopyFilePath,
   "Ui", "Volume_Up 10",
   "Uf", () => [
     SoundSetVolume("+8"),

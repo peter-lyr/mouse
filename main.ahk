@@ -15,11 +15,10 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\move_window.ahk
 #Include %A_ScriptDir%\mouse\funcs\resize_window.ahk
 #Include %A_ScriptDir%\mouse\funcs\rbutton_pressed_win.ahk
+#Include %A_ScriptDir%\mouse\funcs\copy.ahk
 #Include %A_ScriptDir%\mouse\directions\right_up.ahk
 #Include %A_ScriptDir%\mouse\directions\right_down.ahk
 #Include %A_ScriptDir%\mouse\directions\left.ahk
-
-#Include %A_ScriptDir%\mouse\last.ahk
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed()
 
