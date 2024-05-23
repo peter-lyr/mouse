@@ -7,6 +7,10 @@ AddFunction(1, 1, 1, 1, _dir, [
   "R", WIF("<Esc>", () => Send("{Esc}")),
 ])
 
+AddFunction(1, 1, 2, 1, _dir, [
+  "R", WIF("<Esc>", () => Send("{Esc}")),
+])
+
 AddFunction(1, 1, 1, 2, _dir, [
   "R", WIF("<Enter>", () => Send("{Enter}")),
 ])
