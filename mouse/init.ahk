@@ -168,12 +168,50 @@ RButtonUp() {
   ResetWheelCount()
   ResetLeftCount()
   ResetMiddleCount()
+  LButtonWheelCntReset(1)
 }
 
 LButtonDown() {
   If (RButtonIsPressed()) {
     RButtonLButton()
   }
+  SetTimer(LButtonWheelCntReset, 0)
+  IncLButtonWheelCnt()
+  Print(GetLButtonWheelCnt(), 500)
+}
+
+IncLButtonWheelCnt() {
+  Global lbutton_wheel_cnt
+  If (Not IsSet(lbutton_wheel_cnt)) {
+    lbutton_wheel_cnt := 0
+  }
+  If (lbutton_wheel_cnt >= max_wheel_counts) {
+    lbutton_wheel_cnt := 1
+  } Else {
+    lbutton_wheel_cnt += 1
+  }
+}
+
+GetLButtonWheelCnt() {
+  Global lbutton_wheel_cnt
+  If (Not IsSet(lbutton_wheel_cnt)) {
+    lbutton_wheel_cnt := 0
+  }
+  Return lbutton_wheel_cnt
+}
+
+LButtonWheelCntReset(force:=0) {
+  Global lbutton_wheel_cnt
+  If (Not force) {
+    If (RButtonIsPressed()) {
+      Return
+    }
+  }
+  lbutton_wheel_cnt := 0
+}
+
+LButtonUp() {
+  SetTimer(LButtonWheelCntReset, -300)
 }
 
 HideCircle() {
@@ -538,7 +576,13 @@ RButtonLButton() {
 
 LButtonRButton() {
   Global wheel_count
-  wheel_count := 2
+  If (Not IsSet(wheel_count)) {
+    wheel_count := 1
+  }
+  wheel_count += GetLButtonWheelCnt()
+  If (wheel_count > max_wheel_counts) {
+    wheel_count := 1
+  }
   RButtonDown()
 }
 

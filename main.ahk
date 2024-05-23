@@ -38,6 +38,10 @@ RButton:: {
   LButtonDown()
 }
 
+~LButton Up:: {
+  LButtonUp()
+}
+
 RButton Up:: {
   RButtonUp()
 }
