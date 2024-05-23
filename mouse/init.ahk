@@ -167,6 +167,7 @@ RButtonUp() {
   ResetWheelFlag()
   ResetWheelCount()
   ResetLeftCount()
+  ResetMiddleCount()
 }
 
 LButtonDown() {
