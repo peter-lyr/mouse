@@ -328,7 +328,7 @@ WIF(i, f) {
     If (j) {
       Return i
     }
-    f()
+    TryCallFunction(f)
   }
   Return _func
 }
