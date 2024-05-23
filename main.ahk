@@ -18,10 +18,10 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\copy.ahk
 #Include %A_ScriptDir%\mouse\funcs\navigate.ahk
 
-#Include %A_ScriptDir%\mouse\directions\right_up.ahk
-#Include %A_ScriptDir%\mouse\directions\right_down.ahk
-#Include %A_ScriptDir%\mouse\directions\left.ahk
-#Include %A_ScriptDir%\mouse\directions\left_up.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\right_up.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\right_down.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\left.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\left_up.ahk
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed()
 
