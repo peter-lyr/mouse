@@ -36,8 +36,7 @@ AddFunction(1, 4, _dir, [
   "U", (j) => j And "SoundBeep(523Hz, 800ms)" Or [
     SoundBeep(523, 800),
   ],
-  ; "Di", (j) => j And "SoundPlay",
-  ; "Df", () => [
+  ; "D", (j) => j And "SoundPlay" Or [
   ;   SoundPlay("C:\Users\depei_liu\DEPEI\Repos\2024s\w\d\bin\拽犯法么（硬曲热播）.mp3"),
   ; ],
 ])
