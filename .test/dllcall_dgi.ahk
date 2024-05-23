@@ -24,7 +24,7 @@ MyGui.Opt(GuiOpt)
 ; MyGui.Show("NA")
 MyGui.Show("w150 h150")
 WinSetRegion("0-0 W300 H300 E", MyGui.Hwnd)
-; MyGui.Move(300, 300, 300, 300)
+MyGui.Move(800, 300, 300, 300)
 ; WinSetTransparent(120, "Ahk_id " . MyGui.Hwnd)
 
 ; 获取画布的DC（设备上下文）
