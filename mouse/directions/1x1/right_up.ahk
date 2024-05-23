@@ -4,9 +4,9 @@
 _dir := "right_up"
 
 AddFunction(1, 1, 1, 1, _dir, [
-  "R", (j) => j And "WinMaximizeRestore" Or WinMaximizeRestoreRbuttonPressWin(),
-  "U", (j) => j And "Volume_Up" Or Send("{Volume_Up}"),
-  "D", (j) => j And "Volume_Down" Or Send("{Volume_Down}"),
+  "R", WIF("WinMaximizeRestore", WinMaximizeRestoreRbuttonPressWin),
+  "U", WIF("Volume_Up", () => Send("{Volume_Up}")),
+  "D", WIF("Volume_Down", () => Send("{Volume_Down}")),
 ])
 
 AddFunction(1, 1, 1, 2, _dir, [

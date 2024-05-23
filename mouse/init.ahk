@@ -322,6 +322,17 @@ GetBetween(&val, min, max) {
   }
 }
 
+; Wrap Info Function
+WIF(i, f) {
+  _func(j) {
+    If (j) {
+      Return i
+    }
+    f()
+  }
+  Return _func
+}
+
 AddFunction(middle_count, left_count, wheel_count, layer, dir, arr) {
   GetBetween(&middle_count, 1, max_middle_counts)
   GetBetween(&left_count, 1, max_left_counts)
