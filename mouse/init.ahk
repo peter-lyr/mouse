@@ -315,10 +315,16 @@ GetBetween(&val, min, max) {
   }
 }
 
-AddFunction(count, layer, dir, arr) {
-  GetBetween(&count, 1, max_wheel_counts)
+AddFunction(middle_count, left_count, wheel_count, layer, dir, arr) {
+  GetBetween(&middle_count, 1, max_middle_counts)
+  GetBetween(&left_count, 1, max_left_counts)
+  GetBetween(&wheel_count, 1, max_wheel_counts)
   GetBetween(&layer, 1, max_circles)
-  index := max_circles_directions * (count - 1) + max_directions * (layer - 1) + dir_index_maps[dir]
+  index := max_lefts_wheels_circles_directions * (middle_count - 1) +
+           max_wheels_circles_directions * (left_count - 1) +
+           max_circles_directions * (wheel_count - 1) +
+           max_directions * (layer - 1) +
+           dir_index_maps[dir]
   functions[index] := Array2Function(arr)
 }
 

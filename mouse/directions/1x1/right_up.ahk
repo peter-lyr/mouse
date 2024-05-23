@@ -3,13 +3,13 @@
 
 _dir := "right_up"
 
-AddFunction(1, 1, _dir, [
+AddFunction(1, 1, 1, 1, _dir, [
   "R", (j) => j And "WinMaximizeRestore" Or WinMaximizeRestoreRbuttonPressWin(),
   "U", (j) => j And "Volume_Up" Or Send("{Volume_Up}"),
   "D", (j) => j And "Volume_Down" Or Send("{Volume_Down}"),
 ])
 
-AddFunction(1, 2, _dir, [
+AddFunction(1, 1, 1, 2, _dir, [
   "R", (j) => j And "Copy File Path" Or CopyFilePath(),
   "U", (j) => j And "Volume_Up 10" Or [
     SoundSetVolume("+8"),
@@ -21,7 +21,7 @@ AddFunction(1, 2, _dir, [
   ],
 ])
 
-AddFunction(1, 3, _dir, [
+AddFunction(1, 1, 1, 3, _dir, [
   "U", (j) => j And "Volume_Up 30" Or [
     SoundSetVolume("+28"),
     Send("{Volume_Up}"),
@@ -32,7 +32,7 @@ AddFunction(1, 3, _dir, [
   ],
 ])
 
-AddFunction(1, 4, _dir, [
+AddFunction(1, 1, 1, 4, _dir, [
   "U", (j) => j And "SoundBeep(523Hz, 800ms)" Or [
     SoundBeep(523, 800),
   ],

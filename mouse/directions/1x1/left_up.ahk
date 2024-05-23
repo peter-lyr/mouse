@@ -5,7 +5,7 @@
 
 _dir := "left_up"
 
-AddFunction(1, 1, _dir, [
+AddFunction(1, 1, 1, 1, _dir, [
   "R", NavigateUp,
   "U", NavigateForward,
   "D", NavigateBackward,

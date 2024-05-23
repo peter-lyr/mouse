@@ -3,28 +3,28 @@
 
 _dir := "left"
 
-AddFunction(1, 1, _dir, [
+AddFunction(1, 1, 1, 1, _dir, [
   "R", (j) => j And "<Alt-Tab>" Or Send("!{Tab}"),
 ])
 
-AddFunction(2, 1, _dir, [
+AddFunction(1, 1, 2, 1, _dir, [
   "R", (j) => j And "<Alt-Shift-Tab>" Or Send("!+{Tab}"),
 ])
 
-AddFunction(1, 2, _dir, [
+AddFunction(1, 1, 1, 2, _dir, [
   "R", (j) => j And "<Ctrl-Tab>" Or Send("^{Tab}"),
   "U", (j) => j And "<Ctrl-Shift-Tab>" Or Send("^+{Tab}"),
   "D", (j) => j And "<Ctrl-Tab>" Or Send("^{Tab}"),
 ])
 
-AddFunction(2, 2, _dir, [
+AddFunction(1, 1, 2, 2, _dir, [
   "R", (j) => j And "<Ctrl-Shift-Tab>" Or Send("^+{Tab}"),
 ])
 
-AddFunction(1, 3, _dir, [
+AddFunction(1, 1, 1, 3, _dir, [
   "R", (j) => j And "<Ctrl-Alt-Tab>" Or Send("^!{Tab}"),
 ])
 
-AddFunction(2, 3, _dir, [
+AddFunction(1, 1, 2, 3, _dir, [
   "R", (j) => j And "<Win-Tab>" Or Send("#{Tab}"),
 ])
