@@ -199,9 +199,15 @@ GetDirection() {
   Return direction
 }
 
+GetLayer() {
+  Global layer
+  Return layer
+}
+
 GetPos1StateFromPos2() {
   Global function_index
   Global direction
+  Global layer
   layer := 0
   _dir := "center"
   _x2 := rbutton_press_x2
@@ -511,7 +517,9 @@ RButtonLButton() {
   } Else {
     Global lbutton_flag
     lbutton_flag := 1
-    SetTimer(MoveWindow, -20)
+    If (GetLayer() == 1) {
+      SetTimer(MoveWindow, -20)
+    }
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)
   }
@@ -542,7 +550,9 @@ RButtonMButton() {
   } Else {
     Global mbutton_flag
     mbutton_flag := 1
-    SetTimer(ResizeWindow, -20)
+    If (GetLayer() == 1) {
+      SetTimer(ResizeWindow, -20)
+    }
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)
   }

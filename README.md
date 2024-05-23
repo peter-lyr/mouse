@@ -53,4 +53,4 @@ center MButton -> middle_count
 
 # 240523-20h16m
 
-- [ ] TODO: move window和resize window需要限制在第一个元以外和第二元以内(包括),其他的不处理
+- [x] TODODONE: move window和resize window需要限制在第一个元以外和第二元以内(包括),其他的不处理
