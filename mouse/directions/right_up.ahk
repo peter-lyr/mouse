@@ -1,7 +1,9 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/20 14:18:09 Monday
 
-AddFunction(1, 1, "right_up", [
+_dir := "right_up"
+
+AddFunction(1, 1, _dir, [
   "Ri", "WinMaximizeRestore",
   "Rf", WinMaximizeRestoreRbuttonPressWin,
   "Ui", "Volume_Up",
@@ -10,7 +12,7 @@ AddFunction(1, 1, "right_up", [
   "Df", () => [ Send("{Volume_Down}"), ],
 ])
 
-AddFunction(1, 2, "right_up", [
+AddFunction(1, 2, _dir, [
   "Ri", "Copy File Path",
   "Rf", CopyFilePath,
   "Ui", "Volume_Up 10",
@@ -25,7 +27,7 @@ AddFunction(1, 2, "right_up", [
   ],
 ])
 
-AddFunction(1, 3, "right_up", [
+AddFunction(1, 3, _dir, [
   "Ui", "Volume_Up 30",
   "Uf", () => [
     SoundSetVolume("+28"),
@@ -38,7 +40,7 @@ AddFunction(1, 3, "right_up", [
   ],
 ])
 
-AddFunction(1, 4, "right_up", [
+AddFunction(1, 4, _dir, [
   "Ui", "SoundBeep(523Hz, 800ms)",
   "Uf", () => [
     SoundBeep(523, 800),
