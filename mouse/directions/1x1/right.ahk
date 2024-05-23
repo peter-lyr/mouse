@@ -4,13 +4,13 @@
 _dir := "right"
 
 AddFunction(1, 1, 1, 1, _dir, [
-  "R", (j) => j And "<Esc>" Or Send("{Esc}"),
+  "R", WIF("<Esc>", () => Send("{Esc}")),
 ])
 
 AddFunction(1, 1, 1, 2, _dir, [
-  "R", (j) => j And "<Enter>" Or Send("{Enter}"),
+  "R", WIF("<Enter>", () => Send("{Enter}")),
 ])
 
 AddFunction(1, 1, 1, 3, _dir, [
-  "R", (j) => j And "<Space>" Or Send(" "),
+  "R", WIF("<Space>", () => Send(" ")),
 ])

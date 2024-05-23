@@ -4,5 +4,5 @@
 _dir := "right_down"
 
 AddFunction(1, 1, 1, 1, _dir, [
-  "R", (j) => j And "WinMinimize" Or WinMinimizeRbuttonPressWin(),
+  "R", WIF("WinMinimize", WinMinimizeRbuttonPressWin),
 ])
