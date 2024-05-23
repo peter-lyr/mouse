@@ -60,3 +60,6 @@ DllCall("ReleaseDC", "Ptr", MyGui.Hwnd, "Ptr", hdc)
 ;     gui.Destroy()
 ;     ExitApp
 ; }
+
+^!+r::Reload
+^!+q::ExitApp
