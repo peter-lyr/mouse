@@ -45,6 +45,8 @@ ahk2exe
 
 center LButton/WheelUp/Down -> wheel_count
 
-TODO: 增加一个维度
+- [x] TODODONE: 增加两个维度
 
-center MButton -> dim_count
+center WheelUp/Down -> wheel_count
+center LButton -> left_count
+center MButton -> middle_count
