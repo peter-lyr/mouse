@@ -4,48 +4,39 @@
 _dir := "right_up"
 
 AddFunction(1, 1, _dir, [
-  "Ri", "WinMaximizeRestore",
-  "Rf", WinMaximizeRestoreRbuttonPressWin,
-  "Ui", "Volume_Up",
-  "Uf", () => [ Send("{Volume_Up}"), ],
-  "Di", "Volume_Down",
-  "Df", () => [ Send("{Volume_Down}"), ],
+  "R", (j) => j And "WinMaximizeRestore" Or WinMaximizeRestoreRbuttonPressWin(),
+  "U", (j) => j And "Volume_Up" Or Send("{Volume_Up}"),
+  "D", (j) => j And "Volume_Down" Or Send("{Volume_Down}"),
 ])
 
 AddFunction(1, 2, _dir, [
-  "Ri", "Copy File Path",
-  "Rf", CopyFilePath,
-  "Ui", "Volume_Up 10",
-  "Uf", () => [
+  "R", (j) => j And "Copy File Path" Or CopyFilePath(),
+  "U", (j) => j And "Volume_Up 10" Or [
     SoundSetVolume("+8"),
     Send("{Volume_Up}"),
   ],
-  "Di", "Volume_Down 10",
-  "Df", () => [
+  "D", (j) => j And "Volume_Down 10" Or [
     SoundSetVolume("-8"),
     Send("{Volume_Down}"),
   ],
 ])
 
 AddFunction(1, 3, _dir, [
-  "Ui", "Volume_Up 30",
-  "Uf", () => [
+  "U", (j) => j And "Volume_Up 30" Or [
     SoundSetVolume("+28"),
     Send("{Volume_Up}"),
   ],
-  "Di", "Volume_Down 30",
-  "Df", () => [
+  "D", (j) => j And "Volume_Down 30" Or [
     SoundSetVolume("-28"),
     Send("{Volume_Down}"),
   ],
 ])
 
 AddFunction(1, 4, _dir, [
-  "Ui", "SoundBeep(523Hz, 800ms)",
-  "Uf", () => [
+  "U", (j) => j And "SoundBeep(523Hz, 800ms)" Or [
     SoundBeep(523, 800),
   ],
-  ; "Di", "SoundPlay",
+  ; "Di", (j) => j And "SoundPlay",
   ; "Df", () => [
   ;   SoundPlay("C:\Users\depei_liu\DEPEI\Repos\2024s\w\d\bin\拽犯法么（硬曲热播）.mp3"),
   ; ],

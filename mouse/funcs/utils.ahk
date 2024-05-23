@@ -92,12 +92,13 @@ Array2Map(arr) {
   Return _map.Set(arr*)
 }
 
-TryCallFunction(function) {
+TryCallFunction(function, just_info) {
   If ("Func" == Type(function) Or "Closure" == Type(function)) {
     Try {
-      function()
+      Return function(just_info)
     }
   }
+  Return ""
 }
 
 FunctionWrap(param_maps) {
@@ -106,27 +107,27 @@ FunctionWrap(param_maps) {
       If (GetWheelFlag()) {
         Return
       }
-      info := param_maps.Get("Ri", "") ; release info
+      info := TryCallFunction(param_maps.Get("R", ""), 1)
       Return info And "R: " . info Or ""
     }
     If (GetWheelFlag()) {
       Return
     }
-    TryCallFunction(param_maps.Get("Rf", ""))
+    TryCallFunction(param_maps.Get("R", ""), 0)
   }
   LayerxxxWheelUp(just_info:=0) {
     If (just_info) {
-      info := param_maps.Get("Ui", "") ; wheelup info
+      info := TryCallFunction(param_maps.Get("U", ""), 1)
       Return info And "U: " . info Or ""
     }
-    TryCallFunction(param_maps.Get("Uf", ""))
+    TryCallFunction(param_maps.Get("U", ""), 0)
   }
   LayerxxxWheelDown(just_info:=0) {
     If (just_info) {
-      info := param_maps.Get("Di", "") ; wheeldown info
+      info := TryCallFunction(param_maps.Get("D", ""), 1)
       Return info And "D: " . info Or ""
     }
-    TryCallFunction(param_maps.Get("Df", ""))
+    TryCallFunction(param_maps.Get("D", ""), 0)
   }
   Layerxxx() {
     If (RButtonIsPressed()) {
