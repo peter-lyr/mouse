@@ -1,8 +1,8 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/21 22:49:27 星期二
 
-max_middle_counts := 1
-max_left_counts := 1
+max_middle_counts := 2
+max_left_counts := 2
 max_wheel_counts := 6
 max_circles := 4
 max_directions := 8
