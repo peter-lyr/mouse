@@ -23,7 +23,7 @@ MyGui.Opt(GuiOpt)
 ; MyGui.BackColor := "Red"
 ; MyGui.Show("NA")
 MyGui.Show("w150 h150")
-; WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
+WinSetRegion("0-0 W300 H300 E", MyGui.Hwnd)
 ; MyGui.Move(300, 300, 300, 300)
 ; WinSetTransparent(120, "Ahk_id " . MyGui.Hwnd)
 
