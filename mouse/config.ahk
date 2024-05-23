@@ -4,20 +4,20 @@
 max_middle_counts := 2
 max_left_counts := 2
 max_wheel_counts := 6
-max_circles := 4
+max_circles := 6
 max_directions := 8
 
 circle_min_transparent := 36
-circle_max_transparent := 90
+circle_max_transparent := 70
 
 winver := 11
-circle_sizes := [100, 250, 400, 550, 700, 850, 1050, 1200, 1350]
+circle_sizes := [100, 250, 400, 550, 700, 850]
 left_margin := 126
 
 If (GetWinVer() == "Windows 10") {
   winver := 10
-  circle_sizes := [50, 150, 250, 350, 450, 550, 650, 750, 850]
+  circle_sizes := [50, 150, 250, 350, 450, 550]
   left_margin := 78
 }
 
-circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green", "Red", "Blue", "Green"]
+circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
