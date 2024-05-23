@@ -11,12 +11,12 @@ circle_min_transparent := 36
 circle_max_transparent := 90
 
 winver := 11
-circle_sizes := [200, 500, 800, 1100, 1400, 1700, 2100, 2400, 2700]
+circle_sizes := [100, 250, 400, 550, 700, 850, 1050, 1200, 1350]
 left_margin := 126
 
 If (GetWinVer() == "Windows 10") {
   winver := 10
-  circle_sizes := [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700]
+  circle_sizes := [50, 150, 250, 350, 450, 550, 650, 750, 850]
   left_margin := 78
 }
 
