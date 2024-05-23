@@ -91,3 +91,71 @@
 ;     if Result = "No"
 ;         break
 ; }
+
+; s := ""
+; Loop 11000 {
+;   v := SysGet(A_Index)
+;   If (Not v) {
+;     Continue
+;   }
+;   s .= Format("{:04}", A_Index) . ":" . v . "`t`t"
+;   If (A_Index / 5 == 0) {
+;     s .= "`n"
+;   }
+; }
+;
+; MsgBox(s)
+
+; ; 调用 GetSystemMetricsForDpi 获取系统缩放值
+; nIndex := 0 ; 例如，获取屏幕宽度
+; dpi := 96 ; 假设 DPI 为 96
+; ; result := DllCall("user32\GetSystemMetricsForDpi", "Int", nIndex, "UInt", dpi)
+; result := DllCall("user32\GetDC", "Int", nIndex, "UInt", dpi)
+;
+; ; 检查返回值
+; if (result)
+; {
+;     MsgBox "系统缩放值为：" . result
+; }
+; else
+; {
+;     ; MsgBox "无法获取系统缩放值。错误代码：" . GetLastError()
+; }
+
+
+
+; ; 获取屏幕的设备上下文（DC）
+; hdc := DllCall("user32\GetDC", "Ptr", 0)
+;
+; ; 获取物理屏幕的宽度和高度
+; width := DllCall("gdi32\GetDeviceCaps", "Ptr", hdc, "Int", 8) ; HORZSIZE
+; height := DllCall("gdi32\GetDeviceCaps", "Ptr", hdc, "Int", 10) ; VERTSIZE
+;
+; ; 释放设备上下文（DC）
+; DllCall("user32\ReleaseDC", "Ptr", 0, "Ptr", hdc)
+;
+; ; 显示结果
+; MsgBox "物理屏幕宽度：" . width . " 毫米，高度：" . height . " 毫米, hdc: " . hdc
+
+
+; f8:: {
+  ; 获取窗口的句柄（例如，通过 WinExist 或其他方法）
+  ; hwnd := WinExist("A") ; 替换为您的窗口标题
+  ; hwnd := WinExist("Program Manager") ; 替换为您的窗口标题
+  hwnd := WinExist("ahk_class Shell_TrayWnd") ; 替换为您的窗口标题
+
+  ; 调用 GetDpiForWindow 获取窗口的 DPI
+  dpi := DllCall("user32\GetDpiForWindow", "Ptr", hwnd)
+
+  ; 检查返回值
+  if (dpi)
+  {
+      MsgBox "窗口的 DPI 值为：" . dpi
+  }
+  else
+  {
+      ; MsgBox "无法获取窗口的 DPI 值。错误代码：" . GetLastError()
+  }
+; }
+
+^!+r::Reload
