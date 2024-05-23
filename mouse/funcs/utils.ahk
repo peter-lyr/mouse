@@ -84,7 +84,7 @@ CmdRunOutput(cmd) {
 }
 
 GetWinVer() {
-  Return CmdRunOutput("cd " . A_ScriptDir . "\mouse\funcs" . " && getwinver.bat")
+  Return CmdRunOutput("cd " . A_ScriptDir . "\mouse\funcs" . " && .getwinver.bat")
 }
 
 Array2Map(arr) {
