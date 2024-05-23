@@ -73,6 +73,10 @@ InitCircle()
 
 ^!r::Reload
 
-^!q::ExitApp
+#HotIf
 
+#HotIf A_IsCompiled
+^!q::ExitApp
+#HotIf Not A_IsCompiled
+^+!q::ExitApp
 #HotIf
