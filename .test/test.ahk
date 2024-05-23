@@ -159,3 +159,4 @@
 ; }
 
 ^!+r::Reload
+^!+q::ExitApp
