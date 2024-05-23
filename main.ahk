@@ -73,6 +73,11 @@ InitCircle()
 
 ^!r::Reload
 
+^!c:: {
+  Run(A_ScriptDir . "\ahk2exe.bat")
+  ExitApp
+}
+
 #HotIf
 
 #HotIf A_IsCompiled
@@ -80,7 +85,3 @@ InitCircle()
 #HotIf Not A_IsCompiled
 ^+!q::ExitApp
 #HotIf
-
-^!c:: {
-  Run(A_ScriptDir . "\ahk2exe.bat")
-}
