@@ -174,6 +174,7 @@ RButtonUp() {
 LButtonDown() {
   If (RButtonIsPressed()) {
     RButtonLButton()
+    Return
   }
   SetTimer(LButtonWheelCntReset, 0)
   IncLButtonWheelCnt()
