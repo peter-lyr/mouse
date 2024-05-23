@@ -22,12 +22,12 @@ AddFunction(1, 1, 1, 2, _dir, [
 ])
 
 AddFunction(1, 1, 1, 3, _dir, [
-  "U", (j) => j And "Volume_Up 30" Or [
-    SoundSetVolume("+28"),
+  "U", (j) => j And "Volume_Up 20" Or [
+    SoundSetVolume("+18"),
     Send("{Volume_Up}"),
   ],
-  "D", (j) => j And "Volume_Down 30" Or [
-    SoundSetVolume("-28"),
+  "D", (j) => j And "Volume_Down 20" Or [
+    SoundSetVolume("-18"),
     Send("{Volume_Down}"),
   ],
 ])
