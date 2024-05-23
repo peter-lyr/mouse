@@ -6,7 +6,7 @@
 _dir := "left_up"
 
 AddFunction(1, 1, _dir, [
-  "R", (j) => j And "<Alt-Up>" Or Send("!{Up}"),
-  "U", (j) => j And "<Alt-Right>" Or Send("!{Right}"),
-  "D", (j) => j And "<Alt-eft>" Or Send("!{Left}"),
+  "R", NavigateUp,
+  "U", NavigateForward,
+  "D", NavigateBackward,
 ])
