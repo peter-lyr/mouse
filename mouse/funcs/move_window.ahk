@@ -37,11 +37,9 @@ MoveWindow() {
   Loop {
     If (Not RButtonIsPressed()) {
       WinMove(mw_x0, mw_y0, mw_w0, mw_h0, mw)
-      ResetWheelCount()
       Break
     }
     If (Not LButtonIsPressed()) {
-      ResetWheelCount()
       Break
     }
 

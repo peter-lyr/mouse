@@ -44,11 +44,9 @@ ResizeWindow() {
   Loop {
     If (RButtonIsPressed() == 0) {
       WinMove(rw_x0, rw_y0, rw_w0, rw_h0, rw)
-      ResetWheelCount()
       Break
     }
     If (MButtonIsPressed() == 0) {
-      ResetWheelCount()
       Break
     }
     MouseGetPos &rw_x2, &rw_y2
