@@ -117,15 +117,15 @@ DrawCircleAtRbuttonPressPos1() {
   For _index, _gui In circle_list {
     _gui.Opt(GuiOpt)
     WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . _gui.Hwnd)
-    If (winver == 10) {
-      x := (rbutton_press_x1-circle_sizes[_index]/2)
-      y := (rbutton_press_y1-circle_sizes[_index]/2)
-      _gui.Move(x, y, circle_sizes[_index], circle_sizes[_index])
-    } Else {
-      x := (rbutton_press_x1-circle_sizes[_index]/2)/2
-      y := (rbutton_press_y1-circle_sizes[_index]/2)/2
-      _gui.Move(x, y, circle_sizes[_index]/2, circle_sizes[_index]/2)
+    x := (rbutton_press_x1-circle_sizes[_index]/2)
+    y := (rbutton_press_y1-circle_sizes[_index]/2)
+    wh := circle_sizes[_index]
+    If (dpi) {
+      x := Integer(x * 96 / dpi)
+      y := Integer(y * 96 / dpi)
+      wh := Integer(wh * 96 / dpi)
     }
+    _gui.Move(x, y, wh, wh)
     WinSetTransparent(GetTransparency(), "Ahk_id " . _gui.Hwnd)
   }
 }

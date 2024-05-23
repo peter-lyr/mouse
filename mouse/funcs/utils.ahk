@@ -87,6 +87,15 @@ GetWinVer() {
   Return CmdRunOutput("cd " . A_ScriptDir . "\mouse\funcs" . " && .getwinver.bat")
 }
 
+GetSystemScreenDpi() {
+  hwnd := WinExist("ahk_class Shell_TrayWnd")
+  dpi := DllCall("user32\GetDpiForWindow", "Ptr", hwnd)
+  If (dpi) {
+    Return dpi
+  }
+  Return 0
+}
+
 Array2Map(arr) {
   _map := Map()
   Return _map.Set(arr*)

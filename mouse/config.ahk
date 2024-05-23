@@ -21,3 +21,5 @@ If (GetWinVer() == "Windows 10") {
 }
 
 circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
+
+dpi := GetSystemScreenDpi()
