@@ -90,10 +90,7 @@ GetWinVer() {
 GetSystemScreenDpi() {
   hwnd := WinExist("ahk_class Shell_TrayWnd")
   dpi := DllCall("user32\GetDpiForWindow", "Ptr", hwnd)
-  If (dpi) {
-    Return dpi
-  }
-  Return 0
+  Return dpi And dpi Or 0
 }
 
 Array2Map(arr) {
