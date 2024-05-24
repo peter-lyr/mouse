@@ -22,10 +22,10 @@ GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
 MyGui.Opt(GuiOpt)
 ; MyGui.BackColor := "Red"
 ; MyGui.Show("NA")
-MyGui.Show("w150 h150")
-; WinSetRegion("0-0 W500 H500 E", MyGui.Hwnd)
-MyGui.Move(800, 200, 150, 150)
-; WinSetTransparent(120, "Ahk_id " . MyGui.Hwnd)
+MyGui.Show("w300 h300 NA")
+WinSetRegion("0-0 W300 H300 E", MyGui.Hwnd)
+MyGui.Move(800, 200, 300, 300)
+WinSetTransparent(20, "Ahk_id " . MyGui.Hwnd)
 
 ; 获取画布的DC（设备上下文）
 hdc := DllCall("GetDC", "Ptr", MyGui.Hwnd)
@@ -34,12 +34,12 @@ hdc := DllCall("GetDC", "Ptr", MyGui.Hwnd)
 DllCall("SetBkMode", "Ptr", hdc, "Int", 1) ; TRANSPARENT = 1
 
 ; 定义颜色数组
-colors := [0x007800FF, 0x0078FF00, 0x00780000, 0x00FFFF00, 0x00FF00FF]
+colors := [0x007800FF, 0x0078FF00, 0x00780000, 0x00FFFF00, 0x00FF00FF, 0x00FFFF00]
 
 ; 循环绘制同心圆，从最大到最小
-Loop 5 {
+Loop colors.Length {
     ; 创建半透明的画刷
-    brush := DllCall("CreateSolidBrush", "UInt", colors[6-A_Index])
+    brush := DllCall("CreateSolidBrush", "UInt", colors[colors.Length-A_Index+1])
     ; 选择画刷到DC
     DllCall("SelectObject", "Ptr", hdc, "Ptr", brush)
     ; 绘制圆
@@ -51,6 +51,21 @@ Loop 5 {
 
 ; 释放DC
 DllCall("ReleaseDC", "Ptr", MyGui.Hwnd, "Ptr", hdc)
+
+
+x := 0
+y := 0
+t := 60
+
+Loop 8 {
+  MyGui.Move(x, y, 300, 300)
+  x += 50
+  y += 50
+  t += 20
+  WinSetTransparent(t, "Ahk_id " . MyGui.Hwnd)
+  Sleep(1000)
+}
+WinSetTransparent(0, "Ahk_id " . MyGui.Hwnd)
 
 ; ; 当窗口关闭时，退出脚本
 ; MyGui.OnEvent("Close", Func("GuiClose").Bind(MyGui))
