@@ -117,9 +117,9 @@ DrawCircleAtRbuttonPressPos1() {
     Return
   }
   circle.Opt(GuiOpt)
-  x := (rbutton_press_x1 - circle_total_size / 2) * 96 / dpi
-  y := (rbutton_press_y1 - circle_total_size / 2) * 96 / dpi
-  circle.Move(x, y, circle_total_size, circle_total_size)
+  x := (rbutton_press_x1 - circle_diameter / 2) * 96 / dpi
+  y := (rbutton_press_y1 - circle_diameter / 2) * 96 / dpi
+  circle.Move(x, y, circle_diameter, circle_diameter)
   WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
 }
 
@@ -220,7 +220,7 @@ InitCircle() {
   Global circle
   circle := Gui()
   circle.Opt(GuiOpt)
-  _show_wh := "W" . circle_total_size . " H" . circle_total_size
+  _show_wh := "W" . circle_diameter . " H" . circle_diameter
   circle.Show(_show_wh . " NA")
   WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
   WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
@@ -229,8 +229,8 @@ InitCircle() {
   Loop circle_colors.Length {
     brush := DllCall("CreateSolidBrush", "UInt", circle_colors[circle_nums-A_Index+1])
     DllCall("SelectObject", "Ptr", hdc, "Ptr", brush)
-    _radius := (A_Index - 1) * circle_size
-    DllCall("Ellipse", "Ptr", hdc, "Int", _radius, "Int", _radius, "Int", circle_total_size - _radius, "Int", circle_total_size - _radius)
+    _radius := (A_Index - 1) * circle_radius
+    DllCall("Ellipse", "Ptr", hdc, "Int", _radius, "Int", _radius, "Int", circle_diameter - _radius, "Int", circle_diameter - _radius)
     DllCall("DeleteObject", "Ptr", brush)
   }
   DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
@@ -262,7 +262,7 @@ GetPos1StateFromPos2() {
   _c  := Sqrt(_dx ** 2 + _dy ** 2)
   Loop max_circles {
     _index := max_circles - A_index + 1
-    _gap := circle_size * _index
+    _gap := circle_radius * _index
     If (_c > _gap) {
       layer := _index
       Break

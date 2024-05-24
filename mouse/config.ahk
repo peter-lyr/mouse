@@ -12,16 +12,16 @@ circle_max_transparent := 36
 
 winver := 11
 circle_nums := 6
-circle_size := 150
+circle_radius := 150
 left_margin := 126
 
 If (GetWinVer() == "Windows 10") {
   winver := 10
-  circle_size := 50
+  circle_radius := 50
   left_margin := 78
 }
 
-circle_total_size := circle_size * circle_nums * 2
+circle_diameter := circle_radius * circle_nums * 2
 
 circle_colors := []
 _color := [0x00FF0000, 0x000000FF, 0x0000FF00]
