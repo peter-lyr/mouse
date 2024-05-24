@@ -4,7 +4,7 @@
 max_middle_counts := 2
 max_left_counts := 2
 max_wheel_counts := 6
-max_circles := 6
+max_circles := 10
 max_directions := 8
 
 circle_min_transparent := 16
@@ -23,6 +23,11 @@ If (GetWinVer() == "Windows 10") {
 
 circle_total_size := circle_size * circle_nums * 2
 
-circle_colors := [0x00FF0000, 0x0000FF00, 0x000000FF, 0x00FF0000, 0x0000FF00, 0x000000FF]
+circle_colors := []
+_color := [0x00FF0000, 0x0000FF00, 0x000000FF]
+
+Loop circle_nums {
+  circle_colors.Push(_color[Mod(A_index, _color.Length) + 1])
+}
 
 dpi := GetSystemScreenDpi()
