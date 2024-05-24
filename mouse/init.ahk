@@ -117,6 +117,7 @@ DrawCircleAtRbuttonPressPos1() {
   x := (rbutton_press_x1 - circle_total_size / 2)
   y := (rbutton_press_y1 - circle_total_size / 2)
   circle.Move(x, y, circle_total_size, circle_total_size)
+  PaintCircle()
   WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
 }
 
@@ -210,14 +211,11 @@ HideCircle() {
   WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
 }
 
-InitCircle() {
+PaintCircle() {
   Global circle
-  circle := Gui()
-  circle.Opt(GuiOpt)
-  _show_wh := "W" . circle_total_size . " H" . circle_total_size
-  circle.Show(_show_wh . " NA")
-  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
-  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  If (Not IsSet(circle)) {
+    Return
+  }
   hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
   DllCall("SetBkMode", "Ptr", hdc, "Int", 1)
   Loop circle_colors.Length {
@@ -227,7 +225,18 @@ InitCircle() {
     DllCall("Ellipse", "Ptr", hdc, "Int", _radius, "Int", _radius, "Int", circle_total_size - _radius, "Int", circle_total_size - _radius)
     DllCall("DeleteObject", "Ptr", brush)
   }
-  ; DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
+  DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
+}
+
+InitCircle() {
+  Global circle
+  circle := Gui()
+  circle.Opt(GuiOpt)
+  _show_wh := "W" . circle_total_size . " H" . circle_total_size
+  circle.Show(_show_wh . " NA")
+  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
+  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  PaintCircle()
 }
 
 GetDirection() {
