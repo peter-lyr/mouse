@@ -7,22 +7,22 @@ max_wheel_counts := 6
 max_circles := 6
 max_directions := 8
 
-circle_min_transparent := 36
-circle_max_transparent := 70
+circle_min_transparent := 16
+circle_max_transparent := 36
 
 winver := 11
 circle_nums := 6
-; circle_sizes := [150, 450, 750, 1050, 1350, 1650]
 circle_size := 150
 left_margin := 126
 
 If (GetWinVer() == "Windows 10") {
   winver := 10
-  ; circle_sizes := [50, 150, 250, 350, 450, 550]
   circle_size := 50
   left_margin := 78
 }
 
-circle_colors := ["Red", "Blue", "Green", "Red", "Blue", "Green"]
+circle_total_size := circle_size * circle_nums * 2
+
+circle_colors := [0x00FF0000, 0x0000FF00, 0x000000FF, 0x00FF0000, 0x0000FF00, 0x000000FF]
 
 dpi := GetSystemScreenDpi()
