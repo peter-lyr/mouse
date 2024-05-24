@@ -1,7 +1,8 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/19 17:22:08 星期日
 
-circle_list := []
+; circle_list := []
+circle := 0
 
 max_circles_directions := ((max_circles + 1) * max_directions) ; max_circles + 1 是因为增加了side_up...
 max_wheels_circles_directions := (max_wheel_counts * max_circles_directions)
@@ -114,20 +115,29 @@ UpdateRbuttonPressPos2() {
 }
 
 DrawCircleAtRbuttonPressPos1() {
-  For _index, _gui In circle_list {
-    _gui.Opt(GuiOpt)
-    WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . _gui.Hwnd)
-    x := (rbutton_press_x1-circle_sizes[_index]/2)
-    y := (rbutton_press_y1-circle_sizes[_index]/2)
-    wh := circle_sizes[_index]
-    If (dpi) {
-      x := Integer(x * 96 / dpi)
-      y := Integer(y * 96 / dpi)
-      wh := Integer(wh * 96 / dpi)
-    }
-    _gui.Move(x, y, wh, wh)
-    WinSetTransparent(GetTransparency(), "Ahk_id " . _gui.Hwnd)
-  }
+  ; For _index, _gui In circle_list {
+    ; _gui.Opt(GuiOpt)
+    Global circle
+    circle.Opt(GuiOpt)
+    ; WinSetRegion("0-0 W" . circle_sizes[_index] . " H" . circle_sizes[_index] . " E", "Ahk_id " . circle.Hwnd)
+    ; x := (rbutton_press_x1-circle_sizes[_index]/2)
+    ; y := (rbutton_press_y1-circle_sizes[_index]/2)
+    ; wh := circle_sizes[_index]
+    ; WinSetRegion("0-0 W" . circle_size * circle_nums . " H" . circle_size * circle_nums . " E", "Ahk_id " . circle.Hwnd)
+    x := (rbutton_press_x1-circle_size * circle_nums)
+    y := (rbutton_press_y1-circle_size * circle_nums)
+    wh := circle_size * circle_nums * 2
+    ; If (dpi) {
+    ;   x := Integer(x * 96 / dpi)
+    ;   y := Integer(y * 96 / dpi)
+    ;   wh := Integer(wh * 96 / dpi)
+    ; }
+    ; _gui.Move(x, y, wh, wh)
+    ; circle.Move(x, y, wh, wh)
+    ; WinSetTransparent(GetTransparency(), "Ahk_id " . _gui.Hwnd)
+    circle.Move(x, y, wh, wh)
+    WinSetTransparent(20, "Ahk_id " . circle.Hwnd)
+  ; }
 }
 
 RButtonPressedWatcher() {
@@ -216,21 +226,49 @@ LButtonUp() {
 }
 
 HideCircle() {
-  For _index, _gui In circle_list {
-    WinSetTransparent(0, "Ahk_id " . _gui.Hwnd)
-  }
+  ; For _index, _gui In circle_list {
+  ;   WinSetTransparent(0, "Ahk_id " . _gui.Hwnd)
+  ; }
+  Global circle
+  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
 }
 
 InitCircle() {
-  Loop max_circles {
-    MyGui := Gui()
-    MyGui.Opt(GuiOpt)
-    MyGui.BackColor := circle_colors[A_index]
-    MyGui.Show("NA")
-    WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
-    WinSetTransparent(circle_min_transparent, "Ahk_id " . MyGui.Hwnd)
-    circle_list.Push(MyGui)
+  ; Loop max_circles {
+  ;   MyGui := Gui()
+  ;   MyGui.Opt(GuiOpt)
+  ;   MyGui.BackColor := circle_colors[A_index]
+  ;   MyGui.Show("NA")
+  ;   WinSetRegion("0-0 W0 H0 E", "Ahk_id " . MyGui.Hwnd)
+  ;   WinSetTransparent(circle_min_transparent, "Ahk_id " . MyGui.Hwnd)
+  ;   circle_list.Push(MyGui)
+  ; }
+  Global circle
+  circle := Gui()
+  circle.Opt(GuiOpt)
+  _wh := circle_nums * circle_size
+  _show_wh := "W" . _wh * 2 . " H" . _wh * 2 . " NA"
+  circle.Show(_show_wh)
+  ; Print(_wh . "," . circle_nums . "," . circle_size)
+  ; circle_nums
+  ; circle_size
+  WinSetRegion("0-0 W" . _wh * 2 . " H" . _wh * 2 . " E", circle.Hwnd)
+  ; circle.Move(800, 200, 300, 300)
+  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
+  DllCall("SetBkMode", "Ptr", hdc, "Int", 1) ; TRANSPARENT = 1
+  colors := [0x00FF0000, 0x0000FF00, 0x000000FF, 0x00FF0000, 0x0000FF00, 0x000000FF]
+  Loop colors.Length {
+  ; Loop circle_colors.Length {
+      brush := DllCall("CreateSolidBrush", "UInt", colors[colors.Length-A_Index+1])
+      ; brush := DllCall("CreateSolidBrush", "UInt", circle_colors[circle_colors.Length-A_Index+1])
+      DllCall("SelectObject", "Ptr", hdc, "Ptr", brush)
+
+      radius := _wh - (A_Index - 1) * circle_size
+      DllCall("Ellipse", "Ptr", hdc, "Int", _wh - radius, "Int", _wh - radius, "Int", _wh + radius, "Int", _wh + radius)
+      DllCall("DeleteObject", "Ptr", brush)
   }
+  DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
 }
 
 GetDirection() {
@@ -256,7 +294,7 @@ GetPos1StateFromPos2() {
   _c  := Sqrt(_dx ** 2 + _dy ** 2)
   Loop max_circles {
     _index := max_circles - A_index + 1
-    _gap := circle_sizes[_index] / 2
+    _gap := circle_size * _index
     If (_c > _gap) {
       layer := _index
       Break
@@ -344,10 +382,10 @@ GetPos1StateFromPos2() {
       GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,
       GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1(), _dir
     )
-    Print(info
-        ; . "`n" .
-        ; Format("{:}", 0)
-        )
+    ; Print(info
+    ;     ; . "`n" .
+    ;     ; Format("{:}", 0)
+    ;     )
   }
 }
 
