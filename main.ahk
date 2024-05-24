@@ -23,6 +23,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x1\right_down.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\left.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\left_up.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\up.ahk
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed()
 
