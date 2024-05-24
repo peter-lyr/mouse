@@ -381,6 +381,13 @@ W(i, f) {
   Return _func
 }
 
+S(t) {
+  _T() {
+    Send(t)
+  }
+  Return _T
+}
+
 A(middle_count, left_count, wheel_count, layer, dir, arr) {
   GetBetween(&middle_count, 1, max_middle_counts)
   GetBetween(&left_count, 1, max_left_counts)

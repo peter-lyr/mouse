@@ -4,27 +4,27 @@
 d := "left"
 
 A(1, 1, 1, 1, d, [
-  "R", W("<Alt-Tab>", () => Send("!{Tab}")),
+  "R", W("<Alt-Tab>", S("!{Tab}")),
 ])
 
 A(1, 1, 2, 1, d, [
-  "R", W("<Alt-Shift-Tab>", () => Send("!+{Tab}")),
+  "R", W("<Alt-Shift-Tab>", S("!+{Tab}")),
 ])
 
 A(1, 1, 1, 2, d, [
-  "R", W("<Ctrl-Tab>", () => Send("^{Tab}")),
-  "U", W("<Ctrl-Shift-Tab>", () => Send("^+{Tab}")),
-  "D", W("<Ctrl-Tab>", () => Send("^{Tab}")),
+  "R", W("<Ctrl-Tab>", S("^{Tab}")),
+  "U", W("<Ctrl-Shift-Tab>", S("^+{Tab}")),
+  "D", W("<Ctrl-Tab>", S("^{Tab}")),
 ])
 
 A(1, 1, 2, 2, d, [
-  "R", W("<Ctrl-Shift-Tab>", () => Send("^+{Tab}")),
+  "R", W("<Ctrl-Shift-Tab>", S("^+{Tab}")),
 ])
 
 A(1, 1, 1, 3, d, [
-  "R", W("<Ctrl-Alt-Tab>", () => Send("^!{Tab}")),
+  "R", W("<Ctrl-Alt-Tab>", S("^!{Tab}")),
 ])
 
 A(1, 1, 2, 3, d, [
-  "R", W("<Win-Tab>", () => Send("#{Tab}")),
+  "R", W("<Win-Tab>", S("#{Tab}")),
 ])

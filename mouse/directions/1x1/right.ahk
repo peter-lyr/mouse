@@ -4,17 +4,17 @@
 d := "right"
 
 A(1, 1, 1, 1, d, [
-  "R", W("<Esc>", () => Send("{Esc}")),
+  "R", W("<Esc>", S("{Esc}")),
 ])
 
 A(1, 1, 2, 1, d, [
-  "R", W("<Esc>", () => Send("{Esc}")),
+  "R", W("<Esc>", S("{Esc}")),
 ])
 
 A(1, 1, 1, 2, d, [
-  "R", W("<Enter>", () => Send("{Enter}")),
+  "R", W("<Enter>", S("{Enter}")),
 ])
 
 A(1, 1, 1, 3, d, [
-  "R", W("<Space>", () => Send(" ")),
+  "R", W("<Space>", S(" ")),
 ])

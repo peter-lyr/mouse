@@ -5,12 +5,12 @@ d := "right_up"
 
 A(1, 1, 1, 1, d, [
   "R", W("WinMaximizeRestore", WinMaximizeRestoreRbuttonPressWin),
-  "U", W("Volume_Up", () => Send("{Volume_Up}")),
-  "D", W("Volume_Down", () => Send("{Volume_Down}")),
+  "U", W("Volume_Up", S("{Volume_Up}")),
+  "D", W("Volume_Down", S("{Volume_Down}")),
 ])
 
 A(1, 1, 1, 2, d, [
-  "R", W("<Ctrl-C>", () => Send("^c")),
+  "R", W("<Ctrl-C>", S("^c")),
   "U", W("Volume_Up 10", () => [
     SoundSetVolume("+8"),
     Send("{Volume_Up}"),
