@@ -241,6 +241,9 @@ InitCircle() {
 
 GetDirection() {
   Global direction
+  If (Not IsSet(direction)) {
+    direction := "center"
+  }
   Return direction
 }
 
