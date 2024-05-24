@@ -3,9 +3,9 @@
 
 ; j: just info
 
-_dir := "left_up"
+d := "left_up"
 
-AddFunction(1, 1, 1, 1, _dir, [
+A(1, 1, 1, 1, d, [
   "R", NavigateUp,
   "U", NavigateForward,
   "D", NavigateBackward,

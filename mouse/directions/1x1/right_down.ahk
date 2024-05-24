@@ -1,12 +1,12 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/21 12:47:07 Tuesday
 
-_dir := "right_down"
+d := "right_down"
 
-AddFunction(1, 1, 1, 1, _dir, [
-  "R", WIF("WinMinimize", WinMinimizeRbuttonPressWin),
+A(1, 1, 1, 1, d, [
+  "R", W("WinMinimize", WinMinimizeRbuttonPressWin),
 ])
 
-AddFunction(1, 1, 1, 2, _dir, [
-  "R", WIF("<Ctrl-V>", () => Send("^v")),
+A(1, 1, 1, 2, d, [
+  "R", W("<Ctrl-V>", () => Send("^v")),
 ])
