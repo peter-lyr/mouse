@@ -58,4 +58,4 @@ center MButton -> middle_count
 
 # 240524-12h49m
 
-- [ ] FIX: 当wheel_count不等于1时,RButton & LButton或者RButton & MButton会让内存占用从3.3M升到24M
+- [ ] FIX: 画圆之后,LButton & RButton,RButton Up,此时LButton/MButton会让内存占用从3.3M升到24M
