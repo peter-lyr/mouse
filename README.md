@@ -55,3 +55,7 @@ center MButton -> middle_count
 
 - [x] TODODONE: move window和resize window需要限制在第一个元以外和第二元以内(包括),其他的不处理
 - [ ] TODO: 其他的用来Ctrl-RButton或者Ctrl-LButton
+
+# 240524-12h49m
+
+- [ ] FIX: 当wheel_count不等于1时,RButton & LButton或者RButton & MButton会让内存占用从3.3M升到24M
