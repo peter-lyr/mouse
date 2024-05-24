@@ -24,7 +24,7 @@ If (GetWinVer() == "Windows 10") {
 circle_total_size := circle_size * circle_nums * 2
 
 circle_colors := []
-_color := [0x00FF0000, 0x0000FF00, 0x000000FF]
+_color := [0x00FF0000, 0x000000FF, 0x0000FF00]
 
 Loop circle_nums {
   circle_colors.Push(_color[Mod(A_index, _color.Length) + 1])
