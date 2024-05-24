@@ -58,4 +58,5 @@ center MButton -> middle_count
 
 # 240524-12h49m
 
-- [ ] FIX: 画圆之后,LButton & RButton,RButton Up,此时LButton/MButton会让内存占用从3.3M升到24M
+- [x] FIXDONE: 画圆之后,LButton & RButton,RButton Up,此时LButton/MButton会让内存占用从3.3M升到24M
+- +Disable
