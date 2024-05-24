@@ -233,6 +233,20 @@ InitCircle() {
     DllCall("Ellipse", "Ptr", hdc, "Int", _radius, "Int", _radius, "Int", circle_diameter - _radius, "Int", circle_diameter - _radius)
     DllCall("DeleteObject", "Ptr", brush)
   }
+  _circle_radius := circle_diameter / 2
+  _diff := circle_diameter*Tan(0.017453292519943295*22.5)/2
+  _diff_short := _circle_radius - _diff
+  _diff_long := _circle_radius + _diff
+  pen := DllCall("CreatePen", "Int", 0, "Int", 3, "UInt", 0xFFFFFF)
+  DllCall("SelectObject", "Ptr", hdc, "Ptr", pen)
+  DllCall("MoveToEx", "Ptr", hdc, "Int", _diff_short, "Int", 0, "Ptr", 0)
+  DllCall("LineTo", "Ptr", hdc, "Int", _diff_long, "Int", circle_diameter)
+  DllCall("MoveToEx", "Ptr", hdc, "Int", _diff_long, "Int", 0, "Ptr", 0)
+  DllCall("LineTo", "Ptr", hdc, "Int", _diff_short, "Int", circle_diameter)
+  DllCall("MoveToEx", "Ptr", hdc, "Int", 0, "Int", _diff_short, "Ptr", 0)
+  DllCall("LineTo", "Ptr", hdc, "Int", circle_diameter, "Int", _diff_long)
+  DllCall("MoveToEx", "Ptr", hdc, "Int", 0, "Int", _diff_long, "Ptr", 0)
+  DllCall("LineTo", "Ptr", hdc, "Int", circle_diameter, "Int", _diff_short)
   DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
 }
 
