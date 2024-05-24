@@ -6,3 +6,7 @@ _dir := "right_down"
 AddFunction(1, 1, 1, 1, _dir, [
   "R", WIF("WinMinimize", WinMinimizeRbuttonPressWin),
 ])
+
+AddFunction(1, 1, 1, 2, _dir, [
+  "R", WIF("<Ctrl-V>", () => Send("^v")),
+])

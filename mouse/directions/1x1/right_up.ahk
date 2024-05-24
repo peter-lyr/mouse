@@ -10,7 +10,7 @@ AddFunction(1, 1, 1, 1, _dir, [
 ])
 
 AddFunction(1, 1, 1, 2, _dir, [
-  "R", WIF("Copy File Path", CopyFilePath),
+  "R", WIF("<Ctrl-C>", () => Send("^c")),
   "U", WIF("Volume_Up 10", () => [
     SoundSetVolume("+8"),
     Send("{Volume_Up}"),
@@ -22,6 +22,7 @@ AddFunction(1, 1, 1, 2, _dir, [
 ])
 
 AddFunction(1, 1, 1, 3, _dir, [
+  "R", WIF("Copy File Path", CopyFilePath),
   "U", WIF("Volume_Up 20", () => [
     SoundSetVolume("+18"),
     Send("{Volume_Up}"),
