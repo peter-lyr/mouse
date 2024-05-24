@@ -227,7 +227,7 @@ InitCircle() {
     DllCall("Ellipse", "Ptr", hdc, "Int", _radius, "Int", _radius, "Int", circle_total_size - _radius, "Int", circle_total_size - _radius)
     DllCall("DeleteObject", "Ptr", brush)
   }
-  DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
+  ; DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
 }
 
 GetDirection() {
