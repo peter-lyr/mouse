@@ -113,6 +113,9 @@ UpdateRbuttonPressPos2() {
 
 DrawCircleAtRbuttonPressPos1() {
   Global circle
+  If (Not IsSet(circle)) {
+    Return
+  }
   circle.Opt(GuiOpt)
   x := (rbutton_press_x1 - circle_total_size / 2)
   y := (rbutton_press_y1 - circle_total_size / 2)
@@ -208,6 +211,9 @@ LButtonUp() {
 
 HideCircle() {
   Global circle
+  If (Not IsSet(circle)) {
+    Return
+  }
   WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
 }
 
