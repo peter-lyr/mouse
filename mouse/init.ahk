@@ -461,7 +461,7 @@ WriteInfosAndOpenFile() {
   For key, infos in Infos {
     FileObj.WriteLine(key . ":")
     For index, info in infos {
-      FileObj.WriteLine("        " . Strip(info))
+      FileObj.WriteLine(info)
     }
     FileObj.WriteLine("")
   }
