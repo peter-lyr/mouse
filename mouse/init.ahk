@@ -229,7 +229,7 @@ InitCircle() {
   hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
   DllCall("SetBkMode", "Ptr", hdc, "Int", 1)
   Loop circle_colors.Length {
-    brush := DllCall("CreateSolidBrush", "UInt", circle_colors[circle_nums-A_Index+1])
+    brush := DllCall("CreateSolidBrush", "UInt", circle_colors[max_circles-A_Index+1])
     DllCall("SelectObject", "Ptr", hdc, "Ptr", brush)
     _radius := (A_Index - 1) * circle_radius
     DllCall("Ellipse", "Ptr", hdc, "Int", _radius, "Int", _radius, "Int", circle_diameter - _radius, "Int", circle_diameter - _radius)
