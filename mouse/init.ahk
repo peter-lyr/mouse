@@ -741,6 +741,8 @@ RButtonLButton() {
     lbutton_flag := 1
     If (GetLayer() == 1) {
       SetTimer(MoveWindow, -20)
+    } Else {
+      SetTimer(ActivateAndCtrlClilckUnderMouse, -20)
     }
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)
