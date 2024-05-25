@@ -17,6 +17,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\rbutton_pressed_win.ahk
 #Include %A_ScriptDir%\mouse\funcs\copy.ahk
 #Include %A_ScriptDir%\mouse\funcs\navigate.ahk
+#Include %A_ScriptDir%\mouse\funcs\restart.ahk
 
 #Include %A_ScriptDir%\mouse\directions\1x1\right.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\right_up.ahk
@@ -25,7 +26,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x1\left_up.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\up.ahk
 
-#HotIf Not RemoteDesktopActiveOrRButtonPressed()
+#HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetSuspendFlag()
 
 RButton:: {
   RButtonDown()
@@ -84,10 +85,4 @@ InitCircle()
   ExitApp
 }
 
-#HotIf
-
-#HotIf A_IsCompiled
-^!q::ExitApp
-#HotIf Not A_IsCompiled
-^+!q::ExitApp
 #HotIf
