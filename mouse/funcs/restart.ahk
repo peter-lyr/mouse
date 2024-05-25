@@ -1,12 +1,6 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/25 13:44:04 Saturday
 
-#HotIf A_IsCompiled
-^!q::ExitApp
-#HotIf Not A_IsCompiled
-^+!q::ExitApp
-#HotIf
-
 SuspendFlag := 0
 
 GetSuspendFlag() {
@@ -44,3 +38,9 @@ LButtonRButtonDisSuspendFlag() {
   Run(A_ScriptDir . "\ahk2exe.bat")
   ExitApp
 }
+
+#HotIf A_IsCompiled
+^!q::ExitApp
+#HotIf Not A_IsCompiled
+^+!q::ExitApp
+#HotIf
