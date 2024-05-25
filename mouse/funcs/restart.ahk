@@ -20,6 +20,22 @@ ToggleSuspendFlag() {
   Print("SuspendFlag: " . SuspendFlag)
 }
 
+LButtonRButtonDisSuspendFlag() {
+  While (1) {
+    If (Not RButtonIsPressed() And Not LButtonIsPressed()) {
+      SuspendFlag := 0
+      Break
+    }
+  }
+}
+
 ^!s:: {
   ToggleSuspendFlag()
+}
+
+^!r::Reload
+
+^!c:: {
+  Run(A_ScriptDir . "\ahk2exe.bat")
+  ExitApp
 }

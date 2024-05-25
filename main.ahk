@@ -78,11 +78,11 @@ RButton & LButton:: {
 
 InitCircle()
 
-^!r::Reload
+#HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetSuspendFlag()
 
-^!c:: {
-  Run(A_ScriptDir . "\ahk2exe.bat")
-  ExitApp
+~RButton & LButton::
+~LButton & RButton:: {
+  LButtonRButtonDisSuspendFlag()
 }
 
 #HotIf
