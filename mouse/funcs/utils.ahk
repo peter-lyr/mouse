@@ -150,6 +150,9 @@ FunctionWrap(param_maps) {
       } Else If (GetWheelUpFlag()) {
         LayerxxxWheelUp()
       } Else {
+        If (GetMouseActionFlag() != 1) {
+          Return
+        }
         CheckPrint([
           LayerxxxRButtonUp(1),
           LayerxxxWheelUp(1),
