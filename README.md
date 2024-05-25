@@ -60,3 +60,7 @@ center MButton -> middle_count
 
 - [x] FIXDONE: 画圆之后,LButton & RButton,RButton Up,此时LButton/MButton会让内存占用从3.3M升到24M
 - +Disable
+
+# 240525-14h50m
+
+- [ ] TODO: 上电展示所有功能,最主要的是右键的功能
