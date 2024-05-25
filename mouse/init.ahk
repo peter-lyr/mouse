@@ -435,6 +435,9 @@ A(middle_count, left_count, wheel_count, layer, dir, arr) {
   GetBetween(&left_count, 1, max_left_counts)
   GetBetween(&wheel_count, 1, max_wheel_counts)
   GetBetween(&layer, 1, max_circles)
+  If (InStr(dir, "side_")) {
+    layer := max_circles
+  }
   index := max_lefts_wheels_circles_directions * (middle_count - 1) +
            max_wheels_circles_directions * (left_count - 1) +
            max_circles_directions * (wheel_count - 1) +

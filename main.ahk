@@ -25,6 +25,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x1\left.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\left_up.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\up.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\side_left.ahk
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag()
 
