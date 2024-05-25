@@ -39,6 +39,7 @@ rbutton_up_no_click := 0
 rbuttonup_cancel_flag := 0
 
 Infos := Map()
+Infos2 := Map()
 
 RbuttonPressFakeFlag := 0
 
@@ -430,6 +431,7 @@ GetPos1StateFromPos2() {
 
 Array2Function(middle_count, left_count, wheel_count, layer, dir, arr) {
   Global Infos
+  Global Infos2
   _temp := Format("M{:}L{:} W{:}: ", middle_count, left_count, wheel_count)
   For _index, val In arr {
     If (Mod(_index, 2)) {
@@ -446,6 +448,11 @@ Array2Function(middle_count, left_count, wheel_count, layer, dir, arr) {
     Infos[_ld] := []
   }
   Infos[_ld].Push(Strip(_temp))
+  _ld2 := dir . "-" . layer
+  If (Not Infos2.Has(_ld2)) {
+    Infos2[_ld2] := []
+  }
+  Infos2[_ld2].Push(Strip(_temp))
   Return FunctionWrap(Array2Map(arr))
 }
 
@@ -458,6 +465,7 @@ ShowFuncs(t) {
 
 WriteInfosAndOpenFile() {
   Global Infos
+  Global Infos2
   InfosTxtFile := A_ScriptDir . "\" . infos_txt
   FileObj := FileOpen(InfosTxtFile, "w" )
   FileObj.WriteLine("x-y: x Means Circle Layer")
@@ -471,8 +479,19 @@ WriteInfosAndOpenFile() {
   FileObj.WriteLine("U Means Wheel Scroll Up")
   FileObj.WriteLine("D Means Wheel Scroll Down")
   FileObj.WriteLine("")
+  FileObj.WriteLine("---------------------------------")
   FileObj.WriteLine("")
   For key, infos in Infos {
+    FileObj.WriteLine(key . ":")
+    For index, info in infos {
+      FileObj.WriteLine(info)
+    }
+    FileObj.WriteLine("")
+  }
+  FileObj.WriteLine("")
+  FileObj.WriteLine("=================================")
+  FileObj.WriteLine("")
+  For key, infos in Infos2 {
     FileObj.WriteLine(key . ":")
     For index, info in infos {
       FileObj.WriteLine(info)
