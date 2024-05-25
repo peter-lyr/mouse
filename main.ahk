@@ -35,6 +35,7 @@ RButton:: {
 
 ~LButton & RButton:: {
   LButtonRButton()
+  LButtonRButtonDisMouseActionFlag()
 }
 
 ~LButton:: {
@@ -75,6 +76,7 @@ RButton & MButton:: {
 
 RButton & LButton:: {
   RButtonLButton()
+  LButtonRButtonDisMouseActionFlag()
 }
 
 InitCircle()

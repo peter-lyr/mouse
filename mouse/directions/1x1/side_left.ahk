@@ -4,5 +4,9 @@
 d := "side_left"
 
 A(1, 1, 1, 0, d, [
-  "R", W("ToggleMouseActionFlag", ToggleMouseActionFlag),
+  "R", W("Only Show Mouse Actions", OnlyShowMouseActions),
+])
+
+A(1, 1, 2, 0, d, [
+  "R", W("No Mouse Actions", DisMouseActionFlag),
 ])

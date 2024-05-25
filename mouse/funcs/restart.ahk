@@ -17,19 +17,33 @@ DisMouseActionFlag() {
   MouseActionFlag := 0
 }
 
+EnMouseActionFlag() {
+  Global MouseActionFlag
+  MouseActionFlag := 1
+}
+
+OnlyShowMouseActions() {
+  Global MouseActionFlag
+  MouseActionFlag := 2
+}
+
 ToggleMouseActionFlag() {
   Global MouseActionFlag
   MouseActionFlag += 1
-  If (MouseActionFlag > MouseActionFlagMax) {
-    MouseActionFlag := 1
+  If (MouseActionFlag >= MouseActionFlagMax) {
+    MouseActionFlag := 0
   }
   Print("MouseActionFlag: " . MouseActionFlag)
 }
 
 LButtonRButtonDisMouseActionFlag() {
+  Global MouseActionFlag
+  If (MouseActionFlag == 1) {
+    Return
+  }
   While (1) {
     If (Not RButtonIsPressed() And Not LButtonIsPressed()) {
-      SetTimer(DisMouseActionFlag, -20)
+      SetTimer(EnMouseActionFlag, -20)
       Break
     }
   }
