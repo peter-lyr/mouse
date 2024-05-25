@@ -63,6 +63,13 @@ TopMostToggleA() {
   WinSetAlwaysOnTop(-1, "A")
 }
 
+ActivateAndAltF4UnderMouse() {
+  MouseGetPos , , &_win
+  WinActivate(_win)
+  WinWaitActive(_win)
+  Send("!{F4}")
+}
+
 ^#l:: {
   TopMostToggleA()
 }

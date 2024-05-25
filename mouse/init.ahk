@@ -780,6 +780,8 @@ RButtonMButton() {
     mbutton_flag := 1
     If (GetLayer() == 1) {
       SetTimer(ResizeWindow, -20)
+    } Else {
+      SetTimer(ActivateAndAltF4UnderMouse, -20)
     }
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)
