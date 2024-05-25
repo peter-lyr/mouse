@@ -15,14 +15,14 @@ Strip(text) {
 
 Join(string_array, sep:="`n") {
   res := ""
-  for index, value in string_array {
+  for index, value In string_array {
     res .= value . sep
   }
   Return Strip(res)
 }
 
 StrInArray(string, string_array) {
-  for index, value in string_array {
+  for index, value In string_array {
     If (string == value) {
       Return 1
     }
@@ -164,7 +164,7 @@ FunctionWrap(param_maps) {
 }
 
 IsCurWinAndMax(titles, _cid) {
-  for index, title in titles {
+  for index, title In titles {
     If (WinExist(title) And WinGetId(title) == _cid And WinGetMinMax(title) == 1) {
       Return 1
     }

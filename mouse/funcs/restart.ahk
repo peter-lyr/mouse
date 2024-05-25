@@ -1,35 +1,42 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/25 13:44:04 Saturday
 
-SuspendFlag := 0
+MouseActionFlagMax := 3
+MouseActionFlag := 1
+; 0: 鼠标右键没有功能
+; 1: 鼠标右键有功能
+; 2: 鼠标右键没有功能,但能显示每个位置功能
 
-GetSuspendFlag() {
-  Global SuspendFlag
-  Return SuspendFlag
+GetMouseActionFlag() {
+  Global MouseActionFlag
+  Return MouseActionFlag
 }
 
-DisSuspendFlag() {
-  Global SuspendFlag
-  SuspendFlag := 0
+DisMouseActionFlag() {
+  Global MouseActionFlag
+  MouseActionFlag := 0
 }
 
-ToggleSuspendFlag() {
-  Global SuspendFlag
-  SuspendFlag := 1 - SuspendFlag
-  Print("SuspendFlag: " . SuspendFlag)
+ToggleMouseActionFlag() {
+  Global MouseActionFlag
+  MouseActionFlag += 1
+  If (MouseActionFlag > MouseActionFlagMax) {
+    MouseActionFlag := 1
+  }
+  Print("MouseActionFlag: " . MouseActionFlag)
 }
 
-LButtonRButtonDisSuspendFlag() {
+LButtonRButtonDisMouseActionFlag() {
   While (1) {
     If (Not RButtonIsPressed() And Not LButtonIsPressed()) {
-      SetTimer(DisSuspendFlag, -20)
+      SetTimer(DisMouseActionFlag, -20)
       Break
     }
   }
 }
 
 ^!s:: {
-  ToggleSuspendFlag()
+  ToggleMouseActionFlag()
 }
 
 ^!r::Reload

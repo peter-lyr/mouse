@@ -26,7 +26,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x1\left_up.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\up.ahk
 
-#HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetSuspendFlag()
+#HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag()
 
 RButton:: {
   RButtonDown()
@@ -78,11 +78,11 @@ RButton & LButton:: {
 
 InitCircle()
 
-#HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetSuspendFlag()
+#HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag()
 
 ~RButton & LButton::
 ~LButton & RButton:: {
-  LButtonRButtonDisSuspendFlag()
+  LButtonRButtonDisMouseActionFlag()
 }
 
 #HotIf

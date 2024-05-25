@@ -358,21 +358,48 @@ GetPos1StateFromPos2() {
     function_index := 0
   }
   direction := _dir
-  If (Not function_index) {
+  If (GetMouseActionFlag() == 2) {
+    _ld := layer . "-" . _dir
+    ShowFuncs(_ld)
+  } Else If (Not function_index) {
     info := Format(
       "[{:}][{:}][{:}][{:}][{:d}]: [{:d}] (B{:2} T{:2} {:8}) {:U}",
       GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,
       GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1(), _dir
     )
-    Print(info
+    CheckPrint(info
         ; . "`n" .
         ; Format("{:}", 0)
         )
   }
 }
 
-Array2Function(arr) {
-  Return FunctionWrap(Array2Map(arr))
+Infos := Map()
+
+Array2Function(middle_count, left_count, wheel_count, layer, dir, arr) {
+  _temp := Format("M{:}L{:} W{:}: ", middle_count, left_count, wheel_count)
+  _map := Array2Map(arr)
+  _index := 1
+  For key, val In _map {
+    If (_index != 1) {
+      _temp .= "               "
+    }
+    _temp .= key . ": " . val(1) . "`n"
+    _index += 1
+  }
+  _ld := layer . "-" . dir
+  If (Not Infos.Has(_ld)) {
+    Infos[_ld] := []
+  }
+  Infos[_ld].Push(Strip(_temp))
+  Return FunctionWrap(_map)
+}
+
+ShowFuncs(t) {
+  Global Infos
+  If (Infos.Has(t)) {
+    CheckPrint(Join(Infos[t]))
+  }
 }
 
 GetBetween(&val, min, max) {
@@ -412,11 +439,12 @@ A(middle_count, left_count, wheel_count, layer, dir, arr) {
            max_circles_directions * (wheel_count - 1) +
            max_directions * (layer - 1) +
            dir_index_maps[dir]
-  functions[index] := Array2Function(arr)
+  functions[index] := Array2Function(middle_count, left_count, wheel_count, layer, dir, arr)
 }
 
 CallFunction() {
-  If (function_index > 0) {
+  If (GetMouseActionFlag() == 2) {
+  } Else If (function_index > 0) {
     functions[function_index]()
   } Else {
     If (Not LButtonIsPressed() And Not MButtonIsPressed()) {
