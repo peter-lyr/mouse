@@ -521,7 +521,16 @@ WriteInfosAndOpenFile() {
     }
     WinClose(t)
   }
-  Run("notepad " . InfosTxtFile)
+  If (WinExist("ahk_exe nvim-qt.exe")) {
+    WinActivate("ahk_exe nvim-qt.exe")
+    WinWaitActive("ahk_exe nvim-qt.exe")
+    WinWaitActive("ahk_exe nvim-qt.exe")
+    Send("^wv^wT")
+    Send("{Esc}:^ue " . InfosTxtFile . "{Enter}")
+    WinMaximize("ahk_exe nvim-qt.exe")
+  } Else {
+    Run("notepad " . InfosTxtFile)
+  }
 }
 
 GetBetween(&val, min, max) {
