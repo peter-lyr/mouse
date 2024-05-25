@@ -470,33 +470,43 @@ WriteInfosAndOpenFile() {
   FileObj := FileOpen(InfosTxtFile, "w" )
   FileObj.WriteLine("x-y: x Means Circle Layer")
   FileObj.WriteLine("       y Means Direction")
-  FileObj.WriteLine("")
   FileObj.WriteLine("M Means MiddleMouse Count")
   FileObj.WriteLine("L Means LeftMouse Count")
   FileObj.WriteLine("W Means WheelMouse Count")
-  FileObj.WriteLine("")
   FileObj.WriteLine("R Means Release RightMouse")
   FileObj.WriteLine("U Means Wheel Scroll Up")
   FileObj.WriteLine("D Means Wheel Scroll Down")
-  FileObj.WriteLine("")
   FileObj.WriteLine("---------------------------------")
-  FileObj.WriteLine("")
+  _i := 1
   For key, infos in Infos {
-    FileObj.WriteLine(key . ":")
     For index, info in infos {
+      info := StrReplace(info, "                 ", "")
+      info := StrReplace(info, "`n", "`n                               ")
+      __i := Format("{:-4}", _i . ".")
+      If (index == 1) {
+        info := Format("{:-3} {:-15}: {:}", __i, key, info)
+      } Else {
+        info := Format("{:-3}                  {:}", __i, info)
+      }
       FileObj.WriteLine(info)
+      _i += 1
     }
-    FileObj.WriteLine("")
   }
-  FileObj.WriteLine("")
   FileObj.WriteLine("=================================")
-  FileObj.WriteLine("")
+  _i := 1
   For key, infos in Infos2 {
-    FileObj.WriteLine(key . ":")
     For index, info in infos {
+      info := StrReplace(info, "                 ", "")
+      info := StrReplace(info, "`n", "`n                               ")
+      __i := Format("{:-4}", _i . ".")
+      If (index == 1) {
+        info := Format("{:-3} {:-15}: {:}", __i, key, info)
+      } Else {
+        info := Format("{:-3}                  {:}", __i, info)
+      }
       FileObj.WriteLine(info)
+      _i += 1
     }
-    FileObj.WriteLine("")
   }
   FileObj.Close()
   Try {
