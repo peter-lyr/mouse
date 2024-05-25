@@ -38,6 +38,8 @@ rbutton_up_no_click := 0
 
 rbuttonup_cancel_flag := 0
 
+Infos := Map()
+
 Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
   functions.Push(0)
 }
@@ -373,8 +375,6 @@ GetPos1StateFromPos2() {
         )
   }
 }
-
-Infos := Map()
 
 Array2Function(middle_count, left_count, wheel_count, layer, dir, arr) {
   _temp := Format("M{:}L{:} W{:}: ", middle_count, left_count, wheel_count)
