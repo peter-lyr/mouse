@@ -31,6 +31,30 @@ WinMinimizeRbuttonPressWin() {
   WinMinimize(_win)
 }
 
+TransparentToggleRbuttonPressWin() {
+  _win := GetRbuttonPressWin()
+  If (Not WinExist(_win)) {
+    Return
+  }
+  If (255 != WinGetTransparent(_win)) {
+    WinSetTransparent(255, _win)
+  } Else {
+    WinSetTransparent(200, _win)
+  }
+}
+
+TransparentToggleA() {
+  If (255 != WinGetTransparent("A")) {
+    WinSetTransparent(255, "A")
+  } Else {
+    WinSetTransparent(200, "A")
+  }
+}
+
+^#;:: {
+  TransparentToggleA()
+}
+
 ^#k:: {
   WinMaximizeRestoreA()
 }
