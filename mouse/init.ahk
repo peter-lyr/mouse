@@ -427,6 +427,7 @@ GetPos1StateFromPos2() {
 }
 
 Array2Function(middle_count, left_count, wheel_count, layer, dir, arr) {
+  Global Infos
   _temp := Format("M{:}L{:} W{:}: ", middle_count, left_count, wheel_count)
   For _index, val In arr {
     If (Mod(_index, 2)) {
@@ -451,6 +452,21 @@ ShowFuncs(t) {
   If (Infos.Has(t)) {
     CheckPrint(Join(Infos[t]))
   }
+}
+
+WriteInfosAndOpenFile() {
+  Global Infos
+  InfosTxtFile := A_ScriptDir "\infos.txt"
+  FileObj := FileOpen(InfosTxtFile, "w" )
+  For key, infos in Infos {
+    FileObj.WriteLine(key . ":")
+    For index, info in infos {
+      FileObj.WriteLine("        " . Strip(info))
+    }
+    FileObj.WriteLine("")
+  }
+  FileObj.Close()
+  Run("notepad " . InfosTxtFile)
 }
 
 GetBetween(&val, min, max) {
