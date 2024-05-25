@@ -40,6 +40,8 @@ rbuttonup_cancel_flag := 0
 
 Infos := Map()
 
+RbuttonPressFakeFlag := 0
+
 Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
   functions.Push(0)
 }
@@ -93,6 +95,16 @@ UpdateRbuttonPressPos1() {
   rbutton_press_color1 := PixelGetColor(rbutton_press_x1, rbutton_press_y1)
 }
 
+UpdateRbuttonPressPos1Fake() {
+  Global rbutton_press_x1
+  Global rbutton_press_y1
+  Global rbutton_press_win
+  Global rbutton_press_color1
+  rbutton_press_x1 := A_ScreenWidth / 2
+  rbutton_press_y1 := A_ScreenHeight / 2
+  rbutton_press_color1 := PixelGetColor(rbutton_press_x1, rbutton_press_y1)
+}
+
 GetRbuttonPressWin() {
   Global rbutton_press_win
   If (Not IsSet(rbutton_press_win)) {
@@ -142,6 +154,30 @@ RButtonPressedWatcher() {
   }
   UpdateRbuttonPressPos2()
   GetPos1StateFromPos2()
+}
+
+RButtonPressedWatcherFake() {
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag) {
+    If (RButtonIsPressed() Or LButtonIsPressed() Or MButtonIsPressed()) {
+      EnMouseActionFlag()
+      RbuttonPressFakeFlag := 0
+      SetTimer , 0
+      Tooltip
+      HideCircle()
+      Return
+    }
+  }
+  UpdateRbuttonPressPos2()
+  GetPos1StateFromPos2()
+}
+
+RButtonDownFake() {
+  Global RbuttonPressFakeFlag
+  RbuttonPressFakeFlag := 1
+  SetTimer(RButtonPressedWatcherFake, 10)
+  UpdateRbuttonPressPos1Fake()
+  DrawCircleAtRbuttonPressPos1()
 }
 
 RButtonDown() {
@@ -360,10 +396,7 @@ GetPos1StateFromPos2() {
     function_index := 0
   }
   direction := _dir
-  If (GetMouseActionFlag() == 2) {
-    _ld := layer . "-" . _dir
-    ShowFuncs(_ld)
-  } Else If (Not function_index) {
+  If (Not function_index And GetMouseActionFlag() == 1) {
     info := Format(
       "[{:}][{:}][{:}][{:}][{:d}]: [{:d}] (B{:2} T{:2} {:8}) {:U}",
       GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,

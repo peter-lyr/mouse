@@ -159,6 +159,9 @@ FunctionWrap(param_maps) {
           LayerxxxWheelDown(1),
         ])
       }
+    } Else If (GetMouseActionFlag() == 2) {
+      _ld := GetLayer() . "-" . GetDirection()
+      ShowFuncs(_ld)
     } Else {
       LayerxxxRButtonUp()
     }

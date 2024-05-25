@@ -25,6 +25,7 @@ EnMouseActionFlag() {
 OnlyShowMouseActions() {
   Global MouseActionFlag
   MouseActionFlag := 2
+  RButtonDownFake()
 }
 
 ToggleMouseActionFlag() {
