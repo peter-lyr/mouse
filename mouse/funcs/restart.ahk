@@ -14,6 +14,11 @@ GetSuspendFlag() {
   Return SuspendFlag
 }
 
+DisSuspendFlag() {
+  Global SuspendFlag
+  SuspendFlag := 0
+}
+
 ToggleSuspendFlag() {
   Global SuspendFlag
   SuspendFlag := 1 - SuspendFlag
@@ -23,7 +28,7 @@ ToggleSuspendFlag() {
 LButtonRButtonDisSuspendFlag() {
   While (1) {
     If (Not RButtonIsPressed() And Not LButtonIsPressed()) {
-      SuspendFlag := 0
+      SetTimer(DisSuspendFlag, -20)
       Break
     }
   }
