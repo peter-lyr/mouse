@@ -378,21 +378,22 @@ Infos := Map()
 
 Array2Function(middle_count, left_count, wheel_count, layer, dir, arr) {
   _temp := Format("M{:}L{:} W{:}: ", middle_count, left_count, wheel_count)
-  _map := Array2Map(arr)
-  _index := 1
-  For key, val In _map {
-    If (_index != 1) {
-      _temp .= "               "
+  For _index, val In arr {
+    If (Mod(_index, 2)) {
+      If (_index > 2) {
+        _temp .= "                 "
+      }
+      _temp .= val . ": "
+    } Else {
+      _temp .= val(1) . "`n"
     }
-    _temp .= key . ": " . val(1) . "`n"
-    _index += 1
   }
   _ld := layer . "-" . dir
   If (Not Infos.Has(_ld)) {
     Infos[_ld] := []
   }
   Infos[_ld].Push(Strip(_temp))
-  Return FunctionWrap(_map)
+  Return FunctionWrap(Array2Map(arr))
 }
 
 ShowFuncs(t) {
