@@ -156,12 +156,21 @@ RButtonPressedWatcher() {
   GetPos1StateFromPos2()
 }
 
+GetRbuttonPressFakeFlag() {
+  Global RbuttonPressFakeFlag
+  Return RbuttonPressFakeFlag
+}
+
+DisRbuttonPressFakeFlag() {
+  Global RbuttonPressFakeFlag
+  RbuttonPressFakeFlag := 0
+}
+
 RButtonPressedWatcherFake() {
   Global RbuttonPressFakeFlag
   If (RbuttonPressFakeFlag) {
     If (RButtonIsPressed() Or LButtonIsPressed() Or MButtonIsPressed()) {
       EnMouseActionFlag()
-      RbuttonPressFakeFlag := 0
       SetTimer , 0
       Tooltip
       HideCircle()
@@ -181,6 +190,10 @@ RButtonDownFake() {
 }
 
 RButtonDown() {
+  If (GetRbuttonPressFakeFlag()) {
+    SetTimer(DisRbuttonPressFakeFlag, -50)
+    Return
+  }
   SetTimer(RButtonPressedWatcher, 10)
   UpdateRbuttonPressPos1()
   DrawCircleAtRbuttonPressPos1()
@@ -203,6 +216,10 @@ RButtonUp() {
 }
 
 LButtonDown() {
+  If (GetRbuttonPressFakeFlag()) {
+    SetTimer(DisRbuttonPressFakeFlag, -50)
+    Return
+  }
   If (RButtonIsPressed()) {
     RButtonLButton()
     Return
@@ -620,7 +637,7 @@ WheelUpDo() {
   }
 }
 
-MButtonDo() {
+MButtonDown() {
   If (RButtonIsPressed()) {
     RButtonMButton()
   }
