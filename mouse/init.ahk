@@ -208,6 +208,7 @@ RButtonUp() {
   ResetWheelCount()
   ResetLeftCount()
   ResetMiddleCount()
+  LButtonWheelCntReset(1)
   If (GetRButtonUpCancelFlag()) {
     SetRButtonUpCancelFlag(0)
     Return
@@ -215,7 +216,6 @@ RButtonUp() {
   HideCircle()
   CallFunction()
   ResetWheelFlag()
-  LButtonWheelCntReset(1)
 }
 
 LButtonDown() {
@@ -784,10 +784,15 @@ RButtonMButton() {
   } Else {
     Global mbutton_flag
     mbutton_flag := 1
+    HideCircle()
     If (GetLayer() == 1) {
       SetTimer(ResizeWindow, -20)
     } Else {
-      SetTimer(ActivateAndAltF4UnderMouse, -20)
+      If (GetWheelCount() == 1) {
+        SetTimer(ActivateAndAltF4UnderMouse, -20)
+      } Else If (GetWheelCount() == 2) {
+        SetTimer(ActivateAndTaskKillUnderMouse, -20)
+      }
     }
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)

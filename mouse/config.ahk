@@ -28,3 +28,5 @@ _color := [0x00FF0000, 0x000000FF, 0x0000FF00]
 Loop max_circles {
   circle_colors.Push(_color[Mod(A_index, _color.Length) + 1])
 }
+
+no_taskkill_processes := ["explorer.exe"]

@@ -70,6 +70,15 @@ ActivateAndAltF4UnderMouse() {
   Send("!{F4}")
 }
 
+ActivateAndTaskKillUnderMouse() {
+  MouseGetPos , , &_win
+  _process_name := WinGetProcessName(_win)
+  If StrInArray(_process_name, no_taskkill_processes) {
+    Return
+  }
+  Run("taskkill /f /im " . _process_name)
+}
+
 ActivateAndCtrlClilckUnderMouse() {
   MouseGetPos &_x, &_y, &_win
   WinActivate(_win)
