@@ -77,6 +77,13 @@ ActivateAndCtrlClilckUnderMouse() {
   Send("^{Click " . _x . ", " . _y . "}")
 }
 
+ActivateAndShiftClilckUnderMouse() {
+  MouseGetPos &_x, &_y, &_win
+  WinActivate(_win)
+  WinWaitActive(_win)
+  Send("+{Click " . _x . ", " . _y . "}")
+}
+
 ^#l:: {
   TopMostToggleA()
 }
