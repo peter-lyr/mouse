@@ -458,6 +458,18 @@ WriteInfosAndOpenFile() {
   Global Infos
   InfosTxtFile := A_ScriptDir "\infos.txt"
   FileObj := FileOpen(InfosTxtFile, "w" )
+  FileObj.WriteLine("x-y: x Means Circle Layer")
+  FileObj.WriteLine("       y Means Direction")
+  FileObj.WriteLine("")
+  FileObj.WriteLine("M Means MiddleMouse Count")
+  FileObj.WriteLine("L Means LeftMouse Count")
+  FileObj.WriteLine("W Means WheelMouse Count")
+  FileObj.WriteLine("")
+  FileObj.WriteLine("R Means Release RightMouse")
+  FileObj.WriteLine("U Means Wheel Scroll Up")
+  FileObj.WriteLine("D Means Wheel Scroll Down")
+  FileObj.WriteLine("")
+  FileObj.WriteLine("")
   For key, infos in Infos {
     FileObj.WriteLine(key . ":")
     For index, info in infos {
