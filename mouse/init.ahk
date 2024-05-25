@@ -42,6 +42,8 @@ Infos := Map()
 
 RbuttonPressFakeFlag := 0
 
+infos_txt := "infos.txt"
+
 Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
   functions.Push(0)
 }
@@ -456,7 +458,7 @@ ShowFuncs(t) {
 
 WriteInfosAndOpenFile() {
   Global Infos
-  InfosTxtFile := A_ScriptDir "\infos.txt"
+  InfosTxtFile := A_ScriptDir . "\" . infos_txt
   FileObj := FileOpen(InfosTxtFile, "w" )
   FileObj.WriteLine("x-y: x Means Circle Layer")
   FileObj.WriteLine("       y Means Direction")
@@ -478,6 +480,17 @@ WriteInfosAndOpenFile() {
     FileObj.WriteLine("")
   }
   FileObj.Close()
+  Try {
+    t :=  infos_txt . " - Notepad"
+    WinActivate(t)
+    Loop 10 {
+      If Not WinActive(t) {
+        Break
+      }
+      Send("^w")
+    }
+    WinClose(t)
+  }
   Run("notepad " . InfosTxtFile)
 }
 
