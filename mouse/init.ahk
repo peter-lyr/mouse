@@ -469,7 +469,8 @@ WriteInfosAndOpenFile() {
   InfosTxtFile := A_ScriptDir . "\" . infos_txt
   FileObj := FileOpen(InfosTxtFile, "w" )
   FileObj.WriteLine("x-y: x Means Circle Layer")
-  FileObj.WriteLine("       y Means Direction")
+  FileObj.WriteLine("     y Means Direction")
+  FileObj.WriteLine("    Or reverse")
   FileObj.WriteLine("M Means MiddleMouse Count")
   FileObj.WriteLine("L Means LeftMouse Count")
   FileObj.WriteLine("W Means WheelMouse Count")
