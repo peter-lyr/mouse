@@ -419,7 +419,7 @@ GetPos1StateFromPos2() {
       GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,
       GetRbuttonPressLight1(), GetTransparency(), GetRbuttonPressColor1(), _dir
     )
-    CheckPrint(info
+    Print(info
         ; . "`n" .
         ; Format("{:}", 0)
         )
