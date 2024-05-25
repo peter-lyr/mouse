@@ -131,8 +131,8 @@ DrawCircleAtRbuttonPressPos1() {
     Return
   }
   circle.Opt(GuiOpt)
-  x := (rbutton_press_x1 - circle_diameter / 2) * 96 / dpi
-  y := (rbutton_press_y1 - circle_diameter / 2) * 96 / dpi
+  x := (rbutton_press_x1 - circle_diameter / 2) * 96 / A_ScreenDPI
+  y := (rbutton_press_y1 - circle_diameter / 2) * 96 / A_ScreenDPI
   circle.Move(x, y, circle_diameter, circle_diameter)
   WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
 }

@@ -138,24 +138,30 @@
 ; MsgBox "物理屏幕宽度：" . width . " 毫米，高度：" . height . " 毫米, hdc: " . hdc
 
 
-; f8:: {
-  ; 获取窗口的句柄（例如，通过 WinExist 或其他方法）
-  ; hwnd := WinExist("A") ; 替换为您的窗口标题
-  ; hwnd := WinExist("Program Manager") ; 替换为您的窗口标题
-  hwnd := WinExist("ahk_class Shell_TrayWnd") ; 替换为您的窗口标题
+; ; f8:: {
+;   ; 获取窗口的句柄（例如，通过 WinExist 或其他方法）
+;   ; hwnd := WinExist("A") ; 替换为您的窗口标题
+;   ; hwnd := WinExist("Program Manager") ; 替换为您的窗口标题
+;   hwnd := WinExist("ahk_class Shell_TrayWnd") ; 替换为您的窗口标题
+;
+;   ; 调用 GetDpiForWindow 获取窗口的 DPI
+;   dpi := DllCall("user32\GetDpiForWindow", "Ptr", hwnd)
+;
+;   ; 检查返回值
+;   if (dpi)
+;   {
+;       MsgBox "窗口的 DPI 值为：" . dpi
+;   }
+;   else
+;   {
+;       ; MsgBox "无法获取窗口的 DPI 值。错误代码：" . GetLastError()
+;   }
+; ; }
 
-  ; 调用 GetDpiForWindow 获取窗口的 DPI
-  dpi := DllCall("user32\GetDpiForWindow", "Ptr", hwnd)
-
-  ; 检查返回值
-  if (dpi)
-  {
-      MsgBox "窗口的 DPI 值为：" . dpi
-  }
-  else
-  {
-      ; MsgBox "无法获取窗口的 DPI 值。错误代码：" . GetLastError()
-  }
+; GetSystemScreenDpi() {
+;   hwnd := WinExist("ahk_class Shell_TrayWnd")
+;   dpi := DllCall("user32\GetDpiForWindow", "Ptr", hwnd)
+;   Return dpi And dpi Or 0
 ; }
 
 ^!+r::Reload
