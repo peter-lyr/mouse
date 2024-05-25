@@ -51,6 +51,22 @@ TransparentToggleA() {
   }
 }
 
+TopMostToggleRbuttonPressWin() {
+  _win := GetRbuttonPressWin()
+  If (Not WinExist(_win)) {
+    Return
+  }
+  WinSetAlwaysOnTop(-1, _win)
+}
+
+TopMostToggleA() {
+  WinSetAlwaysOnTop(-1, "A")
+}
+
+^#l:: {
+  TopMostToggleA()
+}
+
 ^#;:: {
   TransparentToggleA()
 }

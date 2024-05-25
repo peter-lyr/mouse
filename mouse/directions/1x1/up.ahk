@@ -13,3 +13,11 @@ A(1, 1, 1, 1, d, [
 A(1, 1, 1, 2, d, [
   "R", W("Snipaste paste", () => Run("Snipaste paste")),
 ])
+
+A(1, 1, 1, 3, d, [
+  "R", W("Transparent Toggle", TransparentToggleRbuttonPressWin),
+])
+
+A(1, 1, 1, 4, d, [
+  "R", W("TopMost Toggle", TopMostToggleRbuttonPressWin),
+])
