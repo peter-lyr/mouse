@@ -35,6 +35,10 @@ ahk2exe
 
 完毕之后要退出,则可通过单击一次`右键`来完成
 
+(240526-13h55m)
+
+还是需要按住RButton才能做到,不然很麻烦,每次都需要先触发一次
+
 ### [ ] TODO: 增加功能
 
 记录每次移动或大小的改变,以便撤销或者回复操作(可选)
@@ -54,7 +58,7 @@ center MButton -> middle_count
 # 240523-20h16m
 
 - [x] TODODONE: move window和resize window需要限制在第一个元以外和第二元以内(包括),其他的不处理
-- [ ] TODO: 其他的用来Ctrl-RButton或者Ctrl-LButton
+- [x] TODODONE: 其他的用来Ctrl-RButton或者Ctrl-LButton
 
 # 240524-12h49m
 
@@ -63,4 +67,5 @@ center MButton -> middle_count
 
 # 240525-14h50m
 
-- [ ] TODO: 上电展示所有功能,最主要的是右键的功能
+- [x] TODODONE: 上电展示所有功能,最主要的是右键的功能
+- 通过side_left实现
