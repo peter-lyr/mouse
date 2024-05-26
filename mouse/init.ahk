@@ -141,9 +141,7 @@ DrawCircleAtRbuttonPressPos1() {
   circle.Move(x, y, circle_diameter, circle_diameter)
   WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
   circle2.Opt(GuiOpt2)
-  x := (rbutton_press_x1 - circle_radius) * 96 / A_ScreenDPI
-  y := (rbutton_press_y1 - circle_radius) * 96 / A_ScreenDPI
-  circle2.Move(x, y, circle_radius * 2, circle_radius * 2)
+  circle2.Move(x, y, circle_diameter, circle_diameter)
   WinSetTransparent(1, "Ahk_id " . circle2.Hwnd)
 }
 
@@ -283,22 +281,21 @@ HideCircle() {
   WinSetTransparent(0, "Ahk_id " . circle2.Hwnd)
 }
 
-InitCircle() {
-  Global circle2
-  circle2 := Gui()
-  circle2.Opt(GuiOpt2)
-  _show_wh := "W" . circle_radius * 2 . " H" . circle_radius * 2
-  circle2.Show(_show_wh . " NA")
-  WinSetRegion("0-0 " . _show_wh . " E", circle2.Hwnd)
-  WinSetTransparent(0, "Ahk_id " . circle2.Hwnd)
-  Global circle
-  circle := Gui()
-  circle.Opt(GuiOpt)
+DrawCircle(&_circle, opt:=1) {
+  _circle := Gui()
+  If (opt == 2) {
+    _circle.Opt(GuiOpt2)
+  } Else {
+    _circle.Opt(GuiOpt)
+  }
   _show_wh := "W" . circle_diameter . " H" . circle_diameter
-  circle.Show(_show_wh . " NA")
-  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
-  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
-  hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
+  _circle.Show(_show_wh . " NA")
+  WinSetRegion("0-0 " . _show_wh . " E", _circle.Hwnd)
+  WinSetTransparent(0, "Ahk_id " . _circle.Hwnd)
+  If (opt == 2) {
+    Return
+  }
+  hdc := DllCall("GetDC", "Ptr", _circle.Hwnd)
   DllCall("SetBkMode", "Ptr", hdc, "Int", 1)
   Loop circle_colors.Length {
     brush := DllCall("CreateSolidBrush", "UInt", circle_colors[max_circles-A_Index+1])
@@ -321,7 +318,14 @@ InitCircle() {
   DllCall("LineTo", "Ptr", hdc, "Int", circle_diameter, "Int", _diff_long)
   DllCall("MoveToEx", "Ptr", hdc, "Int", 0, "Int", _diff_long, "Ptr", 0)
   DllCall("LineTo", "Ptr", hdc, "Int", circle_diameter, "Int", _diff_short)
-  DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
+  DllCall("ReleaseDC", "Ptr", _circle.Hwnd, "Ptr", hdc)
+}
+
+InitCircle() {
+  Global circle
+  Global circle2
+  DrawCircle(&circle)
+  DrawCircle(&circle2, 2)
 }
 
 GetDirection() {
