@@ -427,6 +427,36 @@ GetPos1StateFromPos2() {
       }
     } Else {
       function_index := 0
+      If (GetMouseActionFlag() == 2) {
+        tobreak := 0
+        Loop max_middle_counts {
+          i := A_index
+          Loop max_left_counts {
+            j := A_index
+            Loop max_wheel_counts {
+              k := A_index
+              index := max_lefts_wheels_circles_directions * (i - 1) +
+                       max_wheels_circles_directions * (j - 1) +
+                       max_circles_directions * (k - 1) +
+                       max_directions * (layer - 1) +
+                       dir_index_maps[_dir]
+              function := functions[index]
+              If ("Func" == Type(function) Or "Closure" == Type(function)) {
+                function_index := index
+                function()
+                tobreak := 1
+                Break
+              }
+            }
+            If (tobreak) {
+              Break
+            }
+          }
+          If (tobreak) {
+            Break
+          }
+        }
+      }
     }
   } Else {
     function_index := 0
