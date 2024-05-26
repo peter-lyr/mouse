@@ -6,7 +6,7 @@ max_wheels_circles_directions := (max_wheel_counts * max_circles_directions)
 max_lefts_wheels_circles_directions := (max_left_counts * max_wheels_circles_directions)
 max_middles_lefts_wheels_circles_directions := (max_middle_counts * max_lefts_wheels_circles_directions)
 
-GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled"
+GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
 
 dir_index_maps := Map()
 
