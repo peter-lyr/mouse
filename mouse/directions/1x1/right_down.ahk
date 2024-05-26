@@ -5,6 +5,8 @@ d := "right_down"
 
 A(1, 1, 1, 1, d, [
   "R", W("WinMinimize", WinMinimizeRbuttonPressWin),
+  "U", W("<Ctrl-Win-Left>", S("^#{Left}")),
+  "D", W("<Ctrl-Win-Right>", S("^#{Right}")),
 ])
 
 A(1, 1, 1, 2, d, [
