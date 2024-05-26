@@ -7,6 +7,7 @@ max_lefts_wheels_circles_directions := (max_left_counts * max_wheels_circles_dir
 max_middles_lefts_wheels_circles_directions := (max_middle_counts * max_lefts_wheels_circles_directions)
 
 GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled"
+GuiOpt2 := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
 
 dir_index_maps := Map()
 
@@ -130,7 +131,8 @@ UpdateRbuttonPressPos2() {
 
 DrawCircleAtRbuttonPressPos1() {
   Global circle
-  If (Not IsSet(circle)) {
+  Global circle2
+  If (Not IsSet(circle) Or Not IsSet(circle2)) {
     Return
   }
   circle.Opt(GuiOpt)
@@ -138,6 +140,11 @@ DrawCircleAtRbuttonPressPos1() {
   y := (rbutton_press_y1 - circle_diameter / 2) * 96 / A_ScreenDPI
   circle.Move(x, y, circle_diameter, circle_diameter)
   WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
+  circle2.Opt(GuiOpt2)
+  x := (rbutton_press_x1 - circle_radius) * 96 / A_ScreenDPI
+  y := (rbutton_press_y1 - circle_radius) * 96 / A_ScreenDPI
+  circle2.Move(x, y, circle_radius * 2, circle_radius * 2)
+  WinSetTransparent(1, "Ahk_id " . circle2.Hwnd)
 }
 
 RButtonPressedWatcher() {
@@ -268,13 +275,22 @@ LButtonUp() {
 
 HideCircle() {
   Global circle
-  If (Not IsSet(circle)) {
+  Global circle2
+  If (Not IsSet(circle) Or Not IsSet(circle2)) {
     Return
   }
   WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  WinSetTransparent(0, "Ahk_id " . circle2.Hwnd)
 }
 
 InitCircle() {
+  Global circle2
+  circle2 := Gui()
+  circle2.Opt(GuiOpt2)
+  _show_wh := "W" . circle_radius * 2 . " H" . circle_radius * 2
+  circle2.Show(_show_wh . " NA")
+  WinSetRegion("0-0 " . _show_wh . " E", circle2.Hwnd)
+  WinSetTransparent(0, "Ahk_id " . circle2.Hwnd)
   Global circle
   circle := Gui()
   circle.Opt(GuiOpt)
