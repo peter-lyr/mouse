@@ -43,6 +43,32 @@ TransparentToggleRbuttonPressWin() {
   }
 }
 
+TransparentDownRbuttonPressWin() {
+  _win := GetRbuttonPressWin()
+  If (Not WinExist(_win)) {
+    Return
+  }
+  _t := WinGetTransparent(_win)
+  _t -= 10
+  If (_t < 10) {
+    _t := 10
+  }
+  WinSetTransparent(_t, _win)
+}
+
+TransparentUpRbuttonPressWin() {
+  _win := GetRbuttonPressWin()
+  If (Not WinExist(_win)) {
+    Return
+  }
+  _t := WinGetTransparent(_win)
+  _t += 10
+  If (_t > 255) {
+    _t := 255
+  }
+  WinSetTransparent(_t, _win)
+}
+
 TransparentToggleA() {
   If (255 != WinGetTransparent("A")) {
     WinSetTransparent(255, "A")

@@ -16,6 +16,8 @@ A(1, 1, 1, 2, d, [
 
 A(1, 1, 1, 3, d, [
   "R", W("Transparent Toggle", TransparentToggleRbuttonPressWin),
+  "U", W("Transparent Up", TransparentUpRbuttonPressWin),
+  "D", W("Transparent Down", TransparentDownRbuttonPressWin),
 ])
 
 A(1, 1, 1, 4, d, [
