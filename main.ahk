@@ -29,7 +29,7 @@ CoordMode("Pixel", "Screen")
 
 #Include %A_ScriptDir%\mouse\directions\1x2x1-ctrl.ahk
 #Include %A_ScriptDir%\mouse\directions\1x2x2-shift.ahk
-#Include %A_ScriptDir%\mouse\directions\1x3x2-ctrl-shift.ahk
+#Include %A_ScriptDir%\mouse\directions\1x2x3-ctrl-shift.ahk
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag()
 
