@@ -41,6 +41,7 @@ TransparentToggleRbuttonPressWin() {
   } Else {
     WinSetTransparent(200, _win)
   }
+  PrintLater("Transparent " . WinGetTransparent(_win))
 }
 
 TransparentDownRbuttonPressWin() {
@@ -54,6 +55,7 @@ TransparentDownRbuttonPressWin() {
     _t := 10
   }
   WinSetTransparent(_t, _win)
+  PrintLater("Transparent " . _t)
 }
 
 TransparentUpRbuttonPressWin() {
@@ -67,6 +69,7 @@ TransparentUpRbuttonPressWin() {
     _t := 255
   }
   WinSetTransparent(_t, _win)
+  PrintLater("Transparent " . _t)
 }
 
 TransparentToggleA() {
@@ -75,6 +78,7 @@ TransparentToggleA() {
   } Else {
     WinSetTransparent(200, "A")
   }
+  PrintLater("Transparent " . WinGetTransparent("A"))
 }
 
 TopMostToggleRbuttonPressWin() {
@@ -83,10 +87,22 @@ TopMostToggleRbuttonPressWin() {
     Return
   }
   WinSetAlwaysOnTop(-1, _win)
+  ExStyle := WinGetExStyle(_win)
+  if (ExStyle & 0x8) {
+    PrintLater("Top Most")
+  } Else {
+    PrintLater("Top Most Canceled")
+  }
 }
 
 TopMostToggleA() {
   WinSetAlwaysOnTop(-1, "A")
+  ExStyle := WinGetExStyle("A")
+  if (ExStyle & 0x8) {
+    PrintLater("Top Most")
+  } Else {
+    PrintLater("Top Most Canceled")
+  }
 }
 
 ActivateAndAltF4UnderMouse() {
