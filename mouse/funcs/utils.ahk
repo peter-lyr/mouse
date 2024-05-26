@@ -34,14 +34,15 @@ Print(text:="", timeout:=4000) {
   Global PrintList
   PrintList := [text]
   Tooltip(text)
-  SetTimer(Tooltip, timeout)
+  SetTimer(Tooltip, -timeout)
+}
 }
 
 PrintAppend(text:="", timeout:=4000) {
   Global PrintList
   PrintList.Push(text)
   Tooltip(Join(PrintList))
-  SetTimer(Tooltip, timeout)
+  SetTimer(Tooltip, -timeout)
 }
 
 PrintAppendUniq(text:="", timeout:=4000) {
@@ -50,13 +51,13 @@ PrintAppendUniq(text:="", timeout:=4000) {
     PrintList.Push(text)
   }
   Tooltip(Join(PrintList))
-  SetTimer(Tooltip, timeout)
+  SetTimer(Tooltip, -timeout)
 }
 
 PrintAppendEnd(text:="", timeout:=4000) {
   Global PrintList
   Tooltip(Strip(Join(PrintList) . "`n" . text))
-  SetTimer(Tooltip, timeout)
+  SetTimer(Tooltip, -timeout)
 }
 
 ; 见https://wyagd001.github.io/v2/docs/lib/_HotIf.htm#ExVolume
