@@ -799,6 +799,19 @@ GetLButtonFlag() {
   Return lbutton_flag
 }
 
+RButtonLButtonHelp() {
+  Return [
+    "RButtonLButtonHelp",
+    "  Where: Exclude center",
+    "  layer 1:",
+    "    MoveWindow",
+    "  Else:",
+    "    left_count 1:",
+    "      Activate And Ctrl Click Under Mouse",
+    "    left_count 2:",
+    "      Activate And Shift Click Under Mouse",
+  ]
+}
 RButtonLButton() {
   If (GetDirection() == "center") {
     IncLeftCount()
@@ -809,9 +822,9 @@ RButtonLButton() {
       SetTimer(MoveWindow, -20)
     } Else {
       If (GetLeftCount() == 1) {
-        SetTimer(ActivateAndCtrlClilckUnderMouse, -20)
+        SetTimer(ActivateAndCtrlClickUnderMouse, -20)
       } Else If (GetLeftCount() == 2) {
-        SetTimer(ActivateAndShiftClilckUnderMouse, -20)
+        SetTimer(ActivateAndShiftClickUnderMouse, -20)
       }
     }
     SetRButtonUpNoClickFlag(1)
@@ -844,6 +857,19 @@ GetMButtonFlag() {
   Return mbutton_flag
 }
 
+RButtonMButtonHelp() {
+  Return [
+    "RButtonMButtonHelp:",
+    "  Where: Exclude center",
+    "  layer 1:",
+    "    ResizeWindow",
+    "  Else:",
+    "    wheel_count 1:",
+    "      Activate And Alt F4 Under Mouse",
+    "    wheel_count 2:",
+    "      Activate And Task Kill Under Mouse",
+  ]
+}
 RButtonMButton() {
   If (GetDirection() == "center") {
     IncMiddleCount()
@@ -863,6 +889,14 @@ RButtonMButton() {
     SetRButtonUpNoClickFlag(1)
     SetRButtonUpCancelFlag(1)
   }
+}
+
+RButtonLButtonMButtonHelp() {
+  _t := Join(RButtonMButtonHelp())
+  _t .= "`n`n"
+  _t .= Join(RButtonLButtonHelp())
+  ; PrintLater(_t)
+  MsgBox(_t)
 }
 
 ResetLeftCount() {

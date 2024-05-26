@@ -14,3 +14,7 @@ A(1, 1, 2, 0, d, [
 A(1, 1, 3, 0, d, [
   "R", W("Write Mouse Actions And Open File", WriteInfosAndOpenFile),
 ])
+
+A(1, 1, 4, 0, d, [
+  "R", W("RButton LButton/MButton Help", RButtonLButtonMButtonHelp),
+])

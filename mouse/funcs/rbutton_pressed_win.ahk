@@ -121,14 +121,14 @@ ActivateAndTaskKillUnderMouse() {
   Run("taskkill /f /im " . _process_name)
 }
 
-ActivateAndCtrlClilckUnderMouse() {
+ActivateAndCtrlClickUnderMouse() {
   MouseGetPos &_x, &_y, &_win
   WinActivate(_win)
   WinWaitActive(_win)
   Send("^{Click " . _x . ", " . _y . "}")
 }
 
-ActivateAndShiftClilckUnderMouse() {
+ActivateAndShiftClickUnderMouse() {
   MouseGetPos &_x, &_y, &_win
   WinActivate(_win)
   WinWaitActive(_win)
