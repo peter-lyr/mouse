@@ -36,6 +36,9 @@ Print(text:="", timeout:=4000) {
   Tooltip(text)
   SetTimer(Tooltip, -timeout)
 }
+
+PrintLater(text:="", timeout:=4000) {
+  SetTimer(() => Print(text, -timeout), -30)
 }
 
 PrintAppend(text:="", timeout:=4000) {
