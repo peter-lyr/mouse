@@ -14,20 +14,20 @@ NavigateForward(j) {
   If (j) {
     Return "NavigateForward"
   }
-  If (WinActive("ahk_exe explorer.exe")) {
-    Send("!{Right}")
-  } Else If (WinActive("ahk_exe nvim-qt.exe")) {
+  If (WinActive("ahk_exe nvim-qt.exe")) {
     Send("^i")
+    Return
   }
+  Send("!{Right}")
 }
 
 NavigateBackward(j) {
   If (j) {
     Return "NavigateBackward"
   }
-  If (WinActive("ahk_exe explorer.exe")) {
-    Send("!{Left}")
-  } Else If (WinActive("ahk_exe nvim-qt.exe")) {
+  If (WinActive("ahk_exe nvim-qt.exe")) {
     Send("^o")
+    Return
   }
+  Send("!{Left}")
 }
