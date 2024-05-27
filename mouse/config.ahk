@@ -7,6 +7,8 @@ max_wheel_counts := 6
 max_circles := 6
 max_directions := 8
 
+draw_circle_en := 0
+
 circle_min_transparent := 16
 circle_max_transparent := 36
 

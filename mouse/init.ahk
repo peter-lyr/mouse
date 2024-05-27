@@ -129,6 +129,9 @@ UpdateRbuttonPressPos2() {
 }
 
 DrawCircleAtRbuttonPressPos1() {
+  If (Not draw_circle_en) {
+    Return
+  }
   Global circle
   If (Not IsSet(circle)) {
     Return
@@ -267,6 +270,9 @@ LButtonUp() {
 }
 
 HideCircle() {
+  If (Not draw_circle_en) {
+    Return
+  }
   Global circle
   If (Not IsSet(circle)) {
     Return
@@ -275,6 +281,9 @@ HideCircle() {
 }
 
 InitCircle() {
+  If (Not draw_circle_en) {
+    Return
+  }
   Global circle
   circle := Gui()
   circle.Opt(GuiOpt)
