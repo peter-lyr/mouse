@@ -129,6 +129,7 @@ UpdateRbuttonPressPos2() {
 }
 
 DrawCircleAtRbuttonPressPos1() {
+  Global draw_circle_en
   If (Not draw_circle_en) {
     Return
   }
@@ -270,6 +271,7 @@ LButtonUp() {
 }
 
 HideCircle() {
+  Global draw_circle_en
   If (Not draw_circle_en) {
     Return
   }
@@ -280,10 +282,13 @@ HideCircle() {
   WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
 }
 
+DrawCircleEnDis() {
+  Global draw_circle_en
+  draw_circle_en := 1 - draw_circle_en
+  PrintLater("draw_circle_en " . draw_circle_en)
+}
+
 InitCircle() {
-  If (Not draw_circle_en) {
-    Return
-  }
   Global circle
   circle := Gui()
   circle.Opt(GuiOpt)
