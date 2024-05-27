@@ -164,5 +164,44 @@
 ;   Return dpi And dpi Or 0
 ; }
 
+GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption"
+; GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled" ; Disabled 无法捕获消息,需要用到系统的钩子hook,但我不会用
+circle := Gui()
+circle.Opt(GuiOpt)
+circle_radius := 150
+max_circles := 6
+circle_diameter := circle_radius * max_circles * 2
+_show_wh := "W" . circle_diameter . " H" . circle_diameter
+circle.Show(_show_wh . " NA")
+WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
+OnMessage 0x0201, WM_LBUTTONDOWN
+
+WM_LBUTTONDOWN(wParam, lParam, msg, hwnd)
+{
+  X := lParam & 0xFFFF
+  Y := lParam >> 16
+  Control := ""
+  thisGui := GuiFromHwnd(hwnd)
+  thisGuiControl := GuiCtrlFromHwnd(hwnd)
+  if thisGuiControl {
+    thisGui := thisGuiControl.Gui
+    Control := "`n(in control " . thisGuiControl.ClassNN . ")"
+  }
+  ; ToolTip "You left-clicked in Gui window '" thisGui.Title "' at client coordinates " X "x" Y "." Control
+  ToolTip "You left-clicked in Gui window at client coordinates " X "x" Y "." Control
+}
+
+; 钩子
+; MouseProc(nCode, wParam, lParam) {
+;   If (nCode >= 0 && wParam = 0x201) {
+;     MsgBox("你点击了一个被禁用的窗口。")
+;   }
+;   Return DllCall("CallNextHookEx", "ptr", MouseClickHook, "int", nCode, "ptr", wParam, "ptr", lParam)
+; }
+;
+; MouseClickHook := DllCall("SetWindowsHookEx", "int", 14, "ptr", Func("MouseProc").Bind(), "ptr", 0, "uint", DllCall("GetCurrentThreadId"))
+; ; MsgBox("钩子已安装，现在即使窗口被禁用，也可以捕获鼠标点击。")
+
+
 ^!+r::Reload
 ^!+q::ExitApp
