@@ -142,7 +142,7 @@ DrawCircleAtRbuttonPressPos1() {
   If (Not IsSet(circle)) {
     Return
   }
-  circle.Opt(GuiOpt)
+  DrawCircle()
   x := (rbutton_press_x1 - circle_diameter / 2) * 96 / A_ScreenDPI
   y := (rbutton_press_y1 - circle_diameter / 2) * 96 / A_ScreenDPI
   circle.Move(x, y, circle_diameter, circle_diameter)
@@ -307,14 +307,8 @@ DrawCircleEnDis() {
   PrintLater("draw_circle_en " . draw_circle_en)
 }
 
-InitCircle() {
+DrawCircle() {
   Global circle
-  circle := Gui()
-  circle.Opt(GuiOpt)
-  _show_wh := "W" . circle_diameter . " H" . circle_diameter
-  circle.Show(_show_wh . " NA")
-  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
-  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
   hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
   DllCall("SetBkMode", "Ptr", hdc, "Int", 1)
   Loop circle_colors.Length {
@@ -339,6 +333,17 @@ InitCircle() {
   DllCall("MoveToEx", "Ptr", hdc, "Int", 0, "Int", _diff_long, "Ptr", 0)
   DllCall("LineTo", "Ptr", hdc, "Int", circle_diameter, "Int", _diff_short)
   DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
+}
+
+InitCircle() {
+  Global circle
+  circle := Gui()
+  circle.Opt(GuiOpt)
+  _show_wh := "W" . circle_diameter . " H" . circle_diameter
+  circle.Show(_show_wh . " NA")
+  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
+  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  DrawCircle()
 }
 
 GetDirection() {
