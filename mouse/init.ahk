@@ -231,7 +231,8 @@ RButtonUp() {
 }
 
 LButtonDown() {
-  If (RButtonIsPressed()) {
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag Or RButtonIsPressed()) {
     HideCircle()
   }
   If (GetRbuttonPressFakeFlag()) {
@@ -833,7 +834,8 @@ WheelUpDo() {
 }
 
 MButtonDown() {
-  If (RButtonIsPressed()) {
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag Or RButtonIsPressed()) {
     HideCircle()
     RButtonMButton()
   }
