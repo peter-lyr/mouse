@@ -373,7 +373,11 @@ UpdateTransparency(d, radius) {
   Global circle_fade_in_ready_flag
   Global circle_real_transparency
   If (d <= radius And circle_fade_in_ready_flag) {
-    circle_real_transparency := Integer(GetTransparency() * d / radius)
+    temp := Integer(GetTransparency() * d / radius)
+    If (temp <= circle_real_transparency) {
+      Return
+    }
+    circle_real_transparency := temp
     WinSetTransparent(circle_real_transparency, "Ahk_id " . circle.Hwnd)
   }
   If (d > radius) {
