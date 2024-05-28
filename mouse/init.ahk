@@ -244,7 +244,9 @@ LButtonDown() {
   }
   SetTimer(LButtonWheelCntReset, 0)
   IncLButtonWheelCnt()
-  Print(GetLButtonWheelCnt(), 500)
+  If (GetLButtonWheelCnt() > 4) {
+    Print(GetLButtonWheelCnt(), 500)
+  }
 }
 
 IncLButtonWheelCnt() {
