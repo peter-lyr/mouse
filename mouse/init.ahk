@@ -45,6 +45,9 @@ RbuttonPressFakeFlag := 0
 
 infos_txt := "infos.txt"
 
+circle_fade_in_ready_flag := 0
+circle_real_transparency := 0
+
 Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
   functions.Push(0)
 }
@@ -141,7 +144,12 @@ DrawCircleAtRbuttonPressPos1() {
   x := (rbutton_press_x1 - circle_diameter / 2) * 96 / A_ScreenDPI
   y := (rbutton_press_y1 - circle_diameter / 2) * 96 / A_ScreenDPI
   circle.Move(x, y, circle_diameter, circle_diameter)
-  WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
+  Global circle_fade_in_ready_flag
+  Global circle_real_transparency
+  circle_fade_in_ready_flag := 1
+  circle_real_transparency := 10
+  ; WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
+  WinSetTransparent(circle_real_transparency, "Ahk_id " . circle.Hwnd)
 }
 
 RButtonPressedWatcher() {
@@ -343,6 +351,19 @@ GetLayer() {
   Return layer
 }
 
+UpdateTransparency(d, radius) {
+  Global circle
+  Global circle_fade_in_ready_flag
+  Global circle_real_transparency
+  If (d <= radius And circle_fade_in_ready_flag) {
+    circle_real_transparency := Integer(GetTransparency() * d / radius)
+    WinSetTransparent(circle_real_transparency, "Ahk_id " . circle.Hwnd)
+  }
+  If (d > radius) {
+    circle_fade_in_ready_flag := 0
+  }
+}
+
 GetPos1StateFromPos2() {
   Global function_index
   Global direction
@@ -354,6 +375,7 @@ GetPos1StateFromPos2() {
   _dx := _x2 - rbutton_press_x1
   _dy := _y2 - rbutton_press_y1
   _c  := Sqrt(_dx ** 2 + _dy ** 2)
+  UpdateTransparency(_c, circle_radius)
   Loop max_circles {
     _index := max_circles - A_index + 1
     _gap := circle_radius * _index
