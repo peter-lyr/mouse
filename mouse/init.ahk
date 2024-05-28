@@ -383,6 +383,10 @@ UpdateTransparency(d, radius) {
   If (d > radius) {
     circle_fade_in_ready_flag := 0
   }
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag) {
+    WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
+  }
 }
 
 ResetPrintInfoEnFlag() {
