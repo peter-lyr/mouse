@@ -213,16 +213,21 @@ RButtonUp() {
   ResetLeftCount()
   ResetMiddleCount()
   LButtonWheelCntReset(1)
+  If (Not LButtonIsPressed()) {
+    HideCircle()
+  }
   If (GetRButtonUpCancelFlag()) {
     SetRButtonUpCancelFlag(0)
     Return
   }
-  HideCircle()
   CallFunction()
   ResetWheelFlag()
 }
 
 LButtonDown() {
+  If (RButtonIsPressed()) {
+    HideCircle()
+  }
   If (GetRbuttonPressFakeFlag()) {
     SetTimer(DisRbuttonPressFakeFlag, -50)
     Return
@@ -268,6 +273,9 @@ LButtonWheelCntReset(force:=0) {
 
 LButtonUp() {
   SetTimer(LButtonWheelCntReset, -300)
+  If (RButtonIsPressed() And lbutton_flag < 2 And mbutton_flag < 2) {
+    DrawCircleAtRbuttonPressPos1()
+  }
 }
 
 HideCircle() {
