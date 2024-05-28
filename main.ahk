@@ -75,6 +75,10 @@ RButton Up:: {
   MButtonDown()
 }
 
+~MButton Up:: {
+  MButtonUp()
+}
+
 RButton & MButton:: {
   RButtonMButton()
 }

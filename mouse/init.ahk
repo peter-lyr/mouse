@@ -273,7 +273,7 @@ LButtonWheelCntReset(force:=0) {
 
 LButtonUp() {
   SetTimer(LButtonWheelCntReset, -300)
-  If (RButtonIsPressed() And lbutton_flag < 2 And mbutton_flag < 2) {
+  If (RButtonIsPressed() And lbutton_flag < 2) {
     DrawCircleAtRbuttonPressPos1()
   }
 }
@@ -771,7 +771,14 @@ WheelUpDo() {
 
 MButtonDown() {
   If (RButtonIsPressed()) {
+    HideCircle()
     RButtonMButton()
+  }
+}
+
+MButtonUp() {
+  If (RButtonIsPressed() And mbutton_flag < 2) {
+    DrawCircleAtRbuttonPressPos1()
   }
 }
 
