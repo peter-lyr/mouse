@@ -143,6 +143,7 @@ DrawCircleAtRbuttonPressPos1() {
     Return
   }
   DrawCircle()
+  circle.Opt(GuiOpt)
   x := (rbutton_press_x1 - circle_diameter / 2) * 96 / A_ScreenDPI
   y := (rbutton_press_y1 - circle_diameter / 2) * 96 / A_ScreenDPI
   circle.Move(x, y, circle_diameter, circle_diameter)
