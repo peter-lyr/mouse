@@ -9,6 +9,9 @@ MouseActionFlag := 1
 
 GetMouseActionFlag() {
   Global MouseActionFlag
+  If (Not IsSet(MouseActionFlag)) {
+    Return 1
+  }
   Return MouseActionFlag
 }
 
@@ -30,6 +33,9 @@ OnlyShowMouseActions() {
 
 ToggleMouseActionFlag() {
   Global MouseActionFlag
+  If (Not IsSet(MouseActionFlag)) {
+    MouseActionFlag := 1
+  }
   MouseActionFlag += 1
   If (MouseActionFlag >= MouseActionFlagMax) {
     MouseActionFlag := 0
@@ -39,7 +45,7 @@ ToggleMouseActionFlag() {
 
 LButtonRButtonDisMouseActionFlag() {
   Global MouseActionFlag
-  If (MouseActionFlag == 1) {
+  If (Not IsSet(MouseActionFlag) Or MouseActionFlag == 1) {
     Return
   }
   While (1) {
