@@ -45,6 +45,11 @@ RbuttonPressFakeFlag := 0
 
 infos_txt := "infos.txt"
 
+circle_fade_in_ready_flag := 0
+circle_real_transparency := 0
+
+print_info_en_flag := 0
+
 Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
   functions.Push(0)
 }
@@ -137,11 +142,12 @@ DrawCircleAtRbuttonPressPos1() {
   If (Not IsSet(circle)) {
     Return
   }
+  DrawCircle()
   circle.Opt(GuiOpt)
   x := (rbutton_press_x1 - circle_diameter / 2) * 96 / A_ScreenDPI
   y := (rbutton_press_y1 - circle_diameter / 2) * 96 / A_ScreenDPI
   circle.Move(x, y, circle_diameter, circle_diameter)
-  WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
+  SetCircleFadeInReadyFlag()
 }
 
 RButtonPressedWatcher() {
@@ -212,17 +218,24 @@ RButtonUp() {
   ResetWheelCount()
   ResetLeftCount()
   ResetMiddleCount()
+  ResetPrintInfoEnFlag()
   LButtonWheelCntReset(1)
+  If (Not LButtonIsPressed()) {
+    HideCircle()
+  }
   If (GetRButtonUpCancelFlag()) {
     SetRButtonUpCancelFlag(0)
     Return
   }
-  HideCircle()
   CallFunction()
   ResetWheelFlag()
 }
 
 LButtonDown() {
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag Or RButtonIsPressed()) {
+    HideCircle()
+  }
   If (GetRbuttonPressFakeFlag()) {
     SetTimer(DisRbuttonPressFakeFlag, -50)
     Return
@@ -233,7 +246,9 @@ LButtonDown() {
   }
   SetTimer(LButtonWheelCntReset, 0)
   IncLButtonWheelCnt()
-  Print(GetLButtonWheelCnt(), 500)
+  If (GetLButtonWheelCnt() > 4) {
+    Print(GetLButtonWheelCnt(), 500)
+  }
 }
 
 IncLButtonWheelCnt() {
@@ -268,6 +283,9 @@ LButtonWheelCntReset(force:=0) {
 
 LButtonUp() {
   SetTimer(LButtonWheelCntReset, -300)
+  If (RButtonIsPressed() And lbutton_flag < 2) {
+    DrawCircleAtRbuttonPressPos1()
+  }
 }
 
 HideCircle() {
@@ -280,6 +298,8 @@ HideCircle() {
     Return
   }
   WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  ResetCircleFadeInReadyFlag()
+  ResetCircleRealTransparency()
 }
 
 DrawCircleEnDis() {
@@ -288,14 +308,8 @@ DrawCircleEnDis() {
   PrintLater("draw_circle_en " . draw_circle_en)
 }
 
-InitCircle() {
+DrawCircle() {
   Global circle
-  circle := Gui()
-  circle.Opt(GuiOpt)
-  _show_wh := "W" . circle_diameter . " H" . circle_diameter
-  circle.Show(_show_wh . " NA")
-  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
-  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
   hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
   DllCall("SetBkMode", "Ptr", hdc, "Int", 1)
   Loop circle_colors.Length {
@@ -322,6 +336,17 @@ InitCircle() {
   DllCall("ReleaseDC", "Ptr", circle.Hwnd, "Ptr", hdc)
 }
 
+InitCircle() {
+  Global circle
+  circle := Gui()
+  circle.Opt(GuiOpt)
+  _show_wh := "W" . circle_diameter . " H" . circle_diameter
+  circle.Show(_show_wh . " NA")
+  WinSetRegion("0-0 " . _show_wh . " E", circle.Hwnd)
+  WinSetTransparent(0, "Ahk_id " . circle.Hwnd)
+  DrawCircle()
+}
+
 GetDirection() {
   Global direction
   If (Not IsSet(direction)) {
@@ -335,6 +360,57 @@ GetLayer() {
   Return layer
 }
 
+SetCircleFadeInReadyFlag() {
+  Global circle_fade_in_ready_flag
+  circle_fade_in_ready_flag := 1
+}
+
+ResetCircleFadeInReadyFlag() {
+  Global circle_fade_in_ready_flag
+  circle_fade_in_ready_flag := 0
+}
+
+ResetCircleRealTransparency() {
+  Global circle_real_transparency
+  circle_real_transparency := 0
+}
+
+UpdateTransparency(d, radius) {
+  Global circle
+  Global circle_fade_in_ready_flag
+  Global circle_real_transparency
+  If (d <= radius And circle_fade_in_ready_flag) {
+    temp := Integer(GetTransparency() * d / radius)
+    If (temp <= circle_real_transparency) {
+      Return
+    }
+    circle_real_transparency := temp
+    WinSetTransparent(circle_real_transparency, "Ahk_id " . circle.Hwnd)
+  }
+  If (d > radius) {
+    circle_fade_in_ready_flag := 0
+  }
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag) {
+    WinSetTransparent(GetTransparency(), "Ahk_id " . circle.Hwnd)
+  }
+}
+
+ResetPrintInfoEnFlag() {
+  Global print_info_en_flag
+  print_info_en_flag := 0
+}
+
+SetPrintInfoEnFlag() {
+  Global print_info_en_flag
+  print_info_en_flag := 1
+}
+
+GetPrintInfoEnFlag() {
+  Global print_info_en_flag
+  Return print_info_en_flag
+}
+
 GetPos1StateFromPos2() {
   Global function_index
   Global direction
@@ -346,6 +422,7 @@ GetPos1StateFromPos2() {
   _dx := _x2 - rbutton_press_x1
   _dy := _y2 - rbutton_press_y1
   _c  := Sqrt(_dx ** 2 + _dy ** 2)
+  UpdateTransparency(_c, circle_radius)
   Loop max_circles {
     _index := max_circles - A_index + 1
     _gap := circle_radius * _index
@@ -460,7 +537,8 @@ GetPos1StateFromPos2() {
     function_index := 0
   }
   direction := _dir
-  If (Not function_index And GetMouseActionFlag() == 1) {
+  If (Not function_index And GetMouseActionFlag() == 1 And (GetPrintInfoEnFlag() Or _c > 10)) {
+    SetPrintInfoEnFlag()
     info := Format(
       "[{:}][{:}][{:}][{:}][{:d}]: [{:d}] (B{:2} T{:2} {:8}) {:U}",
       GetMiddleCount(), GetLeftCount(), GetWheelCount(), layer, dir_index_maps[_dir], index,
@@ -762,8 +840,16 @@ WheelUpDo() {
 }
 
 MButtonDown() {
-  If (RButtonIsPressed()) {
+  Global RbuttonPressFakeFlag
+  If (RbuttonPressFakeFlag Or RButtonIsPressed()) {
+    HideCircle()
     RButtonMButton()
+  }
+}
+
+MButtonUp() {
+  If (RButtonIsPressed() And mbutton_flag < 2) {
+    DrawCircleAtRbuttonPressPos1()
   }
 }
 
