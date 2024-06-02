@@ -1,10 +1,15 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/17 23:55:49 星期五
 
-remote_desktops := [
+remote_desktop_exes := [
   "ahk_exe mstsc.exe",
   "ahk_exe SunloginClient.exe",
   "ahk_exe WindowsSandboxClient.exe",
+]
+
+remote_desktop_titles := [
+  "Windows 沙盒",
+  "Windows Sandbox",
 ]
 
 PrintList := []
@@ -167,7 +172,14 @@ FunctionWrap(param_maps) {
   Return Layerxxx
 }
 
-IsCurWinAndMax(titles, _cid) {
+IsCurWinAndMax(exes, titles) {
+  MouseGetPos , , &_win
+  _cid := WinGetId(_win)
+  for index, exe In exes {
+    If (WinExist(exe) And WinGetId(exe) == _cid And WinGetMinMax(exe) == 1) {
+      Return 1
+    }
+  }
   for index, title In titles {
     If (WinExist(title) And WinGetId(title) == _cid And WinGetMinMax(title) == 1) {
       Return 1
@@ -177,7 +189,5 @@ IsCurWinAndMax(titles, _cid) {
 }
 
 RemoteDesktopActiveOrRButtonPressed() {
-  MouseGetPos , , &_win
-  _cid := WinGetId(_win)
-  Return IsCurWinAndMax(remote_desktops, _cid)
+  Return IsCurWinAndMax(remote_desktop_exes, remote_desktop_titles)
 }
