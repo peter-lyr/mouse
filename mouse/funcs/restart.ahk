@@ -41,11 +41,11 @@ ToggleMouseActionFlag() {
     SetTimer(RButtonPressedWatcherFake, 0)
   }
   If (MouseActionFlag == 0) {
-    Print("鼠标右键没有功能")
+    Print("Right Mouse Has No Function")
   } Else If (MouseActionFlag == 1) {
-    Print("鼠标右键有功能")
+    Print("Right Mouse Has Function")
   } Else If (MouseActionFlag == 2) {
-    Print("鼠标右键没有功能,但能显示每个位置功能")
+    Print("Right Mouse Has No Function, But Can Show")
   }
 }
 

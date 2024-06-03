@@ -187,6 +187,7 @@ RButtonPressedWatcherFake() {
       SetTimer , 0
       Tooltip
       HideCircle()
+      Print("Right Mouse Has Function")
       Return
     }
   }
