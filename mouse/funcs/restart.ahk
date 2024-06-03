@@ -40,7 +40,19 @@ ToggleMouseActionFlag() {
   If (MouseActionFlag >= MouseActionFlagMax) {
     MouseActionFlag := 0
   }
-  Print("MouseActionFlag: " . MouseActionFlag)
+  If (MouseActionFlag == 2) {
+    RButtonDownFake()
+  } Else {
+    HideCircle()
+    SetTimer(RButtonPressedWatcherFake, 0)
+  }
+  If (MouseActionFlag == 0) {
+    Print("Right Mouse Has No Function")
+  } Else If (MouseActionFlag == 1) {
+    Print("Right Mouse Has Function")
+  } Else If (MouseActionFlag == 2) {
+    Print("Right Mouse Has No Function, But Can Show")
+  }
 }
 
 LButtonRButtonDisMouseActionFlag() {
