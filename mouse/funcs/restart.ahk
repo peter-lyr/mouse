@@ -34,7 +34,19 @@ ToggleMouseActionFlag() {
   If (MouseActionFlag >= MouseActionFlagMax) {
     MouseActionFlag := 0
   }
-  Print("MouseActionFlag: " . MouseActionFlag)
+  If (MouseActionFlag == 2) {
+    RButtonDownFake()
+  } Else {
+    HideCircle()
+    SetTimer(RButtonPressedWatcherFake, 0)
+  }
+  If (MouseActionFlag == 0) {
+    Print("鼠标右键没有功能")
+  } Else If (MouseActionFlag == 1) {
+    Print("鼠标右键有功能")
+  } Else If (MouseActionFlag == 2) {
+    Print("鼠标右键没有功能,但能显示每个位置功能")
+  }
 }
 
 LButtonRButtonDisMouseActionFlag() {
