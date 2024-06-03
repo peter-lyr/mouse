@@ -7,6 +7,10 @@ remote_desktop_exes := [
   "ahk_exe WindowsSandboxClient.exe",
 ]
 
+remote_desktop_classes := [
+  "ahk_class TscShellContainerClass", ; mstsc.exe
+]
+
 remote_desktop_titles := [
   "Windows 沙盒",
   "Windows Sandbox",
@@ -172,11 +176,16 @@ FunctionWrap(param_maps) {
   Return Layerxxx
 }
 
-IsCurWinAndMax(exes, titles) {
+IsCurWinAndMax(exes:=[], titles:=[], classes:=[]) {
   MouseGetPos , , &_win
   _cid := WinGetId(_win)
   for index, exe In exes {
     If (WinExist(exe) And WinGetId(exe) == _cid And WinGetMinMax(exe) == 1) {
+      Return 1
+    }
+  }
+  for index, class In classes {
+    If (WinExist(class) And WinGetId(class) == _cid And WinGetMinMax(class) == 1) {
       Return 1
     }
   }
@@ -189,5 +198,5 @@ IsCurWinAndMax(exes, titles) {
 }
 
 RemoteDesktopActiveOrRButtonPressed() {
-  Return IsCurWinAndMax(remote_desktop_exes, remote_desktop_titles)
+  Return IsCurWinAndMax(remote_desktop_exes, remote_desktop_titles, remote_desktop_classes)
 }
