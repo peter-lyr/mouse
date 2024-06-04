@@ -2,50 +2,25 @@
 ; create at 2024/05/23 13:46:15 Thursday
 
 NavigateUp(j) {
-  If (j) {
-    Return "<Alt-Up>"
-  }
-  Send("!{Up}")
+  Return j And "<Alt-Up>" Or Send("!{Up}")
 }
 
 NavigateForward(j) {
-  If (j) {
-    If (WinActive("ahk_exe BCompare.exe")) {
-      Return "<Ctrl-P>"
-    }
-    If (WinActive("ahk_exe nvim-qt.exe")) {
-      Return "<Ctrl-I>"
-    }
-    Return "<Alt-Right>"
-  }
   If (WinActive("ahk_exe BCompare.exe")) {
-    Send("^p")
-    Return
+    Return j And "<Ctrl-P>" Or Send("^p")
   }
   If (WinActive("ahk_exe nvim-qt.exe")) {
-    Send("^i")
-    Return
+    Return j And "<Ctrl-I>" Or Send("^i")
   }
-  Send("!{Right}")
+  Return j And "<Alt-Right>" Or Send("!{Right}")
 }
 
 NavigateBackward(j) {
-  If (j) {
-    If (WinActive("ahk_exe BCompare.exe")) {
-      Return "<Ctrl-N>"
-    }
-    If (WinActive("ahk_exe nvim-qt.exe")) {
-      Return "<Ctrl-O>"
-    }
-    Return "<Alt-Left>"
-  }
   If (WinActive("ahk_exe BCompare.exe")) {
-    Send("^n")
-    Return
+    Return j And "<Ctrl-N>" Or Send("^n")
   }
   If (WinActive("ahk_exe nvim-qt.exe")) {
-    Send("^o")
-    Return
+    Return j And "<Ctrl-O>" Or Send("^o")
   }
-  Send("!{Left}")
+  Return j And "<Alt-Left>" Or Send("!{Left}")
 }
