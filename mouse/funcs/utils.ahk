@@ -197,6 +197,14 @@ IsCurWinAndMax(exes:=[], titles:=[], classes:=[]) {
   Return 0
 }
 
+ActivateWaitSend(win, send_what) {
+  If (WinExist(win)) {
+    WinActivate(win)
+    WinWait(win)
+    Send(send_what)
+  }
+}
+
 RemoteDesktopActiveOrRButtonPressed() {
   Return IsCurWinAndMax(remote_desktop_exes, remote_desktop_titles, remote_desktop_classes)
 }

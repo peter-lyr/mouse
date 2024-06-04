@@ -19,6 +19,8 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\navigate.ahk
 #Include %A_ScriptDir%\mouse\funcs\restart.ahk
 
+#Include %A_ScriptDir%\mouse\funcs\works\cbp_build.ahk
+
 #Include %A_ScriptDir%\mouse\directions\1x1\right.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\right_up.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\right_down.ahk
