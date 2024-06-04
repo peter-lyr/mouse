@@ -2,12 +2,9 @@
 ; create at 2024/06/04 13:41:37 Tuesday
 
 CbpBuild() {
+  _win := WinGetID("")
   ActivateWaitSend("ahk_exe codeblocks.exe", "{Esc}{F7}")
-  SetTimer () => [
-    Send("{Alt Down}{Tab Down}"),
-    Send("{Alt Up}"),
-    Send("{Tab Up}"),
-  ], -200
+  SetTimer () => WinActivate(_win), -200
 }
 
 ~F6:: {
