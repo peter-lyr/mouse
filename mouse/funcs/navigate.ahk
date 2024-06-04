@@ -5,9 +5,7 @@ NavigateUp(j) {
   If (j) {
     Return "<Alt-Up>"
   }
-  If (WinActive("ahk_exe explorer.exe")) {
-    Send("!{Up}")
-  }
+  Send("!{Up}")
 }
 
 NavigateForward(j) {
