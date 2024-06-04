@@ -10,6 +10,6 @@ CbpBuild() {
   ], -200
 }
 
-^!b:: {
+~F6:: {
   CbpBuild()
 }
