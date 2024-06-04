@@ -3,15 +3,15 @@
 
 #Requires AutoHotkey v2.0
 
-^#Enter:: {
-  text := A_Clipboard
-  If Not (FileExist(text)) {
-    Return
-  }
+text := A_Clipboard
+If Not (FileExist(text)) {
+  Tooltip("File Not Exist: " . text)
+  SetTimer(ExitApp, -3000)
+} Else {
   If (WinExist("ahk_class CabinetWClass")) {
     WinActivate("ahk_class CabinetWClass")
   }
-  if Not WinWaitActive("ahk_class CabinetWClass", , 0.02) {
+  If Not WinWaitActive("ahk_class CabinetWClass", , 0.02) {
     Run("explorer.exe")
     WinWaitNotActive("A")
     Sleep 300
@@ -24,7 +24,5 @@
   Send("^v")
   Sleep 300
   Send("{Enter}")
+  ExitApp
 }
-
-^!+r::Reload
-^!+q::ExitApp
