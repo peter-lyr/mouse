@@ -4,6 +4,10 @@
 #Requires AutoHotkey v2.0
 
 ^#Enter:: {
+  text := A_Clipboard
+  If Not (FileExist(text)) {
+    Return
+  }
   If (WinExist("ahk_class CabinetWClass")) {
     WinActivate("ahk_class CabinetWClass")
   }
