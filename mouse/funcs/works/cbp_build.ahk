@@ -3,6 +3,11 @@
 
 CbpBuild() {
   ActivateWaitSend("ahk_exe codeblocks.exe", "{Esc}{F7}")
+  SetTimer () => [
+    Send("{Alt Down}{Tab Down}"),
+    Send("{Alt Up}"),
+    Send("{Tab Up}"),
+  ], -200
 }
 
 ^!b:: {
