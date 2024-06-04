@@ -12,7 +12,17 @@ NavigateUp(j) {
 
 NavigateForward(j) {
   If (j) {
-    Return "NavigateForward"
+    If (WinActive("ahk_exe BCompare.exe")) {
+      Return "<Ctrl-P>"
+    }
+    If (WinActive("ahk_exe nvim-qt.exe")) {
+      Return "<Ctrl-I>"
+    }
+    Return "<Alt-Right>"
+  }
+  If (WinActive("ahk_exe BCompare.exe")) {
+    Send("^p")
+    Return
   }
   If (WinActive("ahk_exe nvim-qt.exe")) {
     Send("^i")
@@ -23,7 +33,17 @@ NavigateForward(j) {
 
 NavigateBackward(j) {
   If (j) {
-    Return "NavigateBackward"
+    If (WinActive("ahk_exe BCompare.exe")) {
+      Return "<Ctrl-N>"
+    }
+    If (WinActive("ahk_exe nvim-qt.exe")) {
+      Return "<Ctrl-O>"
+    }
+    Return "<Alt-Left>"
+  }
+  If (WinActive("ahk_exe BCompare.exe")) {
+    Send("^n")
+    Return
   }
   If (WinActive("ahk_exe nvim-qt.exe")) {
     Send("^o")
