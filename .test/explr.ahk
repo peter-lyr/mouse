@@ -7,6 +7,9 @@ text := A_Clipboard
 If Not (FileExist(text)) {
   Tooltip("File Not Exist: " . text)
   SetTimer(ExitApp, -3000)
+} Else If (InStr(text, "explr")) {
+  Tooltip("Not Allow: " . text)
+  SetTimer(ExitApp, -3000)
 } Else {
   If (WinExist("ahk_class CabinetWClass")) {
     WinActivate("ahk_class CabinetWClass")
