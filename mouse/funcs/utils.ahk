@@ -217,3 +217,28 @@ ActivateWaitMaximizeSend(win, send_what) {
 RemoteDesktopActiveOrRButtonPressed() {
   Return IsCurWinAndMax(remote_desktop_exes, remote_desktop_titles, remote_desktop_classes)
 }
+
+ClickActiveWindow(x, y) {
+  WinGetPos(&_x, &_y, &_w, &_h, "A")
+  CoordMode("Mouse", "Screen")
+  __x := x
+  __y := y
+  If (x < 0) {
+    __x := _w + x
+  }
+  If (y < 0) {
+    __y := _h + y
+  }
+  If (__x < 0) {
+    __x := 0
+  } Else If (__x >= _w) {
+    __x := _w - 1
+  }
+  If (__y < 0) {
+    __y := 0
+  } Else If (__y >= _h) {
+    __y := _h - 1
+  }
+  Click __x, __y
+  CoordMode("Mouse", "Window")
+}
