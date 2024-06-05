@@ -11,7 +11,11 @@ StartAppDcfFolder() {
   Send("^c")
   Send("{Enter}")
   cmd := "cd " . A_ScriptDir . "\mouse\funcs\works\ && search_start_sub_dir.py " . A_Clipboard . " app.dcf"
-  A_Clipboard := CmdRunOutput(cmd)
+  result := CmdRunOutput(cmd)
+  If Not result {
+    Return
+  }
+  A_Clipboard := result
   ClickActiveWindow(10, 10)
   If (Not WinActive("ahk_exe explorer.exe")) {
     Return

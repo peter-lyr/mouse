@@ -11,7 +11,7 @@ import os
 if len(sys.argv) < 3:
     os._exit(1)
 
-root = sys.argv[1]
+root = sys.argv[1].lower()
 if not os.path.exists(root):
     os._exit(2)
 search_file = sys.argv[2].lower()
@@ -21,7 +21,7 @@ result = ""
 for dir, dirs, files in os.walk(root):
     to_break = 0
     for file in files:
-        if search_file == file.lower():
+        if search_file == file.lower() and dir.lower() != root:
             to_break = 1
             print(dir)
             break
