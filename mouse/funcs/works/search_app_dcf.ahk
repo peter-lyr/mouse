@@ -1,7 +1,7 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/06/06 00:14:59 星期四
 
-StartAppDcfFold() {
+StartAppDcfFolder() {
   ClickActiveWindow(10, 10)
   If (Not WinActive("ahk_exe explorer.exe")) {
     Return
@@ -26,7 +26,7 @@ StartAppDcfFold() {
 #HotIf WinExist("ahk_exe explorer.exe")
 
 ~F7:: {
-  StartAppDcfFold()
+  StartAppDcfFolder()
 }
 
 #HotIf
