@@ -9,6 +9,10 @@ CbpBuild() {
   }
 }
 
+#HotIf WinExist("ahk_exe codeblocks.exe")
+
 ~F6:: {
   CbpBuild()
 }
+
+#HotIf
