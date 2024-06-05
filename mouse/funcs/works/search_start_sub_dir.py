@@ -16,8 +16,6 @@ if not os.path.exists(root):
     os._exit(2)
 search_file = sys.argv[2].lower()
 
-result = ""
-
 for dir, dirs, files in os.walk(root):
     to_break = 0
     for file in files:
