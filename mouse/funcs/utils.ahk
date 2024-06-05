@@ -205,6 +205,15 @@ ActivateWaitSend(win, send_what) {
   }
 }
 
+ActivateWaitMaximizeSend(win, send_what) {
+  If (WinExist(win)) {
+    WinActivate(win)
+    WinWait(win)
+    WinMaximize(win)
+    Send(send_what)
+  }
+}
+
 RemoteDesktopActiveOrRButtonPressed() {
   Return IsCurWinAndMax(remote_desktop_exes, remote_desktop_titles, remote_desktop_classes)
 }
