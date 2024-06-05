@@ -9,16 +9,20 @@ max_directions := 8
 
 draw_circle_en := 1
 
+circle_radius := 150
 circle_min_transparent := 16
 circle_max_transparent := 36
 
 winver := 11
-circle_radius := 150
+
 left_margin := 126
+
+If (A_ScreenHeight <= 1080) {
+  circle_radius := 50
+}
 
 If (GetWinVer() == "Windows 10") {
   winver := 10
-  circle_radius := 50
   left_margin := 78
 }
 
