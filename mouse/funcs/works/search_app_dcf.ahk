@@ -2,7 +2,7 @@
 ; create at 2024/06/06 00:14:59 星期四
 
 StartAppDcfFolder() {
-  ClickActiveWindow(10, 10)
+  ClickActiveWindow(25, 25)
   If (Not WinActive("ahk_exe explorer.exe")) {
     Return
   }
@@ -17,7 +17,7 @@ StartAppDcfFolder() {
     Return
   }
   A_Clipboard := result
-  ClickActiveWindow(10, 10)
+  ClickActiveWindow(25, 25)
   If (Not WinActive("ahk_exe explorer.exe")) {
     Return
   }

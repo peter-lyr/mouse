@@ -219,6 +219,7 @@ RemoteDesktopActiveOrRButtonPressed() {
 }
 
 ClickActiveWindow(x, y) {
+  MouseGetPos(&_x0, &_y0)
   WinGetPos(&_x, &_y, &_w, &_h, "A")
   __x := x
   __y := y
@@ -241,4 +242,5 @@ ClickActiveWindow(x, y) {
   CoordMode("Mouse", "Window")
   Click __x, __y
   CoordMode("Mouse", "Screen")
+  MouseMove(_x0, _y0)
 }
