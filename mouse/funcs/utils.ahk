@@ -244,3 +244,18 @@ ClickActiveWindow(x, y) {
   CoordMode("Mouse", "Screen")
   MouseMove(_x0, _y0)
 }
+
+; MsgBox KeyWaitAny()
+;
+; ; 再来一遍, 但不阻止按键.
+; MsgBox KeyWaitAny("V")
+
+KeyWaitAny(Options:="") {
+    ih := InputHook(Options)
+    if !InStr(Options, "V")
+        ih.VisibleNonText := false
+    ih.KeyOpt("{All}", "E") ; 结束
+    ih.Start()
+    ih.Wait()
+    return ih.EndKey ; 返回按键名称
+}

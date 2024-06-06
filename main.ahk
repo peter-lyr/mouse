@@ -11,6 +11,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\utils.ahk
 #Include %A_ScriptDir%\mouse\config.ahk
 #Include %A_ScriptDir%\mouse\init.ahk
+#Include %A_ScriptDir%\mouse\menu.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\move_window.ahk
 #Include %A_ScriptDir%\mouse\funcs\resize_window.ahk
@@ -102,3 +103,7 @@ InitCircle()
 }
 
 #HotIf
+
+!;:: {
+  MyMenu()
+}
