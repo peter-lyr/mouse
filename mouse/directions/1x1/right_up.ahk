@@ -36,7 +36,8 @@ A(1, 1, 1, 3, d, [
 ])
 
 A(1, 1, 1, 4, d, [
-  "U", W("SoundBeep(523Hz, 800ms)", () => SoundBeep(523, 800)),
+  "U", W("SoundBeep(100Hz, 200ms)", () => SoundBeep(100, 200)),
+  "D", W("SoundBeep(100Hz, 800ms)", () => SoundBeep(100, 800)),
   ; "D", W("SoundPlay", () => SoundPlay("C:\Users\depei_liu\DEPEI\Repos\2024s\w\d\bin\拽犯法么（硬曲热播）.mp3")),
 ])
 
