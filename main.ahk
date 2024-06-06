@@ -37,6 +37,10 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x2x2-shift.ahk
 #Include %A_ScriptDir%\mouse\directions\1x2x3-ctrl-shift.ahk
 
+; ==============
+; 自定义全局鼠标
+; ==============
+
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag()
 
 RButton:: {
@@ -104,6 +108,14 @@ InitCircle()
 
 #HotIf
 
+; ==========
+; 自定义菜单
+; ==========
+
+#HotIf Menus.Count
+
 !;:: {
   MyMenu()
 }
+
+#HotIf

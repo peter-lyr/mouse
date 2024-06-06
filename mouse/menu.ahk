@@ -4,9 +4,9 @@
 Menus := Map()
 
 Menus.Set(
-  "k", WinMaximizeRestoreA,
-  ";", TransparentToggleA,
-  "l", TopMostToggleA,
+  ; "k", WinMaximizeRestoreA,
+  ; ";", TransparentToggleA,
+  ; "l", TopMostToggleA,
 )
 
 ShowItems() {
