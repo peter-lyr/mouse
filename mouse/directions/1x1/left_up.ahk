@@ -10,3 +10,7 @@ A(1, 1, 1, 1, d, [
   "U", NavigateForward,
   "D", NavigateBackward,
 ])
+
+A(1, 1, 1, 2, d, [
+  "R", W("StartAppDcfFolder", StartAppDcfFolder),
+])
