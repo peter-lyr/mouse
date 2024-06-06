@@ -6,7 +6,7 @@ StartAppDcfFolder() {
   If (Not WinActive("ahk_exe explorer.exe")) {
     Return
   }
-  Send("^l")
+  Send("!d")
   Sleep 200
   Send("^c")
   Sleep 100
@@ -22,7 +22,7 @@ StartAppDcfFolder() {
     Return
   }
   Sleep 200
-  Send("^l")
+  Send("!d")
   Sleep 200
   Send("^v")
   Sleep 10
