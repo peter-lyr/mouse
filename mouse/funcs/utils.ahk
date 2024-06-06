@@ -251,11 +251,12 @@ ClickActiveWindow(x, y) {
 ; MsgBox KeyWaitAny("V")
 
 KeyWaitAny(Options:="") {
-    ih := InputHook(Options)
-    if !InStr(Options, "V")
-        ih.VisibleNonText := false
-    ih.KeyOpt("{All}", "E") ; 结束
-    ih.Start()
-    ih.Wait()
-    return ih.EndKey ; 返回按键名称
+  _ih := InputHook(Options)
+  if !InStr(Options, "V") {
+    _ih.VisibleNonText := false
+  }
+  _ih.KeyOpt("{All}", "E") ; 结束
+  _ih.Start()
+  _ih.Wait()
+  return _ih.EndKey ; 返回按键名称
 }
