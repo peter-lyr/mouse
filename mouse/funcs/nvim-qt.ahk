@@ -6,12 +6,16 @@ ActivateNvimQtExe() {
   ;   Send("{Ctrl Down}{Alt Down}{Home}")
   ;   Send("{Ctrl Down}{Alt Up}")
   ; }
-  WinActivate("ahk_exe nvim-qt.exe")
+  If WinExist("ahk_exe nvim-qt.exe") {
+    WinActivate("ahk_exe nvim-qt.exe")
+  }
 }
 
 ActivateMstscExe() {
-  Loop 6 {
-    WinActivate("ahk_exe mstsc.exe")
+  If WinExist("ahk_exe mstsc.exe") {
+    Loop 6 {
+      WinActivate("ahk_exe mstsc.exe")
+    }
   }
 }
 
