@@ -220,7 +220,6 @@ RemoteDesktopActiveOrRButtonPressed() {
 
 ClickActiveWindow(x, y) {
   WinGetPos(&_x, &_y, &_w, &_h, "A")
-  CoordMode("Mouse", "Screen")
   __x := x
   __y := y
   If (x < 0) {
@@ -239,6 +238,7 @@ ClickActiveWindow(x, y) {
   } Else If (__y >= _h) {
     __y := _h - 1
   }
-  Click __x, __y
   CoordMode("Mouse", "Window")
+  Click __x, __y
+  CoordMode("Mouse", "Screen")
 }
