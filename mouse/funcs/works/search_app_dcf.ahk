@@ -3,14 +3,17 @@
 
 StartAppDcfFolder() {
   ClickActiveWindow(25, 25)
-  If (Not WinActive("ahk_exe explorer.exe")) {
-    Return
+  A_Clipboard := ""
+  While 1 {
+    Send("!d")
+    Sleep 10
+    Send("^c")
+    If (A_Clipboard) {
+      Sleep 10
+      Send("{Esc}")
+      Break
+    }
   }
-  Send("!d")
-  Sleep 200
-  Send("^c")
-  Sleep 100
-  Send("{Enter}")
   cmd := "cd " . A_ScriptDir . "\mouse\funcs\works\ && search_start_sub_dir.py " . A_Clipboard . " app.dcf"
   result := CmdRunOutput(cmd)
   If Not result {
@@ -18,15 +21,15 @@ StartAppDcfFolder() {
   }
   A_Clipboard := result
   ClickActiveWindow(25, 25)
-  If (Not WinActive("ahk_exe explorer.exe")) {
-    Return
-  }
-  Sleep 200
+  WinWaitActive("ahk_exe explorer.exe")
+  Sleep 100
   Send("!d")
-  Sleep 200
+  Sleep 100
   Send("^v")
-  Sleep 10
+  Sleep 200
   Send("{Enter}")
+  Send("!d")
+  Send("{Esc}")
 }
 
 #HotIf WinExist("ahk_exe explorer.exe")
