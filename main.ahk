@@ -18,6 +18,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\copy.ahk
 #Include %A_ScriptDir%\mouse\funcs\navigate.ahk
 #Include %A_ScriptDir%\mouse\funcs\restart.ahk
+#Include %A_ScriptDir%\mouse\funcs\nvim-qt.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\works\cbp_build.ahk
 #Include %A_ScriptDir%\mouse\funcs\works\search_app_dcf.ahk
