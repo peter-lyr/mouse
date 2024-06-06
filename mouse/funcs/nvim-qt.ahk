@@ -10,13 +10,23 @@ ActivateNvimQtExe() {
 }
 
 ActivateMstscExe() {
-  WinActivate("ahk_exe mstsc.exe")
+  Loop 6 {
+    WinActivate("ahk_exe mstsc.exe")
+  }
 }
+
+#HotIf WinActive("ahk_exe WXWork.exe")
+
+!l:: {
+  ActivateNvimQtExe()
+}
+
+#HotIf
 
 ^!Home:: {
   ActivateNvimQtExe()
 }
 
-^!End:: {
+^!l:: {
   ActivateMstscExe()
 }
