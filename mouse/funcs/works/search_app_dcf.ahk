@@ -9,6 +9,7 @@ StartAppDcfFolder() {
   Send("^l")
   Sleep 200
   Send("^c")
+  Sleep 100
   Send("{Enter}")
   cmd := "cd " . A_ScriptDir . "\mouse\funcs\works\ && search_start_sub_dir.py " . A_Clipboard . " app.dcf"
   result := CmdRunOutput(cmd)
@@ -20,10 +21,11 @@ StartAppDcfFolder() {
   If (Not WinActive("ahk_exe explorer.exe")) {
     Return
   }
+  Sleep 200
   Send("^l")
   Sleep 200
   Send("^v")
-  Sleep 200
+  Sleep 10
   Send("{Enter}")
 }
 
