@@ -71,6 +71,8 @@ MoveWindow() {
         _n_w := wa_w
       }
     }
-    WinMove(_n_x, _n_y, _n_w, _n_h, mw)
+    If (_t_x != _n_x Or _t_y != _n_y) {
+      WinMove(_n_x, _n_y, _n_w, _n_h, mw)
+    }
   }
 }

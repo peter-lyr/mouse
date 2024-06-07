@@ -57,7 +57,9 @@ ResizeWindow() {
     _n_y := _c_y + rw_y2 * _d_y
     _n_w := _c_w - rw_x2 * _d_left * _d_width
     _n_h := _c_h - rw_y2 * _d_up  * _d_height
-    WinMove(_n_x, _n_y, _n_w, _n_h, rw)
+    If (_c_x != _n_x Or _c_y != _n_y Or _c_w != _n_w Or _c_h != _n_h) {
+      WinMove(_n_x, _n_y, _n_w, _n_h, rw)
+    }
     rw_x1 := (rw_x2 + rw_x1)
     rw_y1 := (rw_y2 + rw_y1)
   }
