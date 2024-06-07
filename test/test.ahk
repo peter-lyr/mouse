@@ -202,19 +202,21 @@
 ; MouseClickHook := DllCall("SetWindowsHookEx", "int", 14, "ptr", Func("MouseProc").Bind(), "ptr", 0, "uint", DllCall("GetCurrentThreadId"))
 ; ; MsgBox("钩子已安装，现在即使窗口被禁用，也可以捕获鼠标点击。")
 
-sss() {
-  ; WinGetPos(&x, &y, &w, &h, "ahk_exe WindowsSandboxClient.exe")
-  ; Tooltip(WinGetMinMax("ahk_exe WindowsSandboxClient.exe") . "," . x . "," . y . ", " . w . "," . h)
+; sss() {
+;   ; WinGetPos(&x, &y, &w, &h, "ahk_exe WindowsSandboxClient.exe")
+;   ; Tooltip(WinGetMinMax("ahk_exe WindowsSandboxClient.exe") . "," . x . "," . y . ", " . w . "," . h)
+;
+;   ; WinGetPos(&x, &y, &w, &h, "A")
+;   ; Tooltip(WinGetMinMax("A") . "," . x . "," . y . ", " . w . "," . h)
+;
+;   MouseGetPos , , &win
+;   WinGetPos(&x, &y, &w, &h,win)
+;   Tooltip(WinGetMinMax(win) . ". " . WinGetTitle(win) . ":" . x . "," . y . ", " . w . "," . h)
+; }
+;
+; SetTimer sss, 100
 
-  ; WinGetPos(&x, &y, &w, &h, "A")
-  ; Tooltip(WinGetMinMax("A") . "," . x . "," . y . ", " . w . "," . h)
+Send("#r")
 
-  MouseGetPos , , &win
-  WinGetPos(&x, &y, &w, &h,win)
-  Tooltip(WinGetMinMax(win) . ". " . WinGetTitle(win) . ":" . x . "," . y . ", " . w . "," . h)
-}
-
-SetTimer sss, 100
-
-^!+r::Reload
-^!+q::ExitApp
+; ^!+r::Reload
+; ^!+q::ExitApp
