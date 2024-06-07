@@ -10,8 +10,8 @@ max_directions := 8
 draw_circle_en := 1
 
 circle_radius := 150
-circle_min_transparent := 16
-circle_max_transparent := 36
+circle_min_transparent := 86
+circle_max_transparent := 136
 
 winver := 11
 
