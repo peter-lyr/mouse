@@ -4,11 +4,11 @@
 d := "left"
 
 A(1, 1, 1, 1, d, [
-  "R", W("<Alt-Tab>", S("!{Tab}")),
+  "R", W("<Ctrl-Alt-Tab>", S("^!{Tab}")),
 ])
 
 A(1, 1, 2, 1, d, [
-  "R", W("<Alt-Shift-Tab>", S("!+{Tab}")),
+  "R", W("<Win-Tab>", S("#{Tab}")),
 ])
 
 A(1, 1, 1, 2, d, [
@@ -21,10 +21,10 @@ A(1, 1, 2, 2, d, [
   "R", W("<Ctrl-Shift-Tab>", S("^+{Tab}")),
 ])
 
-A(1, 1, 1, 3, d, [
-  "R", W("<Ctrl-Alt-Tab>", S("^!{Tab}")),
+A(1, 1, 1, 2, d, [
+  "R", W("<Alt-Tab>", S("!{Tab}")),
 ])
 
 A(1, 1, 2, 3, d, [
-  "R", W("<Win-Tab>", S("#{Tab}")),
+  "R", W("<Alt-Shift-Tab>", S("!+{Tab}")),
 ])
