@@ -683,6 +683,38 @@ S(t) {
   Return _T
 }
 
+GetRange(count) {
+  _res := []
+  Loop count {
+    _res.Push(A_Index)
+  }
+  Return _res
+}
+
+AA(dir, arr, middle_counts:=[], left_counts:=[], wheel_counts:=[], layers:=[]) {
+  If (Not middle_counts Or Type(middle_counts) != "Array") {
+    middle_counts := GetRange(max_middle_counts)
+  }
+  If (Not left_counts Or Type(left_counts) != "Array") {
+    left_counts := GetRange(max_left_counts)
+  }
+  If (Not wheel_counts Or Type(wheel_counts) != "Array") {
+    wheel_counts := GetRange(max_wheel_counts)
+  }
+  If (Not layers Or Type(layers) != "Array") {
+    layers := GetRange(max_circles)
+  }
+  For _, i In middle_counts {
+    For _, j In left_counts {
+      For _, k In wheel_counts {
+        For _, l In layers {
+          A(i, j, k, l, dir, arr)
+        }
+      }
+    }
+  }
+}
+
 A(middle_count, left_count, wheel_count, layer, dir, arr) {
   GetBetween(&middle_count, 1, max_middle_counts)
   GetBetween(&left_count, 1, max_left_counts)
