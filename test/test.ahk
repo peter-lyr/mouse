@@ -246,5 +246,26 @@
 
 ; Send("#r")
 
+; ExplorerOpen(dir) {
+;   If (Not DirExist(dir)) {
+;     MsgBox(">>>>>>>>>" . dir)
+;     Return
+;   }
+;   If (WinExist("ahk_class CabinetWClass")) {
+;     WinActivate("ahk_class CabinetWClass")
+;     Sleep(100)
+;     Send("!d")
+;     A_Clipboard := dir
+;     Sleep(200)
+;     Send("^v")
+;     Sleep(200)
+;     Send("{Enter}")
+;   } Else {
+;     Run(dir)
+;   }
+; }
+
+; ExplorerOpen("c:\Users\llydr\DEPEI\Repos\mouse")
+
 ; ^!+r::Reload
 ; ^!+q::ExitApp

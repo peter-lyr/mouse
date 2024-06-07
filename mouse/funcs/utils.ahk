@@ -260,3 +260,21 @@ KeyWaitAny(Options:="") {
   _ih.Wait()
   return _ih.EndKey ; 返回按键名称
 }
+
+ExplorerOpen(dir) {
+  If (Not DirExist(dir)) {
+    Return
+  }
+  If (WinExist("ahk_class CabinetWClass")) {
+    WinActivate("ahk_class CabinetWClass")
+    Sleep(100)
+    Send("!d")
+    A_Clipboard := dir
+    Sleep(200)
+    Send("^v")
+    Sleep(200)
+    Send("{Enter}")
+  } Else {
+    Run(dir)
+  }
+}

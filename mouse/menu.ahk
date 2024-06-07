@@ -22,8 +22,16 @@ G(items*) {
 MyMenu() {
   G(
     "space", ["<Win-R>", () => Send("#r")],
-    "m", ["More", () => G(
-      "space", ["<win-r>", () => Send("#r")],
+    "o", ["Open", () => G(
+      "s", ["Startup", () => G(
+        "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
+        "c", ["A_StartupCommon", () => ExplorerOpen(A_StartupCommon)],
+      )],
+      "c", ["A_ComSpec", () => Run(A_ComSpec)],
+      "d", ["A_Desktop", () => ExplorerOpen(A_Desktop)],
+      "p", ["A_ProgramFiles", () => ExplorerOpen(A_ProgramFiles)],
+      "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
+      "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
     )],
   )
 }
