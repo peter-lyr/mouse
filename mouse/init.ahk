@@ -425,7 +425,7 @@ GetPos1StateFromPos2() {
   _c  := Sqrt(_dx ** 2 + _dy ** 2)
   UpdateTransparency(_c, circle_radius)
   Loop max_circles {
-    _index := max_circles - A_index + 1
+    _index := max_circles - A_Index + 1
     _gap := circle_radius * _index
     If (_c > _gap) {
       layer := _index
@@ -436,7 +436,7 @@ GetPos1StateFromPos2() {
   _max := _gap * 0.9238795325 ;sin(67.5°) == 0.9238795325
   If (_c > _gap) {
     loop MonitorGetCount() {
-      MonitorGet(A_index, &_l, &_t, &_r, &_b)
+      MonitorGet(A_Index, &_l, &_t, &_r, &_b)
       If (_x2 >= _l And _x2 <= _r And _y2 >= _t And _y2 <= _b) {
         _r := _r - 1
         _b := _b - 1
@@ -506,11 +506,11 @@ GetPos1StateFromPos2() {
       If (GetMouseActionFlag() == 2) {
         tobreak := 0
         Loop max_middle_counts {
-          i := A_index
+          i := A_Index
           Loop max_left_counts {
-            j := A_index
+            j := A_Index
             Loop max_wheel_counts {
-              k := A_index
+              k := A_Index
               index := max_lefts_wheels_circles_directions * (i - 1) +
                        max_wheels_circles_directions * (j - 1) +
                        max_circles_directions * (k - 1) +
