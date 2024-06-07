@@ -112,10 +112,21 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-#HotIf Menus.Count
+#HotIf Menus.Count And WinActive("ahk_exe SearchHost.exe")
 
-!;:: {
-  MyMenu()
+^Escape:: {
+  ; _a := WinGetTitle("A")
+  ; _c := WinGetClass("A")
+  ; _p := WinGetProcessName("A")
+  ; If (WinActive("ahk_exe SearchHost.exe")) {
+  ; If (WinActive("ahk_class Windows.UI.Core.CoreWindow")) {
+  ; If (WinActive("搜索")) {
+    MyMenu()
+  ;   Print("+++" . _a . ", " . _c . ", " . _p)
+  ; } Else {
+  ;   Send("^{Escape}")
+  ;   Print(">>>" . _a . ", " . _c . ", " . _p)
+  ; }
 }
 
 #HotIf
