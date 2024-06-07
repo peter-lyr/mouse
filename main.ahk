@@ -112,9 +112,9 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-#HotIf Menus.Count And WinActive("ahk_exe SearchHost.exe")
+#HotIf Menus.Count
 
-^Escape:: {
+LCtrl & RShift:: {
   MyMenu()
 }
 
