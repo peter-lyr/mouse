@@ -19,6 +19,19 @@ G(items*) {
   }
 }
 
+ExplorerSelOpen(dirs) {
+  temp := []
+  Loop 26 {
+    dir := dirs[A_Index]
+    temp.Push(Chr(96+A_Index))
+    temp.Push([dir, () => ExplorerOpen(dir)])
+    If (A_Index == dirs.Length) {
+      Break
+    }
+  }
+  G(temp*)
+}
+
 MyMenu() {
   G(
     "space", ["<Win-R>", () => Send("#r")],
@@ -32,6 +45,8 @@ MyMenu() {
       "p", ["A_ProgramFiles", () => ExplorerOpen(A_ProgramFiles)],
       "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
+      "a", ["______", () => ExplorerSelOpen([A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse"])
+      ],
     )],
   )
 }
