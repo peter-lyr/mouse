@@ -112,10 +112,6 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-#HotIf Menus.Count
-
 LCtrl & RShift:: {
   MyMenu()
 }
-
-#HotIf

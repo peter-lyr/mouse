@@ -216,7 +216,35 @@
 ;
 ; SetTimer sss, 100
 
-Send("#r")
+; a := [
+;   "a", "aaaaaaaaa",
+;   "x", "xxxxxxxxx",
+; ]
+
+; cc(ww*) {
+;   ; MsgBox(Join("`n", ww*))
+;   xxx := Map()
+;   xxx.Set(ww*)
+;   www := ""
+;   for k, v in xxx {
+;     www .= k . ": " . v . "`n"
+;   }
+;   MsgBox(www)
+; }
+;
+; cc(
+;   "a", "aaaaaaaaa",
+;   "x", "xxxxxxxxx",
+; )
+
+; Join(sep, params*) {
+;     for index,param in params
+;         str .= param . sep
+;     return SubStr(str, 1, -StrLen(sep))
+; }
+; MsgBox Join("`n", "one", "two", "three")
+
+; Send("#r")
 
 ; ^!+r::Reload
 ; ^!+q::ExitApp
