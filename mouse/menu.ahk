@@ -11,7 +11,7 @@ G(items*) {
     msg .= key . ": " . val[1] . "`n"
   }
   msg := Strip(msg)
-  Tooltip(msg, A_ScreenWidth / 2, A_ScreenHeight / 4)
+  SetTimer(() => Tooltip(msg, A_ScreenWidth / 2, A_ScreenHeight / 4), -10)
   key := StrLower(KeyWaitAny())
   If menus.Has(key) {
     v := menus[key][1]
