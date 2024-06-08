@@ -27,11 +27,6 @@ ActivateMstscExe() {
 
 #HotIf
 
-; see menu.ahk
-; ^!Home:: {
-;   ActivateNvimQtExe()
-; }
-
 ^!l:: {
   ActivateMstscExe()
 }
