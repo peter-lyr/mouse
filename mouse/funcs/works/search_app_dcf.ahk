@@ -2,7 +2,6 @@
 ; create at 2024/06/06 00:14:59 星期四
 
 StartAppDcfFolder() {
-  ClickActiveWindow(25, 25)
   A_Clipboard := ""
   While 1 {
     Send("!d")
@@ -14,13 +13,13 @@ StartAppDcfFolder() {
       Break
     }
   }
-  cmd := "cd " . A_ScriptDir . "\mouse\funcs\works\ && search_start_sub_dir.py " . A_Clipboard . " app.dcf"
+  cmd := A_ScriptDir . "\mouse\funcs\works\search_start_sub_dir.py " . A_Clipboard . " app.dcf"
   result := CmdRunOutput(cmd)
   If Not result {
     Return
   }
   A_Clipboard := result
-  ClickActiveWindow(25, 25)
+  WinActivate("ahk_exe explorer.exe")
   WinWaitActive("ahk_exe explorer.exe")
   Sleep 100
   Send("!d")
@@ -28,8 +27,10 @@ StartAppDcfFolder() {
   Send("^v")
   Sleep 200
   Send("{Enter}")
+  Sleep 200
   Send("!d")
-  Send("{Esc}")
+  Sleep 200
+  Send("{Enter}")
 }
 
 #HotIf WinExist("ahk_exe explorer.exe")

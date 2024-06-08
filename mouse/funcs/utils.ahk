@@ -263,10 +263,12 @@ KeyWaitAny(Options:="") {
 
 ExplorerOpen(dir) {
   If (Not DirExist(dir)) {
+    MsgBox("not exist: " . dir)
     Return
   }
   If (WinExist("ahk_class CabinetWClass")) {
     WinActivate("ahk_class CabinetWClass")
+    WinWaitActive("ahk_class CabinetWClass")
     Sleep(100)
     Send("!d")
     A_Clipboard := dir
@@ -277,4 +279,54 @@ ExplorerOpen(dir) {
   } Else {
     Run(dir)
   }
+}
+
+; mouse\funcs\.lowerandsort.py
+
+DirExistArr(arr) {
+  If (Not arr) {
+    Return []
+  }
+  new_arr := []
+  For _, r in arr {
+    r := Strip(r)
+    If (DirExist(r)) {
+      new_arr.Push(r)
+    }
+  }
+  Return new_arr
+}
+
+StripArr(arr) {
+  If (Not arr) {
+    Return []
+  }
+  new_arr := []
+  For _, r in arr {
+    new_arr.Push(Strip(r))
+  }
+  Return new_arr
+}
+
+SystemCd(file) {
+  Return 
+}
+
+LowerUniqSort(arr) {
+  params := ""
+  For _, str in arr {
+    params .= str . ","
+  }
+  cmd := A_ScriptDir . "\mouse\funcs\.loweruniqsort.py " . params
+  result := StrSplit(Strip(CmdRunOutput(cmd)), "`n")
+  Return StripArr(result)
+}
+
+ReadLines(file) {
+  result := StrSplit(Strip(FileRead(file)), "`n")
+  Return StripArr(result)
+}
+
+ReadLinesLowerUniqSort(file) {
+  Return LowerUniqSort(ReadLines(file))
 }

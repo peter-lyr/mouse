@@ -1,6 +1,8 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/06/07 01:13:46 星期五
 
+MyDirsTxt := A_ScriptDir . "\mydirs.txt"
+
 G(items*) {
   menus := Map()
   menus.Set(items*)
@@ -49,6 +51,17 @@ ExplorerSelOpen(dirs) {
   G(temp*)
 }
 
+ExplorerSelMyAdd() {
+  If (DirExist(A_Clipboard)) {
+    FileAppend(A_Clipboard . "`n", MyDirsTxt)
+    SetTimer(() => Print("MyDirsTxt Added: " . A_Clipboard), -300)
+  }
+}
+
+ExplorerSelMyOpen() {
+  ExplorerSelOpen(DirExistArr(ReadLinesLowerUniqSort(MyDirsTxt)))
+}
+
 MyMenu() {
   G(
     "space", ["<Win-R>", () => Send("#r")],
@@ -62,23 +75,8 @@ MyMenu() {
       "p", ["A_ProgramFiles", () => ExplorerOpen(A_ProgramFiles)],
       "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
-      "a", ["______", () => ExplorerSelOpen([
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-        A_ProgramFiles, A_Startup, A_StartupCommon, "c:\Users\llydr\DEPEI\Repos\mouse",
-      ])
-      ],
+      "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
+      "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
   )
 }
