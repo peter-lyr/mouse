@@ -4,6 +4,8 @@
 ActivateNvimQtExe() {
   If WinExist("ahk_exe nvim-qt.exe") {
     WinActivate("ahk_exe nvim-qt.exe")
+  } Else {
+    Run("nvim-qt.exe")
   }
 }
 
