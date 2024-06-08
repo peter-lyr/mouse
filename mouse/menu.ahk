@@ -64,6 +64,8 @@ ExplorerSelMyOpen() {
 
 MyMenu() {
   G(
+    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
+    "lcontrol", ["ActivateMstscExe", ActivateMstscExe],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
