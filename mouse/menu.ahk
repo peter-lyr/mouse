@@ -71,6 +71,8 @@ MyMenu() {
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
         "c", ["A_StartupCommon", () => ExplorerOpen(A_StartupCommon)],
+        "m", ["A_StartMenu", () => ExplorerOpen(A_StartMenu)],
+        "o", ["A_StartMenuCommon", () => ExplorerOpen(A_StartMenuCommon)],
       )],
       "c", ["cmd", () => G(
         "b", ["bash", () => Run("bash.exe")],
@@ -78,8 +80,17 @@ MyMenu() {
         "i", ["ipython", () => Run("ipython.exe")],
         "p", ["powershell", () => Run("powershell.exe")],
       )],
-      "d", ["A_Desktop", () => ExplorerOpen(A_Desktop)],
-      "p", ["A_ProgramFiles", () => ExplorerOpen(A_ProgramFiles)],
+      "d", ["desktop/document", () => G(
+        "c", ["A_DesktopCommon", () => ExplorerOpen(A_DesktopCommon)],
+        "d", ["A_Desktop", () => ExplorerOpen(A_Desktop)],
+        "m", ["A_MyDocuments", () => ExplorerOpen(A_MyDocuments)],
+      )],
+      "p", ["program", () => G(
+        "e", ["Program Files (x86)", () => ExplorerOpen(A_ProgramFiles)],
+        "f", ["Program Files (x64)", () => ExplorerOpen("C:\Program Files")],
+        "s", ["A_Programs", () => ExplorerOpen(A_Programs)],
+        "c", ["A_ProgramsCommon", () => ExplorerOpen(A_ProgramsCommon)],
+      )],
       "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
