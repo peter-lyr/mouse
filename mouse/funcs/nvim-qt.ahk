@@ -2,10 +2,6 @@
 ; create at 2024/06/06 20:46:22 星期四
 
 ActivateNvimQtExe() {
-  ; If (WinActive("ahk_exe mstsc.exe")) {
-  ;   Send("{Ctrl Down}{Alt Down}{Home}")
-  ;   Send("{Ctrl Down}{Alt Up}")
-  ; }
   If WinExist("ahk_exe nvim-qt.exe") {
     WinActivate("ahk_exe nvim-qt.exe")
   }
