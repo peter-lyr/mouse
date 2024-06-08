@@ -72,7 +72,12 @@ MyMenu() {
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
         "c", ["A_StartupCommon", () => ExplorerOpen(A_StartupCommon)],
       )],
-      "c", ["A_ComSpec", () => Run(A_ComSpec)],
+      "c", ["cmd", () => G(
+        "b", ["bash", () => Run("bash.exe")],
+        "c", ["A_ComSpec", () => Run(A_ComSpec)],
+        "i", ["ipython", () => Run("ipython.exe")],
+        "p", ["powershell", () => Run("powershell.exe")],
+      )],
       "d", ["A_Desktop", () => ExplorerOpen(A_Desktop)],
       "p", ["A_ProgramFiles", () => ExplorerOpen(A_ProgramFiles)],
       "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
