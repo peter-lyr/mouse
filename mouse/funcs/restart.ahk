@@ -79,6 +79,12 @@ LButtonRButtonDisMouseActionFlag() {
   ExitApp
 }
 
+^!m:: {
+  Run("taskkill /f /im mouse.exe")
+  Run("main.ahk")
+  ExitApp
+}
+
 #HotIf A_IsCompiled
 ^!q::ExitApp
 #HotIf Not A_IsCompiled
