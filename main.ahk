@@ -114,6 +114,6 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-LCtrl & RShift:: {
+LCtrl & RCtrl:: {
   MyMenu()
 }
