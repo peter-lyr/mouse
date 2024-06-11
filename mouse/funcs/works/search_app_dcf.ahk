@@ -17,9 +17,9 @@ StartAppDcfFolder() {
   ExplorerOpen(CmdRunOutput(cmd))
 }
 
-#HotIf WinExist("ahk_exe explorer.exe")
+#HotIf WinActive("ahk_exe explorer.exe")
 
-~F7:: {
+F7:: {
   StartAppDcfFolder()
 }
 
