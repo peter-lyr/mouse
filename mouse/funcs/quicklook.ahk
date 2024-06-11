@@ -5,6 +5,8 @@ QuickLookWatcher() {
   If (Not WinExist("ahk_exe QuickLook.exe")) {
     Return
   }
+  WinActivate("ahk_exe QuickLook.exe")
+  WinWaitActive("ahk_exe QuickLook.exe")
   WinSetExStyle("+0x40000", "ahk_exe QuickLook.exe")
   ExStyle := WinGetExStyle("ahk_exe QuickLook.exe")
   If (ExStyle & 0x40000) {
@@ -12,4 +14,6 @@ QuickLookWatcher() {
   }
 }
 
-SetTimer(QuickLookWatcher, 1000)
+QuickLook() {
+  SetTimer(QuickLookWatcher, 1000)
+}

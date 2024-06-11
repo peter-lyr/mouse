@@ -95,6 +95,7 @@ MyMenu() {
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
+      "q", ["QuickLook", () => QuickLook()],
     )],
   )
 }
