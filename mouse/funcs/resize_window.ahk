@@ -42,6 +42,7 @@ ResizeWindow() {
   If (WinGetMinMax(rw) == 1) {
     Return
   }
+  WinActivate(rw)
   WinGetPos(&_c_x, &_c_y, &_c_w, &_c_h, rw)
   WinGetPos(&rw_x0, &rw_y0, &rw_w0, &rw_h0, rw)
   _y1 := _c_h * (rw_x1 - _c_x) / _c_w + _c_y

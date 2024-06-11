@@ -80,6 +80,8 @@ MoveWindow() {
     Return
   }
 
+  WinActivate(mw)
+
   WinGetPos(&mw_x0, &mw_y0, &mw_w0, &mw_h0, mw)
   GetWorkAreaXYWH(mw_x1, mw_y1, &wa_x, &wa_y, &wa_w, &wa_h)
 
