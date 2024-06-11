@@ -115,6 +115,6 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-LCtrl & RCtrl:: {
-  MyMenu()
+~LCtrl:: {
+  LCtrlCount()
 }

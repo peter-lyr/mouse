@@ -62,10 +62,29 @@ ExplorerSelMyOpen() {
   ExplorerSelOpen(DirExistArr(ReadLinesLowerUniqSort(MyDirsTxt)))
 }
 
+ResetMenuFlag() {
+  Global menu_flag
+  menu_flag := 0
+}
+
+LCtrlCount() {
+  Global menu_flag
+  If (Not IsSet(menu_flag)) {
+    menu_flag := 0
+  }
+  menu_flag += 1
+  If (menu_flag == 2) {
+    menu_flag := 0
+    MyMenu()
+  } Else {
+    SetTimer(ResetMenuFlag, -300)
+  }
+}
+
 MyMenu() {
   G(
-    "rcontrol", ["ActivateNvimQtExe", ActivateNvimQtExe],
-    "lcontrol", ["ActivateMstscExe", ActivateMstscExe],
+    "n", ["ActivateNvimQtExe", ActivateNvimQtExe],
+    "w", ["ActivateMstscExe", ActivateMstscExe],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
