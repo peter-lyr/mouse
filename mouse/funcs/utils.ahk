@@ -263,7 +263,6 @@ KeyWaitAny(Options:="") {
 
 ExplorerOpen(dir) {
   If (Not DirExist(dir)) {
-    MsgBox("not exist: " . dir)
     Return
   }
   If (WinExist("ahk_class CabinetWClass")) {
