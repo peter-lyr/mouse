@@ -13,6 +13,9 @@ ActivateNvimQtExe() {
 }
 
 ActivateMstscExe() {
+  If WinActive("ahk_class WeWorkWindow") {
+    WinMinimize("ahk_class WeWorkWindow")
+  }
   If WinExist("ahk_exe mstsc.exe") {
     Loop 6 {
       WinActivate("ahk_exe mstsc.exe")
