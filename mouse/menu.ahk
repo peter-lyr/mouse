@@ -24,8 +24,8 @@ G(items*) {
       Run(v)
     }
     Tooltip
-  ; } Else {
-  ;   Print("<" . key . ">")
+  } Else {
+    Print("<" . key . ">", 300)
   }
 }
 
