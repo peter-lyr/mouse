@@ -9,6 +9,7 @@ ActivateWXWorkExe() {
     Send("^!{Home}")
   }
   If (WinExist("ahk_exe WXWork.exe")) {
+    WinActivate("ahk_exe WXWork.exe")
     Send("^!+{F1}")
     If (ii == 0) {
       SetTimer(() => Print("Set ShortCut For WXWork: <Ctrl-Alt-Shift-F1>"), -100)
