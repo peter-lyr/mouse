@@ -84,7 +84,7 @@ LCtrlCount() {
 MyMenu() {
   G(
     "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
-    "w", ["ActivateMstscExe", ActivateMstscExe],
+    "enter", ["ActivateMstscExe", ActivateMstscExe],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
