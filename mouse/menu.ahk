@@ -24,8 +24,8 @@ G(items*) {
       Run(v)
     }
     Tooltip
-  } Else {
-    Print("<" . key . ">")
+  ; } Else {
+  ;   Print("<" . key . ">")
   }
 }
 
@@ -83,7 +83,7 @@ LCtrlCount() {
 
 MyMenu() {
   G(
-    "n", ["ActivateNvimQtExe", ActivateNvimQtExe],
+    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "w", ["ActivateMstscExe", ActivateMstscExe],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
