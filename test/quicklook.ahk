@@ -1,6 +1,8 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/06/11 22:27:36 星期二
 
+; 让QuickLook的任务栏按钮重新出现
+
 QuickLookWatcher() {
   If (Not WinExist("ahk_exe QuickLook.exe")) {
     Return
