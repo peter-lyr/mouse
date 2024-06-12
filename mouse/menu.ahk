@@ -67,7 +67,7 @@ ResetMenuFlag() {
   menu_flag := 0
 }
 
-LCtrlCount() {
+LAltCount() {
   Global menu_flag
   If (Not IsSet(menu_flag)) {
     menu_flag := 0
