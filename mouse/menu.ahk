@@ -83,7 +83,7 @@ LAltCount() {
 
 MyMenu() {
   If (WinExist("ahk_exe QuickLook.exe")) {
-    WinMinimize("ahk_exe QuickLook.exe")
+    WinMoveBottom("ahk_exe QuickLook.exe")
   }
   G(
     "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
