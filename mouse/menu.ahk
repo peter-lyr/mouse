@@ -4,6 +4,7 @@
 MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 G(items*) {
+  Global mstsc_activate
   menus := Map()
   menus.Set(items*)
   msg := ""
@@ -11,14 +12,6 @@ G(items*) {
     msg .= key . ": " . val[1] . "`n"
   }
   msg := Strip(msg)
-  Loop 10 {
-    If WinActive("ahk_exe mstsc.exe") {
-      WinActivate("ahk_class Shell_TrayWnd")
-      If (Not WinActive("ahk_exe mstsc.exe")) {
-        Break
-      }
-    }
-  }
   SetTimer(() => [
     CoordMode("Tooltip", "Screen")
     Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
@@ -36,6 +29,9 @@ G(items*) {
     }
     Tooltip
   } Else {
+    If (mstsc_activate) {
+      WinActivate("ahk_exe mstsc.exe")
+    }
     Print("<" . key . ">", 300)
   }
 }
@@ -106,8 +102,19 @@ LAltUp() {
 }
 
 MyMenu() {
+  Global mstsc_activate
+  mstsc_activate := 0
   If (WinExist("ahk_exe QuickLook.exe")) {
     WinMoveBottom("ahk_exe QuickLook.exe")
+  }
+  Loop 10 {
+    If WinActive("ahk_exe mstsc.exe") {
+      mstsc_activate := 1
+      WinActivate("ahk_class Shell_TrayWnd")
+      If (Not WinActive("ahk_exe mstsc.exe")) {
+        Break
+      }
+    }
   }
   G(
     "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
