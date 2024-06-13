@@ -120,3 +120,7 @@ InitCircle()
 ~LAlt:: {
   LAltCount()
 }
+
+~LAlt Up:: {
+  LAltUp()
+}

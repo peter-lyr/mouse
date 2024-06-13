@@ -80,6 +80,13 @@ ResetMenuFlag() {
 
 LAltCount() {
   Global menu_flag
+  Global LAltUpFlag
+  If (Not IsSet(LAltUpFlag)) {
+    LAltUpFlag := 1
+  }
+  If (Not LAltUpFlag) {
+    Return
+  }
   If (Not IsSet(menu_flag)) {
     menu_flag := 0
   }
@@ -90,6 +97,12 @@ LAltCount() {
   } Else {
     SetTimer(ResetMenuFlag, -300)
   }
+  LAltUpFlag := 0
+}
+
+LAltUp() {
+  Global LAltUpFlag
+  LAltUpFlag := 1
 }
 
 MyMenu() {
