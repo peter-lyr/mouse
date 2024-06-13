@@ -3,7 +3,7 @@
 
 ActivateCycleDownloaderFileServ() {
   CycleActivateAllExistWin([
-    "ahk_exe msedge.exe",
-    "ahk_exe douyin.exe",
+    "ahk_exe Downloader.exe",
+    "ahk_exe Fileserv.exe",
   ])
 }

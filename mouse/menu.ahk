@@ -3,6 +3,12 @@
 
 MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
+G_continues := [
+  "d", ["Continue ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
+  "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
+  "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
+]
+
 G(items*) {
   Global mstsc_activate
   Global G_continuing
@@ -25,7 +31,8 @@ G(items*) {
       f()
       If (StrSplit(v, " ")[1] == "Continue") {
         G_continuing := 1
-        G(key, [v, f])
+        ; G(key, [v, f])
+        G(G_continues*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
@@ -135,9 +142,6 @@ MyMenu() {
     "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
-    "d", ["Continue ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
-    "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
-    "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
@@ -168,5 +172,6 @@ MyMenu() {
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
+    G_continues*
   )
 }
