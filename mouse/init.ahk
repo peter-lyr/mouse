@@ -692,16 +692,16 @@ GetRange(count) {
 }
 
 AA(dir, arr, middle_counts:=[], left_counts:=[], wheel_counts:=[], layers:=[]) {
-  If (Not middle_counts Or Type(middle_counts) != "Array") {
+  If (Not middle_counts Or Type(middle_counts) != "Array" Or middle_counts.Length == 0) {
     middle_counts := GetRange(max_middle_counts)
   }
-  If (Not left_counts Or Type(left_counts) != "Array") {
+  If (Not left_counts Or Type(left_counts) != "Array" Or left_counts.Length == 0) {
     left_counts := GetRange(max_left_counts)
   }
-  If (Not wheel_counts Or Type(wheel_counts) != "Array") {
+  If (Not wheel_counts Or Type(wheel_counts) != "Array" Or wheel_counts.Length == 0) {
     wheel_counts := GetRange(max_wheel_counts)
   }
-  If (Not layers Or Type(layers) != "Array") {
+  If (Not layers Or Type(layers) != "Array" Or layers.Length == 0) {
     layers := GetRange(max_circles)
   }
   For _, i In middle_counts {
