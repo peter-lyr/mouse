@@ -11,7 +11,18 @@ G(items*) {
     msg .= key . ": " . val[1] . "`n"
   }
   msg := Strip(msg)
-  SetTimer(() => Tooltip(msg, A_ScreenWidth / 2, A_ScreenHeight / 4), -10)
+  Loop 10 {
+    If WinActive("ahk_exe mstsc.exe") {
+      WinActivate("ahk_class Shell_TrayWnd")
+      If (Not WinActive("ahk_exe mstsc.exe")) {
+        Break
+      }
+    }
+  }
+  SetTimer(() => [
+    CoordMode("Tooltip", "Screen")
+    Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
+  ], -10)
   key := StrLower(KeyWaitAny())
   If menus.Has(key) {
     v := menus[key][1]
