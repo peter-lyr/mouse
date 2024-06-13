@@ -23,7 +23,7 @@ G(items*) {
     CoordMode("Tooltip", "Screen")
     Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
   ], -10)
-  key := StrLower(KeyWaitAny())
+  key := StrLower(KeyWaitAny("T3"))
   If menus.Has(key) {
     v := menus[key][1]
     f := menus[key][2]
