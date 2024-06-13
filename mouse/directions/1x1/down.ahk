@@ -4,7 +4,7 @@
 d := "down"
 
 A(1, 1, 1, 1, d, [
-  "R", W("ActivateAllDownloader", ActivateAllDownloader),
-  "U", W("ActivateAllDownloader", ActivateAllDownloader),
-  "D", W("ActivateAllDownloader", ActivateAllDownloader),
+  "R", W("ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ),
+  "U", W("ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ),
+  "D", W("ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ),
 ])

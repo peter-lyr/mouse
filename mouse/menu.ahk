@@ -103,6 +103,8 @@ LAltUp() {
 
 MyMenu() {
   Global mstsc_activate
+  Global CycleWinIndex
+  CycleWinIndex := 1
   mstsc_activate := 0
   If (WinExist("ahk_exe QuickLook.exe")) {
     WinMoveBottom("ahk_exe QuickLook.exe")
@@ -121,7 +123,7 @@ MyMenu() {
     "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
-    "d", ["ActivateAllDownloader", ActivateAllDownloader],
+    "d", ["ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(

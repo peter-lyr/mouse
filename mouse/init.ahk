@@ -204,6 +204,8 @@ RButtonDownFake() {
 }
 
 RButtonDown() {
+  Global CycleWinIndex
+  CycleWinIndex := 1
   If (GetRbuttonPressFakeFlag()) {
     SetTimer(DisRbuttonPressFakeFlag, -50)
     Return

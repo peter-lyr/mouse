@@ -329,3 +329,17 @@ ReadLines(file) {
 ReadLinesLowerUniqSort(file) {
   Return LowerUniqSort(ReadLines(file))
 }
+
+CycleActivateAllExistWin(arr) {
+  Global CycleWinIndex
+  win := arr[CycleWinIndex]
+  If (WinExist(win) And Not WinActive(win)) {
+    For id in WinGetList(win) {
+      WinActivate(id)
+    }
+  }
+  CycleWinIndex += 1
+  If (CycleWinIndex > arr.Length) {
+    CycleWinIndex := 1
+  }
+}
