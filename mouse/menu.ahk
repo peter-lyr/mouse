@@ -87,6 +87,7 @@ LAltCount() {
   If (Not LAltUpFlag) {
     Return
   }
+  LAltUpFlag := 0
   If (Not IsSet(menu_flag)) {
     menu_flag := 0
   }
@@ -97,7 +98,6 @@ LAltCount() {
   } Else {
     SetTimer(ResetMenuFlag, -300)
   }
-  LAltUpFlag := 0
 }
 
 LAltUp() {
