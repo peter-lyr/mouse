@@ -5,6 +5,7 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 G(items*) {
   Global mstsc_activate
+  Global G_continuing
   menus := Map()
   menus.Set(items*)
   msg := ""
@@ -23,6 +24,7 @@ G(items*) {
     If (Type(f) == "Func") {
       f()
       If (StrSplit(v, " ")[1] == "Continue") {
+        G_continuing := 1
         G(key, [v, f])
       }
     } Else If (DirExist(v)) {
@@ -35,7 +37,12 @@ G(items*) {
     If (mstsc_activate) {
       WinActivate("ahk_exe mstsc.exe")
     }
-    Print("<" . key . ">", 300)
+    If (G_continuing And key == "lalt") {
+      LAltUpFlag := 1
+      LAltCount()
+    } Else {
+      Print("<" . key . ">", 300)
+    }
   }
 }
 
@@ -107,6 +114,8 @@ LAltUp() {
 MyMenu() {
   Global mstsc_activate
   Global CycleWinIndex
+  Global G_continuing
+  G_continuing := 0
   CycleWinIndex := 1
   mstsc_activate := 0
   If (WinExist("ahk_exe QuickLook.exe")) {
