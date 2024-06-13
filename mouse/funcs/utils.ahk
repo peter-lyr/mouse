@@ -262,7 +262,7 @@ KeyWaitAny(Options:="") {
 }
 
 ExplorerOpen(dir) {
-  If (Not DirExist(dir)) {
+  If (Not dir Or Not DirExist(dir)) {
     Return
   }
   If (WinExist("ahk_class CabinetWClass")) {
@@ -270,7 +270,13 @@ ExplorerOpen(dir) {
     WinWaitActive("ahk_class CabinetWClass")
     Sleep(100)
     Send("!d")
-    A_Clipboard := dir
+    A_Clipboard := ""
+    While 1 {
+      A_Clipboard := dir
+      If (A_Clipboard) {
+        Break
+      }
+    }
     Sleep(200)
     Send("^v")
     Sleep(200)
