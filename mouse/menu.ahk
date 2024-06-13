@@ -22,6 +22,9 @@ G(items*) {
     f := menus[key][2]
     If (Type(f) == "Func") {
       f()
+      If (StrSplit(v, " ")[1] == "Continue") {
+        G(key, [v, f])
+      }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
     } Else If (FileExist(v)) {
@@ -123,9 +126,9 @@ MyMenu() {
     "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
-    "d", ["ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
-    "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
-    "e", ["ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
+    "d", ["Continue ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
+    "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
+    "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
