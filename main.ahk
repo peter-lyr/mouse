@@ -31,6 +31,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x1\right.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\right_up.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\right_down.ahk
+#Include %A_ScriptDir%\mouse\directions\1x1\down.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\left.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\left_up.ahk
 #Include %A_ScriptDir%\mouse\directions\1x1\up.ahk
