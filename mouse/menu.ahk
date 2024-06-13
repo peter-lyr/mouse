@@ -98,6 +98,7 @@ MyMenu() {
   }
   G(
     "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
+    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "d", ["ActivateAllDownloader", ActivateAllDownloader],
