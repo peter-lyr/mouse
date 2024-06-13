@@ -23,6 +23,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\explorer.ahk
 #Include %A_ScriptDir%\mouse\funcs\msedge.ahk
 #Include %A_ScriptDir%\mouse\funcs\wxwork.ahk
+#Include %A_ScriptDir%\mouse\funcs\cycle_win.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\works\cbp_build.ahk
 #Include %A_ScriptDir%\mouse\funcs\works\search_app_dcf.ahk

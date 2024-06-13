@@ -124,6 +124,8 @@ MyMenu() {
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "d", ["ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
+    "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
+    "e", ["ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
