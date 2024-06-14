@@ -2,8 +2,8 @@
 ; create at 2024/06/06 20:46:22 星期四
 
 ActivateNvimQtExe() {
-  If (WinExist("ahk_exe QuickLook.exe")) {
-    WinActivate("ahk_exe QuickLook.exe")
+  If (WinExist("ahk_exe Image Eye.exe")) {
+    WinActivate("ahk_exe Image Eye.exe")
   }
   If WinExist("ahk_exe nvim-qt.exe") {
     WinActivate("ahk_exe nvim-qt.exe")

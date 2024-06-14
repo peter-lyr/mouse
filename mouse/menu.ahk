@@ -125,8 +125,8 @@ MyMenu() {
   G_continuing := 0
   CycleWinIndex := 1
   mstsc_activate := 0
-  If (WinExist("ahk_exe QuickLook.exe")) {
-    WinMoveBottom("ahk_exe QuickLook.exe")
+  If (WinExist("ahk_exe Image Eye.exe")) {
+    WinMoveBottom("ahk_exe Image Eye.exe")
   }
   Loop 10 {
     If WinActive("ahk_exe mstsc.exe") {
