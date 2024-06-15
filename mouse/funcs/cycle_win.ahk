@@ -27,7 +27,9 @@ ExplorerAllTabsToOneWindow() {
     _first_id := 0
     _flag := 0
     For id in WinGetList("ahk_class CabinetWClass") {
-      _first_id := id
+      If (A_Index == 1) {
+        _first_id := id
+      }
       If (id == first_id) {
         _flag := 1
         Break
