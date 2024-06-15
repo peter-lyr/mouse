@@ -6,6 +6,7 @@ JustActivateNvimQtExe() {
     WinActivate("ahk_exe nvim-qt.exe")
   } Else {
     Run("nvim-qt.exe")
+    WinWaitActivate("ahk_exe nvim-qt.exe")
   }
 }
 

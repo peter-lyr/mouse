@@ -349,3 +349,14 @@ CycleActivateAllExistWin(arr) {
     CycleWinIndex := 1
   }
 }
+
+WinWaitActivate(win) {
+  Loop 1000 {
+    If WinExist(win) {
+      WinActivate(win)
+      If WinActive(win) {
+        Break
+      }
+    }
+  }
+}
