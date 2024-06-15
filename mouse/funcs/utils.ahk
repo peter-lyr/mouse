@@ -46,6 +46,10 @@ Print(text:="", timeout:=4000) {
   SetTimer(Tooltip, -timeout)
 }
 
+Msg(arr) {
+  MsgBox(Join(arr))
+}
+
 PrintLater(text:="", timeout:=4000) {
   SetTimer(() => Print(text, -timeout), -30)
 }

@@ -20,3 +20,7 @@ A(1, 1, 1, 3, d, [
   "U", W("ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge),
   "D", W("ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge),
 ])
+
+A(1, 1, 1, 6, d, [
+  "R", W("ExplorerAllTabsToOneWindow", ExplorerAllTabsToOneWindow),
+])
