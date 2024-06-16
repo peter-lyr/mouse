@@ -101,4 +101,10 @@ f12:: {
   ToggleExplorerMainPanelTreeView()
 }
 
+#HotIf WinActive(ExplorerAhkClass) And StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerTreeView)
+
+~Enter:: {
+  SetTimer(() => TryControlFocus(ExplorerMainPanel), -100)
+}
+
 #HotIf
