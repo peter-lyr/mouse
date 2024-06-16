@@ -1,6 +1,10 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/06/09 13:10:40 星期日
 
+ExplorerMainPanel := ["DirectUIHWND2", "Microsoft.UI.Content.DesktopChildSiteBridge1"]
+ExplorerTreeView := ["SysTreeView321"]
+ExplorerAddress := ["Microsoft.UI.Content.DesktopChildSiteBridge2", "Microsoft.UI.Content.DesktopChildSiteBridge3"]
+
 #HotIf WinActive("ahk_exe explorer.exe")
 
 !l:: {
@@ -68,8 +72,21 @@ ExplorerAllTabsToOneWindow() {
   MouseMove(x, y)
 }
 
-FocusDirectUIHWND2() {
-  ControlFocus("DirectUIHWND2", "A")
+TryControlFocus(classNNS) {
+  For classNN in classNNS {
+    Try {
+      ControlFocus(classNN, "ahk_class CabinetWClass")
+      Return
+    }
+  }
+}
+
+ToggleExplorerMainPanelTreeView() {
+  If Not StrInArray(ControlGetClassNN(ControlGetFocus("ahk_class CabinetWClass")), ExplorerMainPanel) {
+    TryControlFocus(ExplorerMainPanel)
+  } Else {
+    TryControlFocus(ExplorerTreeView)
+  }
 }
 
 #HotIf WinActive("ahk_class CabinetWClass")
@@ -78,10 +95,8 @@ f1:: {
   ExplorerAllTabsToOneWindow()
 }
 
-#HotIf WinActive("ahk_class CabinetWClass") And ControlGetClassNN(ControlGetFocus("A")) != "DirectUIHWND2"
-
 f12:: {
-  FocusDirectUIHWND2()
+  ToggleExplorerMainPanelTreeView()
 }
 
 #HotIf
