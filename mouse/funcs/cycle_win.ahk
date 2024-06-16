@@ -58,10 +58,20 @@ ExplorerAllTabsToOneWindow() {
   MouseMove(x, y)
 }
 
+FocusDirectUIHWND2() {
+  ControlFocus("DirectUIHWND2", "A")
+}
+
 #HotIf WinActive("ahk_class CabinetWClass")
 
 f1:: {
   ExplorerAllTabsToOneWindow()
+}
+
+#HotIf WinActive("ahk_class CabinetWClass") And ControlGetClassNN(ControlGetFocus("A")) != "DirectUIHWND2"
+
+f12:: {
+  FocusDirectUIHWND2()
 }
 
 #HotIf
