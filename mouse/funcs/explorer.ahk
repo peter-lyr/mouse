@@ -5,7 +5,9 @@ ExplorerMainPanel := ["DirectUIHWND2", "Microsoft.UI.Content.DesktopChildSiteBri
 ExplorerTreeView := ["SysTreeView321"]
 ExplorerAddress := ["Microsoft.UI.Content.DesktopChildSiteBridge2", "Microsoft.UI.Content.DesktopChildSiteBridge3"]
 
-#HotIf WinActive("ahk_exe explorer.exe")
+ExplorerAhkClass := "ahk_class CabinetWClass"
+
+#HotIf WinActive(ExplorerAhkClass)
 
 !l:: {
   Send("!{Right}")
@@ -33,14 +35,14 @@ ExplorerAllTabsToOneWindow() {
   Global first_id
   MouseGetPos(&x, &y)
   If Not IsSet(first_id) {
-    For id in WinGetList("ahk_class CabinetWClass") {
+    For id in WinGetList(ExplorerAhkClass) {
       first_id := id
       Break
     }
   } Else {
     _first_id := 0
     _flag := 0
-    For id in WinGetList("ahk_class CabinetWClass") {
+    For id in WinGetList(ExplorerAhkClass) {
       If (A_Index == 1) {
         _first_id := id
       }
@@ -56,7 +58,7 @@ ExplorerAllTabsToOneWindow() {
   WinMove(0, 0, , , first_id)
   WinActivate(first_id)
   WinWaitActive(first_id)
-  For id in WinGetList("ahk_class CabinetWClass") {
+  For id in WinGetList(ExplorerAhkClass) {
     If (first_id == id) {
       Continue
     }
@@ -75,21 +77,21 @@ ExplorerAllTabsToOneWindow() {
 TryControlFocus(classNNS) {
   For classNN in classNNS {
     Try {
-      ControlFocus(classNN, "ahk_class CabinetWClass")
+      ControlFocus(classNN, ExplorerAhkClass)
       Return
     }
   }
 }
 
 ToggleExplorerMainPanelTreeView() {
-  If Not StrInArray(ControlGetClassNN(ControlGetFocus("ahk_class CabinetWClass")), ExplorerMainPanel) {
+  If Not StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerMainPanel) {
     TryControlFocus(ExplorerMainPanel)
   } Else {
     TryControlFocus(ExplorerTreeView)
   }
 }
 
-#HotIf WinActive("ahk_class CabinetWClass")
+#HotIf WinActive(ExplorerAhkClass)
 
 f1:: {
   ExplorerAllTabsToOneWindow()
