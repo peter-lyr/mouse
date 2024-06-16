@@ -37,7 +37,7 @@ ExplorerAllTabsToOneWindow() {
   if ids.Length == 1 {
     Return
   }
-  MouseGetPos(&x, &y)
+  MouseGetPos(&x0, &y0)
   If Not IsSet(first_id) {
     For id in ids {
       first_id := id
@@ -59,6 +59,7 @@ ExplorerAllTabsToOneWindow() {
       first_id := _first_id
     }
   }
+  WinGetPos(&x, &y, &w, &h, first_id)
   WinMove(0, 0, , , first_id)
   WinActivate(first_id)
   WinWaitActive(first_id)
@@ -75,7 +76,8 @@ ExplorerAllTabsToOneWindow() {
     Sleep 100
     Click("Up")
   }
-  MouseMove(x, y)
+  MouseMove(x0, y0)
+  SetTimer(() => WinMove(x, y, w, h, first_id), -100)
 }
 
 TryControlFocus(classNNS) {
