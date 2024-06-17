@@ -7,6 +7,11 @@ ExplorerAddress := ["Microsoft.UI.Content.DesktopChildSiteBridge2", "Microsoft.U
 
 ExplorerAhkClass := "ahk_class CabinetWClass"
 
+diff_x0 := 300
+diff_y0 := 300
+diff_w := 190
+diff_h := 30
+
 #HotIf WinActive(ExplorerAhkClass)
 
 !l:: {
@@ -69,10 +74,10 @@ ExplorerAllTabsToOneWindow() {
     }
     WinActivate(id)
     WinWaitActive(id)
-    WinMove(300, 300, , , id)
+    WinMove(diff_x0, diff_y0, , , id)
     Sleep 100
-    MouseClick("Left", 590, 350, , , "D")
-    MouseMove(390, 80)
+    MouseClick("Left", diff_x0 + diff_w, diff_y0 + diff_h, , , "D")
+    MouseMove(diff_w, diff_h)
     Sleep 100
     Click("Up")
   }
