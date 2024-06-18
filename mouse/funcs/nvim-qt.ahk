@@ -8,6 +8,9 @@ JustActivateNvimQtExe() {
     Run("nvim-qt.exe")
     WinWaitActivate("ahk_exe nvim-qt.exe")
   }
+  If (WinExist("ahk_exe Image Eye.exe")) {
+    WinMoveBottom("ahk_exe Image Eye.exe")
+  }
 }
 
 ActivateNvimQtExe() {
