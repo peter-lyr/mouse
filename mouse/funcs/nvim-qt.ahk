@@ -53,7 +53,3 @@ ActivateMstscExe() {
 }
 
 #HotIf
-
-^!l:: {
-  ActivateMstscExe()
-}
