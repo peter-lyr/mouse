@@ -42,10 +42,14 @@ ActivateMstscExe() {
   Global NvimQtImageEyeFlag
   If (WinExist("ahk_exe Image Eye.exe")) {
     If (NvimQtImageEyeFlag) {
-      WinMoveBottom("ahk_exe Image Eye.exe")
+      For id in WinGetList("ahk_exe Image Eye.exe") {
+        WinMoveBottom(id)
+      }
       NvimQtImageEyeFlag := 0
     } Else {
-      WinActivate("ahk_exe Image Eye.exe")
+      For id in WinGetList("ahk_exe Image Eye.exe") {
+        WinActivate(id)
+      }
       WinActivate("ahk_exe nvim-qt.exe")
       NvimQtImageEyeFlag := 1
     }
