@@ -1,14 +1,14 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/06/06 20:46:22 星期四
 
-JustActivateNvimQtExe() {
+JustActivateNvimQtExe(just:=1) {
   If WinExist("ahk_exe nvim-qt.exe") {
     WinActivate("ahk_exe nvim-qt.exe")
   } Else {
     Run("nvim-qt.exe")
     WinWaitActivate("ahk_exe nvim-qt.exe")
   }
-  If (WinExist("ahk_exe Image Eye.exe")) {
+  If (just And WinExist("ahk_exe Image Eye.exe")) {
     WinMoveBottom("ahk_exe Image Eye.exe")
   }
 }
@@ -17,7 +17,7 @@ ActivateNvimQtExe() {
   If (WinExist("ahk_exe Image Eye.exe")) {
     WinActivate("ahk_exe Image Eye.exe")
   }
-  JustActivateNvimQtExe()
+  JustActivateNvimQtExe(0)
 }
 
 ActivateMstscExe() {
