@@ -44,7 +44,7 @@ ActivateMstscExe() {
   If (WinExist("ahk_exe Image Eye.exe")) {
     If (NvimQtImageEyeFlag) {
       For id in WinGetList("ahk_exe Image Eye.exe") {
-        WinMoveBottom(id)
+        WinMinimize(id)
       }
       NvimQtImageEyeFlag := 0
     } Else {
