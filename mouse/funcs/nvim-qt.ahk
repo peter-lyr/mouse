@@ -38,6 +38,7 @@ ActivateMstscExe() {
 
 #HotIf WinActive("ahk_exe nvim-qt.exe")
 
+; 需要taskkill /f /im "Image Eye.exe"后才能行
 ~LCtrl & RShift:: {
   Global NvimQtImageEyeFlag
   If (WinExist("ahk_exe Image Eye.exe")) {
