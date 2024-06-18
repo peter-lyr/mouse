@@ -12,7 +12,7 @@ ActivateNvimQtExe() {
     WinWaitActivate("ahk_exe nvim-qt.exe")
   }
   If (WinExist("ahk_exe Image Eye.exe")) {
-    WinMoveBottom("ahk_exe Image Eye.exe")
+    WinMinimize("ahk_exe Image Eye.exe")
     NvimQtImageEyeFlag := 0
   } Else {
     NvimQtImageEyeFlag := 1
