@@ -139,6 +139,7 @@ MyMenu() {
     "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
+    "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
