@@ -134,6 +134,7 @@ UpdateRbuttonPressPos2() {
 }
 
 DrawCircleAtRbuttonPressPos1() {
+  Global DrawCircleAtRbuttonPressPos1Cnt
   Global draw_circle_en
   If (Not draw_circle_en) {
     Return
@@ -141,6 +142,11 @@ DrawCircleAtRbuttonPressPos1() {
   Global circle
   If (Not IsSet(circle)) {
     Return
+  }
+  DrawCircleAtRbuttonPressPos1Cnt += 1
+  If(DrawCircleAtRbuttonPressPos1Cnt >= 10) {
+    DrawCircleAtRbuttonPressPos1Cnt := 0
+    SetTimer(DrawCircleAtRbuttonPressPos1, 0)
   }
   DrawCircle()
   circle.Opt(GuiOpt)
@@ -205,6 +211,7 @@ RButtonDownFake() {
 
 RButtonDown() {
   Global CycleWinIndex
+  Global DrawCircleAtRbuttonPressPos1Cnt
   CycleWinIndex := 1
   If (GetRbuttonPressFakeFlag()) {
     SetTimer(DisRbuttonPressFakeFlag, -50)
@@ -212,7 +219,9 @@ RButtonDown() {
   }
   SetTimer(RButtonPressedWatcher, 10)
   UpdateRbuttonPressPos1()
+  DrawCircleAtRbuttonPressPos1Cnt := 0
   DrawCircleAtRbuttonPressPos1()
+  SetTimer(DrawCircleAtRbuttonPressPos1, 1000)
 }
 
 RButtonUp() {
