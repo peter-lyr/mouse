@@ -118,7 +118,7 @@ ActivateAndTaskKillUnderMouse() {
   If StrInArray(_process_name, no_taskkill_processes) {
     Return
   }
-  Run("taskkill /f /im " . _process_name)
+  Run('taskkill /f /im "' . _process_name . '"')
 }
 
 ActivateAndCtrlClickUnderMouse() {
