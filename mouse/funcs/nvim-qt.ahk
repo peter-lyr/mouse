@@ -57,4 +57,8 @@ ActivateMstscExe() {
   }
 }
 
+~LCtrl & RCtrl:: {
+  Run('taskkill /f /im "Image Eye.exe"')
+}
+
 #HotIf
