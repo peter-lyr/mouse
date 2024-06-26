@@ -354,6 +354,16 @@ CycleActivateAllExistWin(arr) {
   }
 }
 
+InActivateAllExistWin(arr) {
+  For _, win in arr {
+    If (WinExist(win)) {
+      For id in WinGetList(win) {
+        WinMinimize(id)
+      }
+    }
+  }
+}
+
 WinWaitActivate(win) {
   Loop 1000 {
     If WinExist(win) {

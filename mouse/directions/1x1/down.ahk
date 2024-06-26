@@ -21,6 +21,12 @@ A(1, 1, 1, 3, d, [
   "D", W("ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge),
 ])
 
+A(1, 1, 1, 5, d, [
+  "R", W("InActivateAll", InActivateAll),
+  "U", W("InActivateAll", InActivateAll),
+  "D", W("InActivateAll", InActivateAll),
+])
+
 A(1, 1, 1, 6, d, [
   "R", W("ExplorerAllTabsToOneWindow", ExplorerAllTabsToOneWindow),
 ])
