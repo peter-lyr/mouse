@@ -117,10 +117,10 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-~LAlt:: {
+~Alt:: {
   LAltCount()
 }
 
-~LAlt Up:: {
+~Alt Up:: {
   LAltUp()
 }
