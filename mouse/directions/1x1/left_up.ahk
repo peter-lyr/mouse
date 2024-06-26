@@ -11,6 +11,6 @@ A(1, 1, 1, 1, d, [
   "D", NavigateBackward,
 ])
 
-A(1, 1, 1, 2, d, [
+A(1, 1, 1, 5, d, [
   "R", W("StartAppDcfFolder", StartAppDcfFolder),
 ])
