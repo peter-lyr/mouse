@@ -134,6 +134,14 @@ MyMenu() {
       }
     }
   }
+  Loop 10 {
+    If WinActive("ahk_class Windows.UI.Core.CoreWindow") {
+      Send("{Esc}")
+    }
+    If (Not WinActive("ahk_class Windows.UI.Core.CoreWindow")) {
+      Break
+    }
+  }
   G(
     "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
