@@ -7,6 +7,7 @@ G_continues := [
   "d", ["Continue ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
   "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
   "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
+  "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
 ]
 
 G(items*) {

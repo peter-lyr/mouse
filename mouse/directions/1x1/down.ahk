@@ -22,9 +22,9 @@ A(1, 1, 1, 3, d, [
 ])
 
 A(1, 1, 1, 5, d, [
-  "R", W("InActivateAll", InActivateAll),
-  "U", W("InActivateAll", InActivateAll),
-  "D", W("InActivateAll", InActivateAll),
+  "R", W("MinimizeAll", MinimizeAll),
+  "U", W("MinimizeAll", MinimizeAll),
+  "D", W("MinimizeAll", MinimizeAll),
 ])
 
 A(1, 1, 1, 6, d, [

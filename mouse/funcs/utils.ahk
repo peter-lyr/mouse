@@ -354,7 +354,7 @@ CycleActivateAllExistWin(arr) {
   }
 }
 
-InActivateAllExistWin(arr) {
+MinimizeAllExistWin(arr) {
   For _, win in arr {
     If (WinExist(win)) {
       For id in WinGetList(win) {
