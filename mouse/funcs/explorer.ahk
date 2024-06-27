@@ -96,10 +96,12 @@ TryControlFocus(classNNS) {
 }
 
 ToggleExplorerMainPanelTreeView() {
-  If Not StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerMainPanel) {
-    TryControlFocus(ExplorerMainPanel)
-  } Else {
-    TryControlFocus(ExplorerTreeView)
+  Try {
+    If Not StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerMainPanel) {
+      TryControlFocus(ExplorerMainPanel)
+    } Else {
+      TryControlFocus(ExplorerTreeView)
+    }
   }
 }
 
