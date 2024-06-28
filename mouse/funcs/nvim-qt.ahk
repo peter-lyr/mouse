@@ -6,12 +6,12 @@ NvimQtImageEyeFlag := 0
 ActivateNvimQtExe() {
   Global NvimQtImageEyeFlag
   If WinExist("ahk_exe nvim-qt.exe") {
-    WinActivate("Program Manager")
+    WinActivate("ahk_class Shell_TrayWnd")
     WinActivate("ahk_exe nvim-qt.exe")
   } Else {
     Run("nvim-qt.exe")
     WinWaitActivate("ahk_exe nvim-qt.exe")
-    WinActivate("Program Manager")
+    WinActivate("ahk_class Shell_TrayWnd")
     WinActivate("ahk_exe nvim-qt.exe")
   }
   If (WinExist("ahk_exe Image Eye.exe")) {
