@@ -18,7 +18,11 @@ MinimizeOrActivateMsedge() {
     WinActivate("ahk_exe nvim-qt.exe")
     WinMinimize("ahk_exe msedge.exe")
   } Else {
-    WinActivate("ahk_exe msedge.exe")
+    If (WinExist("ahk_exe msedge.exe")) {
+      WinActivate("ahk_exe msedge.exe")
+    } Else {
+      Run("msedge.exe")
+    }
   }
 }
 
