@@ -39,7 +39,7 @@ ActivateMstscExe() {
   ActivateNvimQtExe()
 }
 
-#HotIf
+#HotIf If WinActive("ahk_exe nvim-qt.exe")
 
 ; 需要taskkill /f /im "Image Eye.exe"后才能行
 ~LCtrl & RShift:: {
