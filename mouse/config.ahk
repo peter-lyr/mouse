@@ -15,7 +15,7 @@ circle_max_transparent := 136
 
 winver := 11
 
-left_margin := 136
+left_margin := 148
 
 If (A_ScreenHeight <= 1080) {
   circle_radius := 50
