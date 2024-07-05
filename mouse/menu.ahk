@@ -42,14 +42,15 @@ G(items*) {
     }
     Tooltip
   } Else {
-    If (mstsc_activate) {
+    If (mstsc_activate And Not key) {
       WinActivate("ahk_exe mstsc.exe")
     }
     If (G_continuing And key == "lalt") {
       LAltUpFlag := 1
       LAltCount()
     } Else {
-      Print("<" . key . ">", 300)
+      SetTimer(() => Send("{" . key . "}"), -10)
+      Print("<" . key . ">", 1000)
     }
   }
 }
