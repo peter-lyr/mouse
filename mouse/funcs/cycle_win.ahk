@@ -8,7 +8,7 @@ MinimizeAll() {
     "ahk_class CabinetWClass",
     ; "ahk_exe msedge.exe",
     "ahk_exe Downloader.exe",
-    "ahk_exe Fileserv.exe",
+    "ahk_exe codeblocks.exe",
   ])
 }
 
