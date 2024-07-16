@@ -4,7 +4,7 @@
 MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 G_continues := [
-  "d", ["Continue ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ],
+  "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
   "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
   "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
   "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],

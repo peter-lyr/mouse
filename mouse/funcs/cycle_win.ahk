@@ -42,10 +42,10 @@ ActivateCycleExplorerMsedge() {
   ])
 }
 
-ActivateCycleDownloaderFileServ() {
+ActivateCycleDownloaderCodeBlocks() {
   MinimizeAll()
   CycleActivateAllExistWin([
     "ahk_exe Downloader.exe",
-    "ahk_exe Fileserv.exe",
+    "ahk_exe codeblocks.exe",
   ])
 }

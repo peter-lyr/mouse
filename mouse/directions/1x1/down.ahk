@@ -4,9 +4,9 @@
 d := "down"
 
 A(1, 1, 1, 1, d, [
-  "R", W("ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ),
-  "U", W("ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ),
-  "D", W("ActivateCycleDownloaderFileServ", ActivateCycleDownloaderFileServ),
+  "R", W("ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks),
+  "U", W("ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks),
+  "D", W("ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks),
 ])
 
 A(1, 1, 1, 2, d, [
