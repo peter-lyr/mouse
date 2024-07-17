@@ -8,6 +8,9 @@ G_continues := [
   "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
   "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
   "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
+  "f", ["Continue ActivateFileserv", () => ActivateFileserv()],
+  "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
+  "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
 ]
 
 G(items*) {
@@ -145,8 +148,6 @@ MyMenu() {
     }
   }
   G(
-    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
-    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["ActivateMstscExe", ActivateMstscExe],
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "escape", ["ActivateDesktop", ActivateDesktop],
