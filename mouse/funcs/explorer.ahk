@@ -61,6 +61,9 @@ ExplorerAllTabsToOneWindow() {
     }
   }
   WinGetPos(&x, &y, &w, &h, first_id)
+  if w < 400 {
+    WinMove(x, y, 400, h, first_id)
+  }
   WinActivate(first_id)
   WinWaitActive(first_id)
   For id in ids {
@@ -71,7 +74,7 @@ ExplorerAllTabsToOneWindow() {
     WinWaitActive(first_id)
     WinActivate(id)
     WinWaitActive(id)
-    WinMove(x, y, w - 100, h, id)
+    WinMove(x, y, w - 200, h, id)
     WinGetPos(&x1, &y1, &w1, &h1, id)
     Sleep 100
     MouseClick("Left", x1 + 30, y1 + 23, , , "D")
