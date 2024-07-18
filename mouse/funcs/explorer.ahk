@@ -71,6 +71,7 @@ ExplorerAllTabsToOneWindow() {
     WinWaitActive(first_id)
     WinActivate(id)
     WinWaitActive(id)
+    WinMove(x, y, w - 100, h, id)
     WinGetPos(&x1, &y1, &w1, &h1, id)
     Sleep 100
     MouseClick("Left", x1 + 30, y1 + 23, , , "D")
