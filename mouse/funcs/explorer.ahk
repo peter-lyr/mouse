@@ -8,11 +8,6 @@ ExplorerAddress := ["Microsoft.UI.Content.DesktopChildSiteBridge2", "Microsoft.U
 DesktopAhkClass := "Program Manager"
 ExplorerAhkClass := "ahk_class CabinetWClass"
 
-diff_x0 := 300
-diff_y0 := 300
-diff_w := 190
-diff_h := 30
-
 #HotIf WinActive(ExplorerAhkClass)
 
 !l:: {
@@ -66,24 +61,24 @@ ExplorerAllTabsToOneWindow() {
     }
   }
   WinGetPos(&x, &y, &w, &h, first_id)
-  WinMove(0, 0, , , first_id)
   WinActivate(first_id)
   WinWaitActive(first_id)
   For id in ids {
     If (first_id == id) {
       Continue
     }
+    WinActivate(first_id)
+    WinWaitActive(first_id)
     WinActivate(id)
     WinWaitActive(id)
-    WinMove(diff_x0, diff_y0, , , id)
+    WinGetPos(&x1, &y1, &w1, &h1, id)
     Sleep 100
-    MouseClick("Left", diff_x0 + diff_w, diff_y0 + diff_h, , , "D")
-    MouseMove(diff_w, diff_h)
+    MouseClick("Left", x1 + 30, y1 + 23, , , "D")
+    MouseMove(x + w - 100, y + 23)
     Sleep 100
     Click("Up")
   }
   MouseMove(x0, y0)
-  SetTimer(() => WinMove(x, y, w, h, first_id), -100)
 }
 
 TryControlFocus(classNNS) {
