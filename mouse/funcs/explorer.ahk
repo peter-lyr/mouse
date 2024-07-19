@@ -61,8 +61,9 @@ ExplorerAllTabsToOneWindow() {
     }
   }
   WinGetPos(&x, &y, &w, &h, first_id)
-  if w < 400 {
-    WinMove(x, y, 400, h, first_id)
+  if w < 800 {
+    w := 800
+    WinMove(x, y, 800, h, first_id)
   }
   WinActivate(first_id)
   WinWaitActive(first_id)
