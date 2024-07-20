@@ -35,9 +35,6 @@ ExplorerAhkClass := "ahk_class CabinetWClass"
 ExplorerAllTabsToOneWindow() {
   Global first_id
   ids := WinGetList(ExplorerAhkClass)
-  if ids.Length == 1 {
-    Return
-  }
   MouseGetPos(&x0, &y0)
   If Not IsSet(first_id) {
     For id in ids {
@@ -64,6 +61,9 @@ ExplorerAllTabsToOneWindow() {
   if w < 800 {
     w := 800
     WinMove(x, y, 800, h, first_id)
+  }
+  if ids.Length == 1 {
+    Return
   }
   WinActivate(first_id)
   WinWaitActive(first_id)
