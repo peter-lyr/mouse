@@ -296,7 +296,7 @@ SystemRun(cmd) {
 
 SystemRunSilent(cmd) {
   id := WinGetId("A")
-  SetTimer(() => WinWaitActivate(id), -300)
+  SetTimer(() => WinWaitActivate(id), -500)
   Run(cmd)
 }
 
