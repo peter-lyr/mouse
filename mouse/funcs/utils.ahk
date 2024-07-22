@@ -290,6 +290,16 @@ ExplorerOpen(dir) {
   }
 }
 
+SystemRun(cmd) {
+  Run(cmd)
+}
+
+SystemRunSilent(cmd) {
+  id := WinGetId("A")
+  SetTimer(() => WinWaitActivate(id), -300)
+  Run(cmd)
+}
+
 ; mouse\funcs\.lowerandsort.py
 
 DirExistArr(arr) {
