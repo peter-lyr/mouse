@@ -27,7 +27,7 @@ MinimizeOrActivateMsedge() {
 }
 
 ActivateCycleWeChatWXWork() {
-  MinimizeAll()
+  ; MinimizeAll()
   CycleActivateAllExistWin([
     "ahk_exe WXWork.exe",
     "ahk_exe WeChat.exe",
@@ -35,7 +35,7 @@ ActivateCycleWeChatWXWork() {
 }
 
 ActivateCycleExplorerMsedge() {
-  MinimizeAll()
+  ; MinimizeAll()
   CycleActivateAllExistWin([
     "ahk_class CabinetWClass",
     "ahk_exe msedge.exe",
@@ -43,7 +43,7 @@ ActivateCycleExplorerMsedge() {
 }
 
 ActivateCycleDownloaderCodeBlocks() {
-  MinimizeAll()
+  ; MinimizeAll()
   CycleActivateAllExistWin([
     "ahk_exe Downloader.exe",
     "ahk_exe codeblocks.exe",
