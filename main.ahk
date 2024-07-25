@@ -1,4 +1,5 @@
 ﻿#Requires AutoHotkey v2.0
+#WinActivateForce ; 解决任务栏闪烁的问题
 
 A_HotkeyInterval := 2000 ; 默认
 A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
