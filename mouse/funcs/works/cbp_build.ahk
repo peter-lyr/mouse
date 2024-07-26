@@ -17,6 +17,22 @@ ActivateFileserv() {
   }
 }
 
+FileServUpClip() {
+  If (WinExist("ahk_exe Fileserv.exe")) {
+    wid := WinGetId("A")
+    WinWaitActivate("ahk_exe Fileserv.exe")
+    Try {
+      WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
+      MouseGetPos(&x0, &y0)
+      MouseClick("Left", x1 + 76, y1 + 36, , 0, "D")
+      MouseMove(x0, y0)
+      ControlFocus("WindowsForms10.BUTTON.app.0.33c0d9d4")
+      Send("{Space}")
+    }
+    WinWaitActivate(wid)
+  }
+}
+
 #HotIf WinExist("ahk_exe codeblocks.exe")
 
 F6:: {

@@ -152,6 +152,7 @@ MyMenu() {
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
+    "u", ["FileServUpClip", FileServUpClip],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
