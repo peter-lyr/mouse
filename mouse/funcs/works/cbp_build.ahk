@@ -20,6 +20,11 @@ ActivateFileserv() {
   WinWaitActivate("ahk_exe Fileserv.exe")
 }
 
+MinimizeFileserv() {
+  WinWaitActivate("ahk_exe Fileserv.exe")
+  Send("!{Tab}")
+}
+
 FileServUpClip() {
   wid := WinGetId("A")
   ActivateFileserv()

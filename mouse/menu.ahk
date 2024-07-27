@@ -153,6 +153,7 @@ MyMenu() {
     "space", ["<Win-R>", () => Send("#r")],
     "f", ["Fileserv", () => G(
       "f", ["ActivateFileserv", ActivateFileserv],
+      "h", ["MinimizeFileserv", MinimizeFileserv],
       "u", ["FileServUpClip", FileServUpClip],
       "c", ["FileServLibChangeDir", FileServLibChangeDir],
       "o", ["FileServLibToggleDir", FileServLibToggleDir],
