@@ -9,9 +9,14 @@ ActivateFileserv() {
   WinWaitActivate(fileserv_exe)
 }
 
-MinimizeFileserv() {
-  WinWaitActivate(fileserv_exe)
-  Send("!{Tab}")
+CloseFileserv() {
+  If Not WinExist(fileserv_exe) {
+    Return
+  }
+  wid := WinGetId("A")
+  ActivateFileserv()
+  Send("!{Space}c")
+  WinWaitActivate(wid)
 }
 
 FileServUpClip() {
