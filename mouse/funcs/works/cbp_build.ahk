@@ -44,14 +44,25 @@ FileServLibChangeDir() {
       MouseGetPos(&x0, &y0)
       MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
       MouseMove(x0, y0)
-      ControlSetChecked(1, "WindowsForms10.BUTTON.app.0.33c0d9d6")
       ControlSend("^a^v", "WindowsForms10.EDIT.app.0.33c0d9d4")
     }
     WinWaitActivate(wid)
   }
 }
 
-FileServLibDisableDir() {
+FileServLibToggleDir() {
+  If (WinExist("ahk_exe Fileserv.exe")) {
+    wid := WinGetId("A")
+    WinWaitActivate("ahk_exe Fileserv.exe")
+    Try {
+      WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
+      MouseGetPos(&x0, &y0)
+      MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
+      MouseMove(x0, y0)
+      ControlSetChecked(1, "WindowsForms10.BUTTON.app.0.33c0d9d6")
+    }
+    WinWaitActivate(wid)
+  }
 }
 
 #HotIf WinExist("ahk_exe codeblocks.exe")
