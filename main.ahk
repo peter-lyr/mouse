@@ -27,6 +27,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\cycle_win.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\works\cbp_build.ahk
+#Include %A_ScriptDir%\mouse\funcs\works\fileserv.ahk
 #Include %A_ScriptDir%\mouse\funcs\works\search_app_dcf.ahk
 
 #Include %A_ScriptDir%\mouse\directions\1x1\right.ahk
