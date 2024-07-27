@@ -8,7 +8,6 @@ G_continues := [
   "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
   "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
   "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
-  "f", ["Continue ActivateFileserv", () => ActivateFileserv()],
   "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
   "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
 ]
@@ -152,7 +151,12 @@ MyMenu() {
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
-    "u", ["FileServUpClip", FileServUpClip],
+    "f", ["Fileserv", () => G(
+      "f", ["ActivateFileserv", ActivateFileserv],
+      "u", ["FileServUpClip", FileServUpClip],
+      "c", ["FileServLibChangeDir", FileServLibChangeDir],
+      "d", ["FileServLibDisableDir", FileServLibDisableDir],
+    )],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
