@@ -17,52 +17,56 @@ ActivateFileserv() {
   } Else {
     Run("Fileserv.exe")
   }
+  WinWaitActivate("ahk_exe Fileserv.exe")
 }
 
 FileServUpClip() {
-  If (WinExist("ahk_exe Fileserv.exe")) {
-    wid := WinGetId("A")
-    WinWaitActivate("ahk_exe Fileserv.exe")
-    Try {
-      WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
-      MouseGetPos(&x0, &y0)
-      MouseClick("Left", x1 + 76, y1 + 36, , 0, "D")
-      MouseMove(x0, y0)
-      ControlFocus("WindowsForms10.BUTTON.app.0.33c0d9d4")
-      Send("{Space}")
-    }
-    WinWaitActivate(wid)
+  wid := WinGetId("A")
+  ActivateFileserv()
+  Try {
+    WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
+    MouseGetPos(&x0, &y0)
+    MouseClick("Left", x1 + 76, y1 + 36, , 0, "D")
+    MouseMove(x0, y0)
+    ControlFocus(ControlGetClassNN("上传剪贴板"))
+    Send("{Space}")
   }
+  WinWaitActivate(wid)
 }
 
 FileServLibChangeDir() {
-  If (WinExist("ahk_exe Fileserv.exe")) {
-    wid := WinGetId("A")
-    WinWaitActivate("ahk_exe Fileserv.exe")
-    Try {
-      WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
-      MouseGetPos(&x0, &y0)
-      MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
-      MouseMove(x0, y0)
-      ControlSend("^a^v", "WindowsForms10.EDIT.app.0.33c0d9d4")
+  wid := WinGetId("A")
+  ActivateFileserv()
+  WinWaitActivate("ahk_exe Fileserv.exe")
+  Try {
+    WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
+    MouseGetPos(&x0, &y0)
+    MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
+    MouseMove(x0, y0)
+    LibEditClassNN := "WindowsForms10.EDIT.app.0.33c0d9d4"
+    Loop 10 {
+      ControlSend("^a^a{Del}", LibEditClassNN)
+      If Not ControlGetText(LibEditClassNN) {
+        ControlSendText(A_Clipboard, LibEditClassNN)
+        Break
+      }
     }
-    WinWaitActivate(wid)
   }
+  WinWaitActivate(wid)
 }
 
 FileServLibToggleDir() {
-  If (WinExist("ahk_exe Fileserv.exe")) {
-    wid := WinGetId("A")
-    WinWaitActivate("ahk_exe Fileserv.exe")
-    Try {
-      WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
-      MouseGetPos(&x0, &y0)
-      MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
-      MouseMove(x0, y0)
-      ControlSetChecked(1, "WindowsForms10.BUTTON.app.0.33c0d9d6")
-    }
-    WinWaitActivate(wid)
+  wid := WinGetId("A")
+  ActivateFileserv()
+  WinWaitActivate("ahk_exe Fileserv.exe")
+  Try {
+    WinGetPos(&x1, &y1, , , "ahk_exe Fileserv.exe")
+    MouseGetPos(&x0, &y0)
+    MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
+    MouseMove(x0, y0)
+    ControlSetChecked(1, ControlGetClassNN("库目录"))
   }
+  WinWaitActivate(wid)
 }
 
 #HotIf WinExist("ahk_exe codeblocks.exe")
