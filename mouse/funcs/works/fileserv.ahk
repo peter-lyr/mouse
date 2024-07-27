@@ -37,7 +37,32 @@ FileServLibChangeDir() {
     MouseGetPos(&x0, &y0)
     MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
     MouseMove(x0, y0)
-    LibEditClassNN := "WindowsForms10.EDIT.app.0.33c0d9d4"
+
+    Controls := WinGetControls("A")
+    ControlList := []
+    for ClassNN in Controls {
+      If InStr(ClassNN, ".Edit.") {
+        ControlList.Push(ClassNN)
+      }
+    }
+    If ControlList.Length >= 3 {
+      LibEditClassNN := ControlList[ControlList.Length-3+1]
+    }
+
+    ; test
+    ; Controls := WinGetControls("A")
+    ; ControlList := ""
+    ; for ClassNN in Controls {
+    ;   If InStr(ClassNN, ".Edit.") {
+    ;     ControlList .= ClassNN . ":(" . ControlGetText(ClassNN) . ")`n"
+    ;     ; ControlList .= ClassNN . "`n"
+    ;   }
+    ; }
+    ; if (ControlList = "")
+    ;   msgbox "The active window has no controls."
+    ; else
+    ;   msgbox ControlList
+
     Loop 10 {
       ControlSend("^a^a{Del}", LibEditClassNN)
       If Not ControlGetText(LibEditClassNN) {
