@@ -72,11 +72,13 @@ FileServLibChangeDir() {
       ControlSend("^a^a{Del}", LibEditClassNN)
       If Not ControlGetText(LibEditClassNN) {
         ControlSendText(A_Clipboard, LibEditClassNN)
+        ControlFocus(ControlGetClassNN("确定"))
+        Send("{Space}")
         Break
       }
     }
   }
-  WinWaitActivate(wid)
+  SetTimer(() => WinWaitActivate(wid), -10)
 }
 
 FileServLibShowDir() {
