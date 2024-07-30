@@ -152,8 +152,8 @@ MyMenu() {
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
     "f", ["Fileserv", () => G(
-      ; "f", ["ActivateFileserv", ActivateFileserv],
-      "f", ["FileServShowLog", FileServShowLog],
+      "f", ["ActivateFileserv", ActivateFileserv],
+      "l", ["FileServShowLog", FileServShowLog],
       "k", ["CloseFileserv", CloseFileserv],
       "u", ["FileServUpClip", FileServUpClip],
       "c", ["FileServLibChangeDir", FileServLibChangeDir],
