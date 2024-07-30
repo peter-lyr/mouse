@@ -118,6 +118,10 @@ FileServLibToggleDir() {
     MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
     MouseMove(x0, y0)
     ControlSetChecked(1, ControlGetClassNN("库目录"))
+    ControlFocus(ControlGetClassNN("确定"))
+    SetTimer(() => [
+      Send("{Space}")
+    ], -200)
   }
-  WinWaitActivate(wid)
+  SetTimer(() => WinWaitActivate(wid), -400)
 }
