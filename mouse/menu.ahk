@@ -157,6 +157,10 @@ MyMenu() {
       "u", ["FileServUpClip", FileServUpClip],
       "c", ["FileServLibChangeDir", FileServLibChangeDir],
       "o", ["FileServLibToggleDir", FileServLibToggleDir],
+      "s", ["Fileserv", () => G(
+        "l", ["FileServShowLog", FileServShowLog],
+        "d", ["FileServLibShowDir", FileServLibShowDir],
+      )],
     )],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(

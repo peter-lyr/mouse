@@ -79,6 +79,33 @@ FileServLibChangeDir() {
   WinWaitActivate(wid)
 }
 
+FileServLibShowDir() {
+  wid := WinGetId("A")
+  ActivateFileserv()
+  WinWaitActivate(fileserv_exe)
+  Try {
+    WinGetPos(&x1, &y1, , , fileserv_exe)
+    MouseGetPos(&x0, &y0)
+    MouseClick("Left", x1 + 124, y1 + 36, , 0, "D")
+    ControlFocus(ControlGetClassNN("确定"))
+    MouseMove(x0, y0)
+  }
+  WinWaitActivate(wid)
+}
+
+FileServShowLog() {
+  wid := WinGetId("A")
+  ActivateFileserv()
+  WinWaitActivate(fileserv_exe)
+  Try {
+    WinGetPos(&x1, &y1, , , fileserv_exe)
+    MouseGetPos(&x0, &y0)
+    MouseClick("Left", x1 + 27, y1 + 36, , 0, "D")
+    MouseMove(x0, y0)
+  }
+  WinWaitActivate(wid)
+}
+
 FileServLibToggleDir() {
   wid := WinGetId("A")
   ActivateFileserv()
