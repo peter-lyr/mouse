@@ -15,7 +15,7 @@ CloseFileserv() {
   }
   wid := WinGetId("A")
   ActivateFileserv()
-  Send("!{F4}")
+  WinKill(fileserv_exe)
   WinWaitActivate(wid)
 }
 
