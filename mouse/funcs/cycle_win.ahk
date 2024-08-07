@@ -42,6 +42,14 @@ ActivateCycleExplorerMsedge() {
   ])
 }
 
+ActivateEmacs() {
+  ; MinimizeAll()
+  CycleActivateAllExistWin([
+    "ahk_exe emacs.exe",
+    "ahk_exe emacs.exe",
+  ])
+}
+
 ActivateCycleDownloaderCodeBlocks() {
   ; MinimizeAll()
   CycleActivateAllExistWin([

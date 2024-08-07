@@ -7,6 +7,7 @@ G_continues := [
   "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
   "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
   "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
+  "m", ["Continue ActivateEmacs", ActivateEmacs],
   "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
   "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
   "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
