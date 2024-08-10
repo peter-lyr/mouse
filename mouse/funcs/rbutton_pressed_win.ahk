@@ -109,7 +109,12 @@ ActivateAndAltF4UnderMouse() {
   MouseGetPos , , &_win
   WinActivate(_win)
   WinWaitActive(_win)
-  Send("!{F4}")
+  If WinActive("ahk_exe emacs.exe") {
+    Send("^x")
+    Send("^c")
+  } Else {
+    Send("!{F4}")
+  }
 }
 
 ActivateAndTaskKillUnderMouse() {
