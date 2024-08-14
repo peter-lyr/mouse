@@ -3,19 +3,23 @@
 
 NvimQtImageEyeFlag := 0
 
+WinActivateNvimQt() {
+If WinExist("ahk_exe nvim-qt.exe") {
+  WinActivate("ahk_class Shell_TrayWnd")
+  WinWaitActivate("ahk_class Shell_TrayWnd")
+  WinActivate("ahk_exe nvim-qt.exe")
+} Else {
+  Run("nvim-qt.exe")
+  WinWaitActivate("ahk_exe nvim-qt.exe")
+  WinActivate("ahk_class Shell_TrayWnd")
+  WinWaitActivate("ahk_class Shell_TrayWnd")
+  WinActivate("ahk_exe nvim-qt.exe")
+}
+}
+
 ActivateNvimQtExe() {
   Global NvimQtImageEyeFlag
-  If WinExist("ahk_exe nvim-qt.exe") {
-    WinActivate("ahk_class Shell_TrayWnd")
-    WinWaitActivate("ahk_class Shell_TrayWnd")
-    WinActivate("ahk_exe nvim-qt.exe")
-  } Else {
-    Run("nvim-qt.exe")
-    WinWaitActivate("ahk_exe nvim-qt.exe")
-    WinActivate("ahk_class Shell_TrayWnd")
-    WinWaitActivate("ahk_class Shell_TrayWnd")
-    WinActivate("ahk_exe nvim-qt.exe")
-  }
+  WinActivateNvimQt()
   If (WinExist("ahk_exe Image Eye.exe")) {
     WinMinimize("ahk_exe Image Eye.exe")
     NvimQtImageEyeFlag := 0
@@ -61,7 +65,7 @@ ActivateMstscExe() {
       For id in WinGetList("ahk_exe Image Eye.exe") {
         WinActivate(id)
       }
-      WinActivate("ahk_exe nvim-qt.exe")
+      WinActivateNvimQt()
       NvimQtImageEyeFlag := 1
     }
   }
