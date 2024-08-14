@@ -113,7 +113,8 @@ ActivateAndAltF4UnderMouse() {
     Send("^x")
     Send("^c")
   } Else {
-    Send("!{F4}")
+    ; Send("!{F4}")
+    WinKill(_win)
   }
 }
 
