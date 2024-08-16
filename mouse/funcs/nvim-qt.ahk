@@ -4,17 +4,19 @@
 NvimQtImageEyeFlag := 0
 
 WinActivateNvimQt() {
-If WinExist("ahk_exe nvim-qt.exe") {
-  WinActivate("ahk_class Shell_TrayWnd")
-  WinWaitActivate("ahk_class Shell_TrayWnd")
-  WinActivate("ahk_exe nvim-qt.exe")
-} Else {
-  Run("nvim-qt.exe")
-  WinWaitActivate("ahk_exe nvim-qt.exe")
-  WinActivate("ahk_class Shell_TrayWnd")
-  WinWaitActivate("ahk_class Shell_TrayWnd")
-  WinActivate("ahk_exe nvim-qt.exe")
-}
+  Try {
+    If WinExist("ahk_exe nvim-qt.exe") {
+      WinActivate("ahk_class Shell_TrayWnd")
+      WinWaitActivate("ahk_class Shell_TrayWnd")
+      WinActivate("ahk_exe nvim-qt.exe")
+    } Else {
+      Run("nvim-qt.exe")
+      WinWaitActivate("ahk_exe nvim-qt.exe")
+      WinActivate("ahk_class Shell_TrayWnd")
+      WinWaitActivate("ahk_class Shell_TrayWnd")
+      WinActivate("ahk_exe nvim-qt.exe")
+    }
+  }
 }
 
 ActivateNvimQtExe() {
