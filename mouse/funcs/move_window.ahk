@@ -7,19 +7,36 @@
 ; _t_: temp
 ; _n_: new
 
-GetWorkAreaXYWH(x, y, &wa_x, &wa_y, &wa_w, &wa_h) {
+GetWorkAreaXYWH(index, &wa_x, &wa_y, &wa_w, &wa_h) {
+  MonitorGetWorkArea(index, &wa_left, &wa_top, &wa_right, &wa_bottom)
+  wa_x := wa_left
+  wa_y := wa_top
+  wa_w := wa_right - wa_left
+  wa_h := wa_bottom - wa_top
+  If (wa_left == 0) {
+    wa_x := left_margin
+    wa_w := wa_right - wa_left - left_margin
+  }
+}
+
+GetCurWorkAreaXYWH(x, y, &wa_x, &wa_y, &wa_w, &wa_h) {
   loop MonitorGetCount() {
     MonitorGet(A_index, &_m_left, &_m_top, &_m_right, &_m_bottom)
     If (x >= _m_left and x <= _m_right and y >= _m_top and y <= _m_bottom) {
-      MonitorGetWorkArea(A_index, &wa_left, &wa_top, &wa_right, &wa_bottom)
-      wa_x := wa_left
-      wa_y := wa_top
-      wa_w := wa_right - wa_left
-      wa_h := wa_bottom - wa_top
-      If (wa_left == 0) {
-        wa_x := left_margin
-        wa_w := wa_right - wa_left - left_margin
+      GetWorkAreaXYWH(A_index, &wa_x, &wa_y, &wa_w, &wa_h)
+    }
+  }
+}
+
+GetLastWorkAreaXYWH(x, y, &wa_x, &wa_y, &wa_w, &wa_h) {
+  loop MonitorGetCount() {
+    MonitorGet(A_index, &_m_left, &_m_top, &_m_right, &_m_bottom)
+    If (x >= _m_left and x <= _m_right and y >= _m_top and y <= _m_bottom) {
+      index := A_index + 1
+      If (index > MonitorGetCount()) {
+        index := 1
       }
+      GetWorkAreaXYWH(index, &wa_x, &wa_y, &wa_w, &wa_h)
     }
   }
 }
@@ -83,7 +100,19 @@ MoveWindow() {
   WinActivate(mw)
 
   WinGetPos(&mw_x0, &mw_y0, &mw_w0, &mw_h0, mw)
-  GetWorkAreaXYWH(mw_x1, mw_y1, &wa_x, &wa_y, &wa_w, &wa_h)
+  GetCurWorkAreaXYWH(mw_x1, mw_y1, &wa_x, &wa_y, &wa_w, &wa_h)
 
   SetTimer(MoveWindowWatcher, 10)
+}
+
+MoveWindowCurScreenMax() {
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &_wa_x, &_wa_y, &_wa_w, &_wa_h)
+  WinMove(_wa_x, _wa_y, _wa_w, _wa_h, "A")
+}
+
+MoveWindowNextScreenMax() {
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  GetLastWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &_wa_x, &_wa_y, &_wa_w, &_wa_h)
+  WinMove(_wa_x, _wa_y, _wa_w, _wa_h, "A")
 }

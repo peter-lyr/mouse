@@ -3,16 +3,6 @@
 
 MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
-G_continues := [
-  "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
-  "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
-  "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
-  "m", ["Continue ActivateEmacs", ActivateEmacs],
-  "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
-  "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
-  "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
-]
-
 G(items*) {
   Global mstsc_activate
   Global G_continuing
@@ -161,6 +151,10 @@ MyMenu() {
       "o", ["FileServLibToggleDir", FileServLibToggleDir],
       "d", ["FileServLibShowDir", FileServLibShowDir],
     )],
+    "g", ["Move Window", () => G(
+      "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax],
+      "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax],
+    )],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
@@ -193,3 +187,14 @@ MyMenu() {
     G_continues*
   )
 }
+
+G_continues := [
+  "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
+  "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
+  "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
+  "m", ["Continue ActivateEmacs", ActivateEmacs],
+  "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
+  "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
+  "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
+]
+
