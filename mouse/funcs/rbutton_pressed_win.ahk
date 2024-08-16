@@ -105,6 +105,12 @@ TopMostToggleA() {
   }
 }
 
+KillIfStillExist(win) {
+  If (WinExist(win)) {
+    WinKill(win)
+  }
+}
+
 ActivateAndAltF4UnderMouse() {
   MouseGetPos , , &_win
   WinActivate(_win)
@@ -112,9 +118,11 @@ ActivateAndAltF4UnderMouse() {
   If WinActive("ahk_exe emacs.exe") {
     Send("^x")
     Send("^c")
+  } Else If WinActive("ahk_class Progman") {
+    Send("!{F4}")
   } Else {
-    ; Send("!{F4}")
-    WinKill(_win)
+    Send("!{F4}")
+    SetTimer(() => KillIfStillExist(_win), 1000)
   }
 }
 
