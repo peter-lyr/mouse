@@ -119,6 +119,7 @@ ActivateAndAltF4UnderMouse() {
     Send("^x")
     Send("^c")
   } Else If WinActive("ahk_class Progman") {
+    ; 桌面
     Send("!{F4}")
   } Else {
     Send("!{F4}")
