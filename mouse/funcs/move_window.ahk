@@ -108,6 +108,9 @@ MoveWindow() {
 MoveWindowCurScreenMax() {
   Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
   GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
   WinMove(wa_x, wa_y, wa_w, wa_h, "A")
 }
@@ -115,6 +118,9 @@ MoveWindowCurScreenMax() {
 MoveWindowNextScreenMax() {
   Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
   GetLastWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
   WinMove(wa_x, wa_y, wa_w, wa_h, "A")
 }
