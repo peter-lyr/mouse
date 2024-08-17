@@ -106,13 +106,43 @@ MoveWindow() {
 }
 
 MoveWindowCurScreenMax() {
+  Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
-  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &_wa_x, &_wa_y, &_wa_w, &_wa_h)
-  WinMove(_wa_x, _wa_y, _wa_w, _wa_h, "A")
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y, wa_w, wa_h, "A")
 }
 
 MoveWindowNextScreenMax() {
+  Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
-  GetLastWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &_wa_x, &_wa_y, &_wa_w, &_wa_h)
-  WinMove(_wa_x, _wa_y, _wa_w, _wa_h, "A")
+  GetLastWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y, wa_w, wa_h, "A")
 }
+
+#HotIf WinExist("ahk_exe emacs.exe")
+
+Emacsframes := []
+
+CheckEmacs(wid) {
+  Global wa_x, wa_y, wa_w, wa_h
+  Try {
+    WinGetPos(&_x0, &_y0, &_w0, &_h0, wid)
+    If (wa_x != _x0 And wa_y != _y0 And wa_w != _w0 And wa_h != _h0) {
+      Emacsframes.Push(wid)
+    }
+  }
+}
+
+EmacsFrameMoveWindowCurScreenMax() {
+  If (WinActive("ahk_exe emacs.exe")) {
+    _wid := String(WinGetId("A"))
+    If (Not StrInArray(_wid, Emacsframes)) {
+      MoveWindowCurScreenMax()
+      SetTimer(() => CheckEmacs(_wid), -3000)
+    }
+  }
+}
+
+SetTimer(EmacsFrameMoveWindowCurScreenMax, 5000)
+
+#HotIf
