@@ -131,20 +131,22 @@ Emacsframes := []
 
 CheckEmacs(wid) {
   Global wa_x, wa_y, wa_w, wa_h
+  Global Emacsframes
   Try {
     WinGetPos(&_x0, &_y0, &_w0, &_h0, wid)
-    If (wa_x != _x0 And wa_y != _y0 And wa_w != _w0 And wa_h != _h0) {
-      Emacsframes.Push(wid)
+    If (wa_x == _x0 And wa_y == _y0 And wa_w == _w0 And wa_h == _h0) {
+      Emacsframes.Push(String(wid))
     }
   }
 }
 
 EmacsFrameMoveWindowCurScreenMax() {
+  Global Emacsframes
   If (WinActive("ahk_exe emacs.exe")) {
-    _wid := String(WinGetId("A"))
-    If (Not StrInArray(_wid, Emacsframes)) {
+    _wid := WinGetId("A")
+    If (Not StrInArray(String(_wid), Emacsframes)) {
       MoveWindowCurScreenMax()
-      SetTimer(() => CheckEmacs(_wid), -3000)
+      SetTimer(() => CheckEmacs(_wid), 500)
     }
   }
 }
