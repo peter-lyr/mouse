@@ -5,6 +5,18 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 G(items*) {
   Global G_continuing
+  temp_list := []
+  temp_key := ""
+  For _, v in items {
+    If (type(v) == "Array") {
+      If (InStr(v[1], "Continue ")) {
+        temp_list.Push(temp_key)
+        temp_list.Push(v)
+      }
+    } Else {
+      temp_key := v
+    }
+  }
   menus := Map()
   menus.Set(items*)
   msg := ""
@@ -31,7 +43,7 @@ G(items*) {
         If (key == "enter") {
           Return
         }
-        G(G_continues*)
+        G(temp_list*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
@@ -183,17 +195,18 @@ MyMenu() {
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
-    G_continues*
+    "a", ["TestTransparent", () => G(
+      "d", ["Continue TransparentDownCurWin", TransparentDownCurWin],
+      "u", ["Continue TransparentUpCurWin", TransparentUpCurWin],
+    )],
+    "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
+    "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
+    "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
+    "m", ["Continue ActivateEmacs", ActivateEmacs],
+    "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
+    "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
+    "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
+    "enter", ["Continue ActivateMstscExe", ActivateMstscExe],
   )
 }
 
-G_continues := [
-  "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
-  "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
-  "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
-  "m", ["Continue ActivateEmacs", ActivateEmacs],
-  "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
-  "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
-  "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
-  "enter", ["Continue ActivateMstscExe", ActivateMstscExe],
-]
