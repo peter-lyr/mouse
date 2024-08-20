@@ -196,8 +196,8 @@ MyMenu() {
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
     "a", ["TestTransparent", () => G(
-      "d", ["Continue TransparentDownCurWin", TransparentDownCurWin],
-      "u", ["Continue TransparentUpCurWin", TransparentUpCurWin],
+      "j", ["Continue TransparentDownCurWin", TransparentDownCurWin],
+      "k", ["Continue TransparentUpCurWin", TransparentUpCurWin],
     )],
     "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
     "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
