@@ -5,16 +5,16 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 G(items*) {
   Global G_continuing
-  temp_list := []
-  temp_key := ""
+  continue_list := []
+  continue_key := ""
   For _, v in items {
     If (type(v) == "Array") {
       If (InStr(v[1], "Continue ")) {
-        temp_list.Push(temp_key)
-        temp_list.Push(v)
+        continue_list.Push(continue_key)
+        continue_list.Push(v)
       }
     } Else {
-      temp_key := v
+      continue_key := v
     }
   }
   menus := Map()
@@ -43,7 +43,7 @@ G(items*) {
         If (key == "enter") {
           Return
         }
-        G(temp_list*)
+        G(continue_list*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
@@ -52,7 +52,6 @@ G(items*) {
     }
     Tooltip
   } Else {
-    G_continuing := 0
     If (G_continuing And key == "lalt") {
       LAltUpFlag := 1
       LAltCount()
@@ -60,6 +59,7 @@ G(items*) {
       SetTimer(() => Send("{" . key . "}"), -10)
       Print("<" . key . ">", 1000)
     }
+    G_continuing := 0
   }
 }
 
