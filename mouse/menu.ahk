@@ -10,7 +10,7 @@ G(items*) {
   menus.Set(items*)
   msg := ""
   For key, val in menus {
-    msg .= key . ": " . val[1] . "`n"
+    msg .= Format("│{:-12}│{:}`n", key, val[1])
   }
   msg := Strip(msg)
   SetTimer(() => [
@@ -39,6 +39,7 @@ G(items*) {
     }
     Tooltip
   } Else {
+    G_continuing := 0
     If (mstsc_activate And Not key) {
       WinActivate("ahk_exe mstsc.exe")
     }
