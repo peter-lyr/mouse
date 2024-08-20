@@ -29,7 +29,7 @@ for classnn in controlList
   } Catch as e {
     MsgBox(type(classnn))
   }
-  ; DrawRectangle(x0 + x, y0 + y, w, h)
+  DrawRectangle(x0 + x, y0 + y, w, h)
   ; Break
 }
 
@@ -43,7 +43,7 @@ DrawRectangle(x, y, w, h) {
   WinSetTransparent(20, "Ahk_id " . circle.Hwnd)
   hdc := DllCall("GetDC", "Ptr", circle.Hwnd)
   DllCall("SetBkMode", "Ptr", hdc, "Int", 1)
-  pen := DllCall("CreatePen", "Int", 0, "Int", 10, "UInt", 0X0000FF)
+  pen := DllCall("CreatePen", "Int", 0, "Int", 4, "UInt", 0X0000FF)
   DllCall("SelectObject", "Ptr", hdc, "Ptr", pen)
   DllCall("MoveToEx", "Ptr", hdc, "Int", 0,     "Int", 0, "Ptr", 0)
   DllCall("LineTo",   "Ptr", hdc, "Int", 0,     "Int", 0+h-1)
