@@ -30,8 +30,10 @@ G(items*) {
   ], -10)
   If (G_continuing == 1) {
     key := StrLower(KeyWaitAny("T0.5"))
+    ; SetTimer(Tooltip, -500)
   } Else {
     key := StrLower(KeyWaitAny("T3"))
+    ; SetTimer(Tooltip, -3000)
   }
   If menus.Has(key) {
     v := menus[key][1]
@@ -41,6 +43,7 @@ G(items*) {
       If (StrSplit(v, " ")[1] == "Continue") {
         G_continuing := 1
         If (key == "enter") {
+          Tooltip
           Return
         }
         G(continue_list*)
