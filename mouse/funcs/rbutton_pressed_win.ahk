@@ -204,9 +204,15 @@ TextPos := []
   }
   Controls := WinGetControls(_wid)
   WinGetPos(&_x0, &_y0, , , _wid)
+  ; Try {
+  ;   i := 1
+  ;   ControlFocus(Controls[i], _wid)
+  ;   ControlGetPos(&_x, &_y, &_w, &_h, Controls[i], _wid)
+  ;   DrawRectangle(_x0 + _x, _y0 + _y, _w, _h, i)
+  ; }
   For _control In Controls {
     ; Try {
-      controlgetpos(&_x, &_y, &_w, &_h, _control, _wid)
+      ControlGetPos(&_x, &_y, &_w, &_h, _control, _wid)
       DrawRectangle(_x0 + _x, _y0 + _y, _w, _h, A_Index)
     ; } Catch As err {
     ;   MsgBox Format("{1}: {2}.`n`nFile:`t{3}`nLine:`t{4}`nWhat:`t{5}`nStack:`n{6}"
@@ -223,8 +229,8 @@ DrawRectangle(x, y, w, h, index) {
   Global Lines
   Global TextPos
   GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled"
-  bar := 12
-  text_size := 54
+  bar := 2
+  text_size := 24
   ; 先上下再左右
   X := [x, x, x, x + w - bar]
   Y := [y, y + h - bar, y, y]
@@ -247,21 +253,27 @@ DrawRectangle(x, y, w, h, index) {
   line.Opt(GuiOpt)
   line.Add("Text", , String(index))
   line.BackColor := color
-  x := X[1] + text_size
-  y := Y[1] + text_size
+  x := X[1]
+  ; y := Y[1] + text_size
+  y := Y[1]
   For pos in TextPos {
     x0 := pos[1]
-    y0 := pos[2]
+    ; y0 := pos[2]
     _dx := x - x0
-    _dy := y - y0
-    _c := Sqrt(_dx ** 2 + _dy ** 2)
+    ; _dy := y - y0
+    ; _c := Sqrt(_dx ** 2 + _dy ** 2)
+    ; If (_c < text_size) {
+    ;   x += text_size
+    ;   y += text_size
+    ; }
+    _c := Sqrt(_dx ** 2)
     If (_c < text_size) {
       x += text_size
-      y += text_size
+      ; y += text_size
     }
   }
   TextPos.Push([x, y])
-  _show_wh := Format("X{:}Y{:}W{:}H{:}", x, y, text_size / 2, text_size / 2)
+  _show_wh := Format("X{:}Y{:}W{:}H{:}", x, y, text_size, text_size)
   line.Show(_show_wh . " NA")
   ; WinSetTransparent(100, "Ahk_id " . line.Hwnd)
   Lines.Push(line)
