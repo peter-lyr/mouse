@@ -210,6 +210,10 @@ MyMenu() {
     "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
     "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
     "enter", ["Continue ActivateMstscExe", ActivateMstscExe],
+    "t", ["Test", () => G(
+      "a", ["TestA", TestA],
+      "b", ["TestB", TestB],
+    )],
   )
 }
 

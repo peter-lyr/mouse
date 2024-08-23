@@ -341,6 +341,18 @@ LowerUniqSort(arr) {
   Return StripArr(result)
 }
 
+;; py放funcs目录下
+RunPyWithArgs(py, args*) {
+  params := '"'
+  For _, str in args {
+    params .= str . '" "'
+  }
+  params .= '"'
+  cmd := Format("{:}\mouse\funcs\{:} {:}", A_ScriptDir, py, params)
+  ; Run(cmd)
+  CmdRunOutput(cmd)
+}
+
 ReadLines(file) {
   result := StrSplit(Strip(FileRead(file)), "`n")
   Return StripArr(result)
