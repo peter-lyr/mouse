@@ -5,11 +5,12 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 G(items*) {
   Global G_continuing
+  Global KeyWaitSecond
   continue_list := []
   continue_key := ""
   For _, v in items {
     If (type(v) == "Array") {
-      If (InStr(v[1], "Continue ")) {
+      If (v.Length >= 3 And v[3] == "Continue") {
         continue_list.Push(continue_key)
         continue_list.Push(v)
       }
@@ -28,19 +29,24 @@ G(items*) {
     CoordMode("Tooltip", "Screen")
     Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
   ], -10)
-  If (G_continuing == 1) {
-    key := StrLower(KeyWaitAny("T0.5"))
-    ; SetTimer(Tooltip, -500)
+  If (KeyWaitSecond > 0) {
+    key := StrLower(KeyWaitAny(Format("T{:}", KeyWaitSecond)))
   } Else {
-    key := StrLower(KeyWaitAny("T3"))
-    ; SetTimer(Tooltip, -3000)
+    If (G_continuing == 1) {
+      key := StrLower(KeyWaitAny("T0.5"))
+    } Else {
+      key := StrLower(KeyWaitAny("T3"))
+    }
   }
   If menus.Has(key) {
     v := menus[key][1]
     f := menus[key][2]
     If (Type(f) == "Func") {
       f()
-      If (StrSplit(v, " ")[1] == "Continue") {
+      If (menus[key].Length >= 4) {
+        KeyWaitSecond := menus[key][4]
+      }
+      If (menus[key].Length >= 3 And menus[key][3] == "Continue") {
         G_continuing := 1
         If (key == "enter") {
           Tooltip
@@ -63,6 +69,7 @@ G(items*) {
       Print("<" . key . ">", 1000)
     }
     G_continuing := 0
+    KeyWaitSecond := 0
   }
 }
 
@@ -134,6 +141,8 @@ LAltUp() {
 MyMenu() {
   Global CycleWinIndex
   Global G_continuing
+  Global KeyWaitSecond
+  KeyWaitSecond := 0
   G_continuing := 0
   CycleWinIndex := 1
   Loop 10 {
@@ -199,17 +208,17 @@ MyMenu() {
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
     "a", ["TestTransparent", () => G(
-      "j", ["Continue TransparentDownCurWin", TransparentDownCurWin],
-      "k", ["Continue TransparentUpCurWin", TransparentUpCurWin],
+      "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", 5],
+      "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue", 5],
     )],
-    "d", ["Continue ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks],
-    "w", ["Continue ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork],
-    "e", ["Continue ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge],
-    "m", ["Continue ActivateEmacs", ActivateEmacs],
-    "s", ["Continue MinimizeOrActivateMsedge", MinimizeOrActivateMsedge],
-    "rshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
-    "lshift", ["Continue ActivateNvimQtExe", ActivateNvimQtExe],
-    "enter", ["Continue ActivateMstscExe", ActivateMstscExe],
+    "d", ["ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks, "Continue"],
+    "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork, "Continue"],
+    "e", ["ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge, "Continue"],
+    "m", ["ActivateEmacs", ActivateEmacs, "Continue"],
+    "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
+    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Continue"],
+    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Continue"],
+    "enter", ["ActivateMstscExe", ActivateMstscExe, "Continue"],
     "t", ["Test", () => G(
       "a", ["TestA", TestA],
       "b", ["TestB", TestB],
