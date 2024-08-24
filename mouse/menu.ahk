@@ -62,8 +62,8 @@ G(items*) {
     Tooltip
   } Else {
     If (G_continuing And key == "lalt") {
-      LAltUpFlag := 1
-      LAltCount()
+      MenuKeyUpFlag := 1
+      MenuKeyCount()
     } Else {
       SetTimer(() => Send("{" . key . "}"), -10)
       Print("<" . key . ">", 1000)
@@ -111,16 +111,16 @@ ResetMenuFlag() {
   menu_flag := 0
 }
 
-LAltCount() {
+MenuKeyCount() {
   Global menu_flag
-  Global LAltUpFlag
-  If (Not IsSet(LAltUpFlag)) {
-    LAltUpFlag := 1
+  Global MenuKeyUpFlag
+  If (Not IsSet(MenuKeyUpFlag)) {
+    MenuKeyUpFlag := 1
   }
-  If (Not LAltUpFlag) {
+  If (Not MenuKeyUpFlag) {
     Return
   }
-  LAltUpFlag := 0
+  MenuKeyUpFlag := 0
   If (Not IsSet(menu_flag)) {
     menu_flag := 0
   }
@@ -133,9 +133,9 @@ LAltCount() {
   }
 }
 
-LAltUp() {
-  Global LAltUpFlag
-  LAltUpFlag := 1
+MenuKeyUp() {
+  Global MenuKeyUpFlag
+  MenuKeyUpFlag := 1
 }
 
 MyMenu() {
