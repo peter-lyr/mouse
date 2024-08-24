@@ -129,3 +129,8 @@ InitCircle()
 ~LAlt Up:: {
   MenuKeyUp()
 }
+
+; F1:: {
+;   MyMenu()
+; }
+
