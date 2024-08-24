@@ -46,6 +46,9 @@ TransparentToggleRbuttonPressWin() {
 
 TransparentDownCurWin() {
   _t := WinGetTransparent("A")
+  If (_t == "") {
+    _t := 255
+  }
   _t -= 10
   If (_t < 10) {
     _t := 10
@@ -55,6 +58,9 @@ TransparentDownCurWin() {
 
 TransparentUpCurWin() {
   _t := WinGetTransparent("A")
+  If (_t == "") {
+    _t := 255
+  }
   _t += 10
   If (_t > 255) {
     _t := 255
