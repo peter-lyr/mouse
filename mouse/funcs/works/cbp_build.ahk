@@ -5,7 +5,7 @@ CbpBuild() {
   ok := 0
   For id in WinGetList("ahk_exe codeblocks.exe") {
     ok := 1
-    ActivateWaitSend(id, "{Esc}{F9}")
+    ActivateWaitSend(id, "{Esc}{F7}")
   }
   If (ok) {
     If (WinExist("ahk_exe nvim-qt.exe")) {
