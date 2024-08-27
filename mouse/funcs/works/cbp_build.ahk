@@ -2,15 +2,19 @@
 ; create at 2024/06/04 13:41:37 Tuesday
 
 CbpBuild() {
-  If (WinExist("ahk_exe codeblocks.exe")) {
-    ActivateWaitMaximizeSend("ahk_exe codeblocks.exe", "{Esc}{F7}")
-    If (WinExist("ahk_exe Downloader.exe")) {
-      SetTimer () => WinActivate("ahk_exe Downloader.exe"), -400
-    }
-    SetTimer () => WinRestore("ahk_exe codeblocks.exe"), -200
-    Return 1
+  ok := 0
+  For id in WinGetList("ahk_exe codeblocks.exe") {
+    ok := 1
+    ActivateWaitSend(id, "{Esc}{F9}")
   }
-  Return 0
+  If (ok) {
+    If (WinExist("ahk_exe nvim-qt.exe")) {
+      WinActivate("ahk_exe nvim-qt.exe")
+    } Else {
+      Run("nvim-qt.exe")
+    }
+  }
+  Return ok
 }
 
 #HotIf WinExist("ahk_exe codeblocks.exe")
