@@ -19,6 +19,11 @@ CloseFileserv() {
   WinWaitActivate(wid)
 }
 
+RestartFileserv() {
+  CloseFileserv()
+  ActivateFileserv()
+}
+
 FileServUpClip() {
   wid := WinGetId("A")
   ActivateFileserv()
