@@ -193,7 +193,7 @@ MyMenu() {
       "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax],
       "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax],
     )],
-    "l", ["Toggle", () => G(
+    ";", ["Toggle", () => G(
       "p", ["Proxy", () => G(
         "o", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
