@@ -1,6 +1,8 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/17 23:55:49 星期五
 
+DesktopAhkClass := "Program Manager"
+
 remote_desktop_exes := [
   "ahk_exe mstsc.exe",
   "ahk_exe SunloginClient.exe",
@@ -396,3 +398,15 @@ WinWaitActivate(win) {
     }
   }
 }
+
+ActivateDesktop() {
+  Loop 10 {
+    If Not WinActive(DesktopAhkClass) {
+      WinActivate(DesktopAhkClass)
+    }
+    If (WinActive(DesktopAhkClass)) {
+      Break
+    }
+  }
+}
+

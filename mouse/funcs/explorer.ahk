@@ -5,7 +5,6 @@ ExplorerMainPanel := ["DirectUIHWND2", "Microsoft.UI.Content.DesktopChildSiteBri
 ExplorerTreeView := ["SysTreeView321"]
 ExplorerAddress := ["Microsoft.UI.Content.DesktopChildSiteBridge2", "Microsoft.UI.Content.DesktopChildSiteBridge3"]
 
-DesktopAhkClass := "Program Manager"
 ExplorerAhkClass := "ahk_class CabinetWClass"
 
 #HotIf WinActive(ExplorerAhkClass)
@@ -102,12 +101,6 @@ ToggleExplorerMainPanelTreeView() {
     } Else {
       TryControlFocus(ExplorerTreeView)
     }
-  }
-}
-
-ActivateDesktop() {
-  If Not WinActive(DesktopAhkClass) {
-    WinActivate(DesktopAhkClass)
   }
 }
 
