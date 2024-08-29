@@ -122,15 +122,14 @@ InitCircle()
 ; 自定义菜单
 ; ==========
 
-~LAlt:: {
+~Alt:: {
   MenuKeyCount()
 }
 
-~LAlt Up:: {
+~Alt Up:: {
   MenuKeyUp()
 }
 
-; F1:: {
-;   MyMenu()
-; }
-
+F1:: {
+  MyMenu()
+}

@@ -3,9 +3,13 @@
 
 MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
+MenuGoing := 0
+
 G(items*) {
+  Global MenuGoing
   Global G_continuing
   Global KeyWaitSecond
+  MenuGoing := 1
   continue_list := []
   continue_key := ""
   For _, v in items {
@@ -27,6 +31,7 @@ G(items*) {
   msg := Strip(msg)
   SetTimer(() => [
     CoordMode("Tooltip", "Screen")
+    SetTimer(Tooltip, 0)
     Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
   ], -10)
   If (KeyWaitSecond > 0) {
@@ -38,6 +43,8 @@ G(items*) {
       key := StrLower(KeyWaitAny("T3"))
     }
   }
+  MenuGoing := 0
+  Tooltip
   If menus.Has(key) {
     v := menus[key][1]
     f := menus[key][2]
@@ -49,7 +56,7 @@ G(items*) {
       If (menus[key].Length >= 3 And menus[key][3] == "Continue") {
         G_continuing := 1
         If (key == "enter") {
-          Tooltip
+          KeyWaitSecond := 0
           Return
         }
         G(continue_list*)
@@ -59,12 +66,11 @@ G(items*) {
     } Else If (FileExist(v)) {
       Run(v)
     }
-    Tooltip
   } Else {
     If (G_continuing And key == "lalt") {
       MenuKeyUpFlag := 1
       MenuKeyCount()
-    } Else {
+    } Else If (key) {
       SetTimer(() => Send("{" . key . "}"), -10)
       Print("<" . key . ">", 1000)
     }
@@ -127,24 +133,14 @@ MenuKeyCount() {
   menu_flag += 1
   If (menu_flag == 2) {
     menu_flag := 0
+    JumpOutSideOffMsTsc()
     MyMenu()
   } Else {
     SetTimer(ResetMenuFlag, -300)
   }
 }
 
-MenuKeyUp() {
-  Global MenuKeyUpFlag
-  MenuKeyUpFlag := 1
-}
-
-MyMenu() {
-  Global CycleWinIndex
-  Global G_continuing
-  Global KeyWaitSecond
-  KeyWaitSecond := 0
-  G_continuing := 0
-  CycleWinIndex := 1
+JumpOutSideOffMsTsc() {
   Loop 10 {
     If WinActive("ahk_exe mstsc.exe") {
       WinActivate("ahk_class Shell_TrayWnd")
@@ -161,6 +157,24 @@ MyMenu() {
       Break
     }
   }
+}
+
+MenuKeyUp() {
+  Global MenuKeyUpFlag
+  MenuKeyUpFlag := 1
+}
+
+MyMenu() {
+  Global CycleWinIndex
+  Global G_continuing
+  Global MenuGoing
+  Global KeyWaitSecond
+  If (MenuGoing) {
+    Return
+  }
+  KeyWaitSecond := 0
+  G_continuing := 0
+  CycleWinIndex := 1
   G(
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "escape", ["ActivateDesktop", ActivateDesktop],
