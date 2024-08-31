@@ -8,14 +8,20 @@ cur_wid  := 1
 TestInputMethod() {
   Global last_wid
   Global cur_wid
-  For p In inputmethod_exes {
-    If WinActive("ahk_exe " . p) {
-      cur_wid := WinGetID("A")
-      If last_wid != cur_wid {
-        last_wid := cur_wid
-        Tooltip(p)
-        Break
+  Try {
+    cur_wid := WinGetID("A")
+    For p In inputmethod_exes {
+      If WinActive("ahk_exe " . p) {
+        If last_wid != cur_wid {
+          last_wid := cur_wid
+          Tooltip(p)
+          Return
+        }
       }
+    }
+    If last_wid != cur_wid {
+      last_wid := cur_wid
+      Tooltip(WinGetProcessName(cur_wid))
     }
   }
 }
