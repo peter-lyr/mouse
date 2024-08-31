@@ -26,6 +26,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\wxwork.ahk
 #Include %A_ScriptDir%\mouse\funcs\cycle_win.ahk
 #Include %A_ScriptDir%\mouse\funcs\toggle.ahk
+#Include %A_ScriptDir%\mouse\funcs\inputmethod.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\test.ahk
 
@@ -108,6 +109,8 @@ RButton & LButton:: {
 }
 
 InitCircle()
+
+SetTimer(DetectInputMethod, 10)
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag()
 
