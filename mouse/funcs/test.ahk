@@ -1,6 +1,8 @@
 TestA() {
 
-  Send("#{Space}")
+  MsgBox "The active window's class is " WinGetClass("A")
+
+  ; Send("#{Space}")
 
   ; ; 测试切换输入法
   ; ; 确实会不起效果

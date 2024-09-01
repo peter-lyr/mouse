@@ -55,6 +55,9 @@ DetectInputMethod() {
         }
       }
     }
+    If (WinGetClass(cur_wid) == "XamlExplorerHostIslandWindow" Or WinGetTitle(cur_wid) == "Task Switching") { ; Alt Tab
+      Return
+    }
     If last_wid != cur_wid {
       last_wid := cur_wid
       SetTimer(() => ChangeInputMethod("1"), -10)
