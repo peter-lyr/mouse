@@ -1,5 +1,7 @@
 TestA() {
 
+  Send("#{Space}")
+
   ; ; 测试切换输入法
   ; ; 确实会不起效果
   ; RunPyWithArgs(".input-method.py", "ZH")

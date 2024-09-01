@@ -21,10 +21,10 @@ If (A_ScreenHeight <= 1080) {
   circle_radius := 50
 }
 
-If (GetWinVer() == "Windows 10") {
-  winver := 10
-  left_margin := 78
-}
+; If (GetWinVer() == "Windows 10") {
+;   winver := 10
+;   left_margin := 78
+; }
 
 circle_diameter := circle_radius * max_circles * 2
 

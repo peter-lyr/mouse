@@ -44,9 +44,7 @@ ActivateCycleExplorerMsedge() {
 
 ActivateEmacs() {
   ; MinimizeAll()
-  ActivateDesktop()
   CycleActivateAllExistWin([
-    "ahk_exe emacs.exe",
     "ahk_exe emacs.exe",
   ])
 }

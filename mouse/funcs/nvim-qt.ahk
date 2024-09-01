@@ -1,32 +1,14 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/06/06 20:46:22 星期四
 
-NvimQtImageEyeFlag := 0
-
-WinActivateNvimQt() {
+ActivateNvimQtExe() {
   Try {
     If WinExist("ahk_exe nvim-qt.exe") {
-      WinActivate("ahk_class Shell_TrayWnd")
-      WinWaitActivate("ahk_class Shell_TrayWnd")
       WinActivate("ahk_exe nvim-qt.exe")
     } Else {
       Run("nvim-qt.exe")
       WinWaitActivate("ahk_exe nvim-qt.exe")
-      WinActivate("ahk_class Shell_TrayWnd")
-      WinWaitActivate("ahk_class Shell_TrayWnd")
-      WinActivate("ahk_exe nvim-qt.exe")
     }
-  }
-}
-
-ActivateNvimQtExe() {
-  Global NvimQtImageEyeFlag
-  WinActivateNvimQt()
-  If (WinExist("ahk_exe Image Eye.exe")) {
-    WinMinimize("ahk_exe Image Eye.exe")
-    NvimQtImageEyeFlag := 0
-  } Else {
-    NvimQtImageEyeFlag := 1
   }
 }
 
@@ -40,44 +22,3 @@ ActivateMstscExe() {
     }
   }
 }
-
-#HotIf WinActive("ahk_exe WXWork.exe")
-
-!l:: {
-  ActivateNvimQtExe()
-}
-
-#HotIf WinActive("ahk_exe nvim-qt.exe")
-
-; 需要taskkill /f /im "Image Eye.exe"后才能行
-~LCtrl & RShift:: {
-  Global NvimQtImageEyeFlag
-  temp := 1
-  id := WinGetId("A")
-  If WinActive("ahk_exe nvim-qt.exe") {
-    temp := 0
-  }
-  If (WinExist("ahk_exe Image Eye.exe")) {
-    If (NvimQtImageEyeFlag) {
-      For id in WinGetList("ahk_exe Image Eye.exe") {
-        WinMinimize(id)
-      }
-      NvimQtImageEyeFlag := 0
-    } Else {
-      For id in WinGetList("ahk_exe Image Eye.exe") {
-        WinActivate(id)
-      }
-      WinActivateNvimQt()
-      NvimQtImageEyeFlag := 1
-    }
-  }
-  If (temp) {
-    WinActivate(id)
-  }
-}
-
-~LCtrl & RCtrl:: {
-  Run('taskkill /f /im "Image Eye.exe"')
-}
-
-#HotIf
