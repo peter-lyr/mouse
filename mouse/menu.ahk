@@ -177,6 +177,7 @@ MyMenu() {
   CycleWinIndex := 1
   G(
     "lalt", ["ActivateWXWorkExe", ActivateWXWorkExe],
+    "ralt", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
     "f", ["Fileserv", () => G(
