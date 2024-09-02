@@ -410,3 +410,12 @@ ActivateDesktop() {
   }
 }
 
+ActivateOrOpen(wid, exe) {
+  Try {
+    If Not WinExist(wid) {
+      Run(exe)
+    }
+    WinWaitActivate(wid)
+  }
+}
+
