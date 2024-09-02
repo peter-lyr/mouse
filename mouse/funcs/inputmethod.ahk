@@ -7,33 +7,12 @@ For p In inputmethod_exes {
   FileAppend "", Format("C:\\Windows\\Temp\\{:}-input-method.txt", p)
 }
 
-GetCurrentKeyboardLayout() {
-  Global cur_wid
-  DetectHiddenWindows True
-  threadID := DllCall("GetWindowThreadProcessId", "UInt", cur_wid, "UInt", 0)
-  hkl := DllCall("GetKeyboardLayout", "UInt", threadID)
-  hkl := DllCall("GetKeyboardLayout", "UInt", threadID)
-  hkl := DllCall("GetKeyboardLayout", "UInt", threadID)
-  hkl := DllCall("GetKeyboardLayout", "UInt", threadID)
-  hkl := DllCall("GetKeyboardLayout", "UInt", threadID)
-  hkl := DllCall("GetKeyboardLayout", "UInt", threadID)
-  DetectHiddenWindows False
-  If (hkl == 0x4090409) { ; en
-    Return 0
-  }
-  Return 1
-}
-
 ChangeInputMethod(lang) {
-  InputMethod := GetCurrentKeyboardLayout()
+  Global cur_wid
   If lang == "1" { ; zh
-    If InputMethod == 0 {
-      Send("#{Space}")
-    }
+    PostMessage 0x50, 0, 0x8040804, , cur_wid
   } Else {
-    If InputMethod == 1 {
-      Send("#{Space}")
-    }
+    PostMessage 0x50, 0, 0x4090409, , cur_wid
   }
 }
 
