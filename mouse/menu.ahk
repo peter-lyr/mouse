@@ -67,10 +67,7 @@ G(items*) {
       Run(v)
     }
   } Else {
-    If (G_continuing And key == "lalt") {
-      MenuKeyUpFlag := 1
-      MenuKeyCount()
-    } Else If (key) {
+    If (key) {
       SetTimer(() => Send("{" . key . "}"), -10)
       Print("<" . key . ">", 1000)
     }
