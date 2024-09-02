@@ -9,10 +9,12 @@ For p In inputmethod_exes {
 
 ChangeInputMethod(lang) {
   Global cur_wid
-  If lang == "1" { ; zh
-    PostMessage 0x50, 0, 0x8040804, , cur_wid
-  } Else {
-    PostMessage 0x50, 0, 0x4090409, , cur_wid
+  Try {
+    If lang == "1" { ; zh
+      PostMessage 0x50, 0, 0x8040804, , cur_wid
+    } Else {
+      PostMessage 0x50, 0, 0x4090409, , cur_wid
+    }
   }
 }
 
