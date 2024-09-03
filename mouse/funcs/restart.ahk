@@ -72,7 +72,11 @@ LButtonRButtonDisMouseActionFlag() {
   ToggleMouseActionFlag()
 }
 
-^!r::Reload
+^!r:: {
+  Run(A_ScriptDir . "\mouse.exe")
+  WinWaitActivate("ahk_exe mouse.exe")
+  SetTimer(() => Send("{Space}"), -80)
+}
 
 ^!c:: {
   Run(A_ScriptDir . "\ahk2exe.bat")
