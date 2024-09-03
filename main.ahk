@@ -132,7 +132,3 @@ SetTimer(DetectInputMethod, 10)
 ~Alt Up:: {
   MenuKeyUp()
 }
-
-F1:: {
-  MyMenu()
-}
