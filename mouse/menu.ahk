@@ -50,6 +50,9 @@ G(items*) {
     f := menus[key][2]
     If (Type(f) == "Func") {
       f()
+      If (v == "MyMenu") {
+        Return
+      }
       If (menus[key].Length >= 4) {
         KeyWaitSecond := menus[key][4]
       }
@@ -247,4 +250,3 @@ MyMenu() {
     )],
   )
 }
-
