@@ -6,7 +6,6 @@ MinimizeAll() {
     "ahk_exe WXWork.exe",
     "ahk_exe WeChat.exe",
     "ahk_class CabinetWClass",
-    ; "ahk_exe msedge.exe",
     "ahk_exe Downloader.exe",
     "ahk_exe codeblocks.exe",
     "ahk_exe emacs.exe",
