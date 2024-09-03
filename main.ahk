@@ -125,11 +125,11 @@ SetTimer(DetectInputMethod, 10)
 ; 自定义菜单
 ; ==========
 
-~Ctrl:: {
+~Alt:: {
   MenuKeyCount()
 }
 
-~Ctrl Up:: {
+~Alt Up:: {
   MenuKeyUp()
 }
 
