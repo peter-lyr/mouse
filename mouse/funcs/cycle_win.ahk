@@ -9,7 +9,7 @@ MinimizeAll() {
     "ahk_exe Downloader.exe",
     "ahk_exe codeblocks.exe",
     "ahk_exe emacs.exe",
-    "ahk_exe nvim-q.exe",
+    "ahk_exe nvim-qt.exe",
   ])
 }
 
