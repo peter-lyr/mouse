@@ -9,13 +9,14 @@ MinimizeAll() {
     ; "ahk_exe msedge.exe",
     "ahk_exe Downloader.exe",
     "ahk_exe codeblocks.exe",
+    "ahk_exe emacs.exe",
+    "ahk_exe nvim-q.exe",
   ])
 }
 
 MinimizeOrActivateMsedge() {
   If (WinActive("ahk_exe msedge.exe")) {
     MinimizeAll()
-    WinActivate("ahk_exe nvim-qt.exe")
     WinMinimize("ahk_exe msedge.exe")
   } Else {
     If (WinExist("ahk_exe msedge.exe")) {
