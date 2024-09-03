@@ -175,9 +175,11 @@ MyMenu() {
   G(
     "lalt", ["MyMenu", MyMenu],
     "ralt", ["MyMenu", MyMenu],
-    "q", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
+    ; "u", ["upclip", () => SystemRunSilent("C:\Users\depei_liu\Desktop\Fileserv\upclip.bat")],
+    ; "i", ["downclip", () => SystemRunSilent("C:\Users\depei_liu\Desktop\Fileserv\downclip.bat")],
+    "q", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "f", ["Fileserv", () => G(
       "c", ["FileServLibChangeDir", FileServLibChangeDir],
       "d", ["FileServLibShowDir", FileServLibShowDir],
