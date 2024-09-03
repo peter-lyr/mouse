@@ -173,8 +173,8 @@ MyMenu() {
   G_continuing := 0
   CycleWinIndex := 1
   G(
-    "lalt", ["MyMenu", MyMenu],
-    "ralt", ["MyMenu", MyMenu],
+    "lalt", ["MyMenu", MyMenu, "Continue"],
+    "ralt", ["MyMenu", MyMenu, "Continue"],
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
     ; "u", ["upclip", () => SystemRunSilent("C:\Users\depei_liu\Desktop\Fileserv\upclip.bat")],
