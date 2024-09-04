@@ -115,6 +115,46 @@ MoveWindowCurScreenMax() {
   WinMove(wa_x, wa_y, wa_w, wa_h, "A")
 }
 
+MoveWindowCurScreenLeft() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y, wa_w / 2 - 100, wa_h, "A")
+}
+
+MoveWindowCurScreenRight() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x + wa_w / 2 + 100, wa_y, wa_w / 2 - 100, wa_h, "A")
+}
+
+MoveWindowCurScreenUp() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y, wa_w, wa_h / 2 - 100, "A")
+}
+
+MoveWindowCurScreenDown() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y + wa_h / 2 + 100, wa_w, wa_h / 2 - 100, "A")
+}
+
 MoveWindowNextScreenMax() {
   Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")

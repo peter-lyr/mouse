@@ -196,8 +196,12 @@ MyMenu() {
       "u", ["FileServUpClip", FileServUpClip],
     )],
     "g", ["Move Window", () => G(
-      "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax],
-      "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax],
+      "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax, "Continue", 3],
+      "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax, "Continue", 3],
+      "l", ["MoveWindowCurScreenRight", MoveWindowCurScreenRight, "Continue", 3],
+      "h", ["MoveWindowCurScreenLeft", MoveWindowCurScreenLeft, "Continue", 3],
+      "k", ["MoveWindowCurScreenUp", MoveWindowCurScreenUp, "Continue", 3],
+      "j", ["MoveWindowCurScreenDown", MoveWindowCurScreenDown, "Continue", 3],
     )],
     ";", ["Toggle", () => G(
       "p", ["Proxy", () => G(
