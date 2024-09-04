@@ -36,7 +36,7 @@ G(items*) {
       temp_wait := 3
     }
   }
-  msg := temp_wait . "`n" . Strip(msg)
+  msg := temp_wait . "秒`n" . Strip(msg)
   SetTimer(() => [
     CoordMode("Tooltip", "Screen")
     SetTimer(Tooltip, 0)
@@ -235,7 +235,7 @@ MyMenu() {
       "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
-      "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
+      "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen(), "", 8],
     )],
     "a", ["TestTransparent", () => G(
       "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue"],
