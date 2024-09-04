@@ -28,21 +28,21 @@ G(items*) {
   For key, val in menus {
     msg .= Format("│{:-12}│{:}`n", key, val[1])
   }
-  msg := Strip(msg)
+  temp_wait := KeyWaitSecond
+  If (temp_wait <= 0) {
+    If (G_continuing == 1) {
+      temp_wait := 0.5
+    } Else {
+      temp_wait := 5
+    }
+  }
+  msg := temp_wait . "`n" . Strip(msg)
   SetTimer(() => [
     CoordMode("Tooltip", "Screen")
     SetTimer(Tooltip, 0)
     Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
   ], -10)
-  If (KeyWaitSecond > 0) {
-    key := StrLower(KeyWaitAny(Format("T{:}", KeyWaitSecond)))
-  } Else {
-    If (G_continuing == 1) {
-      key := StrLower(KeyWaitAny("T0.5"))
-    } Else {
-      key := StrLower(KeyWaitAny("T3"))
-    }
-  }
+  key := StrLower(KeyWaitAny(Format("T{:}", temp_wait)))
   MenuGoing := 0
   Tooltip
   If menus.Has(key) {
@@ -238,8 +238,8 @@ MyMenu() {
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
     "a", ["TestTransparent", () => G(
-      "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", 5],
-      "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue", 5],
+      "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", 8],
+      "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue", 8],
     )],
     "d", ["ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks, "Continue"],
     "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork, "Continue"],
