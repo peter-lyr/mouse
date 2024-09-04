@@ -97,9 +97,16 @@ MButtonIsPressed() {
 }
 
 CmdRunOutput(cmd) {
+  ; shell := ComObject("WScript.Shell")
+  ; exec := shell.Exec(A_ComSpec . " /C " . cmd)
+  ; Return Strip(exec.StdOut.ReadAll())
   shell := ComObject("WScript.Shell")
-  exec := shell.Exec(A_ComSpec . " /C " . cmd)
-  Return Strip(exec.StdOut.ReadAll())
+  launch := "cmd.exe /c " . cmd . " > temp.txt"
+  exec := shell.Run(launch, 0, true)
+  ; 读取并返回命令的输出
+  output := FileRead("temp.txt")
+  FileDelete "temp.txt"
+  return output
 }
 
 GetWinVer() {

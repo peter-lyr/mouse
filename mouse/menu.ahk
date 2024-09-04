@@ -232,8 +232,8 @@ MyMenu() {
       )],
       "t", ["A_Temp", () => ExplorerOpen(A_Temp)],
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
-      ; "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
-      ; "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
+      "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
+      "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
     "a", ["TestTransparent", () => G(
       "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", 5],

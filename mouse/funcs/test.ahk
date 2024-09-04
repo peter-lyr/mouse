@@ -1,6 +1,18 @@
+RunWaitOne(command) {
+  shell := ComObject("WScript.Shell")
+  launch := "cmd.exe /c " . command . " > temp.txt"
+  exec := shell.Run(launch, 0, true)
+  ; 读取并返回命令的输出
+  output := FileRead("temp.txt")
+  FileDelete "temp.txt"
+  return output
+}
+
 TestA() {
 
-  MsgBox "The active window's class is " WinGetClass("A")
+  MsgBox(RunWaitOne("dir"))
+
+  ; MsgBox "The active window's class is " WinGetClass("A")
 
   ; Send("#{Space}")
 
