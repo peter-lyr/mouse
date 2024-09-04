@@ -104,12 +104,14 @@ ExplorerSelOpen(dirs) {
 ExplorerSelMyAdd() {
   If (DirExist(A_Clipboard)) {
     FileAppend(A_Clipboard . "`n", MyDirsTxt)
+    LowerUniqSortFile(MyDirsTxt)
     SetTimer(() => Print("MyDirsTxt Added: " . A_Clipboard), -300)
   }
 }
 
 ExplorerSelMyOpen() {
-  ExplorerSelOpen(DirExistArr(ReadLinesLowerUniqSort(MyDirsTxt)))
+  ; ExplorerSelOpen(DirExistArr(ReadLinesLowerUniqSort(MyDirsTxt)))
+  ExplorerSelOpen(StrSplit(Strip(FileRead(MyDirsTxt)), "`n"))
 }
 
 ResetMenuFlag() {

@@ -10,7 +10,11 @@ RunWaitOne(command) {
 
 TestA() {
 
-  MsgBox(RunWaitOne("dir"))
+  result := StrSplit(Strip(RunWaitOne("dir")), "`n")
+  ; MsgBox(Type(result))
+  MsgBox(result.Length)
+
+  ; MsgBox(RunWaitOne("dir"))
 
   ; MsgBox "The active window's class is " WinGetClass("A")
 

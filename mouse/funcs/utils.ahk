@@ -350,6 +350,11 @@ LowerUniqSort(arr) {
   Return StripArr(result)
 }
 
+LowerUniqSortFile(file) {
+  cmd := A_ScriptDir . "\mouse\funcs\.loweruniqsort_file.py " . file
+  Run(cmd)
+}
+
 ;; py放funcs目录下
 RunPyWithArgs(py, args*) {
   params := '"'
