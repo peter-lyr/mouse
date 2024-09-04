@@ -33,7 +33,7 @@ G(items*) {
     If (G_continuing == 1) {
       temp_wait := 0.5
     } Else {
-      temp_wait := 5
+      temp_wait := 3
     }
   }
   msg := temp_wait . "`n" . Strip(msg)
@@ -49,12 +49,12 @@ G(items*) {
     v := menus[key][1]
     f := menus[key][2]
     If (Type(f) == "Func") {
+      If (menus[key].Length >= 4) {
+        KeyWaitSecond := menus[key][4]
+      }
       f()
       If (v == "MyMenu") {
         Return
-      }
-      If (menus[key].Length >= 4) {
-        KeyWaitSecond := menus[key][4]
       }
       If (menus[key].Length >= 3 And menus[key][3] == "Continue") {
         G_continuing := 1
@@ -238,9 +238,9 @@ MyMenu() {
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen()],
     )],
     "a", ["TestTransparent", () => G(
-      "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", 8],
-      "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue", 8],
-    )],
+      "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue"],
+      "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue"],
+    ), "Continue", 5],
     "d", ["ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks, "Continue"],
     "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork, "Continue"],
     "e", ["ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge, "Continue"],
