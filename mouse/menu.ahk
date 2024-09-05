@@ -26,7 +26,7 @@ G(items*) {
   menus.Set(items*)
   msg := ""
   For key, val in menus {
-    msg .= Format("│{:-12}│{:}`n", key, val[1])
+    msg .= Format("│{:}`t│{:}`n", key, val[1])
   }
   temp_wait := KeyWaitSecond
   If (temp_wait <= 0) {
