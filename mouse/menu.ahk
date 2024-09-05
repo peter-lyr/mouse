@@ -5,8 +5,6 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 MenuGoing := 0
 
-HJKL_TIMEOUT := 10
-
 LastMsg := ""
 LastShowMenuPos := ""
 
@@ -271,24 +269,7 @@ MyMenu() {
     "p", ["Panel", () => G(
       "s", ["Sound", () => Run("mmsys.cpl")],
     )],
-    ";", ["hjkl", () => G(
-      "j", ["Down", () => Send("{Down}"), "lefttop", HJKL_TIMEOUT],
-      "k", ["Up", () => Send("{Up}"), "lefttop", HJKL_TIMEOUT],
-      "h", ["Left", () => Send("{Left}"), "lefttop", HJKL_TIMEOUT],
-      "l", ["Right", () => Send("{Right}"), "lefttop", HJKL_TIMEOUT],
-      "w", ["PgUp", () => Send("{PgUp}"), "lefttop", HJKL_TIMEOUT],
-      "s", ["PgDn", () => Send("{PgDn}"), "lefttop", HJKL_TIMEOUT],
-      "a", ["Home", () => Send("{Home}"), "lefttop", HJKL_TIMEOUT],
-      "d", ["End", () => Send("{End}"), "lefttop", HJKL_TIMEOUT],
-      "z", ["Ctrl-Home", () => Send("^{Home}"), "lefttop", HJKL_TIMEOUT],
-      "c", ["Ctrl-End", () => Send("^{End}"), "lefttop", HJKL_TIMEOUT],
-      "q", ["Shift-WheelUp", () => Send("+{WheelUp}"), "lefttop", HJKL_TIMEOUT],
-      "e", ["Shift-WheelDown", () => Send("+{WheelDown}"), "lefttop", HJKL_TIMEOUT],
-      "v", ["Alt-Left", () => Send("!{Left}"), "lefttop", HJKL_TIMEOUT],
-      "b", ["Alt-Right", () => Send("!{Right}"), "lefttop", HJKL_TIMEOUT],
-      ";", ["WheelUp", () => Send("{WheelUp}"), "lefttop", HJKL_TIMEOUT],
-      "'", ["WheelDown", () => Send("{WheelDown}"), "lefttop", HJKL_TIMEOUT],
-    )],
+    ";", ["HJKL", HJKL],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],

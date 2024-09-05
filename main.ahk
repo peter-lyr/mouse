@@ -27,6 +27,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\cycle_win.ahk
 #Include %A_ScriptDir%\mouse\funcs\toggle.ahk
 #Include %A_ScriptDir%\mouse\funcs\inputmethod.ahk
+#Include %A_ScriptDir%\mouse\funcs\hjkl.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\test.ahk
 
