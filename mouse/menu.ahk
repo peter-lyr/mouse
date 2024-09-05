@@ -5,6 +5,8 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 MenuGoing := 0
 
+HJKL_TIMEOUT := 10
+
 LastMsg := ""
 LastShowMenuPos := ""
 
@@ -86,25 +88,31 @@ G(items*) {
       If (menus[key].Length >= 4) {
         KeyWaitSecond := menus[key][4]
       }
+      flag := ""
+      If (menus[key].Length >= 3) {
+        If (menus[key][3] == "Continue") {
+          flag := "Continue"
+        } Else If (menus[key][3] == "lefttop") {
+          flag := "lefttop"
+          ShowMenuPos := "lefttop"
+        }
+      }
       f()
       If (v == "MyMenu") {
         Return
       }
-      If (menus[key].Length >= 3) {
-        If (menus[key][3] == "Continue") {
-          G_continuing := 1
-          If (key == "enter") {
-            KeyWaitSecond := 0
-            Return
-          }
-          continue_list := GetList(items, "Continue")
-          G(continue_list*)
-        } Else If (menus[key][3] == "lefttop") {
-          G_continuing := 1
-          ShowMenuPos := "lefttop"
-          lefttop_list := GetList(items, "lefttop")
-          G(lefttop_list*)
+      If (flag == "Continue") {
+        G_continuing := 1
+        If (key == "enter") {
+          KeyWaitSecond := 0
+          Return
         }
+        continue_list := GetList(items, "Continue")
+        G(continue_list*)
+      } Else If (flag == "lefttop") {
+        G_continuing := 1
+        lefttop_list := GetList(items, "lefttop")
+        G(lefttop_list*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
@@ -113,9 +121,13 @@ G(items*) {
     }
   } Else {
     If (key) {
-      SetTimer(() => Send("{" . key . "}"), -10)
-      Tooltip("<" . key . ">", 0, 0)
-      SetTimer(Tooltip, -1000)
+      If (InStr(key, "alt")) {
+        MyMenu()
+      } Else {
+        SetTimer(() => Send("{" . key . "}"), -10)
+        Tooltip("<" . key . ">", 0, 0)
+        SetTimer(Tooltip, -1000)
+      }
     } Else {
       Tooltip
     }
@@ -260,21 +272,21 @@ MyMenu() {
       "s", ["Sound", () => Run("mmsys.cpl")],
     )],
     ";", ["hjkl", () => G(
-      "j", ["Down", () => Send("{Down}"), "lefttop", 3],
-      "k", ["Up", () => Send("{Up}"), "lefttop", 3],
-      "h", ["Left", () => Send("{Left}"), "lefttop", 3],
-      "l", ["Right", () => Send("{Right}"), "lefttop", 3],
-      "w", ["PgUp", () => Send("{PgUp}"), "lefttop", 3],
-      "s", ["PgDn", () => Send("{PgDn}"), "lefttop", 3],
-      "a", ["Home", () => Send("{Home}"), "lefttop", 3],
-      "d", ["End", () => Send("{End}"), "lefttop", 3],
-      "z", ["Ctrl-Home", () => Send("^{Home}"), "lefttop", 3],
-      "c", ["Ctrl-End", () => Send("^{End}"), "lefttop", 3],
-      "q", ["Shift-WheelUp", () => Send("+{WheelUp}"), "lefttop", 3],
-      "e", ["Shift-WheelDown", () => Send("+{WheelDown}"), "lefttop", 3],
-      "v", ["Alt-Left", () => Send("!{Left}"), "lefttop", 3],
-      "b", ["Alt-Right", () => Send("!{Right}"), "lefttop", 3],
-    )],
+      "j", ["Down", () => Send("{Down}"), "lefttop", HJKL_TIMEOUT],
+      "k", ["Up", () => Send("{Up}"), "lefttop", HJKL_TIMEOUT],
+      "h", ["Left", () => Send("{Left}"), "lefttop", HJKL_TIMEOUT],
+      "l", ["Right", () => Send("{Right}"), "lefttop", HJKL_TIMEOUT],
+      "w", ["PgUp", () => Send("{PgUp}"), "lefttop", HJKL_TIMEOUT],
+      "s", ["PgDn", () => Send("{PgDn}"), "lefttop", HJKL_TIMEOUT],
+      "a", ["Home", () => Send("{Home}"), "lefttop", HJKL_TIMEOUT],
+      "d", ["End", () => Send("{End}"), "lefttop", HJKL_TIMEOUT],
+      "z", ["Ctrl-Home", () => Send("^{Home}"), "lefttop", HJKL_TIMEOUT],
+      "c", ["Ctrl-End", () => Send("^{End}"), "lefttop", HJKL_TIMEOUT],
+      "q", ["Shift-WheelUp", () => Send("+{WheelUp}"), "lefttop", HJKL_TIMEOUT],
+      "e", ["Shift-WheelDown", () => Send("+{WheelDown}"), "lefttop", HJKL_TIMEOUT],
+      "v", ["Alt-Left", () => Send("!{Left}"), "lefttop", HJKL_TIMEOUT],
+      "b", ["Alt-Right", () => Send("!{Right}"), "lefttop", HJKL_TIMEOUT],
+    ), "lefttop", HJKL_TIMEOUT],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
