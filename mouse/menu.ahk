@@ -123,6 +123,7 @@ G(items*) {
         MyMenu()
       } Else {
         SetTimer(() => Send("{" . key . "}"), -10)
+        CoordMode("Tooltip", "Screen")
         Tooltip("<" . key . ">", 0, 0)
         SetTimer(Tooltip, -1000)
       }
