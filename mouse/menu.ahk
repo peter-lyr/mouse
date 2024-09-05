@@ -5,6 +5,17 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 MenuGoing := 0
 
+ShowMenu(msg) {
+  CoordMode("Tooltip", "Screen")
+  SetTimer(Tooltip, 0)
+  Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8)
+  tid := WinGetId("ahk_class tooltips_class32")
+  If (tid) {
+    WinGetPos(&_x, &_y, &_w, &_h, tid)
+    WinMove((A_ScreenWidth - _w) / 2, (A_ScreenHeight - _h) / 2, _w, _h, tid)
+  }
+}
+
 G(items*) {
   Global MenuGoing
   Global G_continuing
@@ -37,11 +48,7 @@ G(items*) {
     }
   }
   msg := temp_wait . "秒`n" . Strip(msg)
-  SetTimer(() => [
-    CoordMode("Tooltip", "Screen")
-    SetTimer(Tooltip, 0)
-    Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8),
-  ], -10)
+  SetTimer(() => ShowMenu(msg), -10)
   key := StrLower(KeyWaitAny(Format("T{:}", temp_wait)))
   MenuGoing := 0
   Tooltip
