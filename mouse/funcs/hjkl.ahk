@@ -2,7 +2,9 @@ HJKL_TIMEOUT := 10
 
 HJKL() {
   extra := []
-  If Not WinActive("ahk_exe msedge.exe") {
+  If WinActive("ahk_exe msedge.exe") {
+    ControlClick(ControlGetClassNN("Chrome Legacy Window"))
+  } Else {
     extra := [
       "j", ["Down", () => Send("{Down}"), "lefttop", HJKL_TIMEOUT],
       "k", ["Up", () => Send("{Up}"), "lefttop", HJKL_TIMEOUT],
