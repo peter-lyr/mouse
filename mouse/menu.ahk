@@ -288,7 +288,7 @@ MyMenu() {
       "b", ["Alt-Right", () => Send("!{Right}"), "lefttop", HJKL_TIMEOUT],
       ";", ["WheelUp", () => Send("{WheelUp}"), "lefttop", HJKL_TIMEOUT],
       "'", ["WheelDown", () => Send("{WheelDown}"), "lefttop", HJKL_TIMEOUT],
-    ), "lefttop", HJKL_TIMEOUT],
+    )],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
