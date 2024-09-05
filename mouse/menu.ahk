@@ -203,9 +203,9 @@ MyMenu() {
       "k", ["MoveWindowCurScreenUp", MoveWindowCurScreenUp, "Continue", 3],
       "j", ["MoveWindowCurScreenDown", MoveWindowCurScreenDown, "Continue", 3],
     )],
-    ";", ["Toggle", () => G(
+    "tab", ["Toggle", () => G(
       "p", ["Proxy", () => G(
-        "o", ["ProxyOn", ProxyOn],
+        "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
     )],

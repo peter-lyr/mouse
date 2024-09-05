@@ -20,6 +20,7 @@ CloseFileserv() {
 }
 
 RestartFileserv() {
+  ProxyOff()
   CloseFileserv()
   ActivateFileserv()
 }
