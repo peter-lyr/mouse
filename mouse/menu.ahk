@@ -5,34 +5,58 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 MenuGoing := 0
 
+LastMsg := ""
+LastShowMenuPos := ""
+
 ShowMenu(msg) {
+  Global LastShowMenuPos
+  Global ShowMenuPos
+  Global LastMsg
   CoordMode("Tooltip", "Screen")
   SetTimer(Tooltip, 0)
-  Tooltip(msg, A_ScreenWidth / 8, A_ScreenHeight / 8)
+  tid := 0
+  Try {
+    tid := WinGetId("ahk_class tooltips_class32")
+  }
+  If (tid And msg == LastMsg And LastShowMenuPos == ShowMenuPos) {
+    Return
+  }
+  LastMsg := msg
+  LastShowMenuPos := ShowMenuPos
+  Tooltip(msg, 0, 0)
   tid := WinGetId("ahk_class tooltips_class32")
   If (tid) {
     WinGetPos(&_x, &_y, &_w, &_h, tid)
-    WinMove((A_ScreenWidth - _w) / 2, (A_ScreenHeight - _h) / 2, _w, _h, tid)
+    If (ShowMenuPos == "center") {
+      WinMove((A_ScreenWidth - _w) / 2, (A_ScreenHeight - _h) / 2, _w, _h, tid)
+    } Else If (ShowMenuPos == "lefttop") {
+      WinMove(0, 0, _w, _h, tid)
+    }
   }
+}
+
+GetList(items, text) {
+  list := []
+  key := ""
+  For _, v in items {
+    If (type(v) == "Array") {
+      If (v.Length >= 3 And v[3] == text) {
+        list.Push(key)
+        list.Push(v)
+      }
+    } Else {
+      key := v
+    }
+  }
+  Return list
 }
 
 G(items*) {
   Global MenuGoing
   Global G_continuing
+  Global ShowMenuPos
   Global KeyWaitSecond
   MenuGoing := 1
-  continue_list := []
-  continue_key := ""
-  For _, v in items {
-    If (type(v) == "Array") {
-      If (v.Length >= 3 And v[3] == "Continue") {
-        continue_list.Push(continue_key)
-        continue_list.Push(v)
-      }
-    } Else {
-      continue_key := v
-    }
-  }
   menus := Map()
   menus.Set(items*)
   msg := ""
@@ -51,7 +75,10 @@ G(items*) {
   SetTimer(() => ShowMenu(msg), -10)
   key := StrLower(KeyWaitAny(Format("T{:}", temp_wait)))
   MenuGoing := 0
-  Tooltip
+  If (ShowMenuPos == "center") {
+    Tooltip
+  }
+  ShowMenuPos := "center"
   If menus.Has(key) {
     v := menus[key][1]
     f := menus[key][2]
@@ -63,13 +90,21 @@ G(items*) {
       If (v == "MyMenu") {
         Return
       }
-      If (menus[key].Length >= 3 And menus[key][3] == "Continue") {
-        G_continuing := 1
-        If (key == "enter") {
-          KeyWaitSecond := 0
-          Return
+      If (menus[key].Length >= 3) {
+        If (menus[key][3] == "Continue") {
+          G_continuing := 1
+          If (key == "enter") {
+            KeyWaitSecond := 0
+            Return
+          }
+          continue_list := GetList(items, "Continue")
+          G(continue_list*)
+        } Else If (menus[key][3] == "lefttop") {
+          G_continuing := 1
+          ShowMenuPos := "lefttop"
+          lefttop_list := GetList(items, "lefttop")
+          G(lefttop_list*)
         }
-        G(continue_list*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
@@ -79,7 +114,10 @@ G(items*) {
   } Else {
     If (key) {
       SetTimer(() => Send("{" . key . "}"), -10)
-      Print("<" . key . ">", 1000)
+      Tooltip("<" . key . ">", 0, 0)
+      SetTimer(Tooltip, -1000)
+    } Else {
+      Tooltip
     }
     G_continuing := 0
     KeyWaitSecond := 0
@@ -174,6 +212,7 @@ MenuKeyUp() {
 }
 
 MyMenu() {
+  Global ShowMenuPos
   Global CycleWinIndex
   Global G_continuing
   Global MenuGoing
@@ -181,6 +220,7 @@ MyMenu() {
   If (MenuGoing) {
     Return
   }
+  ShowMenuPos := "center"
   KeyWaitSecond := 0
   G_continuing := 0
   CycleWinIndex := 1
@@ -218,6 +258,22 @@ MyMenu() {
     )],
     "p", ["Panel", () => G(
       "s", ["Sound", () => Run("mmsys.cpl")],
+    )],
+    ";", ["hjkl", () => G(
+      "j", ["Down", () => Send("{Down}"), "lefttop", 3],
+      "k", ["Up", () => Send("{Up}"), "lefttop", 3],
+      "h", ["Left", () => Send("{Left}"), "lefttop", 3],
+      "l", ["Right", () => Send("{Right}"), "lefttop", 3],
+      "w", ["PgUp", () => Send("{PgUp}"), "lefttop", 3],
+      "s", ["PgDn", () => Send("{PgDn}"), "lefttop", 3],
+      "a", ["Home", () => Send("{Home}"), "lefttop", 3],
+      "d", ["End", () => Send("{End}"), "lefttop", 3],
+      "z", ["Ctrl-Home", () => Send("^{Home}"), "lefttop", 3],
+      "c", ["Ctrl-End", () => Send("^{End}"), "lefttop", 3],
+      "q", ["Shift-WheelUp", () => Send("+{WheelUp}"), "lefttop", 3],
+      "e", ["Shift-WheelDown", () => Send("+{WheelDown}"), "lefttop", 3],
+      "v", ["Alt-Left", () => Send("!{Left}"), "lefttop", 3],
+      "b", ["Alt-Right", () => Send("!{Right}"), "lefttop", 3],
     )],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
