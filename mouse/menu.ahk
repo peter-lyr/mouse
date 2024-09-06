@@ -78,15 +78,14 @@ GetList(items, text) {
   Return list
 }
 
-G(items*) {
-  Global MenuGoing
-  Global G_continuing
-  Global ShowMenuPos
-  Global KeyWaitSecond
-  Global NormalWaitSeconds
-  MenuGoing := 1
+GetMenus(items) {
   menus := Map()
   menus.Set(items*)
+  return menus
+}
+
+GetMsg(menus) {
+  Global ShowMenuPos
   msg := ""
   sep := "`t"
   prefix := ""
@@ -96,24 +95,41 @@ G(items*) {
   For key, val in menus {
     msg .= Format("{:}{:}{:}{:}`n", prefix, key, sep, val[1])
   }
-  temp_wait := KeyWaitSecond
-  If (temp_wait <= 0) {
+  Return msg
+}
+
+Get_G_msg(msg, &G_wait) {
+  G_wait := KeyWaitSecond
+  If (G_wait <= 0) {
     If (G_continuing == 1) {
-      temp_wait := 0.5
+      G_wait := 0.5
     } Else {
-      temp_wait := NormalWaitSeconds
+      G_wait := NormalWaitSeconds
     }
   }
   temp_set := ""
-  If (NormalWaitSeconds == NormalWaitSecondsDefalt And temp_wait == NormalWaitSecondsDefalt) {
+  If (NormalWaitSeconds == NormalWaitSecondsDefalt And G_wait == NormalWaitSecondsDefalt) {
     temp_set .= "(Default)"
   }
-  If (temp_wait != NormalWaitSeconds) {
+  If (G_wait != NormalWaitSeconds) {
     temp_set .= Format("({:}S)", NormalWaitSeconds)
   }
-  msg := "`t" . temp_wait . "S" . temp_set . "`n" . msg
+  msg := "`t" . G_wait . "S" . temp_set . "`n" . msg
+  Return msg
+}
+
+G(items*) {
+  Global MenuGoing
+  Global G_continuing
+  Global ShowMenuPos
+  Global KeyWaitSecond
+  Global NormalWaitSeconds
+  MenuGoing := 1
+  menus := GetMenus(items)
+  msg := GetMsg(menus)
+  msg := Get_G_msg(msg, &G_wait)
   SetTimer(() => ShowMenu(msg), -10)
-  key := StrLower(KeyWaitAny(Format("T{:}", temp_wait)))
+  key := StrLower(KeyWaitAny(Format("T{:}", G_wait)))
   MenuGoing := 0
   If (ShowMenuPos == "center") {
     Tooltip
