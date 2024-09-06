@@ -294,12 +294,12 @@ MyMenu() {
       "u", ["FileServUpClip", FileServUpClip],
     )],
     "g", ["Move Window", () => G(
-      "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax, "Continue", 3],
-      "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax, "Continue", 3],
-      "l", ["MoveWindowCurScreenRight", MoveWindowCurScreenRight, "Continue", 3],
-      "h", ["MoveWindowCurScreenLeft", MoveWindowCurScreenLeft, "Continue", 3],
-      "k", ["MoveWindowCurScreenUp", MoveWindowCurScreenUp, "Continue", 3],
-      "j", ["MoveWindowCurScreenDown", MoveWindowCurScreenDown, "Continue", 3],
+      "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax, "Continue", NormalWaitSeconds],
+      "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax, "Continue", NormalWaitSeconds],
+      "l", ["MoveWindowCurScreenRight", MoveWindowCurScreenRight, "Continue", NormalWaitSeconds],
+      "h", ["MoveWindowCurScreenLeft", MoveWindowCurScreenLeft, "Continue", NormalWaitSeconds],
+      "k", ["MoveWindowCurScreenUp", MoveWindowCurScreenUp, "Continue", NormalWaitSeconds],
+      "j", ["MoveWindowCurScreenDown", MoveWindowCurScreenDown, "Continue", NormalWaitSeconds],
     )],
     "tab", ["Toggle", () => G(
       "p", ["Proxy", () => G(
@@ -307,11 +307,13 @@ MyMenu() {
         "f", ["ProxyOff", ProxyOff],
       )],
     )],
-    "p", ["Panel", () => G(
+    "p", ["Panel/Properties", () => G(
       "s", ["Sound", () => Run("mmsys.cpl")],
+      "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue"],
+      "j", ["NormalWaitSeconds--", DecNormalWaitSeconds, "Continue"],
     )],
     ";", ["HJKL", HJKL],
-    "o", ["Open/Setting", () => G(
+    "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
         "c", ["A_StartupCommon", () => ExplorerOpen(A_StartupCommon)],
@@ -339,10 +341,6 @@ MyMenu() {
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen(), "", 8],
-      "w", ["Setting", () => G(
-        "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue", 8],
-        "j", ["NormalWaitSeconds--", DecNormalWaitSeconds, "Continue", 8],
-      )],
     )],
     "a", ["TestTransparent", () => G(
       "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue"],
