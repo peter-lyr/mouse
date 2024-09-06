@@ -304,6 +304,7 @@ MyMenu() {
       "e", ["MoveWindowCurScreenRightUp", MoveWindowCurScreenRightUp, "Continue", NormalWaitSeconds],
       "s", ["MoveWindowCurScreenLeftDown", MoveWindowCurScreenLeftDown, "Continue", NormalWaitSeconds],
       "d", ["MoveWindowCurScreenRightDown", MoveWindowCurScreenRightDown, "Continue", NormalWaitSeconds],
+      "c", ["MoveWindowCurScreenRightDown", MoveWindowCurScreenCenter, "Continue", NormalWaitSeconds],
     )],
     "tab", ["Toggle", () => G(
       "p", ["Proxy", () => G(
