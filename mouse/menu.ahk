@@ -318,11 +318,12 @@ MyMenu() {
       "u", ["MoveWindowDown", MoveWindowDown, "Continue", NormalWaitSeconds],
       "i", ["MoveWindowUp", MoveWindowUp, "Continue", NormalWaitSeconds],
     )],
-    "tab", ["Toggle", () => G(
+    "tab", ["Toggle/Switch", () => G(
       "p", ["Proxy", () => G(
         "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
+      "tab", ["SwitchWindow", SwitchWindow],
     )],
     "p", ["Panel/Properties", () => G(
       "s", ["Sound", () => Run("mmsys.cpl")],
