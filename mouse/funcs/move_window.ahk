@@ -214,7 +214,8 @@ MoveWindowCurScreenCenter() {
     WinRestore("A")
   }
   GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
-  WinMove(wa_x + wa_w / 4 + WinGap, wa_y + wa_h / 4 + WinGap, wa_w / 2 - WinGap, wa_h / 2 - WinGap, "A")
+  ; WinMove(wa_x + wa_w / 4 + WinGap, wa_y + wa_h / 4 + WinGap, wa_w / 2 - WinGap, wa_h / 2 - WinGap, "A")
+  WinMove(wa_x + wa_w / 6 + WinGap, wa_y + wa_h / 6 + WinGap, wa_w * 2 / 3 - WinGap, wa_h * 2 / 3 - WinGap, "A")
 }
 
 #HotIf WinExist("ahk_exe emacs.exe")
