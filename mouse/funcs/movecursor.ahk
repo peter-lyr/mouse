@@ -35,68 +35,8 @@ CursorY(distance) {
   MouseMove(cursor_x0, cursor_y0)
 }
 
-; #HotIf MoveCursorEn
-; space:: {
-;   CursorClick()
-; }
-; d:: {
-;   CursorX(CursorStep1)
-; }
-; a:: {
-;   CursorX(-CursorStep1)
-; }
-; w:: {
-;   CursorY(-CursorStep1)
-; }
-; s:: {
-;   CursorY(CursorStep1)
-; }
-; l:: {
-;   CursorX(CursorStep2)
-; }
-; h:: {
-;   CursorX(-CursorStep2)
-; }
-; k:: {
-;   CursorY(-CursorStep2)
-; }
-; j:: {
-;   CursorY(CursorStep2)
-; }
-; b:: {
-;   CursorX(CursorStep3)
-; }
-; c:: {
-;   CursorX(-CursorStep3)
-; }
-; f:: {
-;   CursorY(-CursorStep3)
-; }
-; v:: {
-;   CursorY(CursorStep3)
-; }
-; m:: {
-;   ActivateEmacs()
-; }
-; rshift:: {
-;   ActivateNvimQtExe()
-; }
-; lshift:: {
-;   ActivateNvimQtExe()
-; }
-; escape:: {
-;   Global MoveCursorEn
-;   MoveCursorEn := 0
-; }
-; #HotIf
-
-; TestHotKey(this) {
-;   MsgBox(this)
-; }
-
-Escape() {
+K_Escape() {
   Global MoveCursorEn
-  ; MsgBox(MoveCursorEn)
   MoveCursorEn := 0
   K_Hot()
 }
@@ -109,22 +49,9 @@ K_Hot() {
     Tooltip
   }
   For k, v in K_menus {
-    ; HotKey "{" . k . "}", v[2]
-    ; HotKey "{" . k . "}", CursorClick
-    ; HotKey ",", CursorClick
-    ; HotKey ",", (this) => CursorClick()
-    ; HotKey ",", (*) => CursorClick(), On
-    ; HotKey "{" . k . "}", (*) => v[2](), On
-    ; HotKey "{" . k . "}", (*) => v[2]()
-    ; HotKey k, (*) => v[2]()
-    ; HotKey k, (*) => CursorClick()
     HotKey k, (key) => K_menus[key][2](), On
-    ; HotKey ",", TestHotKey
-    ; MsgBox "{" . k . "}" . "|" . Type(v[2])
-    ; MsgBox "{" . k . "}" . "|" . v[1]
-    ; Break
   }
-  HotKey "escape", (*) => Escape(), On
+  HotKey "escape", (*) => K_Escape(), On
 }
 
 K(items*) {
@@ -135,7 +62,6 @@ K(items*) {
   msg := GetMsg(K_menus)
   CoordMode("Tooltip", "Screen")
   Tooltip(msg, 0, 0)
-  ; SetTimer(Tooltip, -10000)
   K_Hot()
 }
 
