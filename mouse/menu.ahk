@@ -307,6 +307,14 @@ MyMenu() {
       "f", ["MoveWindowCurScreenLeftDown", MoveWindowCurScreenLeftDown, "Continue", NormalWaitSeconds],
       "g", ["MoveWindowCurScreenRightDown", MoveWindowCurScreenRightDown, "Continue", NormalWaitSeconds],
       "c", ["MoveWindowCurScreenCenter", MoveWindowCurScreenCenter, "Continue", NormalWaitSeconds],
+      "a", ["ScaleWindowDecWidth", ScaleWindowDecWidth, "Continue", NormalWaitSeconds],
+      "d", ["ScaleWindowIncWidth", ScaleWindowIncWidth, "Continue", NormalWaitSeconds],
+      "s", ["ScaleWindowDecHeight", ScaleWindowDecHeight, "Continue", NormalWaitSeconds],
+      "w", ["ScaleWindowIncHeight", ScaleWindowIncHeight, "Continue", NormalWaitSeconds],
+      "o", ["MoveWindowRight", MoveWindowRight, "Continue", NormalWaitSeconds],
+      "y", ["MoveWindowLeft", MoveWindowLeft, "Continue", NormalWaitSeconds],
+      "u", ["MoveWindowDown", MoveWindowDown, "Continue", NormalWaitSeconds],
+      "i", ["MoveWindowUp", MoveWindowUp, "Continue", NormalWaitSeconds],
     )],
     "tab", ["Toggle", () => G(
       "p", ["Proxy", () => G(
