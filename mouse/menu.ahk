@@ -318,6 +318,7 @@ MyMenu() {
       "u", ["MoveWindowDown", MoveWindowDown, "Continue", NormalWaitSeconds],
       "i", ["MoveWindowUp", MoveWindowUp, "Continue", NormalWaitSeconds],
     )],
+    "c", ["MoveCursor", MoveCursor],
     "tab", ["Toggle/Switch", () => G(
       "p", ["Proxy", () => G(
         "space", ["ProxyOn", ProxyOn],
