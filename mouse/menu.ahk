@@ -8,6 +8,33 @@ MenuGoing := 0
 LastMsg := ""
 LastShowMenuPos := ""
 
+NormalWaitSecondsDefalt := 3
+NormalWaitSeconds := NormalWaitSecondsDefalt
+NormalWaitSecondsMax := 20
+
+IncNormalWaitSeconds() {
+  Global NormalWaitSeconds
+  Global KeyWaitSecond
+  NormalWaitSeconds := Mod(NormalWaitSeconds, NormalWaitSecondsMax) + 1
+  KeyWaitSecond := NormalWaitSeconds
+  If (KeyWaitSecond < NormalWaitSecondsDefalt) {
+    KeyWaitSecond := NormalWaitSecondsDefalt
+  }
+}
+
+DecNormalWaitSeconds() {
+  Global NormalWaitSeconds
+  Global KeyWaitSecond
+  NormalWaitSeconds--
+  If (NormalWaitSeconds < 1) {
+    NormalWaitSeconds := NormalWaitSecondsMax
+  }
+  KeyWaitSecond := NormalWaitSeconds
+  If (KeyWaitSecond < NormalWaitSecondsDefalt) {
+    KeyWaitSecond := NormalWaitSecondsDefalt
+  }
+}
+
 ShowMenu(msg) {
   Global LastShowMenuPos
   Global ShowMenuPos
@@ -56,6 +83,7 @@ G(items*) {
   Global G_continuing
   Global ShowMenuPos
   Global KeyWaitSecond
+  Global NormalWaitSeconds
   MenuGoing := 1
   menus := Map()
   menus.Set(items*)
@@ -73,10 +101,17 @@ G(items*) {
     If (G_continuing == 1) {
       temp_wait := 0.5
     } Else {
-      temp_wait := 3
+      temp_wait := NormalWaitSeconds
     }
   }
-  msg := "`t" . temp_wait . "秒`n" . msg
+  temp_set := ""
+  If (NormalWaitSeconds == NormalWaitSecondsDefalt) {
+    temp_set .= "(Default)"
+  }
+  If (temp_wait != NormalWaitSeconds) {
+    temp_set .= Format("(Set {:}S)", NormalWaitSeconds)
+  }
+  msg := "`t" . temp_wait . "S" . temp_set . "`n" . msg
   SetTimer(() => ShowMenu(msg), -10)
   key := StrLower(KeyWaitAny(Format("T{:}", temp_wait)))
   MenuGoing := 0
@@ -276,7 +311,7 @@ MyMenu() {
       "s", ["Sound", () => Run("mmsys.cpl")],
     )],
     ";", ["HJKL", HJKL],
-    "o", ["Open", () => G(
+    "o", ["Open/Setting", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
         "c", ["A_StartupCommon", () => ExplorerOpen(A_StartupCommon)],
@@ -304,6 +339,10 @@ MyMenu() {
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen(), "", 8],
+      "w", ["Setting", () => G(
+        "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue", 8],
+        "j", ["NormalWaitSeconds--", DecNormalWaitSeconds, "Continue", 8],
+      )],
     )],
     "a", ["TestTransparent", () => G(
       "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue"],
