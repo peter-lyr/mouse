@@ -7,6 +7,8 @@
 ; _t_: temp
 ; _n_: new
 
+WinGap := 40
+
 GetWorkAreaXYWH(index, &wa_x, &wa_y, &wa_w, &wa_h) {
   MonitorGetWorkArea(index, &wa_left, &wa_top, &wa_right, &wa_bottom)
   wa_x := wa_left
@@ -115,6 +117,16 @@ MoveWindowCurScreenMax() {
   WinMove(wa_x, wa_y, wa_w, wa_h, "A")
 }
 
+MoveWindowNextScreenMax() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetLastWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y, wa_w, wa_h, "A")
+}
+
 MoveWindowCurScreenLeft() {
   Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
@@ -122,7 +134,7 @@ MoveWindowCurScreenLeft() {
     WinRestore("A")
   }
   GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
-  WinMove(wa_x, wa_y, wa_w / 2 - 100, wa_h, "A")
+  WinMove(wa_x, wa_y, wa_w / 2 - WinGap, wa_h, "A")
 }
 
 MoveWindowCurScreenRight() {
@@ -132,7 +144,7 @@ MoveWindowCurScreenRight() {
     WinRestore("A")
   }
   GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
-  WinMove(wa_x + wa_w / 2 + 100, wa_y, wa_w / 2 - 100, wa_h, "A")
+  WinMove(wa_x + wa_w / 2 + WinGap, wa_y, wa_w / 2 - WinGap, wa_h, "A")
 }
 
 MoveWindowCurScreenUp() {
@@ -142,7 +154,7 @@ MoveWindowCurScreenUp() {
     WinRestore("A")
   }
   GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
-  WinMove(wa_x, wa_y, wa_w, wa_h / 2 - 100, "A")
+  WinMove(wa_x, wa_y, wa_w, wa_h / 2 - WinGap, "A")
 }
 
 MoveWindowCurScreenDown() {
@@ -152,17 +164,47 @@ MoveWindowCurScreenDown() {
     WinRestore("A")
   }
   GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
-  WinMove(wa_x, wa_y + wa_h / 2 + 100, wa_w, wa_h / 2 - 100, "A")
+  WinMove(wa_x, wa_y + wa_h / 2 + WinGap, wa_w, wa_h / 2 - WinGap, "A")
 }
 
-MoveWindowNextScreenMax() {
+MoveWindowCurScreenLeftUp() {
   Global wa_x, wa_y, wa_w, wa_h
   WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
   If (WinGetMinMax("A") == 1) {
     WinRestore("A")
   }
-  GetLastWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
-  WinMove(wa_x, wa_y, wa_w, wa_h, "A")
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y, wa_w / 2 - WinGap, wa_h / 2 - WinGap, "A")
+}
+
+MoveWindowCurScreenLeftDown() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x, wa_y + wa_h / 2 + WinGap, wa_w / 2 - WinGap, wa_h / 2 - WinGap, "A")
+}
+
+MoveWindowCurScreenRightUp() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x + wa_w / 2 + WinGap, wa_y, wa_w / 2 - WinGap, wa_h / 2 - WinGap, "A")
+}
+
+MoveWindowCurScreenRightDown() {
+  Global wa_x, wa_y, wa_w, wa_h
+  WinGetPos(&_mw_x0, &_mw_y0, &_mw_w0, &_mw_h0, "A")
+  If (WinGetMinMax("A") == 1) {
+    WinRestore("A")
+  }
+  GetCurWorkAreaXYWH(_mw_x0 + _mw_w0 / 2, _mw_y0 + _mw_h0 / 2, &wa_x, &wa_y, &wa_w, &wa_h)
+  WinMove(wa_x + wa_w / 2 + WinGap, wa_y + wa_h / 2 + WinGap, wa_w / 2 - WinGap, wa_h / 2 - WinGap, "A")
 }
 
 #HotIf WinExist("ahk_exe emacs.exe")
