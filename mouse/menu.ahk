@@ -30,7 +30,7 @@ ShowMenu(msg) {
     If (ShowMenuPos == "center") {
       WinMove((A_ScreenWidth - _w) / 2, (A_ScreenHeight - _h) / 2, _w, _h, tid)
     } Else If (ShowMenuPos == "lefttop") {
-      WinMove(0, 0, _w, _h, tid)
+      WinMove(-38, 0, _w, _h, tid)
     }
   }
 }
@@ -60,8 +60,13 @@ G(items*) {
   menus := Map()
   menus.Set(items*)
   msg := ""
+  sep := "`t"
+  prefix := ""
+  If (ShowMenuPos == "lefttop") {
+    prefix := "            "
+  }
   For key, val in menus {
-    msg .= Format("│{:}`t│{:}`n", key, val[1])
+    msg .= Format("{:}{:}{:}{:}`n", prefix, key, sep, val[1])
   }
   temp_wait := KeyWaitSecond
   If (temp_wait <= 0) {
@@ -71,7 +76,7 @@ G(items*) {
       temp_wait := 3
     }
   }
-  msg := temp_wait . "秒`n" . Strip(msg)
+  msg := "`t" . temp_wait . "秒`n" . msg
   SetTimer(() => ShowMenu(msg), -10)
   key := StrLower(KeyWaitAny(Format("T{:}", temp_wait)))
   MenuGoing := 0
