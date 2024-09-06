@@ -105,11 +105,11 @@ G(items*) {
     }
   }
   temp_set := ""
-  If (NormalWaitSeconds == NormalWaitSecondsDefalt) {
+  If (NormalWaitSeconds == NormalWaitSecondsDefalt And temp_wait == NormalWaitSecondsDefalt) {
     temp_set .= "(Default)"
   }
   If (temp_wait != NormalWaitSeconds) {
-    temp_set .= Format("(Set {:}S)", NormalWaitSeconds)
+    temp_set .= Format("({:}S)", NormalWaitSeconds)
   }
   msg := "`t" . temp_wait . "S" . temp_set . "`n" . msg
   SetTimer(() => ShowMenu(msg), -10)
