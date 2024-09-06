@@ -2,6 +2,9 @@ CursorStep1 := 300
 CursorStep2 := 60
 CursorStep3 := 10
 
+K_menus := ""
+MoveCursorEn := 0
+
 CursorClick() {
   MouseClick("Left")
 }
@@ -32,8 +35,6 @@ CursorY(distance) {
   MouseMove(cursor_x0, cursor_y0)
 }
 
-; MoveCursorEn := 0
-;
 ; #HotIf MoveCursorEn
 ; space:: {
 ;   CursorClick()
@@ -89,15 +90,56 @@ CursorY(distance) {
 ; }
 ; #HotIf
 
+; TestHotKey(this) {
+;   MsgBox(this)
+; }
+
+Escape() {
+  Global MoveCursorEn
+  ; MsgBox(MoveCursorEn)
+  MoveCursorEn := 0
+  K_Hot()
+}
+
+K_Hot() {
+  Global K_menus
+  On := "On"
+  If MoveCursorEn == 0 {
+    On := "Off"
+    Tooltip
+  }
+  For k, v in K_menus {
+    ; HotKey "{" . k . "}", v[2]
+    ; HotKey "{" . k . "}", CursorClick
+    ; HotKey ",", CursorClick
+    ; HotKey ",", (this) => CursorClick()
+    ; HotKey ",", (*) => CursorClick(), On
+    ; HotKey "{" . k . "}", (*) => v[2](), On
+    ; HotKey "{" . k . "}", (*) => v[2]()
+    ; HotKey k, (*) => v[2]()
+    ; HotKey k, (*) => CursorClick()
+    HotKey k, (key) => K_menus[key][2](), On
+    ; HotKey ",", TestHotKey
+    ; MsgBox "{" . k . "}" . "|" . Type(v[2])
+    ; MsgBox "{" . k . "}" . "|" . v[1]
+    ; Break
+  }
+  HotKey "escape", (*) => Escape(), On
+}
+
 K(items*) {
-  menus := GetMenus(items)
-  msg := GetMsg(menus)
+  Global K_menus
+  Global MoveCursorEn
+  MoveCursorEn := 1
+  K_menus := GetMenus(items)
+  msg := GetMsg(K_menus)
+  CoordMode("Tooltip", "Screen")
   Tooltip(msg, 0, 0)
-  SetTimer(Tooltip, -10000)
+  ; SetTimer(Tooltip, -10000)
+  K_Hot()
 }
 
 MoveCursor() {
-  ; Global MoveCursorEn
   Global cursor_x0, cursor_y0
   Global wc_x, wc_y, wc_w, wc_h
   CursorNormalWaitSeconds := 8
@@ -107,7 +149,6 @@ MoveCursor() {
   MouseMove(cursor_x0+0, cursor_y0+1)
   MouseMove(cursor_x0+1, cursor_y0+1)
   MouseMove(cursor_x0+0, cursor_y0+0)
-  ; MoveCursorEn := 1
   K(
     "space", ["Click", CursorClick, "Continue", CursorNormalWaitSeconds],
     "d", ["Step1 Right", () => CursorX(CursorStep1), "Continue", CursorNormalWaitSeconds],
