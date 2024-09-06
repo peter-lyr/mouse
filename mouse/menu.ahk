@@ -241,7 +241,9 @@ MenuKeyCount() {
 JumpOutSideOffMsTsc() {
   Loop 10 {
     If WinActive("ahk_exe mstsc.exe") {
-      WinActivate("ahk_class Shell_TrayWnd")
+      Try {
+        WinActivate("ahk_class Shell_TrayWnd")
+      }
       If (Not WinActive("ahk_exe mstsc.exe")) {
         Break
       }
