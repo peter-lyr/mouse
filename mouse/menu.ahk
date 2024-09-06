@@ -294,6 +294,8 @@ MyMenu() {
       "u", ["FileServUpClip", FileServUpClip],
     )],
     "g", ["Move Window", () => G(
+      "tab", ["Ctrl-Alt-Tab", () => Send("^!{Tab}"), "Continue", NormalWaitSeconds],
+      "space", ["Space", () => Send("{Space}"), "Continue", NormalWaitSeconds],
       "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax, "Continue", NormalWaitSeconds],
       "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax, "Continue", NormalWaitSeconds],
       "l", ["MoveWindowCurScreenRight", MoveWindowCurScreenRight, "Continue", NormalWaitSeconds],
