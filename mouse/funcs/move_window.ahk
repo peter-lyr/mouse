@@ -336,6 +336,31 @@ MoveWindowUp() {
   WinMove(_mw_x0, y, _mw_w0, _mw_h0, "A")
 }
 
+K_MoveWindow() {
+  K(
+    "tab", ["Ctrl-Alt-Tab", () => Send("^!{Tab}")],
+    "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax],
+    "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax],
+    "l", ["MoveWindowCurScreenRight", MoveWindowCurScreenRight],
+    "h", ["MoveWindowCurScreenLeft", MoveWindowCurScreenLeft],
+    "k", ["MoveWindowCurScreenUp", MoveWindowCurScreenUp],
+    "j", ["MoveWindowCurScreenDown", MoveWindowCurScreenDown],
+    "r", ["MoveWindowCurScreenLeftUp", MoveWindowCurScreenLeftUp],
+    "t", ["MoveWindowCurScreenRightUp", MoveWindowCurScreenRightUp],
+    "f", ["MoveWindowCurScreenLeftDown", MoveWindowCurScreenLeftDown],
+    "g", ["MoveWindowCurScreenRightDown", MoveWindowCurScreenRightDown],
+    "c", ["MoveWindowCurScreenCenter", MoveWindowCurScreenCenter],
+    "a", ["ScaleWindowDecWidth", ScaleWindowDecWidth],
+    "d", ["ScaleWindowIncWidth", ScaleWindowIncWidth],
+    "s", ["ScaleWindowDecHeight", ScaleWindowDecHeight],
+    "w", ["ScaleWindowIncHeight", ScaleWindowIncHeight],
+    "o", ["MoveWindowRight", MoveWindowRight],
+    "y", ["MoveWindowLeft", MoveWindowLeft],
+    "u", ["MoveWindowDown", MoveWindowDown],
+    "i", ["MoveWindowUp", MoveWindowUp],
+  )
+}
+
 #HotIf WinExist("ahk_exe emacs.exe")
 
 Emacsframes := []

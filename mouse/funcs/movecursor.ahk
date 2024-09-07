@@ -65,7 +65,7 @@ K(items*) {
   K_Hot()
 }
 
-MoveCursor() {
+K_MoveCursor() {
   Global cursor_x0, cursor_y0
   Global wc_x, wc_y, wc_w, wc_h
   MouseGetPos(&cursor_x0, &cursor_y0)

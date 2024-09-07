@@ -1,4 +1,4 @@
-HJKL() {
+K_HJKL() {
   extra := []
   If WinActive("ahk_exe msedge.exe") {
     ControlClick(ControlGetClassNN("Chrome Legacy Window"))

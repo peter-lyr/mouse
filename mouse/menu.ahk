@@ -87,7 +87,7 @@ GetMsg(menus) {
   msg := ""
   sep := "`t"
   For key, val in menus {
-    msg .= Format("{:}{:}{:}{:}`n", key, sep, val[1])
+    msg .= Format("{:}{:}{:}`n", key, sep, val[1])
   }
   Return msg
 }
@@ -298,30 +298,8 @@ MyMenu() {
       "r", ["RestartFileserv", RestartFileserv],
       "u", ["FileServUpClip", FileServUpClip],
     )],
-    "g", ["Move Window", () => G(
-      "tab", ["Ctrl-Alt-Tab", () => Send("^!{Tab}"), "Continue", NormalWaitSeconds],
-      "space", ["Space", () => Send("{Space}"), "Continue", NormalWaitSeconds],
-      "m", ["MoveWindowCurScreenMax", MoveWindowCurScreenMax, "Continue", NormalWaitSeconds],
-      "n", ["MoveWindowNextScreenMax", MoveWindowNextScreenMax, "Continue", NormalWaitSeconds],
-      "l", ["MoveWindowCurScreenRight", MoveWindowCurScreenRight, "Continue", NormalWaitSeconds],
-      "h", ["MoveWindowCurScreenLeft", MoveWindowCurScreenLeft, "Continue", NormalWaitSeconds],
-      "k", ["MoveWindowCurScreenUp", MoveWindowCurScreenUp, "Continue", NormalWaitSeconds],
-      "j", ["MoveWindowCurScreenDown", MoveWindowCurScreenDown, "Continue", NormalWaitSeconds],
-      "r", ["MoveWindowCurScreenLeftUp", MoveWindowCurScreenLeftUp, "Continue", NormalWaitSeconds],
-      "t", ["MoveWindowCurScreenRightUp", MoveWindowCurScreenRightUp, "Continue", NormalWaitSeconds],
-      "f", ["MoveWindowCurScreenLeftDown", MoveWindowCurScreenLeftDown, "Continue", NormalWaitSeconds],
-      "g", ["MoveWindowCurScreenRightDown", MoveWindowCurScreenRightDown, "Continue", NormalWaitSeconds],
-      "c", ["MoveWindowCurScreenCenter", MoveWindowCurScreenCenter, "Continue", NormalWaitSeconds],
-      "a", ["ScaleWindowDecWidth", ScaleWindowDecWidth, "Continue", NormalWaitSeconds],
-      "d", ["ScaleWindowIncWidth", ScaleWindowIncWidth, "Continue", NormalWaitSeconds],
-      "s", ["ScaleWindowDecHeight", ScaleWindowDecHeight, "Continue", NormalWaitSeconds],
-      "w", ["ScaleWindowIncHeight", ScaleWindowIncHeight, "Continue", NormalWaitSeconds],
-      "o", ["MoveWindowRight", MoveWindowRight, "Continue", NormalWaitSeconds],
-      "y", ["MoveWindowLeft", MoveWindowLeft, "Continue", NormalWaitSeconds],
-      "u", ["MoveWindowDown", MoveWindowDown, "Continue", NormalWaitSeconds],
-      "i", ["MoveWindowUp", MoveWindowUp, "Continue", NormalWaitSeconds],
-    )],
-    "c", ["MoveCursor", MoveCursor],
+    "g", ["K_MoveWindow", K_MoveWindow],
+    "c", ["K_MoveCursor", K_MoveCursor],
     "tab", ["Toggle/Switch", () => G(
       "p", ["Proxy", () => G(
         "space", ["ProxyOn", ProxyOn],
@@ -334,7 +312,7 @@ MyMenu() {
       "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue"],
       "j", ["NormalWaitSeconds--", DecNormalWaitSeconds, "Continue"],
     )],
-    ";", ["HJKL", HJKL],
+    ";", ["K_HJKL", K_HJKL],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
