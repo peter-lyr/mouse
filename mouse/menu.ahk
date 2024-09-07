@@ -340,12 +340,16 @@ MyMenu() {
         "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
-      "v", ["Volumn", () => G(
+      "m", ["Media", () => G(
+        "m", ["Volume_Mute", () => Send("{Volume_Mute}"), "Continue", NormalWaitSeconds],
         "k", ["Volume_Up", () => Send("{Volume_Up}"), "Continue", NormalWaitSeconds],
         "j", ["Volume_Down", () => Send("{Volume_Down}"), "Continue", NormalWaitSeconds],
         "h", ["Media_Prev", () => Send("{Media_Prev}"), "Continue", NormalWaitSeconds],
         "l", ["Media_Next", () => Send("{Media_Next}"), "Continue", NormalWaitSeconds],
+        "s", ["Media_Stop", () => Send("{Media_Stop}"), "Continue", NormalWaitSeconds],
+        "space", ["Media_Play_Pause", () => Send("{Media_Play_Pause}"), "Continue", NormalWaitSeconds],
       )],
+      "b", ["Browser", Browser],
       "t", ["Transparent", () => G(
         "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", NormalWaitSeconds],
         "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue", NormalWaitSeconds],

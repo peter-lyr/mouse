@@ -13,16 +13,20 @@ MinimizeAll() {
   ])
 }
 
+ActivateMsedge() {
+  If (WinExist("ahk_exe msedge.exe")) {
+    WinActivate("ahk_exe msedge.exe")
+  } Else {
+    Run("msedge.exe")
+  }
+}
+
 MinimizeOrActivateMsedge() {
   If (WinActive("ahk_exe msedge.exe")) {
     MinimizeAll()
     WinMinimize("ahk_exe msedge.exe")
   } Else {
-    If (WinExist("ahk_exe msedge.exe")) {
-      WinActivate("ahk_exe msedge.exe")
-    } Else {
-      Run("msedge.exe")
-    }
+    ActivateMsedge()
   }
 }
 
