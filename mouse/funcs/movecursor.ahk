@@ -3,7 +3,7 @@ CursorStep2 := 60
 CursorStep3 := 10
 
 K_menus := ""
-MoveCursorEn := 0
+K_En := 0
 
 CursorClick() {
   MouseClick("Left")
@@ -36,15 +36,15 @@ CursorY(distance) {
 }
 
 K_Escape() {
-  Global MoveCursorEn
-  MoveCursorEn := 0
+  Global K_En
+  K_En := 0
   K_Hot()
 }
 
 K_Hot() {
   Global K_menus
   On := "On"
-  If MoveCursorEn == 0 {
+  If K_En == 0 {
     On := "Off"
     Tooltip
   }
@@ -56,8 +56,8 @@ K_Hot() {
 
 K(items*) {
   Global K_menus
-  Global MoveCursorEn
-  MoveCursorEn := 1
+  Global K_En
+  K_En := 1
   K_menus := GetMenus(items)
   msg := GetMsg(K_menus)
   CoordMode("Tooltip", "Screen")
