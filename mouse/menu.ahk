@@ -340,7 +340,7 @@ MyMenu() {
         "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
-      "tab", ["SwitchWindow", SwitchWindow],
+      "tab", ["K_SwitchWindow", K_SwitchWindow],
     )],
     "p", ["Panel/Properties", () => G(
       "s", ["Sound", () => Run("mmsys.cpl")],
