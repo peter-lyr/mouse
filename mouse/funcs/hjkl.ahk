@@ -1,3 +1,8 @@
+GO_K_MoveCursor() {
+  K_Escape()
+  K_MoveCursor()
+}
+
 K_HJKL() {
   extra := []
   If WinActive("ahk_exe msedge.exe") {
@@ -26,6 +31,7 @@ K_HJKL() {
     "b", ["Alt-Right", () => Send("!{Right}")],
     ";", ["WheelUp", () => Send("{WheelUp}")],
     "'", ["WheelDown", () => Send("{WheelDown}")],
+    "tab", ["K_MoveCursor", GO_K_MoveCursor],
     extra*
   )
 }

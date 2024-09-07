@@ -32,6 +32,11 @@ CursorY(distance) {
   MouseMove(cursor_x0, cursor_y0)
 }
 
+GO_HJKL() {
+  K_Escape()
+  K_HJKL()
+}
+
 K_MoveCursor() {
   Global cursor_x0, cursor_y0
   Global wc_x, wc_y, wc_w, wc_h
@@ -58,5 +63,6 @@ K_MoveCursor() {
     "m", ["ActivateEmacs", ActivateEmacs],
     "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
     "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
+    "tab", ["K_HJKL", GO_HJKL],
   )
 }

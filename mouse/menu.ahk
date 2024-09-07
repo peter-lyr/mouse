@@ -334,6 +334,7 @@ MyMenu() {
     )],
     "g", ["K_MoveWindow", K_MoveWindow],
     "c", ["K_MoveCursor", K_MoveCursor],
+    ";", ["K_HJKL", K_HJKL],
     "tab", ["Toggle/Switch", () => G(
       "p", ["Proxy", () => G(
         "space", ["ProxyOn", ProxyOn],
@@ -346,7 +347,6 @@ MyMenu() {
       "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue"],
       "j", ["NormalWaitSeconds--", DecNormalWaitSeconds, "Continue"],
     )],
-    ";", ["K_HJKL", K_HJKL],
     "o", ["Open", () => G(
       "s", ["Startup", () => G(
         "space", ["A_Startup", () => ExplorerOpen(A_Startup)],
