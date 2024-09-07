@@ -56,8 +56,6 @@ ShowMenu(msg) {
     WinGetPos(&_x, &_y, &_w, &_h, tid)
     If (ShowMenuPos == "center") {
       WinMove((A_ScreenWidth - _w) / 2, (A_ScreenHeight - _h) / 2, _w, _h, tid)
-    } Else If (ShowMenuPos == "lefttop") {
-      WinMove(-38, 0, _w, _h, tid)
     }
   }
 }
@@ -88,12 +86,8 @@ GetMsg(menus) {
   Global ShowMenuPos
   msg := ""
   sep := "`t"
-  prefix := ""
-  If (ShowMenuPos == "lefttop") {
-    prefix := "            "
-  }
   For key, val in menus {
-    msg .= Format("{:}{:}{:}{:}`n", prefix, key, sep, val[1])
+    msg .= Format("{:}{:}{:}{:}`n", key, sep, val[1])
   }
   Return msg
 }
@@ -146,9 +140,6 @@ G(items*) {
       If (menus[key].Length >= 3) {
         If (menus[key][3] == "Continue") {
           flag := "Continue"
-        } Else If (menus[key][3] == "lefttop") {
-          flag := "lefttop"
-          ShowMenuPos := "lefttop"
         }
       }
       f()
@@ -163,10 +154,6 @@ G(items*) {
         }
         continue_list := GetList(items, "Continue")
         G(continue_list*)
-      } Else If (flag == "lefttop") {
-        G_continuing := 1
-        lefttop_list := GetList(items, "lefttop")
-        G(lefttop_list*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
