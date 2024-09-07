@@ -2,6 +2,7 @@
 SetTitleMatchMode(2)
 hwnd := WinGetId("ahk_exe Fileserv.exe")
 controlList := WinGetControls(hwnd)
+Winactivate(hwnd)
 
 WinGetPos(&x0, &y0, , , hwnd)
 
@@ -25,12 +26,14 @@ for classnn in controlList
 {
   Try {
     controlgetpos(&x, &y, &w, &h, classnn, hwnd)
-    ; Msg([x0, y0, x, y, w, h])
+    Msg([x0, y0, x, y, w, h])
+    MouseClickDrag("Left", x, y, x + w, y + h, 0)
   } Catch as e {
     MsgBox(type(classnn))
   }
-  DrawRectangle(x0 + x, y0 + y, w, h)
-  ; Break
+  ; controlclick(classnn)
+  ; DrawRectangle(x0 + x, y0 + y, w, h)
+  Break
 }
 
 DrawRectangle(x, y, w, h) {
