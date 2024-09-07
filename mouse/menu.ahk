@@ -340,6 +340,14 @@ MyMenu() {
         "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
+      "v", ["Volumn", () => G(
+        "k", ["ProxyOn", () => Send("{Volume_Up}"), "Continue", NormalWaitSeconds],
+        "j", ["ProxyOn", () => Send("{Volume_Down}"), "Continue", NormalWaitSeconds],
+      )],
+      "t", ["Transparent", () => G(
+        "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", NormalWaitSeconds],
+        "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue", NormalWaitSeconds],
+      )],
       "tab", ["K_SwitchWindow", K_SwitchWindow],
     )],
     "p", ["Panel/Properties", () => G(
@@ -376,10 +384,6 @@ MyMenu() {
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen(), "", 8],
     )],
-    "a", ["TestTransparent", () => G(
-      "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue"],
-      "k", ["TransparentUpCurWin", TransparentUpCurWin, "Continue"],
-    ), "Continue", 5],
     "d", ["ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks, "Continue"],
     "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork, "Continue"],
     "e", ["ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge, "Continue"],
