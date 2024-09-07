@@ -10,7 +10,7 @@ CoordMode("Mouse", "Screen")
 CoordMode("Pixel", "Screen")
 
 #Include %A_ScriptDir%\mouse\funcs\utils.ahk
-#Include %A_ScriptDir%\mouse\config.ahk
+#Include %A_ScriptDir%\config.ahk
 #Include %A_ScriptDir%\mouse\init.ahk
 #Include %A_ScriptDir%\mouse\menu.ahk
 

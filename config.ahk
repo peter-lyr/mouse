@@ -1,6 +1,9 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/21 22:49:27 星期二
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; mouse
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 max_middle_counts := 2
 max_left_counts := 2
 max_wheel_counts := 6
