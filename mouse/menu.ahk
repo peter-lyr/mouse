@@ -341,8 +341,8 @@ MyMenu() {
         "f", ["ProxyOff", ProxyOff],
       )],
       "v", ["Volumn", () => G(
-        "k", ["ProxyOn", () => Send("{Volume_Up}"), "Continue", NormalWaitSeconds],
-        "j", ["ProxyOn", () => Send("{Volume_Down}"), "Continue", NormalWaitSeconds],
+        "k", ["Volumn_Up", () => Send("{Volume_Up}"), "Continue", NormalWaitSeconds],
+        "j", ["Volume_Down", () => Send("{Volume_Down}"), "Continue", NormalWaitSeconds],
       )],
       "t", ["Transparent", () => G(
         "j", ["TransparentDownCurWin", TransparentDownCurWin, "Continue", NormalWaitSeconds],
