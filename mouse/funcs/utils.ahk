@@ -431,3 +431,12 @@ ActivateOrOpen(wid, exe) {
   }
 }
 
+MergeArrs(arrays*) {
+  new_arr := []
+  for arr in arrays {
+    for , value in arr {
+      new_arr.Push(value)
+    }
+  }
+  Return new_arr
+}

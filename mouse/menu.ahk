@@ -212,6 +212,44 @@ K(items*) {
   K_Hot()
 }
 
+KT_Escape() {
+  Global K_En
+  K_En := 0
+  KT_Hot()
+}
+
+KT_Do(key) {
+  SetTimer(K_Escape, NormalWaitSeconds*1000)
+  K_menus[key][2]()
+}
+
+KT_Hot() {
+  Global K_menus
+  On := "On"
+  If K_En == 0 {
+    On := "Off"
+    Tooltip
+  }
+  For k, v in K_menus {
+    HotKey k, KT_Do, On
+  }
+}
+
+KT(items*) {
+  Global K_menus
+  Global K_En
+  K_En := 1
+  items.Push("escape")
+  items.Push(["Exit", K_Escape])
+  K_menus := GetMenus(items)
+  msg := GetMsg(K_menus)
+  msg := "`t" . NormalWaitSeconds . "S`n" . msg
+  CoordMode("Tooltip", "Screen")
+  Tooltip(msg, 0, 0)
+  KT_Hot()
+  SetTimer(K_Escape, NormalWaitSeconds*1000)
+}
+
 ExplorerSelOpen(dirs) {
   Global menu_remains
   temp := []

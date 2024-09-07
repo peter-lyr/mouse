@@ -37,7 +37,7 @@ GO_HJKL() {
   K_HJKL()
 }
 
-K_MoveCursor() {
+KT_MoveCursor_Ready() {
   Global cursor_x0, cursor_y0
   Global wc_x, wc_y, wc_w, wc_h
   MouseGetPos(&cursor_x0, &cursor_y0)
@@ -46,23 +46,34 @@ K_MoveCursor() {
   MouseMove(cursor_x0+0, cursor_y0+1)
   MouseMove(cursor_x0+1, cursor_y0+1)
   MouseMove(cursor_x0+0, cursor_y0+0)
-  K(
-    "space", ["Click", CursorClick],
-    "d", ["Step1 Right", () => CursorX(CursorStep1)],
-    "a", ["Step1 Left", () => CursorX(-CursorStep1)],
-    "w", ["Step1 Up", () => CursorY(-CursorStep1)],
-    "s", ["Step1 Down", () => CursorY(CursorStep1)],
-    "l", ["Step2 Right", () => CursorX(CursorStep2)],
-    "h", ["Step2 Left", () => CursorX(-CursorStep2)],
-    "k", ["Step2 Up", () => CursorY(-CursorStep2)],
-    "j", ["Step2 Down", () => CursorY(CursorStep2)],
-    "b", ["Step3 Right", () => CursorX(CursorStep3)],
-    "c", ["Step3 Left", () => CursorX(-CursorStep3)],
-    "f", ["Step3 Up", () => CursorY(-CursorStep3)],
-    "v", ["Step3 Down", () => CursorY(CursorStep3)],
-    "m", ["ActivateEmacs", ActivateEmacs],
-    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
-    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
-    "tab", ["K_HJKL", GO_HJKL],
-  )
+}
+
+MoveCursor_List := [
+  "space", ["Click", CursorClick],
+  "d", ["Step1 Right", () => CursorX(CursorStep1)],
+  "a", ["Step1 Left", () => CursorX(-CursorStep1)],
+  "w", ["Step1 Up", () => CursorY(-CursorStep1)],
+  "s", ["Step1 Down", () => CursorY(CursorStep1)],
+  "l", ["Step2 Right", () => CursorX(CursorStep2)],
+  "h", ["Step2 Left", () => CursorX(-CursorStep2)],
+  "k", ["Step2 Up", () => CursorY(-CursorStep2)],
+  "j", ["Step2 Down", () => CursorY(CursorStep2)],
+  "b", ["Step3 Right", () => CursorX(CursorStep3)],
+  "c", ["Step3 Left", () => CursorX(-CursorStep3)],
+  "f", ["Step3 Up", () => CursorY(-CursorStep3)],
+  "v", ["Step3 Down", () => CursorY(CursorStep3)],
+  "m", ["ActivateEmacs", ActivateEmacs],
+  "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
+  "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
+  "tab", ["K_HJKL", GO_HJKL],
+]
+
+K_MoveCursor() {
+  KT_MoveCursor_Ready()
+  K(MoveCursor_List*)
+}
+
+KT_MoveCursor() {
+  KT_MoveCursor_Ready()
+  KT(MoveCursor_List*)
 }
