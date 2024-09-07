@@ -12,6 +12,9 @@ NormalWaitSecondsDefalt := 3
 NormalWaitSeconds := NormalWaitSecondsDefalt
 NormalWaitSecondsMax := 20
 
+K_menus := ""
+K_En := 0
+
 IncNormalWaitSeconds() {
   Global NormalWaitSeconds
   Global KeyWaitSecond
@@ -176,6 +179,37 @@ G(items*) {
     G_continuing := 0
     KeyWaitSecond := 0
   }
+}
+
+K_Escape() {
+  Global K_En
+  K_En := 0
+  K_Hot()
+}
+
+K_Hot() {
+  Global K_menus
+  On := "On"
+  If K_En == 0 {
+    On := "Off"
+    Tooltip
+  }
+  For k, v in K_menus {
+    HotKey k, (key) => K_menus[key][2](), On
+  }
+}
+
+K(items*) {
+  Global K_menus
+  Global K_En
+  K_En := 1
+  items.Push("escape")
+  items.Push(["Exit", K_Escape])
+  K_menus := GetMenus(items)
+  msg := GetMsg(K_menus)
+  CoordMode("Tooltip", "Screen")
+  Tooltip(msg, 0, 0)
+  K_Hot()
 }
 
 ExplorerSelOpen(dirs) {
