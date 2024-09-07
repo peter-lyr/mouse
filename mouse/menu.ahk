@@ -139,24 +139,20 @@ G(items*) {
       If (menus[key].Length >= 4) {
         KeyWaitSecond := menus[key][4]
       }
-      flag := ""
-      If (menus[key].Length >= 3) {
-        If (menus[key][3] == "Continue") {
-          flag := "Continue"
-        }
-      }
       f()
       If (v == "MyMenu") {
         Return
       }
-      If (flag == "Continue") {
-        G_continuing := 1
-        If (key == "enter") {
-          KeyWaitSecond := 0
-          Return
+      If (menus[key].Length >= 3) {
+        If (menus[key][3] == "Continue") {
+          G_continuing := 1
+          If (key == "enter") {
+            KeyWaitSecond := 0
+            Return
+          }
+          continue_list := GetList(items, menus[key][3])
+          G(continue_list*)
         }
-        continue_list := GetList(items, "Continue")
-        G(continue_list*)
       }
     } Else If (DirExist(v)) {
       ExplorerOpen(v)
