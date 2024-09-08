@@ -435,6 +435,7 @@ MyMenu() {
     "t", ["Test", () => G(
       "a", ["TestA", TestA],
       "b", ["TestB", TestB],
+      "c", ["TestC", TestC],
     )],
   )
 }

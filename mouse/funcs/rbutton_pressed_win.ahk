@@ -195,44 +195,16 @@ BarColors := [
 Lines := []
 TextPos := []
 
-^#i:: {
-  Global Lines
-  Global TextPos
-  For line in Lines {
-    line.Destroy()
-  }
-  Lines := []
-  TextPos := []
-  Try {
-    _wid := WinGetId("A")
-  } Catch {
-    Return
-  }
-  Controls := WinGetControls(_wid)
-  WinGetPos(&_x0, &_y0, , , _wid)
-  ; Try {
-  ;   i := 1
-  ;   ControlFocus(Controls[i], _wid)
-  ;   ControlGetPos(&_x, &_y, &_w, &_h, Controls[i], _wid)
-  ;   DrawRectangle(_x0 + _x, _y0 + _y, _w, _h, i)
-  ; }
-  For _control In Controls {
-    ; Try {
-      ControlGetPos(&_x, &_y, &_w, &_h, _control, _wid)
-      DrawRectangle(_x0 + _x, _y0 + _y, _w, _h, A_Index)
-    ; } Catch As err {
-    ;   MsgBox Format("{1}: {2}.`n`nFile:`t{3}`nLine:`t{4}`nWhat:`t{5}`nStack:`n{6}"
-    ;       , type(err), err.Message, err.File, err.Line, err.What, err.Stack)
-    ;   MsgBox(Mod(A_Index, BarColors.Length + 1))
-      ; MsgBox(type(_control))
-    ; }
-    ; Break
-  }
-  ; msgbox(Lines.Length)
-}
+Chars := [
+  "a", "b", "c", "d", "e",
+  "f", "g", "h", "i", "j",
+  "k", "l", "m", "n", "o",
+  "p", "q", "r", "s", "t",
+  "u", "v", "w", "x", "y",
+  "z",
+]
 
 DrawRectangle(x, y, w, h, index) {
-  Global Lines
   Global TextPos
   GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled"
   bar := 4
@@ -257,7 +229,7 @@ DrawRectangle(x, y, w, h, index) {
   }
   line := Gui()
   line.Opt(GuiOpt)
-  line.Add("Text", , String(index))
+  line.Add("Text", , Chars[Mod(index, Chars.Length)])
   line.BackColor := color
   x := X[1]
   ; y := Y[1] + text_size
@@ -283,4 +255,20 @@ DrawRectangle(x, y, w, h, index) {
   line.Show(_show_wh . " NA")
   WinSetTransparent(225, "Ahk_id " . line.Hwnd)
   Lines.Push(line)
+}
+
+KillRectangles() {
+  Global Lines
+  For line in Lines {
+    line.Destroy()
+  }
+  Lines := []
+}
+
+DrawRectangles(X, Y, W, H, I) {
+  KillRectangles()
+  For i in I {
+    index := A_Index
+    DrawRectangle(X[index], Y[index], W[index], H[index], i)
+  }
 }
