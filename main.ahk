@@ -30,6 +30,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\hjkl.ahk
 #Include %A_ScriptDir%\mouse\funcs\switchwindow.ahk
 #Include %A_ScriptDir%\mouse\funcs\movecursor.ahk
+#Include %A_ScriptDir%\mouse\funcs\selclick.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\test-funcs.ahk
 #Include %A_ScriptDir%\mouse\funcs\test.ahk
