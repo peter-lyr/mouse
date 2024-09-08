@@ -6,10 +6,44 @@ SelClick_En := 0
 
 DesktopAhkClass := "Program Manager"
 
+
+; # python
+; from distinctipy import distinctipy
+;
+; # 生成25个易于区分的颜色
+; num_colors = 25
+; colors = distinctipy.get_colors(num_colors)
+;
+; # 打印颜色代码
+; for color in colors:
+;     print('"0X' + distinctipy.get_hex(color).strip('#') + '",')
+
 BarColors := [
-  "0X3357FF", "0X33FF57", "0X33FFA1", "0X33FFD1",
-  "0X5733FF", "0X57FF33", "0XA133FF", "0XD133FF",
-  "0XFF33A1", "0XFF33D1", "0XFF5733",
+  "0X00ff00",
+  "0Xff00ff",
+  "0X0080ff",
+  "0Xff8000",
+  "0X80bf80",
+  "0X5204c4",
+  "0Xe10343",
+  "0X01724d",
+  "0Xb56ffb",
+  "0X21feed",
+  "0Xffff00",
+  "0X7d4b22",
+  "0Xf8b293",
+  "0X00ff80",
+  "0X85fd1e",
+  "0X95caf3",
+  "0X5a6baf",
+  "0Xd35870",
+  "0X6aa409",
+  "0X0e156a",
+  "0X0caa9f",
+  "0Xba0cab",
+  "0Xc9fd8b",
+  "0X800000",
+  "0X0000ff",
 ]
 
 Lines := []
