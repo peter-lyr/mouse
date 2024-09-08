@@ -1,8 +1,6 @@
 TestA() {
 
-  SelClick()
-
-  ; WinSplit()
+  ; WinSplitTest()
   ; ClickWhenCursorArrow()
 
   ; result := StrSplit(Strip(RunWaitOne("dir")), "`n")

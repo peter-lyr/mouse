@@ -25,11 +25,6 @@ WinSplitDo(cnt) {
   }
 }
 
-WinSplitTest() {
-  WinSplitDo(3)
-  DrawRectangles(WinSplitX, WinSplitY, WinSplitW, WinSplitH, WinSplitIndex)
-}
-
 SelClick() {
   WinSplitDo(5)
   SelClickDo(WinSplitX, WinSplitY, WinSplitW, WinSplitH, WinSplitIndex)
@@ -48,12 +43,5 @@ ClickWhenCursorArrowDo(x, y, w, h) {
       Break
     }
   }
-  MouseMove(x0, y0, 0)
-}
-
-ClickWhenCursorArrow() {
-  MouseGetPos(&x0, &y0)
-  WinGetPos(&x, &y, &w, &h, "A")
-  ClickWhenCursorArrowDo(x, y, w, h)
   MouseMove(x0, y0, 0)
 }

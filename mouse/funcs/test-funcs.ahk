@@ -43,3 +43,15 @@ ControlDisplay() {
 ;   FileDelete "temp.txt"
 ;   return output
 ; }
+
+ClickWhenCursorArrow() {
+  MouseGetPos(&x0, &y0)
+  WinGetPos(&x, &y, &w, &h, "A")
+  ClickWhenCursorArrowDo(x, y, w, h)
+  MouseMove(x0, y0, 0)
+}
+
+WinSplitTest() {
+  WinSplitDo(3)
+  DrawRectangles(WinSplitX, WinSplitY, WinSplitW, WinSplitH, WinSplitIndex)
+}
