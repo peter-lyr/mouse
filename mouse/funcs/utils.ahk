@@ -16,7 +16,7 @@ DesktopAhkClass := "Program Manager"
 ;
 ; # 打印颜色代码
 ; for color in colors:
-;     print('"0X' + distinctipy.get_hex(color).strip('#') + '",')
+;     print('  "0X' + distinctipy.get_hex(color).strip('#') + '",')
 
 BarColors := [
   "0X00ff00",
