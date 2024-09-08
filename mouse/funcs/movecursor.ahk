@@ -1,15 +1,19 @@
-CursorStep1 := 300
-CursorStep2 := 60
-CursorStep3 := 10
+CursorStep1 := 500
+CursorStep2 := 200
+CursorStep3 := 50
+CursorStep4 := 10
+CursorStep5 := 2
+
+Cursor_distance := CursorStep1
 
 CursorClick() {
   MouseClick("Left")
 }
 
-CursorX(distance) {
+CursorX(dir) {
   Global cursor_x0, cursor_y0
   Global wc_x, wc_y, wc_w, wc_h
-  cursor_x0 += distance
+  cursor_x0 += Cursor_distance * dir
   If (cursor_x0 > wc_x + wc_w) {
     cursor_x0 := wc_x + wc_w
   }
@@ -19,10 +23,10 @@ CursorX(distance) {
   MouseMove(cursor_x0, cursor_y0)
 }
 
-CursorY(distance) {
+CursorY(dir) {
   Global cursor_x0, cursor_y0
   Global wc_x, wc_y, wc_w, wc_h
-  cursor_y0 += distance
+  cursor_y0 += Cursor_distance * dir
   If (cursor_y0 > wc_y + wc_h) {
     cursor_y0 := wc_y + wc_h
   }
@@ -30,6 +34,21 @@ CursorY(distance) {
     cursor_y0 := wc_y
   }
   MouseMove(cursor_x0, cursor_y0)
+}
+
+ChangeDistance(val) {
+  Global Cursor_distance
+  If val == 1 {
+    Cursor_distance := CursorStep1
+  } Else If val == 2 {
+    Cursor_distance := CursorStep2
+  } Else If val == 3 {
+    Cursor_distance := CursorStep3
+  } Else If val == 4 {
+    Cursor_distance := CursorStep4
+  } Else If val == 5 {
+    Cursor_distance := CursorStep5
+  }
 }
 
 GO_HJKL() {
@@ -50,19 +69,20 @@ KT_MoveCursor_Ready() {
 
 MoveCursor_List := [
   "space", ["Click", CursorClick],
-  "d", ["Step1 Right", () => CursorX(CursorStep1)],
-  "a", ["Step1 Left", () => CursorX(-CursorStep1)],
-  "w", ["Step1 Up", () => CursorY(-CursorStep1)],
-  "s", ["Step1 Down", () => CursorY(CursorStep1)],
-  "l", ["Step2 Right", () => CursorX(CursorStep2)],
-  "h", ["Step2 Left", () => CursorX(-CursorStep2)],
-  "k", ["Step2 Up", () => CursorY(-CursorStep2)],
-  "j", ["Step2 Down", () => CursorY(CursorStep2)],
-  "b", ["Step3 Right", () => CursorX(CursorStep3)],
-  "c", ["Step3 Left", () => CursorX(-CursorStep3)],
-  "f", ["Step3 Up", () => CursorY(-CursorStep3)],
-  "v", ["Step3 Down", () => CursorY(CursorStep3)],
-  "m", ["ActivateEmacs", ActivateEmacs],
+  "a", ["Step1 500", () => ChangeDistance(1)],
+  "s", ["Step2 200", () => ChangeDistance(2)],
+  "d", ["Step3 60", () => ChangeDistance(3)],
+  "f", ["Step4 10", () => ChangeDistance(4)],
+  "g", ["Step5 2", () => ChangeDistance(5)],
+  "l", ["Right", () => CursorX(1)],
+  "h", ["Left", () => CursorX(-1)],
+  "k", ["Up", () => CursorY(-1)],
+  "j", ["Down", () => CursorY(1)],
+  "m", ["RightDown", () => [CursorX(1), CursorY(1)]],
+  "n", ["LeftDown", () => [CursorX(-1), CursorY(1)]],
+  "y", ["LeftUp", () => [CursorX(-1), CursorY(-1)]],
+  "u", ["RightUp", () => [CursorX(1), CursorY(-1)]],
+  ",", ["ActivateEmacs", ActivateEmacs],
   "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
   "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
   "tab", ["K_HJKL", GO_HJKL],
