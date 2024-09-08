@@ -8,52 +8,48 @@
 ;   return output
 ; }
 
+WinSplitX := []
+WinSplitY := []
+WinSplitW := []
+WinSplitH := []
+WinSplitIndex := []
+
 WinSplitDo(cnt) {
+  Global WinSplitX ,WinSplitY ,WinSplitW ,WinSplitH
   WinGetPos(&_x, &_y, &_w, &_h, "A")
-  X := []
-  Y := []
-  W := []
-  H := []
-  Index := []
   Loop cnt {
     i := A_Index
     Loop cnt {
       j := A_Index
-      X.Push(_x + (j - 1) * _w / cnt)
-      Y.Push(_y + (i - 1) * _h / cnt)
-      W.Push(_w / cnt)
-      H.Push(_h / cnt)
-      Index.Push((i - 1) * cnt + j)
+      WinSplitX.Push(Integer(_x + (j - 1) * _w / cnt))
+      WinSplitY.Push(Integer(_y + (i - 1) * _h / cnt))
+      WinSplitW.Push(Integer(_w / cnt))
+      WinSplitH.Push(Integer(_h / cnt))
+      WinSplitIndex.Push((i - 1) * cnt + j)
     }
   }
-  DrawRectangles(X, Y, W, H, Index)
 }
 
-WinSplit5() {
-  WinSplitDo(5)
-}
-
-WinSplit4() {
-  WinSplitDo(4)
-}
-
-WinSplit3() {
+WinSplitTest() {
   WinSplitDo(3)
+  DrawRectangles(WinSplitX, WinSplitY, WinSplitW, WinSplitH, WinSplitIndex)
 }
 
-WinSplit2() {
-  WinSplitDo(2)
+SelClick() {
+  WinSplitDo(3)
+  SelClickDo(WinSplitX, WinSplitY, WinSplitW, WinSplitH, WinSplitIndex)
 }
 
 ClickWhenCursorArrowDo(x, y, w, h) {
   MouseGetPos(&x0, &y0)
-  WinGetPos(&x, &y, &w, &h, "A")
   cnt := 8
   Loop cnt - 1 {
-    MouseMove(Integer(x + A_Index * w / cnt), Integer(y + A_Index * h / cnt), 0)
+    _x := Integer(x + A_Index * w / cnt)
+    _y := Integer(y + A_Index * h / cnt)
+    MouseMove(_x, _y, 0)
     Sleep 20
     If A_Cursor == "Arrow" {
-      MouseClick("Left", Integer(x + A_Index * w / cnt), Integer(y + A_Index * h / cnt))
+      MouseClick("Left", _x, _y)
       Break
     }
   }
@@ -69,8 +65,10 @@ ClickWhenCursorArrow() {
 
 TestA() {
 
-  ClickWhenCursorArrow()
-  ; WinSplit3()
+  SelClick()
+
+  ; WinSplit()
+  ; ClickWhenCursorArrow()
 
   ; result := StrSplit(Strip(RunWaitOne("dir")), "`n")
   ; ; MsgBox(Type(result))

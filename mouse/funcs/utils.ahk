@@ -520,3 +520,39 @@ DrawRectangles(X, Y, W, H, I) {
     DrawRectangle(X[index], Y[index], W[index], H[index], i)
   }
 }
+
+SelClick_Ks := Map()
+SelClick_En := 0
+
+SelClick_Do(key) {
+  Global SelClick_En
+  SelClick_En := 0
+  ClickWhenCursorArrowDo(SelClick_Ks[key][1], SelClick_Ks[key][2], SelClick_Ks[key][3], SelClick_Ks[key][4])
+  SelClick_Hot()
+  KillRectangles()
+}
+
+SelClick_Hot() {
+  Global SelClick_Ks
+  On := "Off"
+  If SelClick_En {
+    On := "On"
+  }
+  For k, v in SelClick_Ks {
+    HotKey k, (key) => SelClick_Do(key), On
+  }
+}
+
+SelClickDo(X, Y, W, H, I) {
+  Global SelClick_Ks
+  Global SelClick_En
+  SelClick_En := 1
+  KillRectangles()
+  SelClick_Ks := Map()
+  For i in I {
+    index := A_Index
+    DrawRectangle(X[index], Y[index], W[index], H[index], i)
+    SelClick_Ks[Chars[Mod(i, Chars.Length)]] := [X[index], Y[index], W[index], H[index]]
+  }
+  SelClick_Hot()
+}
