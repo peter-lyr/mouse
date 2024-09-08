@@ -369,6 +369,7 @@ MyMenu() {
     "g", ["K_MoveWindow", K_MoveWindow],
     "c", ["K_MoveCursor", K_MoveCursor],
     ";", ["K_HJKL", K_HJKL],
+    "j", ["SelClick", SelClick],
     "tab", ["Toggle/Switch", () => G(
       "p", ["Proxy", () => G(
         "space", ["ProxyOn", ProxyOn],

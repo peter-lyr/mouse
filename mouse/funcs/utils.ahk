@@ -1,6 +1,9 @@
 ; Copyright (c) 2024 liudepei. All Rights Reserved.
 ; create at 2024/05/17 23:55:49 星期五
 
+SelClick_Ks := Map()
+SelClick_En := 0
+
 DesktopAhkClass := "Program Manager"
 
 BarColors := [
@@ -520,9 +523,6 @@ DrawRectangles(X, Y, W, H, I) {
     DrawRectangle(X[index], Y[index], W[index], H[index], i)
   }
 }
-
-SelClick_Ks := Map()
-SelClick_En := 0
 
 SelClick_Do(key) {
   Global SelClick_En
