@@ -45,9 +45,32 @@ WinSplit2() {
   WinSplitDo(2)
 }
 
+ClickWhenCursorArrowDo(x, y, w, h) {
+  MouseGetPos(&x0, &y0)
+  WinGetPos(&x, &y, &w, &h, "A")
+  cnt := 8
+  Loop cnt - 1 {
+    MouseMove(Integer(x + A_Index * w / cnt), Integer(y + A_Index * h / cnt), 0)
+    Sleep 20
+    If A_Cursor == "Arrow" {
+      MouseClick("Left", Integer(x + A_Index * w / cnt), Integer(y + A_Index * h / cnt))
+      Break
+    }
+  }
+  MouseMove(x0, y0, 0)
+}
+
+ClickWhenCursorArrow() {
+  MouseGetPos(&x0, &y0)
+  WinGetPos(&x, &y, &w, &h, "A")
+  ClickWhenCursorArrowDo(x, y, w, h)
+  MouseMove(x0, y0, 0)
+}
+
 TestA() {
 
-  WinSplit3()
+  ClickWhenCursorArrow()
+  ; WinSplit3()
 
   ; result := StrSplit(Strip(RunWaitOne("dir")), "`n")
   ; ; MsgBox(Type(result))
