@@ -34,7 +34,7 @@ ClickWhenCursorArrowDo(x, y, w, h) {
   MouseGetPos(&x0, &y0)
   cnt := 8
   Loop cnt - 1 {
-    _x := Integer(x + A_Index * w / cnt)
+    _x := Integer(x + (cnt - A_Index) * w / cnt)
     _y := Integer(y + A_Index * h / cnt)
     MouseMove(_x, _y, 0)
     Sleep 20

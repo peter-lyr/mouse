@@ -466,7 +466,6 @@ DrawRectangle(x, y, w, h, index) {
   Global TextPos
   GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled"
   bar := 4
-  text_size := 24
   ; 先上下再左右
   X := [x, x, x, x + w - bar]
   Y := [y, y + h - bar, y, y]
@@ -486,25 +485,18 @@ DrawRectangle(x, y, w, h, index) {
     Lines.Push(line)
   }
   line := Gui()
+  line.MarginX := 0
+  line.MarginY := 0
   line.Opt(GuiOpt)
-  line.Add("Text", , Chars[Mod(index, Chars.Length)])
+  line.SetFont("s18 bold")
+  line.Add("Text", , Chars[Mod(index, Chars.Length)] . " " . index)
   line.BackColor := color
   x := X[1]
   y := Y[1]
-  ; For pos in TextPos {
-  ;   x0 := pos[1]
-  ;   y0 := pos[2]
-  ;   _dx := x - x0
-  ;   _dy := y - y0
-  ;   _c := Sqrt(_dx ** 2 + _dy ** 2)
-  ;   If (_c < text_size) {
-  ;     x += text_size
-  ;   }
-  ; }
   TextPos.Push([x, y])
-  _show_wh := Format("X{:}Y{:}W{:}H{:}", x, y, text_size, text_size)
+  _show_wh := Format("X{:}Y{:}", x, y)
   line.Show(_show_wh . " NA")
-  WinSetTransparent(225, "Ahk_id " . line.Hwnd)
+  WinSetTransparent(220, "Ahk_id " . line.Hwnd)
   Lines.Push(line)
 }
 
