@@ -3,6 +3,24 @@
 
 DesktopAhkClass := "Program Manager"
 
+BarColors := [
+  "0X3357FF", "0X33FF57", "0X33FFA1", "0X33FFD1",
+  "0X5733FF", "0X57FF33", "0XA133FF", "0XD133FF",
+  "0XFF33A1", "0XFF33D1", "0XFF5733",
+]
+
+Lines := []
+TextPos := []
+
+Chars := [
+  "a", "b", "c", "d", "e",
+  "f", "g", "h", "i", "j",
+  "k", "l", "m", "n", "o",
+  "p", "q", "r", "s", "t",
+  "u", "v", "w", "x", "y",
+  "z",
+]
+
 remote_desktop_exes := [
   "ahk_exe mstsc.exe",
   "ahk_exe SunloginClient.exe",
@@ -439,4 +457,66 @@ MergeArrs(arrays*) {
     }
   }
   Return new_arr
+}
+
+DrawRectangle(x, y, w, h, index) {
+  Global TextPos
+  GuiOpt := "+LastFound +ToolWindow +AlwaysOnTop -Caption +Disabled"
+  bar := 4
+  text_size := 24
+  ; 先上下再左右
+  X := [x, x, x, x + w - bar]
+  Y := [y, y + h - bar, y, y]
+  bar := bar * 96 / A_ScreenDPI
+  w := w * 96 / A_ScreenDPI
+  h := h * 96 / A_ScreenDPI
+  W := [w, w, bar, bar]
+  H := [bar, bar, h, h]
+  color := BarColors[Mod(index, BarColors.Length) + 1]
+  Loop 4 {
+    line := Gui()
+    line.Opt(GuiOpt)
+    line.BackColor := color
+    _show_wh := Format("X{:}Y{:}W{:}H{:}", X[A_Index], Y[A_Index], W[A_Index], H[A_Index])
+    line.Show(_show_wh . " NA")
+    WinSetTransparent(100, "Ahk_id " . line.Hwnd)
+    Lines.Push(line)
+  }
+  line := Gui()
+  line.Opt(GuiOpt)
+  line.Add("Text", , Chars[Mod(index, Chars.Length)])
+  line.BackColor := color
+  x := X[1]
+  y := Y[1]
+  ; For pos in TextPos {
+  ;   x0 := pos[1]
+  ;   y0 := pos[2]
+  ;   _dx := x - x0
+  ;   _dy := y - y0
+  ;   _c := Sqrt(_dx ** 2 + _dy ** 2)
+  ;   If (_c < text_size) {
+  ;     x += text_size
+  ;   }
+  ; }
+  TextPos.Push([x, y])
+  _show_wh := Format("X{:}Y{:}W{:}H{:}", x, y, text_size, text_size)
+  line.Show(_show_wh . " NA")
+  WinSetTransparent(225, "Ahk_id " . line.Hwnd)
+  Lines.Push(line)
+}
+
+KillRectangles() {
+  Global Lines
+  For line in Lines {
+    line.Destroy()
+  }
+  Lines := []
+}
+
+DrawRectangles(X, Y, W, H, I) {
+  KillRectangles()
+  For i in I {
+    index := A_Index
+    DrawRectangle(X[index], Y[index], W[index], H[index], i)
+  }
 }
