@@ -85,12 +85,16 @@ GetMenus(items) {
   return menus
 }
 
-GetMsg(menus) {
-  Global ShowMenuPos
+GetMsg(items) {
   msg := ""
   sep := "`t"
-  For key, val in menus {
-    msg .= Format("{:}{:}{:}`n", key, sep, val[1])
+  key := ""
+  For _, v in items {
+    If (type(v) == "Array") {
+      msg .= Format("{:}{:}{:}`n", key, sep, v[1])
+    } Else {
+      key := v
+    }
   }
   Return msg
 }
@@ -123,7 +127,7 @@ G(items*) {
   Global NormalWaitSeconds
   MenuGoing := 1
   menus := GetMenus(items)
-  msg := GetMsg(menus)
+  msg := GetMsg(items)
   msg := Get_G_msg(msg, &G_wait)
   SetTimer(() => ShowMenu(msg), -10)
   key := StrLower(KeyWaitAny(Format("T{:}", G_wait)))
@@ -202,7 +206,7 @@ K(items*) {
   items.Push("escape")
   items.Push(["Exit", K_Escape])
   K_menus := GetMenus(items)
-  msg := GetMsg(K_menus)
+  msg := GetMsg(items)
   CoordMode("Tooltip", "Screen")
   Tooltip(msg, 0, 0)
   K_Hot()
@@ -238,7 +242,7 @@ KT(items*) {
   items.Push("escape")
   items.Push(["Exit", K_Escape])
   K_menus := GetMenus(items)
-  msg := GetMsg(K_menus)
+  msg := GetMsg(items)
   msg := "`t" . NormalWaitSeconds . "S`n" . msg
   CoordMode("Tooltip", "Screen")
   Tooltip(msg, 0, 0)
