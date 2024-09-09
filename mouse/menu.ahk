@@ -375,7 +375,7 @@ MyMenu() {
     ";", ["K_HJKL", K_HJKL],
     "j", ["SelClick", SelClick],
     "tab", ["Toggle/Switch", () => G(
-      "p", ["Proxy", () => G(
+      "g", ["Proxy/Git", () => G(
         "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
