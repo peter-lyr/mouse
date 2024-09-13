@@ -5,6 +5,8 @@ MyDirsTxt := A_ScriptDir . "\mydirs.txt"
 
 MenuGoing := 0
 
+LastKey := ""
+
 LastMsg := ""
 LastShowMenuPos := ""
 
@@ -102,11 +104,7 @@ GetMsg(items) {
 Get_G_msg(msg, &G_wait) {
   G_wait := KeyWaitSecond
   If (G_wait <= 0) {
-    If (G_continuing == 1) {
-      G_wait := 0.5
-    } Else {
-      G_wait := NormalWaitSeconds
-    }
+    G_wait := NormalWaitSeconds
   }
   temp_set := ""
   If (NormalWaitSeconds == NormalWaitSecondsDefalt And G_wait == NormalWaitSecondsDefalt) {
@@ -120,8 +118,8 @@ Get_G_msg(msg, &G_wait) {
 }
 
 G(items*) {
+  Global LastKey
   Global MenuGoing
-  Global G_continuing
   Global ShowMenuPos
   Global KeyWaitSecond
   Global NormalWaitSeconds
@@ -149,13 +147,19 @@ G(items*) {
       }
       If (menus[key].Length >= 3) {
         If (menus[key][3] == "Continue") {
-          G_continuing := 1
           If (key == "enter") {
             KeyWaitSecond := 0
             Return
           }
           continue_list := GetList(items, menus[key][3])
-          G(continue_list*)
+          sure := false
+          If LastKey == key {
+            sure := true
+          }
+          If (Not sure) {
+            LastKey := key
+            G(continue_list*)
+          }
         }
       }
     } Else If (DirExist(v)) {
@@ -176,7 +180,6 @@ G(items*) {
     } Else {
       Tooltip
     }
-    G_continuing := 0
     KeyWaitSecond := 0
   }
 }
@@ -340,17 +343,17 @@ MenuKeyUp() {
 }
 
 MyMenu() {
+  Global LastKey
   Global ShowMenuPos
   Global CycleWinIndex
-  Global G_continuing
   Global MenuGoing
   Global KeyWaitSecond
   If (MenuGoing) {
     Return
   }
+  LastKey := ""
   ShowMenuPos := "center"
   KeyWaitSecond := 0
-  G_continuing := 0
   CycleWinIndex := 1
   G(
     "lalt", ["MyMenu", MyMenu, "Continue"],
