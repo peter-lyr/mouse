@@ -8,7 +8,7 @@ MenuGoing := 0
 LastMsg := ""
 LastShowMenuPos := ""
 
-NormalWaitSecondsDefalt := 3
+NormalWaitSecondsDefalt := 8
 NormalWaitSeconds := NormalWaitSecondsDefalt
 NormalWaitSecondsMax := 20
 
