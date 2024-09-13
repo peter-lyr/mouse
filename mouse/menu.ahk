@@ -257,7 +257,11 @@ ExplorerSelOpen(dirs) {
   Global menu_remains
   temp := []
   flag := 0
-  For index, dir in dirs {
+  index := 1
+  For , dir in dirs {
+    If (Not DirExist(dir)) {
+      Continue
+    }
     key := Chr(96+index)
     temp.Push(key)
     If (Mod(index, 26) == 0 && dirs.Length > 26) {
@@ -271,6 +275,7 @@ ExplorerSelOpen(dirs) {
       arr := [dir, 0]
       temp.Push(arr)
     }
+    index += 1
   }
   G(temp*)
 }
