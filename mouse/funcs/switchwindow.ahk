@@ -11,3 +11,14 @@ K_SwitchWindow() {
     "j", ["Down", () => Send("{Down}")],
   )
 }
+
+SwitchWindow() {
+  G(
+    "d", ["ActivateDownloader", () => WinWaitActivate("ahk_exe Downloader.exe"), "Confirm"],
+    "c", ["ActivateCodeBlocks", () => WinWaitActivate("ahk_exe codeblocks.exe"), "Confirm"],
+    "q", ["ActivateWXWork", () => WinWaitActivate("ahk_exe WXWork.exe"), "Confirm"],
+    "w", ["ActivateWeChat", () => WinWaitActivate("ahk_exe WeChat.exe"), "Confirm"],
+    "e", ["ActivateExplorer", () => WinWaitActivate("ahk_class CabinetWClass"), "Confirm"],
+    "m", ["ActivateMsedge", () => WinWaitActivate("ahk_exe msedge.exe"), "Confirm"],
+  )
+}

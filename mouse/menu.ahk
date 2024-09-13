@@ -142,19 +142,19 @@ G(items*) {
         KeyWaitSecond := menus[key][4]
       }
       f()
-      If (v == "MyMenu") {
-        Return
-      }
       If (menus[key].Length >= 3) {
-        If (menus[key][3] == "Continue") {
+        temp_o := menus[key][3]
+        If (StrInArray(temp_o, ["Continue", "Confirm"])) {
           If (key == "enter") {
             KeyWaitSecond := 0
             Return
           }
           continue_list := GetList(items, menus[key][3])
           sure := false
-          If LastKey == key {
-            sure := true
+          If temp_o == "Confirm" {
+            If LastKey == key {
+              sure := true
+            }
           }
           If (Not sure) {
             LastKey := key
@@ -170,7 +170,7 @@ G(items*) {
   } Else {
     If (key) {
       If (InStr(key, "alt")) {
-        MyMenu()
+        MenuKeyCount()
       } Else {
         SetTimer(() => Send("{" . key . "}"), -10)
         CoordMode("Tooltip", "Screen")
@@ -356,8 +356,6 @@ MyMenu() {
   KeyWaitSecond := 0
   CycleWinIndex := 1
   G(
-    "lalt", ["MyMenu", MyMenu, "Continue"],
-    "ralt", ["MyMenu", MyMenu, "Continue"],
     "escape", ["ActivateDesktop", ActivateDesktop],
     "space", ["<Win-R>", () => Send("#r")],
     ; "u", ["upclip", () => SystemRunSilent("C:\Users\depei_liu\Desktop\Fileserv\upclip.bat")],
@@ -398,6 +396,8 @@ MyMenu() {
       )],
       "tab", ["K_SwitchWindow", K_SwitchWindow],
     )],
+    "lalt", ["SwitchWindow", SwitchWindow],
+    "ralt", ["SwitchWindow", SwitchWindow],
     "p", ["Panel/Properties", () => G(
       "s", ["Sound", () => Run("mmsys.cpl")],
       "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue"],
@@ -432,14 +432,11 @@ MyMenu() {
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen(), "", 8],
     )],
-    "d", ["ActivateCycleDownloaderCodeBlocks", ActivateCycleDownloaderCodeBlocks, "Continue"],
-    "w", ["ActivateCycleWeChatWXWork", ActivateCycleWeChatWXWork, "Continue"],
-    "e", ["ActivateCycleExplorerMsedge", ActivateCycleExplorerMsedge, "Continue"],
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
-    "m", ["ActivateEmacs", ActivateEmacs, "Continue"],
-    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Continue"],
-    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Continue"],
-    "enter", ["ActivateMstscExe", ActivateMstscExe, "Continue"],
+    "m", ["ActivateEmacs", ActivateEmacs, "Confirm"],
+    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
+    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
+    "enter", ["ActivateMstscExe", ActivateMstscExe, "Confirm"],
     "t", ["Test", () => G(
       "a", ["TestA", TestA],
       "b", ["TestB", TestB],
