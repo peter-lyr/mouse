@@ -289,7 +289,6 @@ ExplorerSelMyAdd() {
 }
 
 ExplorerSelMyOpen() {
-  ; ExplorerSelOpen(DirExistArr(ReadLinesLowerUniqSort(MyDirsTxt)))
   ExplorerSelOpen(StrSplit(Strip(FileRead(MyDirsTxt)), "`n"))
 }
 
