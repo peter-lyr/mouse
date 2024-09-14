@@ -152,6 +152,7 @@ G(items*) {
           continue_list := GetList(items, menus[key][3])
           sure := false
           If temp_o == "Confirm" {
+            continue_list := MergeGArrs(continue_list, SwitchWindow_List)
             If LastKey == key {
               sure := true
             }

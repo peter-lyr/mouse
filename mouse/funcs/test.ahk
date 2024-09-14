@@ -1,5 +1,7 @@
 TestA() {
 
+  MsgBox(Type("w"))
+
   ; WinSplitTest()
   ; ClickWhenCursorArrow()
 

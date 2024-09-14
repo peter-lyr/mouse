@@ -371,7 +371,7 @@ DirExistArr(arr) {
     Return []
   }
   new_arr := []
-  For _, r in arr {
+  For _, r In arr {
     r := Strip(r)
     If (DirExist(r)) {
       new_arr.Push(r)
@@ -385,7 +385,7 @@ StripArr(arr) {
     Return []
   }
   new_arr := []
-  For _, r in arr {
+  For _, r In arr {
     new_arr.Push(Strip(r))
   }
   Return new_arr
@@ -397,7 +397,7 @@ SystemCd(file) {
 
 LowerUniqSort(arr) {
   params := ""
-  For _, str in arr {
+  For _, str In arr {
     params .= str . ","
   }
   cmd := A_ScriptDir . "\mouse\funcs\.loweruniqsort.py " . params
@@ -413,7 +413,7 @@ LowerUniqSortFile(file) {
 ;; py放funcs目录下
 RunPyWithArgs(py, args*) {
   params := '"'
-  For _, str in args {
+  For _, str In args {
     params .= str . '" "'
   }
   params .= '"'
@@ -433,7 +433,7 @@ ReadLinesLowerUniqSort(file) {
 
 ActivateWins(win) {
   If (WinExist(win) And Not WinActive(win)) {
-    For id in WinGetList(win) {
+    For id In WinGetList(win) {
       WinActivate(id)
     }
   }
@@ -450,9 +450,9 @@ CycleActivateAllExistWin(arr) {
 }
 
 MinimizeAllExistWin(arr) {
-  For _, win in arr {
+  For _, win In arr {
     If (WinExist(win)) {
-      For id in WinGetList(win) {
+      For id In WinGetList(win) {
         WinMinimize(id)
       }
     }
@@ -490,11 +490,31 @@ ActivateOrOpen(wid, exe) {
   }
 }
 
-MergeArrs(arrays*) {
+MergeArrs(arrs*) {
   new_arr := []
-  for arr in arrays {
-    for , value in arr {
+  For arr In arrs {
+    For , value In arr {
       new_arr.Push(value)
+    }
+  }
+  Return new_arr
+}
+
+MergeGArrs(arrs*) {
+  new_arr := []
+  temps := []
+  For arr In arrs {
+    str := ""
+    For , value In arr {
+      If (Type(value) == "String") {
+        str := value
+        Continue
+      }
+      If (Not StrInArray(str, temps)) {
+        temps.Push(str)
+        new_arr.Push(str)
+        new_arr.Push(value)
+      }
     }
   }
   Return new_arr
@@ -540,7 +560,7 @@ DrawRectangle(x, y, w, h, index) {
 
 KillRectangles() {
   Global Lines
-  For line in Lines {
+  For line In Lines {
     line.Destroy()
   }
   Lines := []
@@ -548,7 +568,7 @@ KillRectangles() {
 
 DrawRectangles(X, Y, W, H, I) {
   KillRectangles()
-  For i in I {
+  For i In I {
     index := A_Index
     DrawRectangle(X[index], Y[index], W[index], H[index], i)
   }
@@ -568,7 +588,7 @@ SelClick_Hot() {
   If SelClick_En {
     On := "On"
   }
-  For k, v in SelClick_Ks {
+  For k, v In SelClick_Ks {
     HotKey k, (key) => SelClick_Do(key), On
   }
 }
@@ -579,7 +599,7 @@ SelClickDo(X, Y, W, H, I) {
   SelClick_En := 1
   KillRectangles()
   SelClick_Ks := Map()
-  For i in I {
+  For i In I {
     index := A_Index
     DrawRectangle(X[index], Y[index], W[index], H[index], i)
     SelClick_Ks[Chars[Mod(i, Chars.Length)]] := [X[index], Y[index], W[index], H[index]]
