@@ -23,5 +23,6 @@ SwitchWindow() {
     "f", ["ActivateFileServ", () => ActivateWins("ahk_exe Fileserv.exe"), "Confirm"],
     ",", ["ActivateEmacs", ActivateEmacs, "Confirm"],
     ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
+    "enter", ["ActivateMstscExe", ActivateMstscExe, "Confirm"],
   )
 }
