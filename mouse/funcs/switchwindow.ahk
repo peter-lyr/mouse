@@ -12,16 +12,16 @@ K_SwitchWindow() {
 }
 
 SwitchWindow_List := [
-  "d", ["ActivateDownloader", () => ActivateWins("ahk_exe Downloader.exe"), "Confirm"],
-  "c", ["ActivateCodeBlocks", () => ActivateWins("ahk_exe codeblocks.exe"), "Confirm"],
-  "q", ["ActivateWXWork", () => ActivateWins("ahk_exe WXWork.exe"), "Confirm"],
-  "w", ["ActivateWeChat", () => ActivateWins("ahk_exe WeChat.exe"), "Confirm"],
-  "e", ["ActivateExplorer", () => ActivateWins("ahk_class CabinetWClass"), "Confirm"],
-  "g", ["ActivateMsedge", () => ActivateWins("ahk_exe msedge.exe"), "Confirm"],
-  "f", ["ActivateFileServ", () => ActivateWins("ahk_exe Fileserv.exe"), "Confirm"],
-  ",", ["ActivateEmacs", ActivateEmacs, "Confirm"],
-  ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
-  "enter", ["ActivateMstscExe", ActivateMstscExe, "Confirm"],
+  "d", ["ActivateDownloader", () => ActivateWins("ahk_exe Downloader.exe"), "ActivateWindow"],
+  "c", ["ActivateCodeBlocks", () => ActivateWins("ahk_exe codeblocks.exe"), "ActivateWindow"],
+  "q", ["ActivateWXWork", () => ActivateWins("ahk_exe WXWork.exe"), "ActivateWindow"],
+  "w", ["ActivateWeChat", () => ActivateWins("ahk_exe WeChat.exe"), "ActivateWindow"],
+  "e", ["ActivateExplorer", () => ActivateWins("ahk_class CabinetWClass"), "ActivateWindow"],
+  "g", ["ActivateMsedge", () => ActivateWins("ahk_exe msedge.exe"), "ActivateWindow"],
+  "f", ["ActivateFileServ", () => ActivateWins("ahk_exe Fileserv.exe"), "ActivateWindow"],
+  ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
+  ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
+  "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
 ]
 
 SwitchWindow() {

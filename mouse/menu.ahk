@@ -144,14 +144,14 @@ G(items*) {
       f()
       If (menus[key].Length >= 3) {
         temp_o := menus[key][3]
-        If (StrInArray(temp_o, ["Continue", "Confirm"])) {
+        If (StrInArray(temp_o, ["Continue", "ActivateWindow"])) {
           If (key == "enter") {
             KeyWaitSecond := 0
             Return
           }
           continue_list := GetList(items, menus[key][3])
           sure := false
-          If temp_o == "Confirm" {
+          If temp_o == "ActivateWindow" {
             continue_list := MergeGArrs(continue_list, SwitchWindow_List)
             If LastKey == key {
               sure := true
@@ -438,9 +438,9 @@ MyMenu() {
     )],
     "q", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
-    ",", ["ActivateEmacs", ActivateEmacs, "Confirm"],
-    ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
-    "enter", ["ActivateMstscExe", ActivateMstscExe, "Confirm"],
+    ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
+    ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
+    "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
     "t", ["Test", () => G(
       "a", ["TestA", TestA],
       "b", ["TestB", TestB],
