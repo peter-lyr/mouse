@@ -380,8 +380,8 @@ MyMenu() {
     ";", ["K_HJKL", K_HJKL],
     "j", ["SelClick", SelClick],
     "tab", ["Toggle/Switch", () => G(
-      "g", ["Proxy/Git", () => G(
-        "space", ["ProxyOn", ProxyOn],
+      "p", ["Proxy/Git", () => G(
+        "o", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
       "b", ["Browser", Browser],
