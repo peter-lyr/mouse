@@ -14,11 +14,11 @@ K_SwitchWindow() {
 
 SwitchWindow() {
   G(
-    "d", ["ActivateDownloader", () => WinWaitActivate("ahk_exe Downloader.exe"), "Confirm"],
-    "c", ["ActivateCodeBlocks", () => WinWaitActivate("ahk_exe codeblocks.exe"), "Confirm"],
-    "q", ["ActivateWXWork", () => WinWaitActivate("ahk_exe WXWork.exe"), "Confirm"],
-    "w", ["ActivateWeChat", () => WinWaitActivate("ahk_exe WeChat.exe"), "Confirm"],
-    "e", ["ActivateExplorer", () => WinWaitActivate("ahk_class CabinetWClass"), "Confirm"],
-    "m", ["ActivateMsedge", () => WinWaitActivate("ahk_exe msedge.exe"), "Confirm"],
+    "d", ["ActivateDownloader", () => ActivateWins("ahk_exe Downloader.exe"), "Confirm"],
+    "c", ["ActivateCodeBlocks", () => ActivateWins("ahk_exe codeblocks.exe"), "Confirm"],
+    "q", ["ActivateWXWork", () => ActivateWins("ahk_exe WXWork.exe"), "Confirm"],
+    "w", ["ActivateWeChat", () => ActivateWins("ahk_exe WeChat.exe"), "Confirm"],
+    "e", ["ActivateExplorer", () => ActivateWins("ahk_class CabinetWClass"), "Confirm"],
+    "m", ["ActivateMsedge", () => ActivateWins("ahk_exe msedge.exe"), "Confirm"],
   )
 }
