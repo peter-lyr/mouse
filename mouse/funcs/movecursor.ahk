@@ -82,6 +82,8 @@ MoveCursor_List := [
   "n", ["LeftDown", () => [CursorX(-1), CursorY(1)]],
   "y", ["LeftUp", () => [CursorX(-1), CursorY(-1)]],
   "u", ["RightUp", () => [CursorX(1), CursorY(-1)]],
+  "i", ["ClickDown", () => MouseClick("Left", , , , 0, "D")],
+  "o", ["ClickDown", () => MouseClick("Left", , , , 0, "U")],
   ",", ["ActivateEmacs", ActivateEmacs],
   "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
   "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
