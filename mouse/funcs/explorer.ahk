@@ -29,6 +29,10 @@ ExplorerAhkClass := "ahk_class CabinetWClass"
   Send("{Down}")
 }
 
+!g:: {
+  Send("{AppsKey}")
+}
+
 #HotIf
 
 ExplorerAllTabsToOneWindow() {

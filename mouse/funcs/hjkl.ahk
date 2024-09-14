@@ -79,4 +79,8 @@ l:: {
   Send("{Right}")
 }
 
+g:: {
+  Send("{AppsKey}")
+}
+
 #HotIf
