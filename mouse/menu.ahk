@@ -384,15 +384,6 @@ MyMenu() {
         "space", ["ProxyOn", ProxyOn],
         "f", ["ProxyOff", ProxyOff],
       )],
-      "m", ["Media", () => KT(
-        "m", ["Volume_Mute", () => Send("{Volume_Mute}")],
-        "k", ["Volume_Up", () => Send("{Volume_Up}")],
-        "j", ["Volume_Down", () => Send("{Volume_Down}")],
-        "h", ["Media_Prev", () => Send("{Media_Prev}")],
-        "l", ["Media_Next", () => Send("{Media_Next}")],
-        "s", ["Media_Stop", () => Send("{Media_Stop}")],
-        "space", ["Media_Play_Pause", () => Send("{Media_Play_Pause}")],
-      )],
       "b", ["Browser", Browser],
       "t", ["Transparent", () => KT(
         "j", ["TransparentDownCurWin", TransparentDownCurWin],
@@ -441,6 +432,15 @@ MyMenu() {
     ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
     ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
     "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
+    "m", ["Media", () => KT(
+      "m", ["Volume_Mute", () => Send("{Volume_Mute}")],
+      "k", ["Volume_Up", () => Send("{Volume_Up}")],
+      "j", ["Volume_Down", () => Send("{Volume_Down}")],
+      "h", ["Media_Prev", () => Send("{Media_Prev}")],
+      "l", ["Media_Next", () => Send("{Media_Next}")],
+      "s", ["Media_Stop", () => Send("{Media_Stop}")],
+      "space", ["Media_Play_Pause", () => Send("{Media_Play_Pause}")],
+    )],
     "t", ["Test", () => G(
       "a", ["TestA", TestA],
       "b", ["TestB", TestB],
