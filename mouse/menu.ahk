@@ -437,9 +437,8 @@ MyMenu() {
     )],
     "q", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
-    "m", ["ActivateEmacs", ActivateEmacs, "Confirm"],
-    "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
-    "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
+    ",", ["ActivateEmacs", ActivateEmacs, "Confirm"],
+    ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
     "enter", ["ActivateMstscExe", ActivateMstscExe, "Confirm"],
     "t", ["Test", () => G(
       "a", ["TestA", TestA],

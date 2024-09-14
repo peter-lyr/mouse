@@ -19,6 +19,9 @@ SwitchWindow() {
     "q", ["ActivateWXWork", () => ActivateWins("ahk_exe WXWork.exe"), "Confirm"],
     "w", ["ActivateWeChat", () => ActivateWins("ahk_exe WeChat.exe"), "Confirm"],
     "e", ["ActivateExplorer", () => ActivateWins("ahk_class CabinetWClass"), "Confirm"],
-    "m", ["ActivateMsedge", () => ActivateWins("ahk_exe msedge.exe"), "Confirm"],
+    "g", ["ActivateMsedge", () => ActivateWins("ahk_exe msedge.exe"), "Confirm"],
+    "f", ["ActivateFileServ", () => ActivateWins("ahk_exe Fileserv.exe"), "Confirm"],
+    ",", ["ActivateEmacs", ActivateEmacs, "Confirm"],
+    ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "Confirm"],
   )
 }
