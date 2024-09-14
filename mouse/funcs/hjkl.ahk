@@ -61,7 +61,7 @@ ToggleHJKL() {
   Print(HJKL_sta)
 }
 
-#HotIf HJKL_sta Or WinActive("ahk_class CabinetWClass") Or WinActive("Program Manager")
+#HotIf HJKL_sta
 
 j:: {
   Send("{Down}")

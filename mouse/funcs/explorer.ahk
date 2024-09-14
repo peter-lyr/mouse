@@ -7,34 +7,6 @@ ExplorerAddress := ["Microsoft.UI.Content.DesktopChildSiteBridge2", "Microsoft.U
 
 ExplorerAhkClass := "ahk_class CabinetWClass"
 
-#HotIf WinActive(ExplorerAhkClass)
-
-!l:: {
-  Send("!{Right}")
-}
-
-!h:: {
-  Send("!{Left}")
-}
-
-!k:: {
-  Send("!{Up}")
-}
-
-!j:: {
-  Send("{Up}")
-}
-
-!m:: {
-  Send("{Down}")
-}
-
-!g:: {
-  Send("{AppsKey}")
-}
-
-#HotIf
-
 ExplorerAllTabsToOneWindow() {
   Global first_id
   ids := WinGetList(ExplorerAhkClass)
@@ -108,14 +80,52 @@ ToggleExplorerMainPanelTreeView() {
   }
 }
 
-#HotIf WinActive(ExplorerAhkClass)
+#HotIf WinActive(ExplorerAhkClass) Or WinActive(DesktopAhkClass)
 
-f1:: {
+^Space:: {
+  ToggleHJKL()
+}
+
+^;:: {
   ExplorerAllTabsToOneWindow()
 }
 
-f12:: {
+^':: {
   ToggleExplorerMainPanelTreeView()
+}
+
+^j:: {
+  Send("{Down}")
+}
+
+^k:: {
+  Send("{Up}")
+}
+
+^h:: {
+  Send("{Left}")
+}
+
+^l:: {
+  Send("{Right}")
+}
+
+^g:: {
+  Send("{AppsKey}")
+}
+
+#HotIf WinActive(ExplorerAhkClass)
+
+!l:: {
+  Send("!{Right}")
+}
+
+!h:: {
+  Send("!{Left}")
+}
+
+!k:: {
+  Send("!{Up}")
 }
 
 #HotIf WinActive(ExplorerAhkClass) And StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerTreeView)
