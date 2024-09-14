@@ -1,3 +1,5 @@
+HJKL_sta := false
+
 GO_K_MoveCursor() {
   K_Escape()
   K_MoveCursor()
@@ -48,3 +50,33 @@ KT_HJKL() {
   temp := MergeArrs(HJKL_List, extra)
   KT(temp*)
 }
+
+ToggleHJKL() {
+  Global HJKL_sta
+  If (HJKL_sta == true) {
+    HJKL_sta := false
+  } Else {
+    HJKL_sta := true
+  }
+  Print(HJKL_sta)
+}
+
+#HotIf HJKL_sta Or WinActive("ahk_class CabinetWClass") Or WinActive("Program Manager")
+
+j:: {
+  Send("{Down}")
+}
+
+k:: {
+  Send("{Up}")
+}
+
+h:: {
+  Send("{Left}")
+}
+
+l:: {
+  Send("{Right}")
+}
+
+#HotIf

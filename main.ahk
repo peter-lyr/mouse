@@ -137,3 +137,7 @@ SetTimer(DetectInputMethod, 10)
 ~Alt Up:: {
   MenuKeyUp()
 }
+
+!Space:: {
+  ToggleHJKL()
+}
