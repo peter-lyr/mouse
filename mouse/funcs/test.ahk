@@ -1,6 +1,8 @@
 TestA() {
 
-  MsgBox(Type("w"))
+  MsgBox(A_ClipBoard)
+
+  ; MsgBox(Type("w"))
 
   ; WinSplitTest()
   ; ClickWhenCursorArrow()
