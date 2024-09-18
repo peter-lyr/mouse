@@ -380,10 +380,6 @@ MyMenu() {
     ";", ["K_HJKL", K_HJKL],
     "j", ["SelClick", SelClick],
     "tab", ["Toggle/Switch", () => G(
-      "p", ["Proxy/Git", () => G(
-        "o", ["ProxyOn", ProxyOn],
-        "f", ["ProxyOff", ProxyOff],
-      )],
       "b", ["Browser", Browser],
       "t", ["Transparent", () => KT(
         "j", ["TransparentDownCurWin", TransparentDownCurWin],
@@ -393,7 +389,9 @@ MyMenu() {
     )],
     "lalt", ["SwitchWindow", SwitchWindow],
     "ralt", ["SwitchWindow", SwitchWindow],
-    "p", ["Panel/Properties", () => G(
+    "p", ["Panel/Properties/Proxy/Git", () => G(
+      "o", ["ProxyOn", ProxyOn],
+      "f", ["ProxyOff", ProxyOff],
       "s", ["Sound", () => Run("mmsys.cpl")],
       "k", ["NormalWaitSeconds++", IncNormalWaitSeconds, "Continue"],
       "j", ["NormalWaitSeconds--", DecNormalWaitSeconds, "Continue"],
