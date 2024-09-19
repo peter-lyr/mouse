@@ -5,7 +5,7 @@ DL_Click() {
       Home := EnvGet("USERPROFILE")
       out := CmdRunOutput(Home . "\org\data\p\002-python\014-不通过选中地址栏的方式去获取到地址栏的路径直接获取到.py")
       ; MsgBox("------------")
-      MsgBox(out)
+      ; MsgBox(out)
       ; MsgBox(Home)
     }
   }
