@@ -261,6 +261,9 @@ LButtonDown() {
   If (GetLButtonWheelCnt() > 4) {
     Print(GetLButtonWheelCnt(), 500)
   }
+  If (GetLButtonWheelCnt() == 2) {
+    DL_Click()
+  }
 }
 
 IncLButtonWheelCnt() {

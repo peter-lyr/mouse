@@ -1,0 +1,3 @@
+2024-09-19 20:35:40.386 014-不通过选中地址栏的方式去获取到地址栏的路径直接获取到.py[150] get_active_explorer_tab_path -> Find Control Timeout(10s): {ClassName: 'Breadcrumb Parent'}
+2024-09-19 20:36:04.492 014-不通过选中地址栏的方式去获取到地址栏的路径直接获取到.py[150] get_active_explorer_tab_path -> Find Control Timeout(10s): {ClassName: 'Breadcrumb Parent'}
+2024-09-19 20:38:05.797 014-不通过选中地址栏的方式去获取到地址栏的路径直接获取到.py[181] get_active_explorer_tab_path -> Find Control Timeout(10s): {ClassName: 'Edit'}
