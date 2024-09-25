@@ -128,6 +128,22 @@ ToggleExplorerMainPanelTreeView() {
   Send("!{Up}")
 }
 
+CopyFilePathDo() {
+  A_Clipboard := A_Clipboard
+  SetTimer () => Print(A_Clipboard), -20
+}
+
+CopyFilePath() {
+  If (WinActive("ahk_exe explorer.exe")) {
+    Send("^c")
+    SetTimer CopyFilePathDo, -20
+  }
+}
+
+^+c:: {
+  CopyFilePath()
+}
+
 #HotIf WinActive(ExplorerAhkClass) And StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerTreeView)
 
 ~Enter:: {
