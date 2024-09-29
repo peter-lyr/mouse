@@ -1,6 +1,6 @@
 TestA() {
 
-  MsgBox(A_ClipBoard)
+  ; MsgBox(A_ClipBoard)
 
   ; MsgBox(Type("w"))
 

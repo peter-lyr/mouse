@@ -19,3 +19,8 @@ ActivateMstscExe() {
 ActivateEmacs() {
   ActivateOrOpen("ahk_exe emacs.exe", "runemacs.exe")
 }
+
+TaskkillNvim() {
+  Run("taskkill /f /im nvim-qt.exe")
+  Run("taskkill /f /im nvim.exe")
+}
