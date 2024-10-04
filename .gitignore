@@ -3,3 +3,4 @@ infos.txt
 mydirs.txt
 *.lnk
 output*
+*log*.txt
