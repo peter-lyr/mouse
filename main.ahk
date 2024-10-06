@@ -54,6 +54,9 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x2x2-shift.ahk
 #Include %A_ScriptDir%\mouse\directions\1x2x3-ctrl-shift.ahk
 
+A_Monitor_Py :=A_ScriptDir . "\002-python\024-全局监测.py"
+Run(A_Monitor_Py, , "Hide")
+
 ; ==============
 ; 自定义全局鼠标
 ; ==============
