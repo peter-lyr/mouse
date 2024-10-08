@@ -64,22 +64,27 @@ ToggleHJKL() {
 #HotIf HJKL_sta And Not WinActive("ahk_exe nvim-qt.exe")
 
 j:: {
+  Print("{Down}")
   Send("{Down}")
 }
 
 k:: {
+  Print("{Up}")
   Send("{Up}")
 }
 
 h:: {
+  Print("{Left}")
   Send("{Left}")
 }
 
 l:: {
+  Print("{Right}")
   Send("{Right}")
 }
 
 g:: {
+  Print("{AppsKey}")
   Send("{AppsKey}")
 }
 
