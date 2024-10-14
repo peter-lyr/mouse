@@ -58,8 +58,8 @@ CoordMode("Pixel", "Screen")
 RunSilent := "Hide"
 ; RunSilent := "Max"
 
-Ruin(A_ScriptDir . "\py\input_method.py", , RunSilent)
-; Run(A_ScriptDir . "\py\keyboard_mouse.py", , RunSilent)
+Run(A_ScriptDir . "\py\input_method.py", , RunSilent)
+Run(A_ScriptDir . "\py\keyboard_mouse.py", , RunSilent)
 
 ; ==============
 ; 自定义全局鼠标

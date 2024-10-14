@@ -14,8 +14,8 @@ from watchdog.observers import Observer
 home = os.environ["USERPROFILE"]
 dp = os.path.join(home, "Dp")
 temp = os.path.join(dp, "temp")
-source_dir = os.path.join(temp, "py-observer")
-py_observer_pid_bat = os.path.join(temp, "py-observer-pid.bat")
+source_dir = os.path.join(temp, "py-input-method")
+py_input_method_bat = os.path.join(temp, "py-input-method.bat")
 
 os.makedirs(source_dir, exist_ok=True)
 
@@ -131,9 +131,9 @@ class SyncHandler(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
-    if os.path.exists(py_observer_pid_bat):
-        os.system(py_observer_pid_bat)
-    with open(py_observer_pid_bat, "wb") as f:
+    if os.path.exists(py_input_method_bat):
+        os.system(py_input_method_bat)
+    with open(py_input_method_bat, "wb") as f:
         f.write(b"@echo off\n")
         f.write(f"taskkill /f /pid {os.getpid()}\n".encode("utf-8"))
         f.write(f"taskkill /f /pid {os.getppid()}\n".encode("utf-8"))
