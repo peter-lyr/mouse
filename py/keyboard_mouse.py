@@ -272,8 +272,8 @@ class KeyboardMouseMonitor:
         # print(str(key) + " pressed")
         self.all_cnt += 1
         self.today_cnt += 1
-        write_bytes(self.all, f'{self.today_cnt/100}'.encode('utf-8'))
-        write_bytes(self.today, f'{self.all_cnt/100}'.encode('utf-8'))
+        write_bytes(self.all, f"{self.today_cnt/100}".encode("utf-8"))
+        write_bytes(self.today, f"{self.all_cnt/100}".encode("utf-8"))
 
     def on_key_press(self, key):
         key = self.get_key(key)
@@ -282,7 +282,7 @@ class KeyboardMouseMonitor:
             self.keyboard_released[key] = 0
             self.key_short(key)
         elif self.keyboard_released.get(key, 0) == 0:
-            pass # long
+            pass  # long
 
     def on_key_release(self, key):
         key = self.get_key(key)
