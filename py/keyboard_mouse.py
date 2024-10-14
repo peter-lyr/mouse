@@ -249,8 +249,8 @@ class KeyboardMouseMonitor:
     def on_key_press(self, key):
         key = self.get_key(key)
         print(str(key) + " pressed")
-        write_bytes(all, b'1234')
-        write_bytes(today, b'2348')
+        write_bytes(all, b"1234")
+        write_bytes(today, b"2348")
 
     def on_key_release(self, key):
         key = self.get_key(key)
