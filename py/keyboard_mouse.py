@@ -21,7 +21,7 @@ root = os.path.join(temp, "py-keyboard-mouse")
 py_keyboard_mouse_bat = os.path.join(temp, "py-keyboard-mouse.bat")
 
 all = os.path.join(root, "all.txt")
-today = os.path.join(root, datetime.datetime.now().strftime("%Y%m%d-%H%M%S.txt"))
+today = os.path.join(root, datetime.datetime.now().strftime("%Y%m%d.txt"))
 
 os.makedirs(root, exist_ok=True)
 
@@ -236,10 +236,30 @@ class ProgressBar(FileSystemEventHandler):
 class KeyboardMouseMonitor:
     def __init__(self) -> None:
         global all, today
+        self.today = today
+        self.all = all
+
+        self.today_cnt = self.get_num_from_file(self.today)
+        self.all_cnt = self.get_num_from_file(self.all)
+
         self.keyboard_pressed = {}
         self.keyboard_released = {}
+
         start_threading(self.monitor_keyboard)
         ProgressBar().start([all, today])
+
+    def get_num_from_file(self, file):
+        if not os.path.exists(file):
+            return 0
+        with open(file, "rb") as f:
+            lines = f.readlines()
+        if not lines:
+            lines = [""]
+        first_line = lines[0]
+        try:
+            return int(first_line)
+        except:
+            return 0
 
     def get_key(self, key):
         char = str(key).strip('"' + "'").lower().split("key.")[-1].split("\\x")[-1]
@@ -249,9 +269,11 @@ class KeyboardMouseMonitor:
         return string
 
     def key_short(self, key):
-        print(str(key) + " pressed")
-        write_bytes(all, b"1234")
-        write_bytes(today, b"2348")
+        # print(str(key) + " pressed")
+        self.all_cnt += 1
+        self.today_cnt += 1
+        write_bytes(self.all, f'{self.today_cnt/100}'.encode('utf-8'))
+        write_bytes(self.today, f'{self.all_cnt/100}'.encode('utf-8'))
 
     def on_key_press(self, key):
         key = self.get_key(key)
@@ -266,7 +288,7 @@ class KeyboardMouseMonitor:
         key = self.get_key(key)
         self.keyboard_pressed[key] = 0
         self.keyboard_released[key] = 1
-        print(str(key) + " released")
+        # print(str(key) + " released")
 
     def monitor_keyboard(self):
         with pynput.keyboard.Listener(
