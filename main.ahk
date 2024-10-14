@@ -55,9 +55,11 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x2x2-shift.ahk
 #Include %A_ScriptDir%\mouse\directions\1x2x3-ctrl-shift.ahk
 
-A_Monitor_Py := A_ScriptDir . "\py\monitor.py"
-Run(A_Monitor_Py, , "Hide")
-; Run(A_Monitor_Py)
+RunSilent := "Hide"
+; RunSilent := "Max"
+
+Ruin(A_ScriptDir . "\py\input_method.py", , RunSilent)
+; Run(A_ScriptDir . "\py\keyboard_mouse.py", , RunSilent)
 
 ; ==============
 ; 自定义全局鼠标
