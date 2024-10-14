@@ -19,13 +19,16 @@ py_observer_pid_bat = os.path.join(temp, "py-observer-pid.bat")
 
 os.makedirs(source_dir, exist_ok=True)
 
-patt = re.compile("~$")
+patt = re.compile(r"~$|\.#-*")
 
 cnt = 0
 start = 0
 
 nvim_focus_lost_gained_txt = "nvim-focus-lost-gained.txt"
 nvim_lang_en_zh_txt = "nvim-lang-en-zh.txt"
+
+emacs_focus_lost_gained_txt = "emacs-focus-lost-gained.txt"
+emacs_lang_en_zh_txt = "emacs-lang-en-zh.txt"
 
 LANG = {"zh": 0x0804, "en": 0x0409}
 
@@ -77,6 +80,22 @@ def watcher_do(tail):
                 change_input_method("zh")
     elif tail == nvim_lang_en_zh_txt:
         sta = get_file_sta(nvim_lang_en_zh_txt)
+        if sta == 0:  # en
+            change_input_method("en")
+        elif sta == 1:
+            change_input_method("zh")
+    elif tail == emacs_focus_lost_gained_txt:
+        sta = get_file_sta(emacs_focus_lost_gained_txt)
+        if sta == 0:  # lost
+            change_input_method("zh")
+        elif sta == 1:
+            sta = get_file_sta(emacs_lang_en_zh_txt)
+            if sta == 0:  # en
+                change_input_method("en")
+            elif sta == 1:
+                change_input_method("zh")
+    elif tail == emacs_lang_en_zh_txt:
+        sta = get_file_sta(emacs_lang_en_zh_txt)
         if sta == 0:  # en
             change_input_method("en")
         elif sta == 1:

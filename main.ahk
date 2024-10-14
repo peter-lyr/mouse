@@ -56,7 +56,8 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\directions\1x2x3-ctrl-shift.ahk
 
 A_Monitor_Py := A_ScriptDir . "\py\monitor.py"
-Run(A_Monitor_Py, , "Hide")
+; Run(A_Monitor_Py, , "Hide")
+Run(A_Monitor_Py)
 
 ; ==============
 ; 自定义全局鼠标
@@ -120,7 +121,7 @@ RButton & LButton:: {
 
 InitCircle()
 
-SetTimer(DetectInputMethod, 10)
+; SetTimer(DetectInputMethod, 10)
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag()
 
