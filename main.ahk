@@ -61,6 +61,8 @@ RunSilent := "Hide"
 Run(A_ScriptDir . "\py\input_method.py", , RunSilent)
 Run(A_ScriptDir . "\py\keyboard_mouse.py", , RunSilent)
 
+; Run(A_ScriptDir . "\py\keyboard_mouse.py", , "")
+
 ; ==============
 ; 自定义全局鼠标
 ; ==============
