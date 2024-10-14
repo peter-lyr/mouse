@@ -32,6 +32,11 @@ emacs_lang_en_zh_txt = "emacs-lang-en-zh.txt"
 
 LANG = {"zh": 0x0804, "en": 0x0409}
 
+TRACE_EN = 0
+
+def TRACE(*args):
+    if TRACE_EN:
+        print(*args)
 
 def get_file_sta(tail):
     os.chdir(source_dir)
@@ -68,6 +73,7 @@ def change_input_method(lang):
 
 
 def watcher_do(tail):
+    TRACE(tail)
     if tail == nvim_focus_lost_gained_txt:
         sta = get_file_sta(nvim_focus_lost_gained_txt)
         if sta == 0:  # lost
@@ -80,22 +86,27 @@ def watcher_do(tail):
                 change_input_method("zh")
     elif tail == nvim_lang_en_zh_txt:
         sta = get_file_sta(nvim_lang_en_zh_txt)
+        TRACE(sta)
         if sta == 0:  # en
             change_input_method("en")
         elif sta == 1:
             change_input_method("zh")
     elif tail == emacs_focus_lost_gained_txt:
         sta = get_file_sta(emacs_focus_lost_gained_txt)
+        TRACE(sta)
         if sta == 0:  # lost
             change_input_method("zh")
         elif sta == 1:
             sta = get_file_sta(emacs_lang_en_zh_txt)
+            TRACE(emacs_lang_en_zh_txt)
+            TRACE(sta)
             if sta == 0:  # en
                 change_input_method("en")
             elif sta == 1:
                 change_input_method("zh")
     elif tail == emacs_lang_en_zh_txt:
         sta = get_file_sta(emacs_lang_en_zh_txt)
+        TRACE(sta)
         if sta == 0:  # en
             change_input_method("en")
         elif sta == 1:
@@ -106,7 +117,7 @@ def watcher(file):
     global cnt, start
     tail = os.path.split(file)[-1]
     cnt += 1
-    if time.time() - start < 0.01 or re.findall(patt, file):
+    if time.time() - start < 0.1 or re.findall(patt, file):
         return
     start = time.time()
     watcher_do(tail)
