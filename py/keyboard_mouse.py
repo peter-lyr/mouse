@@ -236,6 +236,8 @@ class ProgressBar(FileSystemEventHandler):
 class KeyboardMouseMonitor:
     def __init__(self) -> None:
         global all, today
+        self.keyboard_pressed = {}
+        self.keyboard_released = {}
         start_threading(self.monitor_keyboard)
         ProgressBar().start([all, today])
 
@@ -246,14 +248,24 @@ class KeyboardMouseMonitor:
             string = b"{" + string + b"}"
         return string
 
-    def on_key_press(self, key):
-        key = self.get_key(key)
+    def key_short(self, key):
         print(str(key) + " pressed")
         write_bytes(all, b"1234")
         write_bytes(today, b"2348")
 
+    def on_key_press(self, key):
+        key = self.get_key(key)
+        self.keyboard_pressed[key] = 1
+        if key not in self.keyboard_released or self.keyboard_released.get(key, 0) == 1:
+            self.keyboard_released[key] = 0
+            self.key_short(key)
+        elif self.keyboard_released.get(key, 0) == 0:
+            pass # long
+
     def on_key_release(self, key):
         key = self.get_key(key)
+        self.keyboard_pressed[key] = 0
+        self.keyboard_released[key] = 1
         print(str(key) + " released")
 
     def monitor_keyboard(self):
