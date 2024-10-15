@@ -239,8 +239,8 @@ class KeyboardMouseMonitor:
         self.today = today
         self.all = all
 
-        self.today_cnt = self.get_num_from_file(self.today)
-        self.all_cnt = self.get_num_from_file(self.all)
+        self.today_cnt = self.get_num_from_file(self.today) * 100
+        self.all_cnt = self.get_num_from_file(self.all) * 100
 
         self.keyboard_pressed = {}
         self.keyboard_released = {}
@@ -257,7 +257,7 @@ class KeyboardMouseMonitor:
             lines = [""]
         first_line = lines[0]
         try:
-            return int(first_line)
+            return float(first_line)
         except:
             return 0
 
