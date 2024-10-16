@@ -24,3 +24,7 @@ TaskkillNvim() {
   Run("taskkill /f /im nvim-qt.exe")
   Run("taskkill /f /im nvim.exe")
 }
+
+TaskkillEmacs() {
+  Run("taskkill /f /im emacs.exe")
+}

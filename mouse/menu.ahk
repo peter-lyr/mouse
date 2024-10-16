@@ -432,6 +432,7 @@ MyMenu() {
     "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
     "k", ["Kill /f /im", () => G(
       "n", ["Nvim-qt", TaskkillNvim],
+      "m", ["Emacs", TaskkillEmacs],
     )],
     "m", ["Media", () => KT(
       "m", ["Volume_Mute", () => Send("{Volume_Mute}")],
