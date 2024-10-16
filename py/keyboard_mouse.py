@@ -246,7 +246,7 @@ class KeyboardMouseMonitor:
         self.keyboard_released = {}
 
         start_threading(self.monitor_keyboard)
-        ProgressBar().start([all, today])
+        ProgressBar().start([today, all])
 
     def get_num_from_file(self, file):
         if not os.path.exists(file):
@@ -272,8 +272,8 @@ class KeyboardMouseMonitor:
         # print(str(key) + " pressed")
         self.all_cnt += 1
         self.today_cnt += 1
-        write_bytes(self.all, f"{self.today_cnt/100}".encode("utf-8"))
-        write_bytes(self.today, f"{self.all_cnt/100}".encode("utf-8"))
+        write_bytes(self.today, f"{self.today_cnt/100}".encode("utf-8"))
+        write_bytes(self.all, f"{self.all_cnt/100}".encode("utf-8"))
 
     def on_key_press(self, key):
         key = self.get_key(key)
