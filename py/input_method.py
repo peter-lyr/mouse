@@ -68,7 +68,7 @@ def check_input_method(lang):
 def change_input_method(lang):
     hwnd = win32gui.GetForegroundWindow()
     win32api.PostMessage(hwnd, WM_INPUTLANGCHANGEREQUEST, None, LANG[lang])
-    time.sleep(0.01)
+    time.sleep(0.5)
     check_input_method(lang)
 
 
