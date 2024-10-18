@@ -3,7 +3,7 @@
 
 ActivateNvimQtExe() {
   ; ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe")
-  ActivateOrOpen("ahk_exe nvim.exe", "nvim.exe")
+  ActivateOrOpen("ahk_exe WindowsTerminal.exe", "nvim.exe")
 }
 
 ActivateMstscExe() {
