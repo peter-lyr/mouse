@@ -22,3 +22,7 @@ A(1, 1, 1, 3, d, [
 A(1, 1, 1, 4, d, [
   "R", W("<Ctrl-v><Enter>", S("^v{Enter}")),
 ])
+
+A(1, 1, 1, 5, d, [
+  "R", W("<Ctrl-a><Ctrl-v><Enter>", S("^a^v{Enter}")),
+])
