@@ -429,6 +429,7 @@ MyMenu() {
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
     ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
     ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
+    "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe, "ActivateWindow"],
     "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
     "k", ["Kill /f /im", () => G(
       "n", ["Nvim-qt", TaskkillNvim],

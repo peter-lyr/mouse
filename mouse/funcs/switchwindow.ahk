@@ -4,6 +4,7 @@ K_SwitchWindow() {
     "tab", ["Ctrl-Alt-Tab", () => Send("^!{Tab}")],
     ",", ["ActivateEmacs", ActivateEmacs],
     ".", ["ActivateNvimQtExe", ActivateNvimQtExe],
+    "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe, "ActivateWindow"],
     "l", ["Right", () => Send("{Right}")],
     "h", ["Left", () => Send("{Left}")],
     "k", ["Up", () => Send("{Up}")],
@@ -21,6 +22,7 @@ SwitchWindow_List := [
   "f", ["ActivateFileServ", () => ActivateWins("ahk_exe Fileserv.exe"), "ActivateWindow"],
   ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
   ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
+  "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe, "ActivateWindow"],
   "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
 ]
 

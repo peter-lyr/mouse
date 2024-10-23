@@ -85,8 +85,8 @@ MoveCursor_List := [
   "i", ["ClickDown", () => MouseClick("Left", , , , 0, "D")],
   "o", ["ClickDown", () => MouseClick("Left", , , , 0, "U")],
   ",", ["ActivateEmacs", ActivateEmacs],
-  "rshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
-  "lshift", ["ActivateNvimQtExe", ActivateNvimQtExe],
+  ".", ["ActivateNvimQtExe", ActivateNvimQtExe],
+  "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe],
   "tab", ["K_HJKL", GO_HJKL],
 ]
 
