@@ -2,7 +2,7 @@
 ; create at 2024/06/06 20:46:22 星期四
 
 ActivateNvimQtExe() {
-  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe")
+  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt.vim")
 }
 
 ActivateWindowsTerminalExe() {
