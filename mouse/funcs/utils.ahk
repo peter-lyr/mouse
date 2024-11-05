@@ -330,6 +330,7 @@ KeyWaitAny(Options:="") {
 }
 
 ExplorerOpen(dir) {
+  dir := Strip(dir)
   If (Not dir Or Not DirExist(dir)) {
     Return
   }
@@ -391,9 +392,9 @@ StripArr(arr) {
   Return new_arr
 }
 
-SystemCd(file) {
-  Return 
-}
+; SystemCd(file) {
+;   Return
+; }
 
 LowerUniqSort(arr) {
   params := ""
