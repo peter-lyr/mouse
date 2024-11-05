@@ -381,7 +381,7 @@ MyMenu() {
     "j", ["SelClick", SelClick],
     "tab", ["Toggle/Switch", () => G(
       "b", ["Browser", Browser],
-      "t", ["Transparent", () => KT(
+      "space", ["Transparent", () => KT(
         "j", ["TransparentDownCurWin", TransparentDownCurWin],
         "k", ["TransparentUpCurWin", TransparentUpCurWin],
       )],
