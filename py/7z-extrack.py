@@ -62,11 +62,15 @@ if __name__ == "__main__":
     for path in paths:
         if os.path.isfile(path) and path.split(".")[-1].lower() in ["zip", "7z", "tar"]:
             new_zips.append(path)
-    for f in new_zips:
-        print(f)
     _, desktop = get_sta_output([sys.argv[1], "desktop"], True)
     desktop = desktop[0]
-    # print(desktop)
+    print(desktop)
+    for f in new_zips:
+        print(f)
+        tail = os.path.splitext(os.path.split(f)[-1])[0]
+        print(rf" -> {desktop}\{tail}")
+        # print(tail)
+        os.system(rf"7z x -y {f} -o{desktop}\{tail}>nul")
 
 # print("wwwwwwwww")
 os.system("pause")
