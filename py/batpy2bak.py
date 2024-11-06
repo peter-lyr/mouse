@@ -50,10 +50,11 @@ if __name__ == "__main__":
                 py_bats.append(os.path.join(desktop, f))
         for f in py_bats:
             print(f)
-            dst=os.path.join(_bak, os.path.split(f)[-1])
+            dst = os.path.join(_bak, os.path.split(f)[-1])
             if os.path.exists(dst):
                 os.remove(dst)
             shutil.move(f, _bak)
+            # shutil.move(f, _bak, copy_function=shutil.copy2)
     elif to_bak == "todesktop":
         py_bats = []
         for f in os.listdir(_bak):
