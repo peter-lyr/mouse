@@ -615,3 +615,7 @@ GetBat(file) {
 GetPy(file) {
   Return A_ScriptDir . "\py\" . file
 }
+
+GetExe(file) {
+  Return A_ScriptDir . "\exe\" . file
+}
