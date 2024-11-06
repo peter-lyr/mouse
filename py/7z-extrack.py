@@ -72,5 +72,4 @@ if __name__ == "__main__":
         # print(tail)
         os.system(rf"7z x -y {f} -o{desktop}\{tail}>nul")
 
-# print("wwwwwwwww")
-os.system("pause")
+# os.system("pause")
