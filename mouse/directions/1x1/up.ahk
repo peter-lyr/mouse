@@ -23,3 +23,8 @@ A(1, 1, 1, 3, d, [
 A(1, 1, 1, 4, d, [
   "R", W("TopMost Toggle", TopMostToggleRbuttonPressWin),
 ])
+
+A(1, 1, 1, 5, d, [
+  ; "R", W("ssh -T git@github.com", () => Run("ssh -T git@github.com")),
+  "R", W("ssh -T git@github.com", () => Run(A_ScriptDir . "\bat\ssh.bat")),
+])
