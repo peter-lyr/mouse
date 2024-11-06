@@ -42,6 +42,7 @@
 #         pyautogui.hotkey('win', 'space')
 
 
+# 未在mouse里用
 # 第三版
 # 结合第一二版
 # 解决第二版的问题
