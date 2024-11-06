@@ -607,3 +607,11 @@ SelClickDo(X, Y, W, H, I) {
   }
   SelClick_Hot()
 }
+
+GetBat(file) {
+  Return A_ScriptDir . "\bat\" . file
+}
+
+GetPy(file) {
+  Return A_ScriptDir . "\py\" . file
+}

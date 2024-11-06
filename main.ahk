@@ -32,6 +32,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\movecursor.ahk
 #Include %A_ScriptDir%\mouse\funcs\selclick.ahk
 #Include %A_ScriptDir%\mouse\funcs\dl_click.ahk
+#Include %A_ScriptDir%\mouse\funcs\7z.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\test-funcs.ahk
 #Include %A_ScriptDir%\mouse\funcs\test.ahk
@@ -58,8 +59,8 @@ CoordMode("Pixel", "Screen")
 RunSilent := "Hide"
 ; RunSilent := "Max"
 
-Run(A_ScriptDir . "\py\input_method.py", , RunSilent)
-Run(A_ScriptDir . "\py\keyboard_mouse.py", , RunSilent)
+Run(GetPy("input_method.py"), , RunSilent)
+Run(GetPy("keyboard_mouse.py"), , RunSilent)
 
 ; Run(A_ScriptDir . "\py\keyboard_mouse.py", , "")
 
