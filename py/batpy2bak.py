@@ -1,8 +1,8 @@
 import os
 import shutil
 import sys
-import b
 
+import b
 
 if __name__ == "__main__":
     try:
