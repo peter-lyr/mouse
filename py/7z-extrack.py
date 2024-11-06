@@ -70,6 +70,6 @@ if __name__ == "__main__":
         tail = os.path.splitext(os.path.split(f)[-1])[0]
         print(rf" -> {desktop}\{tail}")
         # print(tail)
-        os.system(rf"7z x -y {f} -o{desktop}\{tail}>nul")
+        os.system(rf"""7z x -y "{f}" -o"{desktop}\{tail}">nul""")
 
 # os.system("pause")
