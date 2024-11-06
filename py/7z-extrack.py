@@ -13,9 +13,8 @@ if __name__ == "__main__":
     for path in paths:
         if os.path.isfile(path) and path.split(".")[-1].lower() in ["zip", "7z", "tar"]:
             new_zips.append(path)
-    _, desktop = b.get_sta_output([sys.argv[1], "desktop"], True)
-    desktop = desktop[0]
-    print(desktop)
+    desktop = b.get_desktop()
+    # print(desktop)
     for f in new_zips:
         print(f)
         tail = os.path.splitext(os.path.split(f)[-1])[0]

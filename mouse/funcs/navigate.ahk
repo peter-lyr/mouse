@@ -26,9 +26,9 @@ NavigateBackward(j) {
 }
 
 BatPyToBak() {
-  Run(Join([GetPy("batpy2bak.py"), GetExe("SHGetFolderPath.exe"), "tobak"], " "))
+  Run(Join([GetPy("batpy2bak.py"), "tobak"], " "))
 }
 
 BatPyToDesktop() {
-  Run(Join([GetPy("batpy2bak.py"), GetExe("SHGetFolderPath.exe"), "todesktop"], " "))
+  Run(Join([GetPy("batpy2bak.py"), "todesktop"], " "))
 }

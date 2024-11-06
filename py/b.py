@@ -1,10 +1,13 @@
+import os
+import subprocess
 import sys
+from traceback import format_exc
+
 import win32clipboard
 import win32con
 
-
-import subprocess
-from traceback import format_exc
+b_py_folder_full = os.path.dirname(os.path.abspath(__file__))
+shgetfolderpath_exe = os.path.join(b_py_folder_full, "SHGetFolderPath.exe")
 
 
 def get_sta_output(cmd_params, silent=False):
@@ -49,3 +52,8 @@ def get_clipboard_data():
         data = None
     win32clipboard.CloseClipboard()
     return data
+
+
+def get_desktop():
+    _, desktop = get_sta_output([shgetfolderpath_exe, "desktop"], True)
+    return desktop[0]
