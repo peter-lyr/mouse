@@ -1,44 +1,11 @@
 import os
 import shutil
-import subprocess
 import sys
-from traceback import format_exc
-
-
-def get_sta_output(cmd_params, silent=False):
-    output = []
-    sta = 1234
-    try:
-        process = subprocess.Popen(
-            cmd_params,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            universal_newlines=True,
-            text=True,
-            encoding="utf-8",
-            errors="ignore",
-        )
-        while True:
-            res = process.stdout.readline()
-            if res == "" and process.poll() is not None:
-                break
-            if res:
-                res = res.strip()
-                output.append(res)
-                if not silent:
-                    print(res)
-                sys.stdout.flush()
-        sta = process.wait()
-    except:
-        sys.stdout.flush()
-        e = format_exc()
-        print(e, flush=True)
-    return sta, output
+import b
 
 
 if __name__ == "__main__":
-    _, desktop = get_sta_output([sys.argv[1], "desktop"], True)
+    _, desktop = b.get_sta_output([sys.argv[1], "desktop"], True)
     to_bak = sys.argv[2]
     desktop = desktop[0]
     _bak = os.path.join(desktop, ".bak")
