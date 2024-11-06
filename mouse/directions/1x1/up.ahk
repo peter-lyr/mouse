@@ -29,11 +29,11 @@ A(1, 1, 1, 5, d, [
   "R", W("ssh -T git@github.com", () => Run(A_ScriptDir . "\bat\ssh.bat")),
 ])
 
-Test1() {
+Extrack7z() {
   CopyFilePath()
   Run(A_ScriptDir . "\py\7z-extrack.py " . A_ScriptDir . "\py\SHGetFolderPath.exe")
 }
 
-A(1, 1, 1, 6, d, [
-  "R", W("ssh -T git@github.com", Test1),
+A(1, 2, 1, 1, d, [
+  "R", W("7z extrack to Desktop", Extrack7z),
 ])

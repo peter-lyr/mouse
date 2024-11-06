@@ -24,3 +24,11 @@ NavigateBackward(j) {
   }
   Return j And "<Alt-Left>" Or Send("!{Left}")
 }
+
+BatPyToBak() {
+  Run(A_ScriptDir . "\py\batpy2bak.py " . A_ScriptDir . "\py\SHGetFolderPath.exe " . "tobak")
+}
+
+BatPyToDesktop() {
+  Run(A_ScriptDir . "\py\batpy2bak.py " . A_ScriptDir . "\py\SHGetFolderPath.exe " . "todesktop")
+}

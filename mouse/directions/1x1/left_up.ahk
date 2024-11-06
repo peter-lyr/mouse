@@ -11,6 +11,14 @@ A(1, 1, 1, 1, d, [
   "D", NavigateBackward,
 ])
 
+A(1, 1, 1, 2, d, [
+  "R", W("BatPyToBak", BatPyToBak),
+])
+
+A(1, 2, 1, 2, d, [
+  "R", W("BatPyToDesktop", BatPyToDesktop),
+])
+
 A(1, 1, 1, 5, d, [
   "R", W("StartAppDcfFolder", StartAppDcfFolder),
 ])
