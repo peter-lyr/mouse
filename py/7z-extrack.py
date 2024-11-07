@@ -12,7 +12,7 @@ if __name__ == "__main__":
     paths = clipboard_content.split("\n")
     new_zips = []
     for path in paths:
-        if os.path.isfile(path) and path.split(".")[-1].lower() in ["zip", "7z", "tar"]:
+        if os.path.isfile(path) and path.split(".")[-1].lower() in ["zip", "7z", "rar"]:
             new_zips.append(path)
     desktop = b.get_desktop()
     # print(desktop)
