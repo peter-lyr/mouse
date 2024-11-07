@@ -86,11 +86,11 @@ ToggleExplorerMainPanelTreeView() {
   ToggleHJKL()
 }
 
-^;:: {
+F1:: {
   ExplorerAllTabsToOneWindow()
 }
 
-^':: {
+F12:: {
   ToggleExplorerMainPanelTreeView()
 }
 
