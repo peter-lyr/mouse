@@ -37,6 +37,7 @@ FileServUpClip() {
     Send("{Space}")
   }
   WinWaitActivate(wid)
+  ActivateMstscExe()
 }
 
 FileServLibChangeDir() {
