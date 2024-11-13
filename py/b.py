@@ -57,3 +57,20 @@ def get_clipboard_data():
 def get_desktop():
     _, desktop = get_sta_output([shgetfolderpath_exe, "desktop"], True)
     return desktop[0]
+
+
+def add_ignore_files(dir, files):
+    lines = []
+    gitignore = os.path.join(dir, ".gitignore")
+    if os.path.exists(gitignore):
+        with open(gitignore, "rb") as f:
+            for line in f.readlines():
+                line = line.strip()
+                if line not in lines:
+                    lines.append(line)
+    for file in files:
+        if file.encode("utf-8") not in lines:
+            lines.append(file.encode("utf-8"))
+    with open(gitignore, "wb") as f:
+        for line in lines:
+            f.write(line + b"\n")

@@ -32,3 +32,7 @@ A(1, 1, 1, 5, d, [
 A(1, 2, 1, 1, d, [
   "R", W("7z extrack to Desktop", Extrack7z),
 ])
+
+A(1, 3, 1, 1, d, [
+  "R", W("bins to a file", BinsToFile),
+])

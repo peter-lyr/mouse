@@ -4,8 +4,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; mouse
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-max_middle_counts := 2
-max_left_counts := 2
+max_middle_counts := 6
+max_left_counts := 6
 max_wheel_counts := 6
 max_circles := 6
 max_directions := 8
