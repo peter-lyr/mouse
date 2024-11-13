@@ -424,6 +424,9 @@ MyMenu() {
       "u", ["A_UserName", () => ExplorerOpen("C:\Users\" . A_UserName)],
       "a", ["ExplorerSelMyAdd", () => ExplorerSelMyAdd()],
       "o", ["ExplorerSelMyOpen", () => ExplorerSelMyOpen(), "", 8],
+      "n", ["ActivateNvim", () => G(
+        "n", ["ActivateNvimQtExeNoNet", ActivateNvimQtExeNoNet, "", 8],
+      )],
     )],
     "q", ["ActivateWXWorkExe", ActivateWXWorkExe],
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],

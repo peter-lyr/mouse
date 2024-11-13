@@ -5,6 +5,10 @@ ActivateNvimQtExe() {
   ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt.vim")
 }
 
+ActivateNvimQtExeNoNet() {
+  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-no-net.vim")
+}
+
 ActivateWindowsTerminalExe() {
   ActivateOrOpen("ahk_exe WindowsTerminal.exe", "nvim.exe")
 }
