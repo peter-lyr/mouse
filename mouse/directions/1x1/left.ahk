@@ -28,3 +28,7 @@ A(1, 1, 1, 2, d, [
 A(1, 1, 2, 3, d, [
   "R", W("<Alt-Shift-Tab>", S("!+{Tab}")),
 ])
+
+A(1, 2, 1, 1, d, [
+  "R", W("copy files to desktop", CopyFilesToDesktop),
+])

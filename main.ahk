@@ -34,6 +34,7 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\dl_click.ahk
 #Include %A_ScriptDir%\mouse\funcs\7z.ahk
 #Include %A_ScriptDir%\mouse\funcs\bins-to-file.ahk
+#Include %A_ScriptDir%\mouse\funcs\copy-to-desktop.ahk
 
 #Include %A_ScriptDir%\mouse\funcs\test-funcs.ahk
 #Include %A_ScriptDir%\mouse\funcs\test.ahk
