@@ -1,4 +1,5 @@
 import datetime
+import re
 import os
 import threading
 import time
@@ -21,6 +22,7 @@ root = os.path.join(temp, "py-keyboard-mouse")
 py_keyboard_mouse_bat = os.path.join(temp, "py-keyboard-mouse.bat")
 
 all = os.path.join(root, "all.txt")
+mean = os.path.join(root, "mean.txt")
 today = os.path.join(root, datetime.datetime.now().strftime("%Y%m%d.txt"))
 
 os.makedirs(root, exist_ok=True)
@@ -235,21 +237,26 @@ class ProgressBar(FileSystemEventHandler):
 
 class KeyboardMouseMonitor:
     def __init__(self) -> None:
-        global all, today
+        global all, mean, today
         self.today = today
         self.all = all
+        self.mean = mean
 
         self.today_cnt = self.get_num_from_file(self.today) * 100
         self.all_cnt = self.get_num_from_file(self.all) * 100
+        self.all_txts = [txt for txt in os.listdir(root) if re.findall(re.compile(r'\d{6}\.txt'), txt)]
+        self.mean_cnt = self.all_cnt / len(self.all_txts)
 
         self.keyboard_pressed = {}
         self.keyboard_released = {}
 
         start_threading(self.monitor_keyboard)
-        ProgressBar().start([today, all])
+        ProgressBar().start([today, mean, all])
 
     def get_num_from_file(self, file):
         if not os.path.exists(file):
+            with open(file, "wb") as f:
+                lines = f.write(b'0.00')
             return 0
         with open(file, "rb") as f:
             lines = f.readlines()
@@ -272,7 +279,9 @@ class KeyboardMouseMonitor:
         # print(str(key) + " pressed")
         self.all_cnt += 1
         self.today_cnt += 1
+        self.mean_cnt = self.all_cnt / len(self.all_txts)
         write_bytes(self.today, f"{self.today_cnt/100}".encode("utf-8"))
+        write_bytes(self.mean, f"{self.mean_cnt/100}".encode("utf-8"))
         write_bytes(self.all, f"{self.all_cnt/100}".encode("utf-8"))
 
     def on_key_press(self, key):
