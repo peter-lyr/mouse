@@ -27,7 +27,7 @@ if __name__ == "__main__":
             + zip_ext
         ):
             new_zips.append(path)
-    desktop = b.get_desktop()
+    # desktop = b.get_desktop()
     # print(desktop)
     for f in new_zips:
         if f.split(".")[-1].lower() == "temp":
@@ -44,6 +44,8 @@ if __name__ == "__main__":
         tail = os.path.splitext(os.path.split(f)[-1])[0]
         # print(tail)
         # print(rf"""7z x -y "{f}" -o"{desktop}\{tail}">nul""")
-        os.system(rf"""7z x -y "{f}" -o"{desktop}\{tail}">nul""")
+        dir =os.path.dirname(f)
+        os.chdir(dir)
+        os.system(rf"""7z x -y "{f}" -o"{dir}\{tail}">nul""")
 
 # os.system("pause")

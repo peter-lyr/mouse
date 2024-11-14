@@ -30,7 +30,11 @@ A(1, 1, 1, 5, d, [
 ])
 
 A(1, 2, 1, 1, d, [
-  "R", W("7z extrack to Desktop", Extrack7z),
+  "R", W("7z extrack to Desktop", Extrack7zToDesktop),
+])
+
+A(1, 2, 2, 1, d, [
+  "R", W("7z extrack to Here", Extrack7zHere),
 ])
 
 A(1, 3, 1, 1, d, [
