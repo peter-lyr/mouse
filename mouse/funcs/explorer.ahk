@@ -55,7 +55,7 @@ ExplorerAllTabsToOneWindow() {
     Sleep 100
     MouseClick("Left", x1 + 30, y1 + 23, , , "D")
     MouseMove(x + w - 100, y + 23)
-    Sleep 100
+    Sleep 300
     Click("Up")
   }
   MouseMove(x0, y0)
