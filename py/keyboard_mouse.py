@@ -245,7 +245,8 @@ class KeyboardMouseMonitor:
         self.today_cnt = self.get_num_from_file(self.today) * 100
         self.all_cnt = self.get_num_from_file(self.all) * 100
         self.all_txts = [txt for txt in os.listdir(root) if re.findall(re.compile(r'\d{6}\.txt'), txt)]
-        self.mean_cnt = self.all_cnt / len(self.all_txts)
+        self.all_txt_num = len(self.all_txts)
+        self.mean_cnt = self.all_cnt / self.all_txt_num
 
         self.keyboard_pressed = {}
         self.keyboard_released = {}
@@ -279,7 +280,7 @@ class KeyboardMouseMonitor:
         # print(str(key) + " pressed")
         self.all_cnt += 1
         self.today_cnt += 1
-        self.mean_cnt = self.all_cnt / len(self.all_txts)
+        self.mean_cnt = self.all_cnt / self.all_txt_num
         write_bytes(self.today, f"{self.today_cnt/100}".encode("utf-8"))
         write_bytes(self.mean, f"{self.mean_cnt/100}".encode("utf-8"))
         write_bytes(self.all, f"{self.all_cnt/100}".encode("utf-8"))
