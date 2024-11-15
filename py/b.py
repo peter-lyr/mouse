@@ -60,6 +60,18 @@ def get_desktop():
 
 
 def add_ignore_files(dir, files):
+    parent_bak = parent = dir
+    is_git = 0
+    while 1:
+        if os.path.exists(os.path.join(parent, ".git")):
+            is_git = 1
+            break
+        parent = os.path.dirname(parent)
+        if parent_bak == parent:
+            break
+        parent_bak = parent
+    if not is_git:
+        return
     lines = []
     gitignore = os.path.join(dir, ".gitignore")
     if os.path.exists(gitignore):

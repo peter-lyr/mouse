@@ -44,8 +44,9 @@ if __name__ == "__main__":
         tail = os.path.splitext(os.path.split(f)[-1])[0]
         # print(tail)
         # print(rf"""7z x -y "{f}" -o"{desktop}\{tail}">nul""")
-        dir =os.path.dirname(f)
+        dir = os.path.dirname(f)
         os.chdir(dir)
         os.system(rf"""7z x -y "{f}" -o"{dir}\{tail}">nul""")
+        b.add_ignore_files(dir, [tail])
 
 # os.system("pause")
