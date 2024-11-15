@@ -38,4 +38,4 @@ Loop max_circles {
   circle_colors.Push(_color[Mod(A_index, _color.Length) + 1])
 }
 
-no_taskkill_processes := ["explorer.exe"]
+no_taskkill_processes := ["explorer.exe", "wechat.exe", "wxwork.exe"]

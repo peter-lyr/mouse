@@ -139,6 +139,11 @@ ActivateAndAltF4UnderMouse() {
   MouseGetPos , , &_win
   WinActivate(_win)
   WinWaitActive(_win)
+  _process_name := WinGetProcessName(_win)
+  If StrInArray(StrLower(_process_name), no_taskkill_processes) {
+    Send("{Escape}")
+    Return
+  }
   If WinActive("ahk_exe emacs.exe") {
     Send("^x")
     Send("^c")
@@ -154,7 +159,7 @@ ActivateAndAltF4UnderMouse() {
 ActivateAndTaskKillUnderMouse() {
   MouseGetPos , , &_win
   _process_name := WinGetProcessName(_win)
-  If StrInArray(_process_name, no_taskkill_processes) {
+  If StrInArray(StrLower(_process_name), no_taskkill_processes) {
     Return
   }
   Run('taskkill /f /im "' . _process_name . '"')
