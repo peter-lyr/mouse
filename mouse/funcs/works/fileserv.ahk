@@ -40,6 +40,17 @@ FileServUpClip() {
   ActivateMstscExe()
 }
 
+YankNvimQtLineFileServUpClip() {
+  WinWaitActivate("ahk_exe nvim-qt.exe")
+  Send("{Escape}")
+  Send("V")
+  Send('{"}')
+  Send("{+}")
+  Send("y")
+  Sleep 200
+  FileServUpClip()
+}
+
 FileServLibChangeDir() {
   wid := WinGetId("A")
   ActivateFileserv()

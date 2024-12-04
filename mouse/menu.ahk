@@ -374,6 +374,7 @@ MyMenu() {
       "o", ["FileServLibToggleDir", FileServLibToggleDir],
       "r", ["RestartFileserv", RestartFileserv],
       "u", ["FileServUpClip", FileServUpClip],
+      "i", ["YankNvimQtLineFileServUpClip", YankNvimQtLineFileServUpClip],
     )],
     "g", ["K_MoveWindow", K_MoveWindow],
     "c", ["K_MoveCursor", K_MoveCursor],
