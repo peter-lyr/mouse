@@ -237,6 +237,11 @@ class ProgressBar(FileSystemEventHandler):
 
 class KeyboardMouseMonitor:
     def __init__(self) -> None:
+        self.prepare()
+        start_threading(self.monitor_keyboard)
+        ProgressBar().start([today, mean, all])
+
+    def prepare(self):
         global all, mean, today
         self.today = today
         self.all = all
@@ -250,9 +255,6 @@ class KeyboardMouseMonitor:
 
         self.keyboard_pressed = {}
         self.keyboard_released = {}
-
-        start_threading(self.monitor_keyboard)
-        ProgressBar().start([today, mean, all])
 
     def get_num_from_file(self, file):
         if not os.path.exists(file):
