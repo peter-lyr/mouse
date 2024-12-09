@@ -243,6 +243,7 @@ class KeyboardMouseMonitor:
 
     def prepare(self):
         global all, mean, today
+        self.date = datetime.datetime.now().strftime("%Y%m%d")
         self.today = today
         self.all = all
         self.mean = mean
@@ -288,6 +289,9 @@ class KeyboardMouseMonitor:
         write_bytes(self.all, f"{self.all_cnt/100}".encode("utf-8"))
 
     def on_key_press(self, key):
+        date = datetime.datetime.now().strftime("%Y%m%d")
+        if date != self.date:
+            self.prepare()
         key = self.get_key(key)
         self.keyboard_pressed[key] = 1
         if key not in self.keyboard_released or self.keyboard_released.get(key, 0) == 1:
