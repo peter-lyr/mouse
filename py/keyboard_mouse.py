@@ -1,6 +1,6 @@
 import datetime
-import re
 import os
+import re
 import threading
 import time
 import tkinter
@@ -250,7 +250,11 @@ class KeyboardMouseMonitor:
 
         self.today_cnt = self.get_num_from_file(self.today) * 100
         self.all_cnt = self.get_num_from_file(self.all) * 100
-        self.all_txts = [txt for txt in os.listdir(root) if re.findall(re.compile(r'\d{6}\.txt'), txt)]
+        self.all_txts = [
+            txt
+            for txt in os.listdir(root)
+            if re.findall(re.compile(r"\d{6}\.txt"), txt)
+        ]
         self.all_txt_num = len(self.all_txts)
         self.mean_cnt = self.all_cnt / self.all_txt_num
 
@@ -260,7 +264,7 @@ class KeyboardMouseMonitor:
     def get_num_from_file(self, file):
         if not os.path.exists(file):
             with open(file, "wb") as f:
-                lines = f.write(b'0.00')
+                lines = f.write(b"0.00")
             return 0
         with open(file, "rb") as f:
             lines = f.readlines()
