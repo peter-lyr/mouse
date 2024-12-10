@@ -430,6 +430,7 @@ MyMenu() {
       ; )],
     )],
     "q", ["ActivateWXWorkExe", ActivateWXWorkExe],
+    "w", ["ActivateWeChatExe", ActivateWeChatExe],
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
     ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
     ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
