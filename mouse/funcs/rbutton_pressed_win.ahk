@@ -141,7 +141,11 @@ ActivateAndAltF4UnderMouse() {
   WinWaitActive(_win)
   _process_name := WinGetProcessName(_win)
   If StrInArray(StrLower(_process_name), no_taskkill_processes) {
-    Send("{Escape}")
+    If StrLower(_process_name) == "explorer.exe" {
+      Send("^w")
+    } Else {
+      Send("{Escape}")
+    }
     Return
   }
   If WinActive("ahk_exe emacs.exe") {
