@@ -142,7 +142,11 @@ ActivateAndAltF4UnderMouse() {
   _process_name := WinGetProcessName(_win)
   If StrInArray(StrLower(_process_name), no_taskkill_processes) {
     If StrLower(_process_name) == "explorer.exe" {
-      Send("^w")
+      If WinActive(DesktopAhkClass) {
+        Send("!{F4}")
+      } Else {
+        Send("^w")
+      }
     } Else {
       Send("{Escape}")
     }
