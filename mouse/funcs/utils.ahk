@@ -96,6 +96,14 @@ StrInArray(string, string_array) {
   Return 0
 }
 
+PrintAt(text:="", timeout:=4000, x:=0, y:=0) {
+  Global PrintList
+  PrintList := [text]
+  CoordMode("Tooltip", "Screen")
+  Tooltip(text, x, y)
+  SetTimer(Tooltip, -timeout)
+}
+
 Print(text:="", timeout:=4000) {
   Global PrintList
   PrintList := [text]
