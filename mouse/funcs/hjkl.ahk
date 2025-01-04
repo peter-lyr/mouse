@@ -65,6 +65,12 @@ ToggleHJKL() {
   Print(HJKL_sta)
 }
 
+#HotIf HJKL_sta
+
+Ctrl:: {
+  ToggleHJKL()
+}
+
 #HotIf HJKL_sta == 3 And Not WinActive("ahk_exe nvim-qt.exe") And Not WinActive("ahk_exe WindowsTerminal.exe")
 
 j:: {
