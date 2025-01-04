@@ -151,6 +151,6 @@ InitCircle()
   MenuKeyUp()
 }
 
-!Space:: {
+^Space:: {
   ToggleHJKL()
 }

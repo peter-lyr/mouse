@@ -82,36 +82,12 @@ ToggleExplorerMainPanelTreeView() {
 
 #HotIf WinActive(ExplorerAhkClass) Or WinActive(DesktopAhkClass)
 
-^Space:: {
-  ToggleHJKL()
-}
-
-F1:: {
+:*:;:: {
   ExplorerAllTabsToOneWindow()
 }
 
-F12:: {
+':: {
   ToggleExplorerMainPanelTreeView()
-}
-
-^j:: {
-  Send("{Down}")
-}
-
-^k:: {
-  Send("{Up}")
-}
-
-^h:: {
-  Send("{Left}")
-}
-
-^l:: {
-  Send("{Right}")
-}
-
-^g:: {
-  Send("{AppsKey}")
 }
 
 #HotIf WinActive(ExplorerAhkClass)

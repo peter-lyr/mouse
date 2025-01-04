@@ -88,4 +88,28 @@ g:: {
   Send("{AppsKey}")
 }
 
+d:: {
+  Send("{Del}")
+}
+
+b:: {
+  Send("{Bs}")
+}
+
+a:: {
+  Send("{Home}")
+}
+
+e:: {
+  Send("{End}")
+}
+
+p:: {
+  Send("{PgUp}")
+}
+
+n:: {
+  Send("{PgDn}")
+}
+
 #HotIf
