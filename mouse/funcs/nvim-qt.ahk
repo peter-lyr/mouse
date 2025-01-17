@@ -34,7 +34,11 @@ ActivateOneNvimQtExe() {
     ActivateNvimQtExe()
     G(".", ["ActivateNvimQtExe", ActivateNvimQtExe])
   } Else {
-    ActivateOneNvimQtExeNext()
+    If WinActive("ahk_exe nvim-qt.exe") {
+      ActivateOneNvimQtExeNext()
+    } Else {
+      WinWaitActivate("ahk_exe nvim-qt.exe")
+    }
     K(
       ".", ["ActivateOneNvimQtExeNext", ActivateOneNvimQtExeNext],
       "j", ["ActivateOneNvimQtExeNext", ActivateOneNvimQtExeNext],
