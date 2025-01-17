@@ -11,13 +11,13 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +458 ~/org/data/p/mouse/mouse/menu.ahk
-badd +37 ~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk
-badd +471 ~/org/data/p/mouse/mouse/funcs/utils.ahk
-badd +3 ~/org/data/p/mouse/mouse/funcs/switchwindow.ahk
+badd +40 ~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk
+badd +466 ~/org/data/p/mouse/mouse/funcs/utils.ahk
+badd +11 ~/org/data/p/mouse/mouse/funcs/switchwindow.ahk
+badd +125 ~/org/data/p/mouse/mouse/funcs/explorer.ahk
 argglobal
 %argdel
-edit ~/org/data/p/mouse/mouse/menu.ahk
+edit ~/org/data/p/mouse/mouse/funcs/explorer.ahk
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -44,38 +44,36 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
-balt ~/org/data/p/mouse/mouse/funcs/switchwindow.ahk
-let s:l = 436 - ((16 * winheight(0) + 17) / 34)
+let s:l = 125 - ((29 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 436
-normal! 05|
+keepjumps 125
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/org/data/p/mouse/mouse/funcs/switchwindow.ahk", ":p")) | buffer ~/org/data/p/mouse/mouse/funcs/switchwindow.ahk | else | edit ~/org/data/p/mouse/mouse/funcs/switchwindow.ahk | endif
 if &buftype ==# 'terminal'
   silent file ~/org/data/p/mouse/mouse/funcs/switchwindow.ahk
 endif
-balt ~/org/data/p/mouse/mouse/menu.ahk
-let s:l = 2 - ((1 * winheight(0) + 17) / 34)
+let s:l = 26 - ((25 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 03|
+keepjumps 26
+normal! 033|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk", ":p")) | buffer ~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk | else | edit ~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk | endif
 if &buftype ==# 'terminal'
   silent file ~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk
 endif
-let s:l = 36 - ((19 * winheight(0) + 17) / 34)
+let s:l = 36 - ((15 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 36
-normal! 05|
+normal! 010|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/org/data/p/mouse/mouse/funcs/utils.ahk", ":p")) | buffer ~/org/data/p/mouse/mouse/funcs/utils.ahk | else | edit ~/org/data/p/mouse/mouse/funcs/utils.ahk | endif
@@ -83,14 +81,13 @@ if &buftype ==# 'terminal'
   silent file ~/org/data/p/mouse/mouse/funcs/utils.ahk
 endif
 balt ~/org/data/p/mouse/mouse/funcs/nvim-qt.ahk
-let s:l = 471 - ((16 * winheight(0) + 17) / 34)
+let s:l = 498 - ((30 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 471
-normal! 0
+keepjumps 498
+normal! 05|
 wincmd w
-4wincmd w
 wincmd =
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
