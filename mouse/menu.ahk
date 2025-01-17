@@ -433,7 +433,7 @@ MyMenu() {
     "w", ["ActivateWeChatExe", ActivateWeChatExe],
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
     ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
-    ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
+    ".", ["ActivateOneNvimQtExe", ActivateOneNvimQtExe],
     "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe, "ActivateWindow"],
     "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
     "k", ["Kill /f /im", () => G(

@@ -5,6 +5,42 @@ ActivateNvimQtExe() {
   ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt.vim")
 }
 
+ActivateOneNvimQtExeNext() {
+  Global NvimQts
+  Global NvimQtIndex
+  NvimQtIndex := NvimQtIndex + 1
+  If (NvimQtIndex > NvimQts.Length) {
+    NvimQtIndex := 1
+  }
+  WinWaitActivate(NvimQts[NvimQtIndex])
+}
+
+ActivateOneNvimQtExePrev() {
+  Global NvimQts
+  Global NvimQtIndex
+  NvimQtIndex := NvimQtIndex - 1
+  If (NvimQtIndex == 0) {
+    NvimQtIndex := NvimQts.Length
+  }
+  WinWaitActivate(NvimQts[NvimQtIndex])
+}
+
+ActivateOneNvimQtExe() {
+  Global NvimQts
+  Global NvimQtIndex
+  NvimQts := WinGetList("ahk_exe nvim-qt.exe")
+  NvimQtIndex := 1
+  If NvimQts.Length <= 1 {
+    ActivateNvimQtExe()
+    G(".", ["ActivateNvimQtExe", ActivateNvimQtExe])
+  } Else {
+    K(
+      "j", ["ActivateOneNvimQtExeNext", ActivateOneNvimQtExeNext],
+      "k", ["ActivateOneNvimQtExePrev", ActivateOneNvimQtExePrev],
+    )
+  }
+}
+
 ; ActivateNvimQtExeNoNet() {
 ;   ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-no-net.vim")
 ; }
