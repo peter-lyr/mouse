@@ -34,9 +34,11 @@ ActivateOneNvimQtExe() {
     ActivateNvimQtExe()
     G(".", ["ActivateNvimQtExe", ActivateNvimQtExe])
   } Else {
+    ActivateOneNvimQtExeNext()
     K(
       "j", ["ActivateOneNvimQtExeNext", ActivateOneNvimQtExeNext],
       "k", ["ActivateOneNvimQtExePrev", ActivateOneNvimQtExePrev],
+      "enter", ["Exit", K_Escape],
     )
   }
 }
