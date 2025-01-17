@@ -40,6 +40,7 @@ ActivateOneNvimQtExe() {
       "j", ["ActivateOneNvimQtExeNext", ActivateOneNvimQtExeNext],
       "k", ["ActivateOneNvimQtExePrev", ActivateOneNvimQtExePrev],
       "space", ["Exit", K_Escape],
+      "enter", ["ActivateMstscExe", ActivateMstscExe],
     )
   }
 }
