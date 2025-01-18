@@ -32,7 +32,7 @@ ActivateOneNvimQtExe() {
   NvimQtIndex := 1
   If NvimQts.Length <= 1 {
     ActivateNvimQtExe()
-    G(".", ["ActivateNvimQtExe", ActivateNvimQtExe])
+    G(".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"])
   } Else {
     If WinActive("ahk_exe nvim-qt.exe") {
       ActivateOneNvimQtExeNext()
