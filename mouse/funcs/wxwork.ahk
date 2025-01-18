@@ -28,3 +28,27 @@ ActivateWeChatExe() {
     Send("^!w")
   }
 }
+
+#HotIf WinActive("ahk_exe WeChat.exe") Or WinActive("ahk_exe WXWork.exe")
+
+^j:: {
+  Print("{Down}")
+  Send("{Down}")
+}
+
+^k:: {
+  Print("{Up}")
+  Send("{Up}")
+}
+
+^h:: {
+  Print("{Left}")
+  Send("{Left}")
+}
+
+^l:: {
+  Print("{Right}")
+  Send("{Right}")
+}
+
+#HotIf
