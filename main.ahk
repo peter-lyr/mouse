@@ -154,3 +154,7 @@ InitCircle()
 ^Space:: {
   ToggleHJKL()
 }
+
++CapsLock::CapsLock
+
+CapsLock::Ctrl
