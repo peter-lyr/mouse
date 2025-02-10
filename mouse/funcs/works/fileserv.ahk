@@ -32,8 +32,11 @@ FileServUpClip() {
     WinGetPos(&x1, &y1, , , fileserv_exe)
     MouseGetPos(&x0, &y0)
     MouseClick("Left", x1 + 76, y1 + 36, , 0, "D")
+    Sleep(10)
     MouseMove(x0, y0)
+    Sleep(10)
     ControlFocus(ControlGetClassNN("上传剪贴板"))
+    Sleep(10)
     Send("{Space}")
   }
   WinWaitActivate(wid)
