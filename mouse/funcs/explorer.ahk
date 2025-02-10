@@ -32,6 +32,9 @@ ExplorerAllTabsToOneWindow() {
       first_id := _first_id
     }
   }
+  If Not IsSet(first_id) {
+    Return
+  }
   WinGetPos(&x, &y, &w, &h, first_id)
   if w < 800 {
     w := 800
