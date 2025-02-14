@@ -11,7 +11,18 @@ except:
     )
     import pyttsx3
 
+import time
+import os
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+import pyttsx3
+from multiprocessing import Process
 
+home = os.environ["USERPROFILE"]
+dp = os.path.join(home, "Dp")
+temp = os.path.join(dp, "temp")
+
+py_tts_bat = os.path.join(temp, "py-tts.bat")
 
 # 定义文件监控事件处理类
 class FileChangeHandler(FileSystemEventHandler):
@@ -33,25 +44,29 @@ class FileChangeHandler(FileSystemEventHandler):
                     # 读取文件内容
                     with open(self.file_path, 'r', encoding='utf-8') as file:
                         content = file.read()
-                    # 创建一个新线程来进行语音朗读
-                    t = threading.Thread(target=self.read_content, args=(content,))
-                    t.start()
+                    # 创建一个新进程来进行语音朗读
+                    p = Process(target=self.read_content, args=(content,))
+                    p.start()
             except Exception as e:
                 print(f"发生错误: {e}")
 
     def read_content(self, content):
-        # 为每个线程创建独立的语音引擎实例
+        # 为每个进程创建独立的语音引擎实例
         engine = pyttsx3.init()
         # 朗读文件内容
-        engine.say(content)
+        engine.say(content.strip())
+        print(content.strip(), '---------')
         engine.runAndWait()
 
-if __name__ == "__main__":
-    # 要监控的文件路径
-    home = os.environ["USERPROFILE"]
-    dp = os.path.join(home, "Dp")
-    temp = os.path.join(dp, "temp")
 
+if __name__ == "__main__":
+    if os.path.exists(py_tts_bat):
+        os.system(py_tts_bat)
+    with open(py_tts_bat, "wb") as f:
+        f.write(b"@echo off\n")
+        f.write(f"taskkill /f /pid {os.getpid()}\n".encode("utf-8"))
+        f.write(f"taskkill /f /pid {os.getppid()}\n".encode("utf-8"))
+    # 要监控的文件路径
     file = os.path.join(temp, "tts.txt")
     file_path = file
     if not os.path.exists(file_path):
