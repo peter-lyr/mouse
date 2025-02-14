@@ -57,6 +57,8 @@ class FileChangeHandler(FileSystemEventHandler):
         new_rate = 3.0 * 200  # 你可以根据需要调整这个值
         engine.setProperty('rate', new_rate)
         # 朗读文件内容
+        if not content.strip(): # 没用到
+            content = content.replace(" ", "空格").replace("\t", "制表符").replace("\n", "回车符")
         pattern = r'<!--.*?-->'
         content = content.strip()
         print(content)
