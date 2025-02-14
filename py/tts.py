@@ -57,6 +57,7 @@ class FileChangeHandler(FileSystemEventHandler):
         # 朗读文件内容
         pattern = r'<!--.*?-->'
         content = content.strip()
+        print(content)
         content = re.sub(pattern, '', content)
         if content == '删除':
             return
