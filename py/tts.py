@@ -54,7 +54,7 @@ class FileChangeHandler(FileSystemEventHandler):
     def read_content(self, content):
         # 为每个进程创建独立的语音引擎实例
         engine = pyttsx3.init()
-        new_rate = 2.0 * 200  # 你可以根据需要调整这个值
+        new_rate = 3.0 * 200  # 你可以根据需要调整这个值
         engine.setProperty('rate', new_rate)
         # 朗读文件内容
         pattern = r'<!--.*?-->'
