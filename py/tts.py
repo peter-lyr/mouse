@@ -24,12 +24,14 @@ dp = os.path.join(home, "Dp")
 temp = os.path.join(dp, "temp")
 
 py_tts_bat = os.path.join(temp, "py-tts.bat")
+os.chdir(os.path.join(os.path.dirname(__file__), 'dist'))
 
 # 定义文件监控事件处理类
 class FileChangeHandler(FileSystemEventHandler):
     def __init__(self, file_path):
         self.file_path = file_path
         self.time = 0
+        self.cnt = 0
 
     def on_modified(self, event):
         if not event.is_directory and event.src_path == self.file_path:
@@ -38,11 +40,18 @@ class FileChangeHandler(FileSystemEventHandler):
                 if self.time and t - self.time < 0.05:
                     return
                 self.time = t
-                with open(self.file_path, 'r', encoding='utf-8') as file:
-                    content = file.read()
+                with open(self.file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
                 # 创建一个新进程来进行语音朗读
-                p = Process(target=self.read_content, args=(content,))
-                p.start()
+                self.cnt += 1
+                if self.cnt > 20:
+                    self.cnt = 0
+                cnt_file = f'{self.file_path}.{self.cnt}.txt'
+                with open(cnt_file, 'wb') as f:
+                    f.write(content.encode('utf-8'))
+                os.system(fr'start /b /min cmd /c "tts-do.exe {self.cnt}"')
+                # p = Process(target=self.read_content, args=(content,))
+                # p.start()
             except Exception as e:
                 print(f"发生错误: {e}")
 

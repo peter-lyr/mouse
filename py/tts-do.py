@@ -1,4 +1,5 @@
 import time
+import sys
 import re
 import os
 try:
@@ -16,8 +17,6 @@ home = os.environ["USERPROFILE"]
 dp = os.path.join(home, "Dp")
 temp = os.path.join(dp, "temp")
 
-py_tts_bat = os.path.join(temp, "py-tts.bat")
-
 def read_content(content):
     # 为每个进程创建独立的语音引擎实例
     engine = pyttsx3.init()
@@ -32,14 +31,14 @@ def read_content(content):
     content = re.sub(pattern, '', content)
     if content == '删除':
         return
-    print('88888888', time.time())
     engine.say(content)
-    print('88888889', time.time())
     engine.runAndWait()
-    print('88888890', time.time())
 
 
 if __name__ == "__main__":
-    file = os.path.join(temp, "tts.txt")
-    with open(file, 'rb') as f:
+    if len(sys.argv) < 2:
+        os._exit(9)
+    cnt = sys.argv[1]
+    file = os.path.join(temp, f"tts.txt")
+    with open(f'{file}.{cnt}.txt', 'rb') as f:
         read_content(f.read().decode('utf-8'))
