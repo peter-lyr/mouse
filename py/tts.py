@@ -1,4 +1,5 @@
 import time
+import re
 import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -54,8 +55,12 @@ class FileChangeHandler(FileSystemEventHandler):
         # 为每个进程创建独立的语音引擎实例
         engine = pyttsx3.init()
         # 朗读文件内容
-        engine.say(content.strip())
-        print(content.strip(), '---------')
+        pattern = r'<!--.*?-->'
+        content = content.strip()
+        content = re.sub(pattern, '', content)
+        if content == '删除':
+            return
+        engine.say(content)
         engine.runAndWait()
 
 
