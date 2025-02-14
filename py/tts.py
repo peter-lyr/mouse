@@ -3,7 +3,7 @@ import re
 import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-import threading
+
 try:
     import pyttsx3
 except:
@@ -29,25 +29,20 @@ py_tts_bat = os.path.join(temp, "py-tts.bat")
 class FileChangeHandler(FileSystemEventHandler):
     def __init__(self, file_path):
         self.file_path = file_path
-        # 记录文件的最后修改时间
-        self.last_modified = None
-        try:
-            self.last_modified = time.ctime(int(os.path.getmtime(self.file_path)))
-        except FileNotFoundError:
-            pass
+        self.time = 0
 
     def on_modified(self, event):
         if not event.is_directory and event.src_path == self.file_path:
             try:
-                current_modified = time.ctime(int(os.path.getmtime(self.file_path)))
-                if current_modified != self.last_modified:
-                    self.last_modified = current_modified
-                    # 读取文件内容
-                    with open(self.file_path, 'r', encoding='utf-8') as file:
-                        content = file.read()
-                    # 创建一个新进程来进行语音朗读
-                    p = Process(target=self.read_content, args=(content,))
-                    p.start()
+                t = time.time()
+                if self.time and t - self.time < 0.05:
+                    return
+                self.time = t
+                with open(self.file_path, 'r', encoding='utf-8') as file:
+                    content = file.read()
+                # 创建一个新进程来进行语音朗读
+                p = Process(target=self.read_content, args=(content,))
+                p.start()
             except Exception as e:
                 print(f"发生错误: {e}")
 
