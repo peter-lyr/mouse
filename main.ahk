@@ -63,6 +63,7 @@ RunSilent := "Hide"
 
 Run(GetPy("input_method.py"), , RunSilent)
 Run(GetPy("keyboard_mouse.py"), , RunSilent)
+Run(GetPy("tts.py"), , RunSilent)
 
 ; Run(A_ScriptDir . "\py\keyboard_mouse.py", , "")
 
