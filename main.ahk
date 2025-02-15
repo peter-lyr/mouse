@@ -159,3 +159,13 @@ InitCircle()
 +CapsLock::CapsLock
 
 CapsLock::Ctrl
+
+; ===============
+; 去除搜狗广告弹窗（尝试）
+; ===============
+
+#HotIf WinActive("ahk_exe ShellExperienceHost.exe")
+
+WinKill("ahk_exe ShellExperienceHost.exe")
+
+#HotIf
