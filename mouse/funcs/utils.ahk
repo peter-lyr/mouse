@@ -473,10 +473,11 @@ WinWaitActivate(win) {
     If WinExist(win) {
       WinActivate(win)
       If WinActive(win) {
-        Break
+        Return 1
       }
     }
   }
+  Return 0
 }
 
 ActivateDesktop() {

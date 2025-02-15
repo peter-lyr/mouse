@@ -164,8 +164,10 @@ CapsLock::Ctrl
 ; 去除搜狗广告弹窗（尝试）
 ; ===============
 
-#HotIf WinActive("ahk_exe ShellExperienceHost.exe")
+#HotIf WinExist("ahk_exe ShellExperienceHost.exe")
 
-WinKill("ahk_exe ShellExperienceHost.exe")
+If WinWaitActivate("ahk_exe ShellExperienceHost.exe") {
+  WinKill("ahk_exe ShellExperienceHost.exe")
+}
 
 #HotIf
