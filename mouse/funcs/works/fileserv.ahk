@@ -4,7 +4,7 @@ ActivateFileserv() {
   If WinExist(fileserv_exe) {
     WinActivate(fileserv_exe)
   } Else {
-    Run("Fileserv.exe")
+    Run(GetWkSw("Fileserv\Fileserv.exe"))
   }
   WinWaitActivate(fileserv_exe)
 }
