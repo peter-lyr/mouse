@@ -5,6 +5,7 @@ ActivateFileserv() {
     WinActivate(fileserv_exe)
   } Else {
     Run(GetWkSw("Fileserv\Fileserv.exe"))
+    Run(GetPy("fileserv_libdir_detect.py"), , RunSilent)
   }
   WinWaitActivate(fileserv_exe)
 }
