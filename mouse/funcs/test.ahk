@@ -29,6 +29,8 @@ TestA() {
 
 TestB() {
 
+  Run(GetWkSw("Fileserv\Fileserv.exe"))
+
   ; ; 测试切换输入法
   ; ; 这个OK
   ; RunPyWithArgs(".input-method.py", "EN")

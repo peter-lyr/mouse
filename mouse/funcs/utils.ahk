@@ -624,3 +624,8 @@ GetBat(file) {
 GetPy(file) {
   Return A_ScriptDir . "\py\" . file
 }
+
+GetWkSw(file) {
+  Home := EnvGet("USERPROFILE")
+  Return Home . "\w\wk-sw\" . file
+}
