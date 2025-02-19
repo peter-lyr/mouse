@@ -107,3 +107,8 @@ def try_kill_py(name):
         f.write(f"taskkill /f /pid {os.getpid()}\n".encode("utf-8"))
         f.write(f"taskkill /f /pid {os.getppid()}\n".encode("utf-8"))
 
+def get_temp_path():
+    home = os.environ["USERPROFILE"]
+    dp = os.path.join(home, "Dp")
+    temp = os.path.join(dp, "temp")
+    return temp

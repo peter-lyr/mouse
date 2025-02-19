@@ -1,4 +1,5 @@
 import time
+import b
 import re
 import os
 from watchdog.observers import Observer
@@ -19,12 +20,7 @@ from watchdog.events import FileSystemEventHandler
 import pyttsx3
 from multiprocessing import Process
 
-home = os.environ["USERPROFILE"]
-dp = os.path.join(home, "Dp")
-temp = os.path.join(dp, "temp")
-
-py_tts_bat = os.path.join(temp, "py-tts.bat")
-
+temp = b.get_temp_path()
 
 # 定义文件监控事件处理类
 class FileChangeHandler(FileSystemEventHandler):
@@ -70,12 +66,7 @@ class FileChangeHandler(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
-    if os.path.exists(py_tts_bat):
-        os.system(py_tts_bat)
-    with open(py_tts_bat, "wb") as f:
-        f.write(b"@echo off\n")
-        f.write(f"taskkill /f /pid {os.getpid()}\n".encode("utf-8"))
-        f.write(f"taskkill /f /pid {os.getppid()}\n".encode("utf-8"))
+    b.try_kill_py(__file__)
     # 要监控的文件路径
     file = os.path.join(temp, "tts.txt")
     file_path = file
