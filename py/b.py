@@ -86,3 +86,24 @@ def add_ignore_files(dir, files):
     with open(gitignore, "wb") as f:
         for line in lines:
             f.write(line + b"\n")
+
+def get_tail_without_ext(file):
+    # print('file:', file) # 绝对路径
+    # print('file:', os.path.basename(file)) # 只保留文件名（tail）
+    file_name, _ = os.path.splitext(os.path.basename(file)) # 文件名和拓展名
+    # print('file_name:', file_name)
+    return file_name
+
+def try_kill_py(name):
+    home = os.environ["USERPROFILE"]
+    dp = os.path.join(home, "Dp")
+    temp = os.path.join(dp, "temp")
+    name = get_tail_without_ext(name)
+    bat = os.path.join(temp, f"{name}.bat")
+    if os.path.exists(bat):
+        os.system(bat)
+    with open(bat, "wb") as f:
+        f.write(b"@echo off\n")
+        f.write(f"taskkill /f /pid {os.getpid()}\n".encode("utf-8"))
+        f.write(f"taskkill /f /pid {os.getppid()}\n".encode("utf-8"))
+

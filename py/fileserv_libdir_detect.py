@@ -1,9 +1,5 @@
+import b
 import os
-home = os.environ["USERPROFILE"]
-dp = os.path.join(home, "Dp")
-temp = os.path.join(dp, "temp")
-source_dir = os.path.join(temp, "fileserv-libdir-detect")
-fileserv_libdir_detect_bat = os.path.join(temp, "fileserv-libdir-detect.bat")
 
 # 问豆包
 import time
@@ -30,12 +26,7 @@ def my_action():
     print("执行自定义动作...")
 
 if __name__ == "__main__":
-    if os.path.exists(fileserv_libdir_detect_bat):
-        os.system(fileserv_libdir_detect_bat)
-    with open(fileserv_libdir_detect_bat, "wb") as f:
-        f.write(b"@echo off\n")
-        f.write(f"taskkill /f /pid {os.getpid()}\n".encode("utf-8"))
-        f.write(f"taskkill /f /pid {os.getppid()}\n".encode("utf-8"))
+    b.try_kill_py(__file__)
 
     # 要监控的文件夹路径
     folder_path = r"C:\Users\depei_liu"
