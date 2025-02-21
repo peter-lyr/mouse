@@ -156,7 +156,7 @@ InitCircle()
   ToggleHJKL()
 }
 
-+CapsLock::CapsLock
+^!+CapsLock::CapsLock
 
 CapsLock::Ctrl
 
