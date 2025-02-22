@@ -159,6 +159,7 @@ InitCircle()
 ^!+CapsLock::CapsLock
 
 CapsLock::Ctrl
+AppsKey::Ctrl
 
 ; ===============
 ; 去除搜狗广告弹窗（尝试）
