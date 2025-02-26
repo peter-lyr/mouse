@@ -162,13 +162,23 @@ CapsLock::Ctrl
 AppsKey::Ctrl
 
 ; ===============
-; 去除搜狗广告弹窗（尝试）
+; 去除搜狗广告弹窗（尝试），downloader多开
 ; ===============
 
 #HotIf WinExist("ahk_exe ShellExperienceHost.exe")
 
-If WinWaitActivate("ahk_exe ShellExperienceHost.exe") {
-  WinKill("ahk_exe ShellExperienceHost.exe")
+DetectSomeWins() {
+  If WinExist("ahk_exe ShellExperienceHost.exe") {
+    WinKill("ahk_exe ShellExperienceHost.exe")
+  }
+  If WinExist("Error ahk_exe Downloader.exe") {
+    WinActivate("Error ahk_exe Downloader.exe")
+    WinWaitActive("Error ahk_exe Downloader.exe")
+    WinWaitActive("Error ahk_exe Downloader.exe")
+    Send("!y")
+  }
 }
+
+SetTimer(DetectSomeWins, 1000)
 
 #HotIf
