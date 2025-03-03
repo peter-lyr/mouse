@@ -1,4 +1,5 @@
 fileserv_exe := "ahk_exe Fileserv.exe"
+fileserv_active_win := 0
 
 ActivateFileserv() {
   If WinExist(fileserv_exe) {
@@ -26,7 +27,16 @@ RestartFileserv() {
   ActivateFileserv()
 }
 
+RestoreWin() {
+  Global fileserv_active_win
+  If (fileserv_active_win) {
+    WinWaitActivate(fileserv_active_win)
+    ActivateMstscExe()
+  }
+}
+
 FileServUpClip() {
+  Global fileserv_active_win
   wid := WinGetId("A")
   ActivateFileserv()
   Try {
@@ -40,7 +50,8 @@ FileServUpClip() {
     Sleep(50)
     Send("{Space}")
   }
-  WinWaitActivate(wid)
+  fileserv_active_win := wid
+  SetTimer(RestoreWin, -2000)
   ActivateMstscExe()
 }
 
