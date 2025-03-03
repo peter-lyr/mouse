@@ -181,4 +181,6 @@ DetectSomeWins() {
 
 SetTimer(DetectSomeWins, 1000)
 
+WinSetTransparent(182, "ahk_class Shell_TrayWnd")
+
 #HotIf
