@@ -165,6 +165,14 @@ AppsKey::Ctrl
 ; 去除搜狗广告弹窗（尝试），downloader多开
 ; ===============
 
+!#l:: {
+  Send("^#{Right}")
+}
+
+!#h:: {
+  Send("^#{Left}")
+}
+
 #HotIf WinExist("ahk_exe ShellExperienceHost.exe")
 
 DetectSomeWins() {
