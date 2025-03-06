@@ -165,11 +165,11 @@ AppsKey::Ctrl
 ; 去除搜狗广告弹窗（尝试），downloader多开
 ; ===============
 
-!#l:: {
+^!l:: {
   Send("^#{Right}")
 }
 
-!#h:: {
+^!h:: {
   Send("^#{Left}")
 }
 
