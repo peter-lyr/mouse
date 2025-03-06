@@ -185,6 +185,12 @@ DetectSomeWins() {
     WinWaitActive("Error ahk_exe Downloader.exe")
     Send("!y")
   }
+  If WinExist("ahk_class #32770 ahk_exe Downloader.exe") { ; 关闭保持
+    WinActivate("ahk_class #32770 ahk_exe Downloader.exe")
+    WinWaitActive("ahk_class #32770 ahk_exe Downloader.exe")
+    WinWaitActive("ahk_class #32770 ahk_exe Downloader.exe")
+    Send("!y")
+  }
 }
 
 SetTimer(DetectSomeWins, 1000)
