@@ -190,6 +190,9 @@ DetectSomeWins() {
     WinWaitActive("ahk_class #32770 ahk_exe Downloader.exe")
     WinWaitActive("ahk_class #32770 ahk_exe Downloader.exe")
     Send("!y")
+    If WinExist("ahk_class #32770 ahk_exe Downloader.exe") {
+      Send("{Space}")
+    }
   }
 }
 
