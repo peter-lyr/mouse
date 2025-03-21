@@ -54,18 +54,22 @@ def my_action():
     if flag:
         return
     flag = 1
-    time.sleep(0.8)
+    time.sleep(0.4)
     pyautogui.press('alt')
+    time.sleep(0.01)
     pyautogui.press('alt')
-    time.sleep(0.1)
+    time.sleep(0.3)
     pyautogui.press('f6')
     # print('f6')
-    flag = 0
-    time.sleep(0.1)
-    pyautogui.press('alt')
-    pyautogui.press('alt')
-    pyautogui.press('.')
-    pyautogui.press('esc')
+    # flag = 0
+    # time.sleep(0.2)
+    # pyautogui.press('alt')
+    # time.sleep(0.01)
+    # pyautogui.press('alt')
+    # time.sleep(0.01)
+    # pyautogui.press('.')
+    # time.sleep(0.01)
+    # pyautogui.press('esc')
     # print("执行自定义动作...")
 
 if __name__ == "__main__":
