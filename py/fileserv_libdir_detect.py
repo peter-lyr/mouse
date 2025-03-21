@@ -61,7 +61,7 @@ def my_action():
     time.sleep(0.3)
     pyautogui.press('f6')
     # print('f6')
-    # flag = 0
+    flag = 0
     # time.sleep(0.2)
     # pyautogui.press('alt')
     # time.sleep(0.01)
@@ -69,7 +69,7 @@ def my_action():
     # time.sleep(0.01)
     # pyautogui.press('.')
     # time.sleep(0.01)
-    # pyautogui.press('esc')
+    pyautogui.press('esc')
     # print("执行自定义动作...")
 
 if __name__ == "__main__":
