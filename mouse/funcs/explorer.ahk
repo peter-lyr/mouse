@@ -95,6 +95,42 @@ ToggleExplorerMainPanelTreeView() {
 
 #HotIf WinActive(ExplorerAhkClass)
 
+^+l:: {
+  Send("+{Right}")
+}
+
+^+h:: {
+  Send("+{Left}")
+}
+
+^+k:: {
+  Send("+{Up}")
+}
+
+^+j:: {
+  Send("+{Down}")
+}
+
+^l:: {
+  Send("{Right}")
+}
+
+^h:: {
+  Send("{Left}")
+}
+
+^k:: {
+  Send("{Up}")
+}
+
+^j:: {
+  Send("{Down}")
+}
+
+^g:: {
+  Send("{AppsKey}")
+}
+
 !l:: {
   Send("!{Right}")
 }
