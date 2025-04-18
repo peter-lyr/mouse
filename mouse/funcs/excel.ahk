@@ -3,6 +3,7 @@ excel_saved := 0
 
 #HotIf WinActive("ahk_exe EXCEL.EXE")
 
+~Enter::
 ~Esc:: {
   Global excel_mode
   Global excel_saved
@@ -11,6 +12,22 @@ excel_saved := 0
 }
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "insert"
+
+^l:: {
+  Send("{Right}")
+}
+
+^h:: {
+  Send("{Left}")
+}
+
+^k:: {
+  Send("{Up}")
+}
+
+^j:: {
+  Send("{Down}")
+}
 
 ^+l:: {
   Send("+{Right}")
