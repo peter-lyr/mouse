@@ -53,44 +53,28 @@ a:: {
   II("a")
 }
 
-w:: {
-  Send("{Right}")
-}
+d:: { Send("{WheelDown}") }
 
-b:: {
-  Send("{Left}")
-}
+u:: { Send("{WheelUp}") }
 
-l:: {
-  Send("{Right}")
-}
+w:: { Send("{Right}") }
 
-h:: {
-  Send("{Left}")
-}
+b:: { Send("{Left}") }
 
-k:: {
-  Send("{Up}")
-}
+l:: { Send("{Right}") }
 
-j:: {
-  Send("{Down}")
-}
+h:: { Send("{Left}") }
 
-+l:: {
-  Send("+{Right}")
-}
+k:: { Send("{Up}") }
 
-+h:: {
-  Send("+{Left}")
-}
+j:: { Send("{Down}") }
 
-+k:: {
-  Send("+{Up}")
-}
++l:: { Send("+{Right}") }
 
-+j:: {
-  Send("+{Down}")
-}
++h:: { Send("+{Left}") }
+
++k:: { Send("+{Up}") }
+
++j:: { Send("+{Down}") }
 
 #HotIf
