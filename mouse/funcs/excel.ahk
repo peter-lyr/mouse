@@ -22,7 +22,11 @@ Excel_Save() {
   If (excel_saved == 0 And WinActive("ahk_exe EXCEL.EXE") And excel_mode == "normal") {
     excel_saved := 1
     Send("^s")
-    Print("Excel Saved.")
+    CoordMode("Tooltip", "Window")
+    WinGetPos(&_x, &_y, &_w, &_h, "ahk_exe EXCEL.EXE")
+    Tooltip("Excel Saved.", _w / 2, _h / 2)
+    SetTimer(Tooltip, -1000)
+    CoordMode("Tooltip", "Screen")
   }
 }
 
