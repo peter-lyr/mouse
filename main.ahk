@@ -147,6 +147,7 @@ InitCircle()
 
 ~Alt:: {
   MenuKeyCount()
+  Excel_Alt()
 }
 
 ~Alt Up:: {
