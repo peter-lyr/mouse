@@ -37,7 +37,7 @@ e:: {
   excel_mode := "insert"
 }
 
-i:: { II("i") }
+i:: { Excel_II("i") }
 
 a:: { Excel_II("a") }
 
