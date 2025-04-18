@@ -5,7 +5,9 @@ excel_saved := 0
 
 ~Esc:: {
   Global excel_mode
+  Global excel_saved
   excel_mode := "normal"
+  excel_saved := 0
 }
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "insert"
@@ -30,12 +32,10 @@ excel_saved := 0
 
 Excel_II(char) {
   Global excel_mode
-  Global excel_saved
   If (excel_mode == "insert") {
     Send(char)
   }
   excel_mode := "insert"
-  excel_saved := 0
 }
 
 Excel_Save() {
@@ -44,10 +44,11 @@ Excel_Save() {
   If (excel_saved == 0 And WinActive("ahk_exe EXCEL.EXE") And excel_mode == "normal") {
     excel_saved := 1
     Send("^s")
+    Print("Excel Saved.")
   }
 }
 
-SetTimer(Excel_Save, 5000)
+SetTimer(Excel_Save, 2000)
 
 e:: {
   Global excel_mode
