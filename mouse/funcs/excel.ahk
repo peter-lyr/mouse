@@ -19,7 +19,7 @@ excel_mode := "normal"
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "normal"
 
-II(char) {
+Excel_II(char) {
   Global excel_mode
   If (excel_mode == "insert") {
     Send(char)
@@ -39,7 +39,7 @@ e:: {
 
 i:: { II("i") }
 
-a:: { II("a") }
+a:: { Excel_II("a") }
 
 d:: { Send("{WheelDown}") }
 
