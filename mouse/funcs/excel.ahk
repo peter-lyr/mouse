@@ -1,4 +1,5 @@
 excel_mode := "normal"
+excel_saved := 0
 
 #HotIf WinActive("ahk_exe EXCEL.EXE")
 
@@ -29,15 +30,19 @@ excel_mode := "normal"
 
 Excel_II(char) {
   Global excel_mode
+  Global excel_saved
   If (excel_mode == "insert") {
     Send(char)
   }
   excel_mode := "insert"
+  excel_saved := 0
 }
 
 Excel_Save() {
   Global excel_mode
-  If (WinActive("ahk_exe EXCEL.EXE") And excel_mode == "normal") {
+  Global excel_saved
+  If (excel_saved == 0 And WinActive("ahk_exe EXCEL.EXE") And excel_mode == "normal") {
+    excel_saved := 1
     Send("^s")
   }
 }
