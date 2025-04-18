@@ -9,13 +9,21 @@ excel_mode := "normal"
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "insert"
 
-^+l:: { Send("+{Right}") }
+^+l:: {
+  Send("+{Right}")
+}
 
-^+h:: { Send("+{Left}") }
+^+h:: {
+  Send("+{Left}")
+}
 
-^+k:: { Send("+{Up}") }
+^+k:: {
+  Send("+{Up}")
+}
 
-^+j:: { Send("+{Down}") }
+^+j:: {
+  Send("+{Down}")
+}
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "normal"
 
@@ -37,32 +45,60 @@ e:: {
   excel_mode := "insert"
 }
 
-i:: { Excel_II("i") }
+i:: {
+  Excel_II("i")
+}
 
-a:: { Excel_II("a") }
+a:: {
+  Excel_II("a")
+}
 
-d:: { Send("{WheelDown}") }
+d:: {
+  Send("{WheelDown}")
+}
 
-u:: { Send("{WheelUp}") }
+u:: {
+  Send("{WheelUp}")
+}
 
-w:: { Send("{Right}") }
+w:: {
+  Send("{Right}")
+}
 
-b:: { Send("{Left}") }
+b:: {
+  Send("{Left}")
+}
 
-l:: { Send("{Right}") }
+l:: {
+  Send("{Right}")
+}
 
-h:: { Send("{Left}") }
+h:: {
+  Send("{Left}")
+}
 
-k:: { Send("{Up}") }
+k:: {
+  Send("{Up}")
+}
 
-j:: { Send("{Down}") }
+j:: {
+  Send("{Down}")
+}
 
-+l:: { Send("+{Right}") }
++l:: {
+  Send("+{Right}")
+}
 
-+h:: { Send("+{Left}") }
++h:: {
+  Send("+{Left}")
+}
 
-+k:: { Send("+{Up}") }
++k:: {
+  Send("+{Up}")
+}
 
-+j:: { Send("+{Down}") }
++j:: {
+  Send("+{Down}")
+}
 
 #HotIf
