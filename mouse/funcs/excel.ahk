@@ -9,21 +9,13 @@ excel_mode := "normal"
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "insert"
 
-^+l:: {
-  Send("+{Right}")
-}
+^+l:: { Send("+{Right}") }
 
-^+h:: {
-  Send("+{Left}")
-}
+^+h:: { Send("+{Left}") }
 
-^+k:: {
-  Send("+{Up}")
-}
+^+k:: { Send("+{Up}") }
 
-^+j:: {
-  Send("+{Down}")
-}
+^+j:: { Send("+{Down}") }
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "normal"
 
@@ -45,13 +37,9 @@ e:: {
   excel_mode := "insert"
 }
 
-i:: {
-  II("i")
-}
+i:: { II("i") }
 
-a:: {
-  II("a")
-}
+a:: { II("a") }
 
 d:: { Send("{WheelDown}") }
 
