@@ -35,6 +35,15 @@ Excel_II(char) {
   excel_mode := "insert"
 }
 
+Excel_Save() {
+  Global excel_mode
+  If (WinActive("ahk_exe EXCEL.EXE") And excel_mode == "normal") {
+    Send("^s")
+  }
+}
+
+SetTimer(Excel_Save, 5000)
+
 e:: {
   Global excel_mode
   If (excel_mode == "insert") {
