@@ -156,9 +156,13 @@ InitCircle()
   MenuKeyUp()
 }
 
+#HotIf Not WinActive("ahk_exe EXCEL.EXE")
+
 ^Space:: {
   ToggleHJKL()
 }
+
+#HotIf
 
 ^!+CapsLock::CapsLock
 
