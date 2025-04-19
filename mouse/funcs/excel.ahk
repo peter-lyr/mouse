@@ -1,5 +1,4 @@
 excel_mode := "normal"
-excel_saved := 0
 
 Excel_Alt() {
   Global excel_mode
@@ -8,26 +7,32 @@ Excel_Alt() {
   }
 }
 
-Excel_II(char) {
-  Global excel_mode
-  If (excel_mode == "insert") {
-    Send(char)
-  }
-  excel_mode := "insert"
+ExcelSave() {
+  Send("^s")
+  CoordMode("Tooltip", "Window")
+  WinGetPos(&_x, &_y, &_w, &_h, "ahk_exe EXCEL.EXE")
+  Tooltip("Excel Saved.", _w / 2, _h / 2)
+  SetTimer(Tooltip, -1000)
+  CoordMode("Tooltip", "Screen")
 }
 
-Excel_Save() {
+ExcelWatch() {
   Global excel_mode
-  Global excel_saved
-  If (excel_saved == 0 And WinActive("ahk_exe EXCEL.EXE") And excel_mode == "normal") {
-    excel_saved := 1
-    Send("^s")
-    CoordMode("Tooltip", "Window")
-    WinGetPos(&_x, &_y, &_w, &_h, "ahk_exe EXCEL.EXE")
-    Tooltip("Excel Saved.", _w / 2, _h / 2)
-    SetTimer(Tooltip, -1000)
-    CoordMode("Tooltip", "Screen")
+  If (excel_mode != "alt") {
+    excel_mode := IsExcelInsertMode()
   }
+}
+
+IsExcelInsertMode() {
+  Try {
+    Excel := ComObjActive("Excel.Application")
+  } Catch {
+      Return "normal"
+  }
+  If (Type(Excel) == "Application") {
+    Return "normal"
+  }
+  Return "insert"
 }
 
 #HotIf WinActive("ahk_exe EXCEL.EXE")
@@ -38,9 +43,10 @@ Excel_Save() {
 ~Tab::
 ~Esc:: {
   Global excel_mode
-  Global excel_saved
+  If (excel_mode == "insert") {
+    ExcelSave()
+  }
   excel_mode := "normal"
-  excel_saved := 0
 }
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "alt"
@@ -62,6 +68,10 @@ Excel_Save() {
 }
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "insert"
+
+^g:: {
+  Send("{AppsKey}")
+}
 
 ^l:: {
   Send("{Right}")
@@ -97,12 +107,14 @@ Excel_Save() {
 
 #HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "normal"
 
-SetTimer(Excel_Save, 2000)
+SetTimer(ExcelWatch, 1000)
 
 g:: {
   Send("{AppsKey}")
 }
 
+i::
+a::
 e:: {
   Global excel_mode
   If (excel_mode == "insert") {
@@ -113,12 +125,12 @@ e:: {
   excel_mode := "insert"
 }
 
-i:: {
-  Excel_II("i")
+$^:: {
+  Send("{Home}")
 }
 
-a:: {
-  Excel_II("a")
+$:: {
+  Send("{End}")
 }
 
 d:: {
