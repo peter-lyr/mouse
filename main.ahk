@@ -23,6 +23,8 @@ CoordMode("Pixel", "Screen")
 #Include %A_ScriptDir%\mouse\funcs\nvim-qt.ahk
 #Include %A_ScriptDir%\mouse\funcs\explorer.ahk
 #Include %A_ScriptDir%\mouse\funcs\excel.ahk
+#Include %A_ScriptDir%\mouse\funcs\excel_insert.ahk
+#Include %A_ScriptDir%\mouse\funcs\excel_normal.ahk
 #Include %A_ScriptDir%\mouse\funcs\msedge.ahk
 #Include %A_ScriptDir%\mouse\funcs\wxwork.ahk
 #Include %A_ScriptDir%\mouse\funcs\cycle_win.ahk
