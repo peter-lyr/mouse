@@ -19,6 +19,14 @@ e:: {
   excel_mode := "insert"
 }
 
++u:: {
+  Send("^y")
+}
+
+u:: {
+  Send("^z")
+}
+
 y:: {
   Send("^c")
 }
@@ -40,11 +48,7 @@ $:: {
 }
 
 d:: {
-  Send("{WheelDown}")
-}
-
-u:: {
-  Send("{WheelUp}")
+  Send("{Del}")
 }
 
 w:: {
