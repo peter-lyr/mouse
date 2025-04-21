@@ -156,7 +156,7 @@ InitCircle()
   MenuKeyUp()
 }
 
-#HotIf Not WinActive("ahk_exe EXCEL.EXE ahk_exe wps.exe")
+#HotIf Not (WinActive("ahk_exe EXCEL.EXE") Or WinActive("ahk_exe wps.exe"))
 
 ^Space:: {
   ToggleHJKL()

@@ -1,8 +1,15 @@
 excel_mode := "normal"
+excel_en := 1
+
+^!Space:: {
+  Global excel_en
+  excel_en := 1 - excel_en
+  Print("excel_en:" . excel_en)
+}
 
 Excel_Alt() {
   Global excel_mode
-  If (WinActive("ahk_exe EXCEL.EXE ahk_exe wps.exe")) {
+  If ((WinActive("ahk_exe EXCEL.EXE") Or WinActive("ahk_exe wps.exe"))) {
     excel_mode := "alt"
   }
 }
@@ -10,7 +17,11 @@ Excel_Alt() {
 ExcelSave() {
   Send("^s")
   CoordMode("Tooltip", "Window")
-  WinGetPos(&_x, &_y, &_w, &_h, "ahk_exe EXCEL.EXE ahk_exe wps.exe")
+  If (WinActive("ahk_exe EXCEL.EXE")) {
+    WinGetPos(&_x, &_y, &_w, &_h, "ahk_exe EXCEL.EXE")
+  } Else If (WinActive("ahk_exe wps.exe")) {
+    WinGetPos(&_x, &_y, &_w, &_h, "ahk_exe wps.exe")
+  }
   Tooltip("Excel Saved.", _w / 2, _h / 2)
   SetTimer(Tooltip, -1000)
   CoordMode("Tooltip", "Screen")
@@ -35,7 +46,7 @@ IsExcelInsertMode() {
   Return "insert"
 }
 
-#HotIf WinActive("ahk_exe EXCEL.EXE ahk_exe wps.exe")
+#HotIf excel_en And (WinActive("ahk_exe EXCEL.EXE") Or WinActive("ahk_exe wps.exe"))
 
 ~+Enter::
 ~+Tab::
@@ -49,7 +60,7 @@ IsExcelInsertMode() {
   excel_mode := "normal"
 }
 
-#HotIf WinActive("ahk_exe EXCEL.EXE ahk_exe wps.exe") && excel_mode == "alt"
+#HotIf excel_en And (WinActive("ahk_exe EXCEL.EXE") Or WinActive("ahk_exe wps.exe")) And excel_mode == "alt"
 
 ^l:: {
   Send("{Right}")
