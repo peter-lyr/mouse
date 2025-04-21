@@ -1,5 +1,5 @@
 
-#HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "normal"
+#HotIf WinActive("ahk_exe EXCEL.EXE ahk_exe wps.exe") && excel_mode == "normal"
 
 SetTimer(ExcelWatch, 1000)
 

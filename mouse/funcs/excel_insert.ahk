@@ -1,4 +1,4 @@
-#HotIf WinActive("ahk_exe EXCEL.EXE") && excel_mode == "insert"
+#HotIf WinActive("ahk_exe EXCEL.EXE ahk_exe wps.exe") && excel_mode == "insert"
 
 ^g:: {
   Send("{AppsKey}")
