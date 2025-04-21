@@ -19,9 +19,9 @@ CbpBuild() {
 
 #HotIf WinExist("ahk_exe codeblocks.exe")
 
-F6:: {
+^F6:: {
   If (Not CbpBuild()) {
-    Send("{F6}")
+    Send("^{F6}")
   }
 }
 
