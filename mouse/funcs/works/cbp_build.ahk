@@ -17,11 +17,11 @@ CbpBuild() {
   Return ok
 }
 
-#HotIf WinExist("ahk_exe codeblocks.exe")
+#HotIf WinExist("ahk_exe codeblocks.exe") And WinActive("ahk_exe nvim-qt.exe")
 
-^F6:: {
+F6:: {
   If (Not CbpBuild()) {
-    Send("^{F6}")
+    Send("{F6}")
   }
 }
 
