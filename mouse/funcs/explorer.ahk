@@ -170,7 +170,7 @@ CopyFileAndOpenWithNvimQt() {
   cmd := cmd . A_ScriptDir
   cmd := cmd . "\mouse\funcs\init-only-colorscheme.lua"
   cmd := cmd . '"'
-  CmdRunOutput(cmd)
+  CmdRunSilent(cmd)
 }
 
 ^+Enter:: {

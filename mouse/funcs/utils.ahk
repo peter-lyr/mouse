@@ -159,6 +159,12 @@ MButtonIsPressed() {
   Return GetKeyState("MButton", "P")
 }
 
+CmdRunSilent(cmd) {
+  shell := ComObject("WScript.Shell")
+  launch := "cmd.exe /c " . cmd
+  shell.Run(launch, 0, false)
+}
+
 CmdRunOutput(cmd) {
   ; shell := ComObject("WScript.Shell")
   ; exec := shell.Exec(A_ComSpec . " /C " . cmd)
