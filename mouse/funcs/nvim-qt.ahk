@@ -83,3 +83,4 @@ TaskkillNvim() {
 TaskkillEmacs() {
   Run("taskkill /f /im emacs.exe")
 }
+

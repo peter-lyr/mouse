@@ -159,6 +159,27 @@ CopyFilePath() {
   CopyFilePath()
 }
 
+CopyFileAndOpenWithNvimQt() {
+  A_Clipboard := A_Clipboard
+  cmd := "nvim-qt "
+  cmd := cmd . '"'
+  cmd := cmd . A_Clipboard
+  cmd := cmd . '"'
+  cmd := cmd . " -- -u "
+  cmd := cmd . '"'
+  cmd := cmd . A_ScriptDir
+  cmd := cmd . "\mouse\funcs\init-only-colorscheme.lua"
+  cmd := cmd . '"'
+  CmdRunOutput(cmd)
+}
+
+^+Enter:: {
+  If (WinActive("ahk_exe explorer.exe")) {
+    Send("^c")
+    SetTimer CopyFileAndOpenWithNvimQt, -20
+  }
+}
+
 #HotIf WinActive(ExplorerAhkClass) And StrInArray(ControlGetClassNN(ControlGetFocus(ExplorerAhkClass)), ExplorerTreeView)
 
 ; ~Enter:: {
