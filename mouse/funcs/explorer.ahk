@@ -189,5 +189,5 @@ CopyFileAndOpenWithNvimQt() {
 #HotIf
 
 ^!+Enter:: {
-  SetTimer CopyFileAndOpenWithNvimQt, -20
+  CopyFileAndOpenWithNvimQt()
 }
