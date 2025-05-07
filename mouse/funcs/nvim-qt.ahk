@@ -12,6 +12,7 @@ ActivateOneNvimQtExeNext() {
   If (NvimQtIndex > NvimQts.Length) {
     NvimQtIndex := 1
   }
+  ActivateDesktop()
   WinWaitActivate(NvimQts[NvimQtIndex])
 }
 
