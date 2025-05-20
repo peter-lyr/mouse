@@ -191,6 +191,12 @@ K_Escape() {
   K_Hot()
 }
 
+K_Hot_Spec(key) {
+  key := Trim(key, "~")
+  key := StrLower(key)
+  K_menus[key][2]()
+}
+
 K_Hot() {
   Global K_menus
   On := "On"
@@ -199,7 +205,7 @@ K_Hot() {
     Tooltip
   }
   For k, v in K_menus {
-    HotKey k, (key) => K_menus[key][2](), On
+    HotKey k, K_Hot_Spec, On
   }
 }
 
