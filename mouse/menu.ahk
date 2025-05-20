@@ -328,6 +328,9 @@ JumpOutSideOffMsTsc() {
         WinActivate("ahk_class Shell_TrayWnd")
       }
       If (Not WinActive("ahk_exe mstsc.exe")) {
+        If (MonitorGetCount() <= 1) {
+          WinMinimize("ahk_exe mstsc.exe")
+        }
         Break
       }
     }
