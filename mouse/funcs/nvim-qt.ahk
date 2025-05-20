@@ -45,6 +45,7 @@ ActivateOneNvimQtExe() {
       "j", ["ActivateOneNvimQtExeNext", ActivateOneNvimQtExeNext],
       "k", ["ActivateOneNvimQtExePrev", ActivateOneNvimQtExePrev],
       "space", ["Exit", K_Escape],
+      "w", ["Exit", K_Escape],
       "enter", ["ActivateMstscExe", () => [
         ActivateMstscExe(),
         K_Escape()
