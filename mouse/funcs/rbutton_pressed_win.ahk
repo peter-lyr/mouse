@@ -23,6 +23,32 @@ WinMaximizeRestoreA() {
   }
 }
 
+WinMinimizeRestoreA_id := 0
+WinMinimizeRestoreA_Restored := 0
+
+WinMinimizeRestoreATimeOut() {
+  Global WinMinimizeRestoreA_id
+  WinMinimizeRestoreA_id := 0
+}
+
+WinMinimizeRestoreA() {
+  If (WinActive(DesktopAhkClass)) {
+    Return
+  }
+  Global WinMinimizeRestoreA_id
+  Global WinMinimizeRestoreA_Restored
+  If (WinMinimizeRestoreA_id == 0 Or WinMinimizeRestoreA_Restored == 1) {
+    WinMinimizeRestoreA_id := WinGetId("A")
+    WinMinimizeRestoreA_Restored := 0
+    WinMinimize("A")
+    SetTimer(WinMinimizeRestoreATimeOut, -3000)
+  } Else {
+    WinRestore(WinMinimizeRestoreA_id)
+    WinActivate(WinMinimizeRestoreA_id)
+    WinMinimizeRestoreA_Restored := 1
+  }
+}
+
 WinMinimizeRbuttonPressWin() {
   _win := GetRbuttonPressWin()
   If (Not WinExist(_win)) {
@@ -197,4 +223,8 @@ ActivateAndShiftClickUnderMouse() {
 
 ^#k:: {
   WinMaximizeRestoreA()
+}
+
+^#j:: {
+  WinMinimizeRestoreA()
 }
