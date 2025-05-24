@@ -73,19 +73,19 @@ LButtonRButtonDisMouseActionFlag() {
 }
 
 ^!r:: {
-  Run(A_ScriptDir . "\mouse.exe")
+  CmdRunSilent(A_ScriptDir . "\mouse.exe")
   WinWaitActivate("ahk_exe mouse.exe")
   SetTimer(() => Send("{Space}"), -80)
 }
 
 ^!c:: {
-  Run(A_ScriptDir . "\ahk2exe.bat")
+  CmdRunSilent(A_ScriptDir . "\ahk2exe.bat")
   ExitApp
 }
 
 ^!m:: {
-  Run("taskkill /f /im mouse.exe")
-  Run("main.ahk")
+  CmdRunSilent("taskkill /f /im mouse.exe")
+  CmdRunSilent("main.ahk")
   ExitApp
 }
 

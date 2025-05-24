@@ -50,6 +50,8 @@ circle_real_transparency := 0
 
 print_info_en_flag := 0
 
+DrawCircleAtRbuttonPressPos1Cnt := 0
+
 Loop (max_middle_counts * max_left_counts * max_wheel_counts * (max_circles + 1) * max_directions) {
   functions.Push(0)
 }
