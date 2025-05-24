@@ -6,6 +6,7 @@ MouseActionFlag := 1
 ; 0: 鼠标右键没有功能
 ; 1: 鼠标右键有功能
 ; 2: 鼠标右键没有功能,但能显示每个位置功能
+MouseActionFlagHotIf := 1
 
 GetMouseActionFlag() {
   Global MouseActionFlag
@@ -29,6 +30,11 @@ OnlyShowMouseActions() {
   Global MouseActionFlag
   MouseActionFlag := 2
   RButtonDownFake()
+}
+
+ToggleMouDrawCircleAtRbuttonPressPos1CntseActionFlagHotIf() {
+  Global MouseActionFlagHotIf
+  MouseActionFlagHotIf := 1 - MouseActionFlagHotIf
 }
 
 ToggleMouseActionFlag() {
@@ -66,6 +72,10 @@ LButtonRButtonDisMouseActionFlag() {
       Break
     }
   }
+}
+
+^!t:: {
+  ToggleMouseActionFlagHotIf()
 }
 
 ^!s:: {

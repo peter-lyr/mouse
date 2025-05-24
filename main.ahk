@@ -74,7 +74,7 @@ Run(GetPy("tts.py"), , RunSilent)
 ; 自定义全局鼠标
 ; ==============
 
-#HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag()
+#HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag() And MouseActionFlagHotIf
 
 RButton:: {
   RButtonDown()
@@ -134,7 +134,7 @@ InitCircle()
 
 ; SetTimer(DetectInputMethod, 10)
 
-#HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag()
+#HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag() And MouseActionFlagHotIf
 
 ~RButton & LButton::
 ~LButton & RButton:: {
