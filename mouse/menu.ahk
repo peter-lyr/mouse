@@ -445,6 +445,7 @@ MyMenu() {
     ".", ["ActivateOneNvimQtExe", ActivateOneNvimQtExe],
     "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe, "ActivateWindow"],
     "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
+    "f6", ["CbpBuild", CbpBuild],
     "k", ["Kill /f /im", () => G(
       "n", ["Nvim-qt", TaskkillNvim],
       "m", ["Emacs", TaskkillEmacs],
