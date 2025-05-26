@@ -4,6 +4,8 @@
 A_HotkeyInterval := 2000 ; 默认
 A_MaxHotkeysPerInterval := 1000 ; 2000ms内运行触发1000个按键
 
+MouseActionFlagHotIf := 1
+
 SetWinDelay(0)
 
 CoordMode("Mouse", "Screen")
