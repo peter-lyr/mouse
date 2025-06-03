@@ -185,19 +185,29 @@ CapsLock::Ctrl
 
 #HotIf WinExist("ahk_exe ShellExperienceHost.exe")
 
+ShouldDownloaderY() {
+  win_title := WinGetTitle("ahk_class #32770 ahk_exe Downloader.exe")
+  If (win_title != "Error" And win_title != "Downloader") {
+    Return 0
+  }
+  Return 1
+}
+
 DetectSomeWins() {
   If WinExist("ahk_exe ShellExperienceHost.exe") {
     WinKill("ahk_exe ShellExperienceHost.exe")
   }
   If WinExist("Error ahk_exe Downloader.exe") {
+    If (!ShouldDownloaderY()) {
+      Return
+    }
     WinActivate("Error ahk_exe Downloader.exe")
     WinWaitActive("Error ahk_exe Downloader.exe")
     WinWaitActive("Error ahk_exe Downloader.exe")
     Send("!y")
   }
   If WinExist("ahk_class #32770 ahk_exe Downloader.exe") { ; 关闭保持
-    win_title := WinGetTitle("ahk_class #32770 ahk_exe Downloader.exe")
-    If (win_title == "Save As" Or win_title == "另存为") {
+    If (!ShouldDownloaderY()) {
       Return
     }
     WinActivate("ahk_class #32770 ahk_exe Downloader.exe")
