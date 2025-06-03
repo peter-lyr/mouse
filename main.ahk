@@ -196,6 +196,10 @@ DetectSomeWins() {
     Send("!y")
   }
   If WinExist("ahk_class #32770 ahk_exe Downloader.exe") { ; 关闭保持
+    win_title := WinGetTitle("ahk_class #32770 ahk_exe Downloader.exe")
+    If (win_title == "Save As" Or win_title == "另存为") {
+      Return
+    }
     WinActivate("ahk_class #32770 ahk_exe Downloader.exe")
     WinWaitActive("ahk_class #32770 ahk_exe Downloader.exe")
     WinWaitActive("ahk_class #32770 ahk_exe Downloader.exe")
