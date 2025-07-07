@@ -34,6 +34,8 @@ OnlyShowMouseActions() {
 ToggleMouseActionFlagHotIf() {
   Global MouseActionFlagHotIf
   MouseActionFlagHotIf := 1 - MouseActionFlagHotIf
+  Global MenuEn
+  MenuEn := 1 - MenuEn
 }
 
 ToggleMouseActionFlag() {
