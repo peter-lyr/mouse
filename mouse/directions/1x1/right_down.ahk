@@ -12,3 +12,7 @@ A(1, 1, 1, 1, d, [
 A(1, 1, 1, 2, d, [
   "R", W("<Ctrl-V>", S("^v")),
 ])
+
+A(1, 1, 1, 6, d, [
+  "R", W("WinMinimize", WinMinimizeRbuttonPressWin),
+])

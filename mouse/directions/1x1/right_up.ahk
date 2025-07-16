@@ -41,6 +41,12 @@ A(1, 1, 1, 4, d, [
   ; "D", W("SoundPlay", () => SoundPlay("C:\Users\depei_liu\DEPEI\Repos\2024s\w\d\bin\拽犯法么（硬曲热播）.mp3")),
 ])
 
+A(1, 1, 1, 6, d, [
+  "R", W("WinMaximizeRestore", WinMaximizeRestoreRbuttonPressWin),
+  "U", W("Volume_Up", S("{Volume_Up}")),
+  "D", W("Volume_Down", S("{Volume_Down}")),
+])
+
 ; 1x1x2
 
 A(1, 1, 2, 1, d, [
