@@ -11,7 +11,7 @@ CbpBuildDo() {
     WinActivate(id)
     ActivateWaitSend(id, "{Esc}{F7}")
     WinWaitActive(id)
-    Send("!{Esc}")
+    ; Send("!{Esc}")
   }
   If (ok) {
     If (WinExist(wid)) {
