@@ -175,6 +175,8 @@ InitCircle()
 CapsLock::Ctrl
 ; AppsKey::Ctrl
 
+LShift::Space
+
 ; ===============
 ; 去除搜狗广告弹窗（尝试），downloader多开
 ; ===============
