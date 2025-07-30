@@ -78,6 +78,10 @@ Run(GetPy("tts.py"), , RunSilent)
 ; 自定义全局鼠标
 ; ==============
 
+^!+CapsLock::CapsLock
+CapsLock::Ctrl
+; CapsLock::Space
+
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag() And MouseActionFlagHotIf
 
 RButton:: {
@@ -138,6 +142,8 @@ InitCircle()
 
 ; SetTimer(DetectInputMethod, 10)
 
+CapsLock::Space
+
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag() And MouseActionFlagHotIf
 
 ~RButton & LButton::
@@ -169,13 +175,6 @@ InitCircle()
 }
 
 #HotIf
-
-^!+CapsLock::CapsLock
-
-; CapsLock::Ctrl
-; AppsKey::Ctrl
-
-CapsLock::Space
 
 ; ===============
 ; 去除搜狗广告弹窗（尝试），downloader多开
