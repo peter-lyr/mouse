@@ -172,10 +172,10 @@ InitCircle()
 
 ^!+CapsLock::CapsLock
 
-CapsLock::Ctrl
+; CapsLock::Ctrl
 ; AppsKey::Ctrl
 
-LShift::Space
+CapsLock::Space
 
 ; ===============
 ; 去除搜狗广告弹窗（尝试），downloader多开
