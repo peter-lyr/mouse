@@ -79,8 +79,7 @@ Run(GetPy("tts.py"), , RunSilent)
 ; ==============
 
 ^!+CapsLock::CapsLock
-CapsLock::Ctrl
-; CapsLock::Space
+CapsLock::Space
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag() And MouseActionFlagHotIf
 
@@ -141,8 +140,6 @@ RButton & LButton:: {
 InitCircle()
 
 ; SetTimer(DetectInputMethod, 10)
-
-CapsLock::Space
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And Not GetMouseActionFlag() And MouseActionFlagHotIf
 
