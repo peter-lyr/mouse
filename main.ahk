@@ -79,7 +79,7 @@ Run(GetPy("tts.py"), , RunSilent)
 ; ==============
 
 ^!+CapsLock::CapsLock
-CapsLock::Space
+CapsLock::Ctrl
 
 #HotIf Not RemoteDesktopActiveOrRButtonPressed() And GetMouseActionFlag() And MouseActionFlagHotIf
 
