@@ -155,13 +155,26 @@ TopMostToggleA() {
   }
 }
 
-KillIfStillExist(win) {
-  If (WinExist(win)) {
-    WinKill(win)
+TryAltF4WinId := 0
+TryAltF4WinProcessName := ""
+
+KillIfStillExist() {
+  Global TryAltF4WinId
+  Global TryAltF4WinProcessName
+  If (WinExist(TryAltF4WinId)) {
+    WinKill(TryAltF4WinId)
   }
+  If StrLower(TryAltF4WinProcessName) == "downloader.exe" {
+    Run(Join([GetPy("25-del-Downfile-in-config.py"), "C:\nvenv\wk\Downloader_v3.3.7_内部版\Downloader_v3.3.7_内部版"], " "), , "Hide")
+    Run(Join([GetPy("25-del-Downfile-in-config.py"), "C:\b\Downloader_v3.1.8_内部版"                                ], " "), , "Hide")
+    Run(Join([GetPy("25-del-Downfile-in-config.py"), "C:\nvenv\wk\Downloader_v3.3.3"                                ], " "), , "Hide")
+  }
+  SetTimer(KillIfStillExist, 0)
 }
 
 ActivateAndAltF4UnderMouse() {
+  Global TryAltF4WinId
+  Global TryAltF4WinProcessName
   MouseGetPos , , &_win
   WinActivate(_win)
   WinWaitActive(_win)
@@ -186,7 +199,9 @@ ActivateAndAltF4UnderMouse() {
     Send("!{F4}")
   } Else {
     Send("!{F4}")
-    SetTimer(() => KillIfStillExist(_win), 1000)
+    TryAltF4WinId := _win
+    TryAltF4WinProcessName := WinGetProcessName(TryAltF4WinId)
+    SetTimer(KillIfStillExist, 1000)
   }
 }
 
