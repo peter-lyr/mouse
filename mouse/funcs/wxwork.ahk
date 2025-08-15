@@ -25,7 +25,7 @@ ActivateWeChatExe() {
   }
   If (WinExist("ahk_exe Weixin.exe")) {
     WinActivate("ahk_exe Weixin.exe")
-    Send("^!w")
+    ; Send("^!w")
   }
 }
 
