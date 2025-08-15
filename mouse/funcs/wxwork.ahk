@@ -23,13 +23,13 @@ ActivateWeChatExe() {
   If WinActive("ahk_exe mstsc.exe") {
     Send("^!{Home}")
   }
-  If (WinExist("ahk_exe WeChat.exe")) {
-    WinActivate("ahk_exe WeChat.exe")
+  If (WinExist("ahk_exe Weixin.exe")) {
+    WinActivate("ahk_exe Weixin.exe")
     Send("^!w")
   }
 }
 
-#HotIf WinActive("ahk_exe WeChat.exe") Or WinActive("ahk_exe WXWork.exe")
+#HotIf WinActive("ahk_exe Weixin.exe") Or WinActive("ahk_exe WXWork.exe")
 
 ^j:: {
   Print("{Down}")

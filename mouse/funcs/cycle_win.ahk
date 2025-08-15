@@ -4,7 +4,7 @@
 MinimizeAll() {
   MinimizeAllExistWin([
     "ahk_exe WXWork.exe",
-    "ahk_exe WeChat.exe",
+    "ahk_exe Weixin.exe",
     "ahk_class CabinetWClass",
     "ahk_exe Downloader.exe",
     "ahk_exe codeblocks.exe",
@@ -34,7 +34,7 @@ MinimizeOrActivateMsedge() {
 ActivateCycleWeChatWXWork() {
   CycleActivateAllExistWin([
     "ahk_exe WXWork.exe",
-    "ahk_exe WeChat.exe",
+    "ahk_exe Weixin.exe",
   ])
 }
 
