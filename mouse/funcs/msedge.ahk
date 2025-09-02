@@ -13,26 +13,24 @@ Browser() {
   )
 }
 
-#HotIf WinActive("ahk_exe msedge.exe")
+#HotIf
 
-!l:: {
+#!l:: {
   Send("!{Right}")
 }
 
-!h:: {
+#!h:: {
   Send("!{Left}")
 }
 
-!k:: {
+#!k:: {
   Send("!{Up}")
 }
 
-!j:: {
+#!j:: {
   Send("{Up}")
 }
 
-!m:: {
+#!m:: {
   Send("{Down}")
 }
-
-#HotIf

@@ -131,18 +131,6 @@ ToggleExplorerMainPanelTreeView() {
   Send("{AppsKey}")
 }
 
-!l:: {
-  Send("!{Right}")
-}
-
-!h:: {
-  Send("!{Left}")
-}
-
-!k:: {
-  Send("!{Up}")
-}
-
 CopyFilePathDo() {
   A_Clipboard := A_Clipboard
   SetTimer () => Print(A_Clipboard), -20
