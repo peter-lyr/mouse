@@ -15,22 +15,22 @@ Browser() {
 
 #HotIf
 
-#!l:: {
+!o:: {
   Send("!{Right}")
 }
 
-#!h:: {
+!y:: {
   Send("!{Left}")
 }
 
-#!k:: {
+!i:: {
   Send("!{Up}")
 }
 
-#!j:: {
+!u:: {
   Send("{Up}")
 }
 
-#!m:: {
+!j:: {
   Send("{Down}")
 }
