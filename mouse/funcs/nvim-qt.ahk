@@ -2,7 +2,15 @@
 ; create at 2024/06/06 20:46:22 星期四
 
 ActivateNvimQtExe() {
-  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt.vim")
+  ActivateOrOpen("ahk_exe nvim-qt.exe", "C:\Program Files\Neovim-0.10.4\bin\nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt.vim")
+}
+
+ActivateNvimQt1Exe() {
+  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt-1.vim")
+}
+
+RunNvimQt1Exe() {
+  Run("nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt-1.vim")
 }
 
 ActivateOneNvimQtExeNext() {
@@ -33,7 +41,11 @@ ActivateOneNvimQtExe() {
   NvimQtIndex := 1
   If NvimQts.Length <= 1 {
     ActivateNvimQtExe()
-    G(".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"])
+    G(
+      ".", ["ActivateNvimQtExe", ActivateNvimQtExe, "ActivateWindow"],
+      "rshift", ["ActivateNvimQt1Exe", ActivateNvimQt1Exe, "ActivateWindow"],
+      "lshift", ["RunNvimQt1Exe", RunNvimQt1Exe, "ActivateWindow"],
+    )
   } Else {
     If WinActive("ahk_exe nvim-qt.exe") {
       ActivateOneNvimQtExeNext()

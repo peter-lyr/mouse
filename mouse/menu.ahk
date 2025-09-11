@@ -443,6 +443,8 @@ MyMenu() {
     "s", ["MinimizeOrActivateMsedge", MinimizeOrActivateMsedge, "Continue"],
     ",", ["ActivateEmacs", ActivateEmacs, "ActivateWindow"],
     ".", ["ActivateOneNvimQtExe", ActivateOneNvimQtExe],
+    "rshift", ["ActivateNvimQt1Exe", ActivateNvimQt1Exe, "ActivateWindow"],
+    "lshift", ["RunNvimQt1Exe", RunNvimQt1Exe, "ActivateWindow"],
     "/", ["ActivateWindowsTerminalExe", ActivateWindowsTerminalExe, "ActivateWindow"],
     "enter", ["ActivateMstscExe", ActivateMstscExe, "ActivateWindow"],
     "f6", ["CbpBuild", CbpBuild],
