@@ -6,11 +6,11 @@ ActivateNvimQtExe() {
 }
 
 ActivateNvimQt1Exe() {
-  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt-1.vim")
+  ActivateOrOpen("ahk_exe nvim-qt.exe", "nvim-qt.exe -- -u ~/Dp1/lazy/nvim1/init-qt.vim")
 }
 
 RunNvimQt1Exe() {
-  Run("nvim-qt.exe -- -u ~/AppData/Local/nvim/init-qt-1.vim")
+  Run("nvim-qt.exe -- -u ~/Dp1/lazy/nvim1/init-qt.vim")
 }
 
 ActivateOneNvimQtExeNext() {
